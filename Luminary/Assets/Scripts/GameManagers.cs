@@ -68,4 +68,5 @@ public class GameManagers : MonoBehaviour
         StageC.clear();
         MapGen.clear();
     }
+
 }

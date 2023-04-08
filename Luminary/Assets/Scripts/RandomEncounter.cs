@@ -46,7 +46,7 @@ public class RandomEncounter
     }
 
 
-    private void setSeed(string seed)
+    public void setSeed(string seed)
     {
         init(seed);
 

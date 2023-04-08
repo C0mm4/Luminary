@@ -6,8 +6,6 @@ public class StageController
 {
     // Start is called before the first frame update
 
-
-
     List<GameObject> rooms;
     public bool[] isClear;
     public bool[] isVIsit;
