@@ -7,6 +7,7 @@ public class StageController
     // Start is called before the first frame update
 
     List<GameObject> rooms;
+    List<GameObject> gates;
     public bool[] isClear;
     public bool[] isVIsit;
     public int currentRoom;
@@ -19,13 +20,19 @@ public class StageController
     public void init()
     {
         stageNo = 1;
-        setRoom();
+        startStage();
     }
 
     public void nextStage()
     {
         stageNo++;
+        startStage();
+    }
+
+    private void startStage()
+    {
         setRoom();
+        setGate();
     }
 
     public void setRoom()
@@ -56,6 +63,15 @@ public class StageController
 
     }
 
+    public void setGate()
+    {
+        gates = GameManagers.MapGen.setGates(rooms);
+        foreach(GameObject go in gates)
+        {
+            go.GetComponent<Gate>().set();
+        }
+    }
+
     public void clear()
     {
         if (rooms != null)
@@ -65,6 +81,11 @@ public class StageController
                 GameManagers.Resource.Destroy(go);
             }
             rooms.Clear();
+            foreach (GameObject go in gates)
+            {
+                GameManagers.Resource.Destroy(go);
+            }
+            gates.Clear();
             isClear = new bool[0];
             isVIsit = new bool[0];
         }

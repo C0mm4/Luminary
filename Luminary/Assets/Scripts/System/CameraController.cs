@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class testButton : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,9 +14,5 @@ public class testButton : MonoBehaviour
     void Update()
     {
         
-    }
-    public void onClick()
-    {
-        GameManagers.mapgen();
     }
 }
