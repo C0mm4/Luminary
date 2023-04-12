@@ -782,26 +782,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 861472415}
-  - component: {fileID: 861472414}
+  - component: {fileID: 861472416}
+  - component: {fileID: 861472417}
   m_Layer: 0
-  m_Name: GameManagers
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &861472414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861472413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500a9c3a99944b943ac22d9c50ace9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &861472415
 Transform:
   m_ObjectHideFlags: 0
@@ -817,6 +806,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861472416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861472413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fdb29a4b10958044a8067bb5329e127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentObject: {fileID: 861472413}
+--- !u!114 &861472417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861472413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66e4cefd09859a4b83ba99640bc2ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inPlayBGM: {fileID: 0}
+  attackSound: {fileID: 0}
+  fireSkillSoundEffect: {fileID: 0}
+  iceSkillSoundEffect: {fileID: 0}
+  windSkillSoundEffect: {fileID: 0}
+  earthSkillSoundEffect: {fileID: 0}
+  playerHitSound: {fileID: 0}
+  mobHitSound: []
 --- !u!1 &1017872513
 GameObject:
   m_ObjectHideFlags: 0

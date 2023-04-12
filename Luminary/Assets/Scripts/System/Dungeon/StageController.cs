@@ -44,8 +44,8 @@ public class StageController
         roomNom += stageNo;
         roomNoM += stageNo * 2;
 
-        roomNo = GameManagers.Random.getGeneralNext(roomNom, roomNoM);
-        rooms = GameManagers.MapGen.mapGen(roomNo);
+        roomNo = GameManager.Random.getGeneralNext(roomNom, roomNoM);
+        rooms = GameManager.MapGen.mapGen(roomNo);
 
         foreach(GameObject go in rooms)
         {
@@ -65,7 +65,7 @@ public class StageController
 
     public void setGate()
     {
-        gates = GameManagers.MapGen.setGates(rooms);
+        gates = GameManager.MapGen.setGates(rooms);
         foreach(GameObject go in gates)
         {
             go.GetComponent<Gate>().set();
@@ -78,12 +78,12 @@ public class StageController
         {
             foreach (GameObject go in rooms)
             {
-                GameManagers.Resource.Destroy(go);
+                GameManager.Resource.Destroy(go);
             }
             rooms.Clear();
             foreach (GameObject go in gates)
             {
-                GameManagers.Resource.Destroy(go);
+                GameManager.Resource.Destroy(go);
             }
             gates.Clear();
             isClear = new bool[0];

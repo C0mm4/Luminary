@@ -10,14 +10,14 @@ public class UICon : MonoBehaviour
     [SerializeField] private TMP_InputField inputfield;
     public void gameStart()
     {
-        GameManagers.clear();
-        GameManagers.StageC.init();
+        GameManager.clear();
+        GameManager.StageC.init();
     }
 
     public void nextStage()
     {
-        GameManagers.clear();
-        GameManagers.StageC.nextStage();
+        GameManager.clear();
+        GameManager.StageC.nextStage();
     }
 
     public void seedChange()
@@ -25,6 +25,6 @@ public class UICon : MonoBehaviour
         seedText = inputfield.text;
         
         Debug.Log(seedText);
-        GameManagers.Random.setSeed(seedText);
+        GameManager.Random.setSeed(seedText);
     }
 }

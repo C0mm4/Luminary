@@ -68,22 +68,22 @@ public class MapGen
     private GameObject startRoomGen()
     {
         // 시작 맵 게임 오브젝트 생성 및 반환
-        GameObject room = GameManagers.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Room");
         return room;
     }
     private GameObject normalRoomGen()
     {
-        GameObject room = GameManagers.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Room");
         return room;
     }
     private GameObject shopRoomGen()
     {
-        GameObject room = GameManagers.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Room");
         return room;
     }
     private GameObject bossRoomGen()
     {
-        GameObject room = GameManagers.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Room");
         return room;
     }
 
@@ -135,7 +135,7 @@ public class MapGen
                 {
                     if (currentx + xpos[k] == nextx && currenty + ypos[k] == nexty)
                     {
-                        GameObject gate = GameManagers.Resource.Instantiate("Gate");
+                        GameObject gate = GameManager.Resource.Instantiate("Gate");
                         gate.GetComponent<Gate>().index = gatecnt;
                         switch (k)
                         {
@@ -176,10 +176,10 @@ public class MapGen
     private KeyValuePair<int, int> getRandompos()
     {
         int acount = ablepos.Count();
-        KeyValuePair<KeyValuePair<int, int>, int> res = ablepos.ElementAt(GameManagers.Random.getMapNext(0, acount));
+        KeyValuePair<KeyValuePair<int, int>, int> res = ablepos.ElementAt(GameManager.Random.getMapNext(0, acount));
         while (res.Value >= 3)
         {
-            res = ablepos.ElementAt(GameManagers.Random.getMapNext(0, acount));
+            res = ablepos.ElementAt(GameManager.Random.getMapNext(0, acount));
         }
         return res.Key;
     }
