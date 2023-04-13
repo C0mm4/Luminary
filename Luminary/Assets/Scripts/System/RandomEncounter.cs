@@ -20,6 +20,8 @@ public class RandomEncounter
     public System.Random shopSeed;
     public System.Random generalSeed;
 
+    public int mapSeedout, shopSeedout, generalSeedout;
+
 
     public RandomEncounter(string str = "")
     {
