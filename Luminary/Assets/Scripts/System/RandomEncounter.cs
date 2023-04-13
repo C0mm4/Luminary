@@ -20,6 +20,7 @@ public class RandomEncounter
     public System.Random shopSeed;
     public System.Random generalSeed;
 
+
     public RandomEncounter(string str = "")
     {
         init(str);
@@ -31,6 +32,7 @@ public class RandomEncounter
         mapSeed = new System.Random();
         shopSeed = new System.Random();
         generalSeed = new System.Random();
+        mapSeedout = shopSeedout = generalSeedout = 0;
         gameSeed = str;
         if (gameSeed == "")
         {
@@ -43,7 +45,6 @@ public class RandomEncounter
         Debug.Log(gameSeed);
         Debug.Log(seedHash);
 
- 
     }
 
     // if Seed input Box filled, generate new Seeds
