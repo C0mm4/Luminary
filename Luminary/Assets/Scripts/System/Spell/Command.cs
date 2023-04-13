@@ -5,4 +5,5 @@ using UnityEngine;
 public interface Command 
 {
     void execute();
+    float getCD();
 }

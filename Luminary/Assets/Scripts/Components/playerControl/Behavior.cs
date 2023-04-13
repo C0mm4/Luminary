@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
  
 public class Behavior : Control
 {
     [SerializeField]
-    float speed = 5f;
+    public float speed = 5f;
 
     [SerializeField]
     private GameObject[] spellPrefab;
+
+    [SerializeField]
+    private GameObject[] slots;
+    public SkillSlot testslot;
+
+    public void Start()
+    {
+        
+    }
 
     public void move()
     {
@@ -17,17 +27,30 @@ public class Behavior : Control
 
     public IEnumerator roll()
     {
-        speed = 10f;
-        yield return new WaitForSeconds(0.15f);
-        //0.3초 지속
+        Spell cmd;
+        GameObject testobj = new GameObject("spellroll");
+        testobj.AddComponent<TestSpell>();
+        cmd = testobj.GetComponent<TestSpell>();
+        testslot = slots[0].GetComponent<SkillSlot>();
+        if(testslot != null )
+        {
+            testslot.setCommand(cmd);
+        }
+        else
+        {
+            Debug.Log("cmd is NULL");
+        }
+        if (testslot != null)
+        {
+            testslot.useSkill();
+            cdRoll = true;
+            Debug.Log(testslot.getCD());
+            yield return new WaitForSeconds(testslot.getCD());
+            cdRoll = false;
+            //쿨다운 완료
+        }
 
-        speed = 5f;
-        cdRoll = true;
-        //구르기 이후 속도 원복 후 구르기 쿨다운
 
-        yield return new WaitForSeconds(1);
-        cdRoll = false;
-        //쿨다운 완료
     }
 
     public IEnumerator Q()

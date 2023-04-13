@@ -3,7 +3,7 @@ using UnityEngine;
 
 // 스펠의 정보를 담아둠
 [Serializable]
-public class Spell : MonoBehaviour
+public class aaSpell : MonoBehaviour
 {
     private Rigidbody2D myRigidbody;
 

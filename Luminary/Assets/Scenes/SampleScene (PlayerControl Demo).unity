@@ -844,14 +844,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1304116214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5810c0c54a141624b92da382fd3ec416, type: 3}
+  m_Script: {fileID: 11500000, guid: 36e756604c783644ba85f38e9bb9090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  spellPrefab:
-  - {fileID: 1692313115013922, guid: b803f0da807669347bf0eb35249f51bf, type: 3}
-  - {fileID: 1260382672141134, guid: 44de236b72a333d489daf22b851e8214, type: 3}
-  - {fileID: 1670559714400676, guid: 793eb1f955bd4414cb1ccd8f705cd578, type: 3}
+  spellPrefab: []
+  slots:
+  - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
+  testslot: {fileID: 0}
 --- !u!61 &1304116222
 BoxCollider2D:
   m_ObjectHideFlags: 0

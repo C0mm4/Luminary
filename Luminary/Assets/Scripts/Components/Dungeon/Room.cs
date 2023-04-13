@@ -5,8 +5,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class Room : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+    
     public int x, y;
     public int width, height;
     public int index;
@@ -16,11 +15,14 @@ public class Room : MonoBehaviour
 
     public int gateU, gateD, gateL, gateR;
 
+    // set position
     public void set()
     {
         gateU = gateD = gateL = gateR = -1;
-        this.gameObject.transform.position = new Vector3(x * 11, y * 11, 0);
+        this.gameObject.transform.position = new Vector3((float)(x * 20.5), y * 11, 0);
     }
+
+    // Loading Objects in this Room
     void setObjects()
     {
 

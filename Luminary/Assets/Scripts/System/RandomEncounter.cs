@@ -25,6 +25,7 @@ public class RandomEncounter
         init(str);
     }
 
+    // Set In Game Seeds
     public void init(string str)
     {
         mapSeed = new System.Random();
@@ -45,13 +46,14 @@ public class RandomEncounter
  
     }
 
-
+    // if Seed input Box filled, generate new Seeds
     public void setSeed(string seed)
     {
         init(seed);
 
     }
 
+    // If input seed is null, then create random Seed
     private string setRandomSeed()
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -59,16 +61,19 @@ public class RandomEncounter
             .Select(s => s[generalSeed.Next(s.Length)]).ToArray());
     }
 
+    // return mapSeed's Next
     public int getMapNext(int m = 0, int M = 100)
     {
         return mapSeed.Next(m, M);
 
     }
+    // return shopSeed's Next
     public int getShopNext(int m = 0, int M = 100)
     {
         return mapSeed.Next(m, M);
 
     }
+    // return generalSeed's Next
     public int getGeneralNext(int m = 0, int M = 100)
     {
         return mapSeed.Next(m, M);

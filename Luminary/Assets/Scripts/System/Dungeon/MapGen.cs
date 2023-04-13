@@ -15,7 +15,7 @@ public class MapGen
     private List<KeyValuePair<int, int>> roomspos;
     private Dictionary<KeyValuePair<int, int>, int> ablepos;
 
-
+    
     public MapGen()
     {
         roomspos = new List<KeyValuePair<int, int>>();
@@ -33,12 +33,12 @@ public class MapGen
 
         GameObject room = null;
         
-        // 시작 방 생성
+        // Generate StartRoom
         room = startRoomGen();
         addRoom(0,0, room);
         room.GetComponent<Room>().index = 0; 
         ret.Add(room);
-        // 일반(파밍 방 생성)
+        // Generate NormalRoom
         for (int i = 0; i < roomNo; i++)
         {
             target = getRandompos();
@@ -48,13 +48,13 @@ public class MapGen
             ret.Add(room);
         }
 
-        // 상점 방 생성
+        // Generate ShopRoom
         target = getRandompos();
         room = shopRoomGen();
         addRoom(target.Key, target.Value, room);
         ret.Add(room);
 
-        // 보스 방 생성
+        // Generate BossRoom
         target = getRandompos();
         room = bossRoomGen();
         addRoom(target.Key, target.Value, room);
@@ -64,10 +64,9 @@ public class MapGen
         return ret;
     }
 
-
+    // Return created room prefab
     private GameObject startRoomGen()
     {
-        // 시작 맵 게임 오브젝트 생성 및 반환
         GameObject room = GameManager.Resource.Instantiate("Room");
         return room;
     }
@@ -87,12 +86,14 @@ public class MapGen
         return room;
     }
 
+    // When New Dungeon Create or Next Dungeon Create buffer Clear
     public void clear()
     {
         roomspos.Clear();
         ablepos.Clear();
     }
 
+    // Filled new Room Object in Buffer and able new Position Add
     private void addRoom(int x, int y, GameObject obj)
     {
         // 객체 x,y 칸 설정
@@ -117,6 +118,7 @@ public class MapGen
         ablepos.Remove(new KeyValuePair<int, int>(x, y));
     }
     
+    // O(n^2) Create Gates between Rooms
     public List<GameObject> setGates(List<GameObject> rms)
     {
         List<GameObject> ret = new List<GameObject>();
@@ -173,6 +175,7 @@ public class MapGen
         return ret;
     }
 
+    // return Random Position In abldpos buffer
     private KeyValuePair<int, int> getRandompos()
     {
         int acount = ablepos.Count();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StageController
 {
-    // Start is called before the first frame update
+
 
     List<GameObject> rooms;
     List<GameObject> gates;
@@ -17,24 +17,29 @@ public class StageController
     public StageController()
     {
     }
+
+    // When Game Starts Create Stage 1 Dungeon
     public void init()
     {
         stageNo = 1;
         startStage();
     }
 
+    // When Next Stage trigger begins Create Next Stage Dungeion.
     public void nextStage()
     {
         stageNo++;
         startStage();
     }
 
+    // Dungeon Create
     private void startStage()
     {
         setRoom();
         setGate();
     }
 
+    // Create Rooms
     public void setRoom()
     {
         Debug.Log("Starting generating Room");
@@ -63,6 +68,7 @@ public class StageController
 
     }
 
+    // Create Gates
     public void setGate()
     {
         gates = GameManager.MapGen.setGates(rooms);
@@ -72,6 +78,7 @@ public class StageController
         }
     }
 
+    // Clear Buffer
     public void clear()
     {
         if (rooms != null)

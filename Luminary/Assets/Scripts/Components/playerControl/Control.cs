@@ -9,7 +9,7 @@ public class Control : MonoBehaviour
     protected bool cdRoll, cdQ, cdW, cdE, cdR;
     protected Vector3 mousePos, transPos, targetPos;
 
-    void Start()
+    void Awake()
     {
         behavior = GetComponent<Behavior>();
     }
