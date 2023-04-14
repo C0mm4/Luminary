@@ -6,8 +6,8 @@ public class StageController
 {
 
 
-    List<GameObject> rooms;
-    List<GameObject> gates;
+    public List<GameObject> rooms;
+    public List<GameObject> gates;
     public bool[] isClear;
     public bool[] isVIsit;
     public int currentRoom;

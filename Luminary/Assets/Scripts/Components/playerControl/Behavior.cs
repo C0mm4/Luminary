@@ -14,6 +14,7 @@ public class Behavior : Control
     [SerializeField]
     private GameObject[] slots;
     public SkillSlot testslot;
+    
 
     public void Start()
     {
@@ -24,9 +25,10 @@ public class Behavior : Control
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
     }
-
+    
     public IEnumerator roll()
     {
+        
         Spell cmd;
         GameObject testobj = new GameObject("spellroll");
         testobj.AddComponent<TestSpell>();
@@ -49,12 +51,14 @@ public class Behavior : Control
             cdRoll = false;
             //쿨다운 완료
         }
-
+        
 
     }
-
+    
     public IEnumerator Q()
     {
+
+        
         CastSpellQ();
         cdQ = true;
         //스킬 발사 이후 스킬 쿨다운

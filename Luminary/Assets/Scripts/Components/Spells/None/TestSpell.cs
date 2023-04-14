@@ -6,17 +6,24 @@ using UnityEngine;
 
 public class TestSpell : Spell
 {
-    GameObject obj = null;
     float originspd;
 
-    public override void execute()
+    public override void set()
     {
         // Setting Spell's Cooltime
         cd = 1f;
+        types = 5;
+        circle = 0;
 
         // Searching Player Object
         obj = GameObject.Find("sampleChara");
-        
+
+    }
+
+    public override void execute()
+    {
+        // Setting Spell Components
+        set();
         // Running This Spell
         run();
     }
