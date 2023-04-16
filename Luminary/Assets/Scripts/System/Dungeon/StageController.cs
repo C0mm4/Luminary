@@ -37,6 +37,10 @@ public class StageController
     {
         setRoom();
         setGate();
+        if (GameObject.Find("PlayerbleChara"))
+        {
+            GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
+        }
         GameManager.Instance.playerGen();
     }
 
