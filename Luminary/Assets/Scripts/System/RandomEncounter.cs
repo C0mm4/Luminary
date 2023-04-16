@@ -23,10 +23,6 @@ public class RandomEncounter
     public int mapSeedout, shopSeedout, generalSeedout;
 
 
-    public RandomEncounter(string str = "")
-    {
-        init(str);
-    }
 
     // Set In Game Seeds
     public void init(string str)

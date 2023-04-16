@@ -14,9 +14,6 @@ public class StageController
     public int roomNo;
     public int stageNo;
 
-    public StageController()
-    {
-    }
 
     // When Game Starts Create Stage 1 Dungeon
     public void init()

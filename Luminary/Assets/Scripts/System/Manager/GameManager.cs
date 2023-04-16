@@ -95,6 +95,8 @@ public class GameManager : MonoBehaviour
     public void init()
     {
         SkillSlot.init();
+        Random.init("");
+        MapGen.init();
     }
 
     public void loadData()

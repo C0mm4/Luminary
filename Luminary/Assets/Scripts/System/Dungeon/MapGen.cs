@@ -16,7 +16,7 @@ public class MapGen
     private Dictionary<KeyValuePair<int, int>, int> ablepos;
 
     
-    public MapGen()
+    public void init()
     {
         roomspos = new List<KeyValuePair<int, int>>();
         ablepos = new Dictionary<KeyValuePair<int, int>, int>();
