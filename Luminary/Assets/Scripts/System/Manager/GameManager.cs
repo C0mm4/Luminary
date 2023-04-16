@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     StageController _stageController = new StageController();
     public static StageController StageC { get { return gm_Instance._stageController; } }
 
+    SkillSlotManager _skillSlotManager = new SkillSlotManager();
+    public static SkillSlotManager SkillSlot { get { return gm_Instance._skillSlotManager; } }
+
     public struct SerializedGameData
     {
         public List<Resolution> resolutionList;
@@ -73,6 +76,10 @@ public class GameManager : MonoBehaviour
         loadData();
         Screen.SetResolution(gameData.resolution.width, gameData.resolution.height, gameData.isFullscreen);
 
+
+        init();
+        playerGen();
+
     }
 
     // Start is called before the first frame update
@@ -85,6 +92,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void init()
+    {
+        SkillSlot.init();
     }
 
     public void loadData()
@@ -123,4 +135,10 @@ public class GameManager : MonoBehaviour
         MapGen.clear();
     }
 
+    public void playerGen()
+    {
+        GameObject player = Resource.Instantiate("PlayerbleChara");
+        player.transform.position = new Vector3(0, 0, 0);
+        player.name = "PlayerbleChara";
+    }
 }

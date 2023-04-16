@@ -12,14 +12,23 @@ public class Behavior : Control
     private GameObject[] spellPrefab;
 
     [SerializeField]
-    private GameObject[] slots;
+    private GameObject[] skillslots;
     public SkillSlot testslot;
-    
 
+    [SerializeField]
+    private GameObject[] inventory;
+    
+    /*
     public void Start()
     {
-        
-    }
+        skillslots = new GameObject[5];
+        for(int i = 0; i < skillslots.Length; i++)
+        {
+            Debug.Log(i);
+            GameObject go = GameManager.Resource.Instantiate("SkillSlot");
+            skillslots[i] = go;
+        }
+    }*/
 
     public void move()
     {
@@ -28,80 +37,74 @@ public class Behavior : Control
     
     public IEnumerator roll()
     {
-        
-        Spell cmd;
-        GameObject testobj = new GameObject("spellroll");
-        testobj.AddComponent<TestSpell>();
-        cmd = testobj.GetComponent<TestSpell>();
-        testslot = slots[0].GetComponent<SkillSlot>();
-        if(testslot != null )
+        SkillSlot spellRoll;
+        float cd = 0f;
+        spellRoll = GameManager.SkillSlot.getSlot(0).GetComponent<SkillSlot>();
+        if(spellRoll.isSet() != null)
         {
-            testslot.setCommand(cmd);
+            spellRoll.useSkill();
+            cd = spellRoll.getCD();
         }
-        else
-        {
-            Debug.Log("cmd is NULL");
-        }
-        if (testslot != null)
-        {
-            testslot.useSkill();
-            cdRoll = true;
-            Debug.Log(testslot.getCD());
-            yield return new WaitForSeconds(testslot.getCD());
-            cdRoll = false;
-            //쿨다운 완료
-        }
-        
 
+        yield return new WaitForSeconds(cd);
     }
     
     public IEnumerator Q()
     {
-
+        SkillSlot spellq;
+        float cd = 0f;
+        spellq = skillslots[1].GetComponent<SkillSlot>();
+        if (spellq.isSet() != null)
+        {
+            spellq.useSkill();
+            cd = spellq.getCD();
+        }
         
-        CastSpellQ();
-        cdQ = true;
-        //스킬 발사 이후 스킬 쿨다운
-
-        yield return new WaitForSeconds(2);
-        cdQ = false;
+        yield return new WaitForSeconds(cd);
         //쿨다운 완료
     }
 
     public IEnumerator W()
     {
-        CastSpellW();
-        cdW = true;
-        //스킬 발사 이후 스킬 쿨다운
+        SkillSlot testobj;
+        float cd = 0f;
+        testobj = skillslots[2].GetComponent<SkillSlot>();
+        if (testobj.isSet() != null)
+        {
+            testobj.useSkill();
+            cd = testobj.getCD();
+        }
 
-        yield return new WaitForSeconds(2);
-        cdW = false;
+        yield return new WaitForSeconds(cd);
         //쿨다운 완료
     }
 
     public IEnumerator E()
     {
-        CastSpellE();
-        cdE = true;
-        //스킬 발사 이후 스킬 쿨다운
+        SkillSlot testobj;
+        float cd = 0f;
+        testobj = skillslots[3].GetComponent<SkillSlot>();
+        if (testobj.isSet() != null)
+        {
+            testobj.useSkill();
+            cd = testobj.getCD();
+        }
 
-        yield return new WaitForSeconds(2);
-        cdE = false;
+        yield return new WaitForSeconds(cd);
         //쿨다운 완료
     }
-
-    public void CastSpellQ()
+    public IEnumerator R()
     {
-        Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
-    }
+        SkillSlot testobj;
+        float cd = 0f;
+        testobj = skillslots[4].GetComponent<SkillSlot>();
+        if (testobj.isSet() != null)
+        {
+            testobj.useSkill();
+            cd = testobj.getCD();
+        }
 
-    public void CastSpellW()
-    {
-        Instantiate(spellPrefab[1], transform.position, Quaternion.identity);
-    }
-
-    public void CastSpellE()
-    {
-        Instantiate(spellPrefab[2], transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(cd);
+        //쿨다운 완료
     }
 }

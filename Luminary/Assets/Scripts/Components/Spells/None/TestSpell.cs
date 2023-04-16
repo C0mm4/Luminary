@@ -16,12 +16,13 @@ public class TestSpell : Spell
         circle = 0;
 
         // Searching Player Object
-        obj = GameObject.Find("sampleChara");
+        obj = GameObject.Find("PlayerbleChara");
 
     }
 
     public override void execute()
     {
+        Debug.Log("Run Test Spell");
         // Setting Spell Components
         set();
         // Running This Spell

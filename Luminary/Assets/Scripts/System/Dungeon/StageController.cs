@@ -37,6 +37,7 @@ public class StageController
     {
         setRoom();
         setGate();
+        GameManager.Instance.playerGen();
     }
 
     // Create Rooms
