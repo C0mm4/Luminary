@@ -78,8 +78,6 @@ public class GameManager : MonoBehaviour
 
 
         init();
-        playerGen();
-
     }
 
     // Start is called before the first frame update
