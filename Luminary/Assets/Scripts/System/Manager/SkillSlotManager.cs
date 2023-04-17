@@ -14,8 +14,8 @@ public class SkillSlotManager
         spells = new GameObject();
         for (int i = 0; i < slots.Length; i++)
         {
-            GameObject go = GameManager.Resource.Instantiate("SkillSlot");
-            slots[i] = go;
+//            GameObject go = GameManager.Resource.Instantiate("SkillSlot");
+//            slots[i] = go;
 
         }
         SetRoll();

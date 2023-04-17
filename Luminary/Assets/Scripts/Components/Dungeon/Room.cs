@@ -19,7 +19,7 @@ public class Room : MonoBehaviour
     public void set()
     {
         gateU = gateD = gateL = gateR = -1;
-        this.gameObject.transform.position = new Vector3((float)(x * 20.5), y * 11, 0);
+        this.gameObject.transform.position = new Vector3((float)(x * 19.2f), (y * 10.8f), 0);
     }
 
     // Loading Objects in this Room

@@ -14,8 +14,11 @@ public class MapGen
     private int[] ypos;
     private List<KeyValuePair<int, int>> roomspos;
     private Dictionary<KeyValuePair<int, int>, int> ablepos;
+    GameObject dungeon;
+    GameObject dungeonRoom;
+    GameObject dungeonGate;
 
-    
+
     public void init()
     {
         roomspos = new List<KeyValuePair<int, int>>();
@@ -32,11 +35,20 @@ public class MapGen
         KeyValuePair<int, int> target;
 
         GameObject room = null;
+        GameObject tmp = GameObject.Find("Dungeon");
+        if (tmp != null)
+        {
+            GameManager.Resource.Destroy(tmp);
+        }
+        dungeon = new GameObject("Dungeon");
+        dungeonRoom = new GameObject("rooms");
+        dungeonRoom.transform.parent = dungeon.transform;
         
         // Generate StartRoom
         room = startRoomGen();
         addRoom(0,0, room);
-        room.GetComponent<Room>().index = 0; 
+        room.GetComponent<Room>().index = 0;
+        room.transform.parent = dungeonRoom.transform;
         ret.Add(room);
         // Generate NormalRoom
         for (int i = 0; i < roomNo; i++)
@@ -45,6 +57,7 @@ public class MapGen
             room = normalRoomGen();
             addRoom(target.Key, target.Value, room);
             room.GetComponent<Room>().index = i + 1;
+            room.transform.parent = dungeonRoom.transform;
             ret.Add(room);
         }
 
@@ -52,6 +65,7 @@ public class MapGen
         target = getRandompos();
         room = shopRoomGen();
         addRoom(target.Key, target.Value, room);
+        room.transform.parent = dungeonRoom.transform;
         ret.Add(room);
 
         // Generate BossRoom
@@ -59,6 +73,7 @@ public class MapGen
         room = bossRoomGen();
         addRoom(target.Key, target.Value, room);
         room.GetComponent<Room>().index = roomNo + 1;
+        room.transform.parent = dungeonRoom.transform;
         ret.Add(room);
 
         return ret;
@@ -121,6 +136,10 @@ public class MapGen
     // O(n^2) Create Gates between Rooms
     public List<GameObject> setGates(List<GameObject> rms)
     {
+        dungeon = GameObject.Find("Dungeon");
+        dungeonGate = new GameObject("gates");
+        dungeonGate.transform.parent = dungeon.transform;
+
         List<GameObject> ret = new List<GameObject>();
         int cnt = rms.Count();
         int gatecnt = 0;
@@ -165,6 +184,7 @@ public class MapGen
 
                         gate.GetComponent<Gate>().room1 = rms.ElementAt(i).GetComponent<Room>().index;
                         gate.GetComponent<Gate>().room2 = rms.ElementAt(j).GetComponent<Room>().index;
+                        gate.transform.parent = dungeonGate.transform;
                         ret.Add(gate);
                         gatecnt++;
                     }
