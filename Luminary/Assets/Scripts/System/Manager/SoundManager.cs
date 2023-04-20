@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
 
 
 
-    public AudioSource inPlayBGM;
+    public static AudioSource inPlayBGM;
     public AudioSource attackSound;
     public AudioSource fireSkillSoundEffect;
     public AudioSource iceSkillSoundEffect;

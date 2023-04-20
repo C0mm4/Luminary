@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
     public GameObject persistentObject;
     // == this
 
+    public AudioSource audioSourceBGM;
+    private bool isPaused = false;
+    // 시스템 변수
+
 
     private void Awake()
     {
@@ -89,7 +93,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void init()
@@ -119,6 +122,67 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         // end
+    }
+
+    public void pauseGame()
+    {
+        {
+            if (!isPaused)
+            {
+                Time.timeScale = 0f; // Pause Game
+                isPaused = true;
+            }
+            else
+            {
+                Time.timeScale = 1f; // Resume Game
+                isPaused = false;
+            }
+        }
+
+        /*if (!isPaused)
+        {
+            // Pause Game
+            Time.timeScale = 0f;
+            isPaused = true;
+
+            // Pause all audio sources except BGM
+            AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+            foreach (AudioSource audioSource in allAudioSources)
+            {
+                if (audioSource != audioSourceBGM)
+                {
+                    audioSource.Pause();
+                }
+            }
+        }
+        else
+        {
+            // Resume Game
+            Time.timeScale = 1f;
+            isPaused = false;
+
+            // Resume all audio sources
+            AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+            foreach (AudioSource audioSource in allAudioSources)
+            {
+                audioSource.UnPause();
+            }
+        }*/
+    }
+
+    public void playerDie()
+    {
+
+    }
+
+    public void gameEnd()
+    {
+
+    }
+
+    public void stageEnd()
+    {
+
     }
 
 

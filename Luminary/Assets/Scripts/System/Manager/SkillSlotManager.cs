@@ -28,7 +28,7 @@ public class SkillSlotManager
 
     public void setSlot(int n, Spell cmd)
     {
-        slots[n].GetComponent<SkillSlot>().setCommand(cmd);
+        //slots[n].GetComponent<SkillSlot>().setCommand(cmd);
     }
 
     public void deSetSlot(int n)
