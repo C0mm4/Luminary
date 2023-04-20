@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillSlotUI : MonoBehaviour
 {
     RectTransform rt;
+    
 
     public void init()
     {

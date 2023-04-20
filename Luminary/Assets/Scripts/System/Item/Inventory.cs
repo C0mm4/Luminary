@@ -25,6 +25,9 @@ public class Inventory : MonoBehaviour
         rt.transform.SetParent(GameManager.Instance.canvas.transform);
         rt.transform.localScale = Vector3.one;
         rt.transform.localPosition = Vector3.zero;
+
+        GameObject go = GameManager.Resource.Instantiate("Item/TestItem");
+        addItem(go.GetComponent<Item>());
     }
     
     private void Awake()

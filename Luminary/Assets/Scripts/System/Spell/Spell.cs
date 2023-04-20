@@ -17,6 +17,8 @@ public class Spell : MonoBehaviour, Command
 
     public GameObject obj;
 
+    public bool isCool = false;
+
     public virtual void set()
     {
 
@@ -31,5 +33,8 @@ public class Spell : MonoBehaviour, Command
     {
         return cd;
     }
-
+    public Sprite getSpr()
+    {
+        return spr;
+    }
 }

@@ -436,8 +436,7 @@ MonoBehaviour:
   - {fileID: 5277025872230111610}
   - {fileID: 155023744571711354}
   bag: {fileID: 6881559907927847761}
-  items:
-  - {fileID: 11400000, guid: 502d9a025e7ed4a4e95929abdac634c3, type: 2}
+  items: []
 --- !u!1 &2779238997155696907
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class SkillSlotManager
         skillslotUI = slot.GetComponent<SkillSlotUI>();
         spells = new GameObject();
         SetRoll();
+        
     }
 
     public SkillSlot getSlot(int n)
@@ -26,12 +28,24 @@ public class SkillSlotManager
 
     public void setSlot(int n, Spell cmd)
     {
-        slots[n].GetComponent<SkillSlot>().setCommand(cmd);
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].getSpell() != null)
+            {
+                if (slots[i].getSpell().GetHashCode() == cmd.GetHashCode())
+                {
+                    deSetSlot(i);
+                    break;
+                }
+            }
+        }
+        slots[n].setCommand(cmd);
+        setImg();
     }
 
     public void deSetSlot(int n)
     {
-        slots[n].GetComponent<SkillSlot>().deSetCommand();
+        slots[n].deSetCommand();
     }
 
 
@@ -42,4 +56,13 @@ public class SkillSlotManager
         Spell spl = spells.GetComponent<TestSpell>();
         setSlot(0, spl);
     }
+
+    public void setImg()
+    {
+        for(int i = 0; i < slots.Length; i++)
+        {
+            slots[i].slotImg.updateImg();
+        }
+    }
+
 }

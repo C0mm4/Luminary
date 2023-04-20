@@ -24,7 +24,6 @@ public class TestSpell : Spell
     public override void execute()
     {
         base.execute();
-        Debug.Log("Run Test Spell");
         // Setting Spell Components
         set();
         // Running This Spell
@@ -47,5 +46,5 @@ public class TestSpell : Spell
     {
         obj.GetComponent<Behavior>().speed = originspd;
     }
-    
+   
 }

@@ -7,24 +7,34 @@ public class SkillSlot : MonoBehaviour
 {
     // Get Spell in Command pattern
     private Spell skillCommand = null;
-    public Image img;
-    
+    public SlotImg slotImg = null;
+    spellFill spf = null;
 
     // Set Spell command target
     public void setCommand(Spell command)
     {
+        slotImg = GetComponentInChildren<SlotImg>();
+        spf = GetComponentInChildren<spellFill>();
         skillCommand = command;
+        setImg();
     }
     // Set Command to Null
     public void deSetCommand()
     {
         skillCommand = null;
+        slotImg.deSetImg();
+    }
+
+    public Spell getSpell()
+    {
+        return skillCommand;
     }
 
     // Use Spell in triggered
     public void useSkill()
     {
         skillCommand.execute();
+        spf.setCooltime(skillCommand.getCD());
     }
 
     // return Spell Cooltime 
@@ -41,6 +51,7 @@ public class SkillSlot : MonoBehaviour
 
     public void setImg()
     {
-
+        slotImg.setImg(skillCommand.spr);
     }
+
 }

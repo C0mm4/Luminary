@@ -4,11 +4,14 @@ using System.IO.Enumeration;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class Item : MonoBehaviour, Command
+[CreateAssetMenu]
+public class ItemData : ScriptableObject, Command
 {
     [SerializeField]
-    public ItemData data;
+    public Sprite itemImage;
+    public string itemName;
+    public int itemIndex;
+
 
 
     // Start is called before the first frame update

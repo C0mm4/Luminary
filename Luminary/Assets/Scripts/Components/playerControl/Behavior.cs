@@ -13,22 +13,7 @@ public class Behavior : Control
 
     [SerializeField]
     private GameObject[] skillslots;
-    public SkillSlot testslot;
 
-    [SerializeField]
-    private GameObject[] inventory;
-    
-    /*
-    public void Start()
-    {
-        skillslots = new GameObject[5];
-        for(int i = 0; i < skillslots.Length; i++)
-        {
-            Debug.Log(i);
-            GameObject go = GameManager.Resource.Instantiate("SkillSlot");
-            skillslots[i] = go;
-        }
-    }*/
 
     public void move()
     {
@@ -56,14 +41,16 @@ public class Behavior : Control
     {
         SkillSlot spellq;
         float cd = 0f;
-        spellq = skillslots[1].GetComponent<SkillSlot>();
+        spellq = GameManager.SkillSlot.getSlot(1).GetComponent<SkillSlot>();
         if (spellq.isSet() != null)
         {
+            cdQ = true;
             spellq.useSkill();
             cd = spellq.getCD();
         }
         
         yield return new WaitForSeconds(cd);
+        cdQ = false;
         //쿨다운 완료
     }
 

@@ -58,6 +58,11 @@ public class UIManager : MonoBehaviour
             invenUI = !invenUI;
             inventory.gameObject.SetActive(invenUI);
         }
+        if (Input.GetKeyDown("a"))
+        {
+            
+            GameManager.SkillSlot.setSlot(1,GameManager.SkillSlot.spells.GetComponent<Spell>());
+        }
     }
 
     
