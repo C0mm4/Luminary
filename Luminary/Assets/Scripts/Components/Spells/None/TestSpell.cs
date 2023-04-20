@@ -10,6 +10,7 @@ public class TestSpell : Spell
 
     public override void set()
     {
+        
         // Setting Spell's Cooltime
         cd = 1f;
         types = 5;
@@ -17,18 +18,19 @@ public class TestSpell : Spell
 
         // Searching Player Object
         obj = GameObject.Find("PlayerbleChara");
-
+        
     }
 
     public override void execute()
     {
+        base.execute();
         Debug.Log("Run Test Spell");
         // Setting Spell Components
         set();
         // Running This Spell
         run();
     }
-
+    
     public void run()
     {
         // Finding Original Player Speed
@@ -45,5 +47,5 @@ public class TestSpell : Spell
     {
         obj.GetComponent<Behavior>().speed = originspd;
     }
-
+    
 }

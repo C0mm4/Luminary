@@ -42,11 +42,14 @@ public class Behavior : Control
         spellRoll = GameManager.SkillSlot.getSlot(0).GetComponent<SkillSlot>();
         if(spellRoll.isSet() != null)
         {
+            cdRoll = true;
             spellRoll.useSkill();
             cd = spellRoll.getCD();
         }
 
         yield return new WaitForSeconds(cd);
+        cdRoll = false;
+        yield return 0;
     }
     
     public IEnumerator Q()

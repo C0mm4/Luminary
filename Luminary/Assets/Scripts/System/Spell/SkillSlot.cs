@@ -7,6 +7,8 @@ public class SkillSlot : MonoBehaviour
 {
     // Get Spell in Command pattern
     private Spell skillCommand = null;
+    public Image img;
+    
 
     // Set Spell command target
     public void setCommand(Spell command)
@@ -35,5 +37,10 @@ public class SkillSlot : MonoBehaviour
     public Spell isSet()
     {
         return skillCommand;
+    }
+
+    public void setImg()
+    {
+
     }
 }

@@ -26,7 +26,7 @@ public class Control : MonoBehaviour
         {
             if (cdRoll == false)
             {
-               StartCoroutine("roll");
+                StartCoroutine("roll");
             }
         }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -60,6 +61,12 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     // 시스템 변수
 
+    CameraManager _camera;
+    [SerializeField]
+    public Canvas canvas;
+
+    public GameObject _inventory;
+    public UIManager uiManager;
 
     private void Awake()
     {
@@ -97,9 +104,19 @@ public class GameManager : MonoBehaviour
 
     public void init()
     {
+        _inventory = Resource.Instantiate("Inventory");
+
+        Camera cmr  = GameObject.Find("Main Camera").GetComponents<Camera>()[0];
+        _camera = cmr.GetComponent<CameraManager>();
+        _camera.GetComponent<CameraManager>().init();
+
         SkillSlot.init();
         Random.init("");
         MapGen.init();
+
+        // 다른 객체 영향을 받기에 항상 마지막에 실행해야 함.
+        uiManager.init();
+
     }
 
     public void loadData()
@@ -117,6 +134,12 @@ public class GameManager : MonoBehaviour
     public void saveData()
     {
 
+    }
+
+    public void gameStart()
+    {
+        mapgen();
+        playerGen();
     }
 
     public void gameOver()
@@ -204,5 +227,6 @@ public class GameManager : MonoBehaviour
         GameObject player = Resource.Instantiate("PlayerbleChara");
         player.transform.position = new Vector3(0, 0, 0);
         player.name = "PlayerbleChara";
+        _camera.setCamera(player.transform);
     }
 }

@@ -5,30 +5,28 @@ using UnityEngine;
 public class SkillSlotManager
 {
 
-    public GameObject[] slots;
+    public SkillSlot[] slots;
+    public GameObject slot;
     public GameObject spells;
+    public SkillSlotUI skillslotUI;
 
     public void init()
     {
-        slots = new GameObject[5];
+        slot = GameManager.Resource.Instantiate("SkillSlots");
+        slots = slot.GetComponentsInChildren<SkillSlot>();
+        skillslotUI = slot.GetComponent<SkillSlotUI>();
         spells = new GameObject();
-        for (int i = 0; i < slots.Length; i++)
-        {
-//            GameObject go = GameManager.Resource.Instantiate("SkillSlot");
-//            slots[i] = go;
-
-        }
         SetRoll();
     }
 
-    public GameObject getSlot(int n)
+    public SkillSlot getSlot(int n)
     {
         return slots[n];
     }
 
     public void setSlot(int n, Spell cmd)
     {
-        //slots[n].GetComponent<SkillSlot>().setCommand(cmd);
+        slots[n].GetComponent<SkillSlot>().setCommand(cmd);
     }
 
     public void deSetSlot(int n)

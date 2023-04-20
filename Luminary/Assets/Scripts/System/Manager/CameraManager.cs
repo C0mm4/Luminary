@@ -15,12 +15,23 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
+        
     }
     void Update()
     {
         Debug.Log("test");
         cameraHeight = camera.orthographicSize;
         cameraWidth = cameraHeight * camera.aspect;
+    }
+
+    public void init()
+    {
+        player = GameManager.Instance.transform;
+    }
+
+    public void setCamera(Transform trf)
+    {
+        player = trf;
     }
 
     void LateUpdate()

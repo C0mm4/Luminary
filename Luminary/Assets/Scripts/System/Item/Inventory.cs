@@ -11,11 +11,20 @@ public class Inventory : MonoBehaviour
     private Transform bag;
 
     public List<Item> items;
+    RectTransform rt;
     
     private void OnValidate()
     {
         slots = bag.GetComponentsInChildren<ItemSlot>();
         GetComponent<RectTransform>().localScale = Vector3.one;
+    }
+
+    public void init()
+    {
+        rt = GetComponent<RectTransform>();
+        rt.transform.SetParent(GameManager.Instance.canvas.transform);
+        rt.transform.localScale = Vector3.one;
+        rt.transform.localPosition = Vector3.zero;
     }
     
     private void Awake()

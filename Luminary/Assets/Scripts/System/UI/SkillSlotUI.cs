@@ -5,19 +5,14 @@ using UnityEngine.UI;
 
 public class SkillSlotUI : MonoBehaviour
 {
-    Image skillIcon;
-    Image frameImage;
-    Spell target;
+    RectTransform rt;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void init()
     {
+        rt = GetComponent<RectTransform>();
+        rt.transform.SetParent(GameManager.Instance.canvas.transform);
+        rt.transform.localScale = Vector3.one;
+        rt.transform.localPosition = Vector3.zero;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
