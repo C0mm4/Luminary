@@ -493,7 +493,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -220, y: 0}
-  m_SizeDelta: {x: 2.8, y: 3.2}
+  m_SizeDelta: {x: 3.5, y: 4.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &297205409961250577
 CanvasRenderer:
@@ -549,7 +549,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 280, y: 340}
+  m_Size: {x: 350, y: 450}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
