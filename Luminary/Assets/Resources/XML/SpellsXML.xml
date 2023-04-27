@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SpellData>
+	<Spell>
+		<id>1</id>
+		<name>TestSpell</name>
+	</Spell>
+	<Spell>
+		<id>2</id>
+		<name>TestSpell2</name>
+	</Spell>
+</SpellData>

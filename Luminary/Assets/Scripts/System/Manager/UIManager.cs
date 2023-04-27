@@ -61,7 +61,6 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown("a"))
         {
             
-            GameManager.SkillSlot.setSlot(1,GameManager.SkillSlot.spells.GetComponent<Spell>());
         }
     }
 

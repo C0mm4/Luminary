@@ -14,15 +14,11 @@ public class spellFill : MonoBehaviour
     {
         img.color = new Color(0, 0, 0, 0);
         img.fillAmount = 0;
-        Debug.Log(img.type);
-        img.type = Image.Type.Filled;
-        img.fillMethod = Image.FillMethod.Radial360;
-        img.fillOrigin = 0;
-        img.fillClockwise = false;
     }
     // Update is called once per frame
     void Update()
     {
+
         if (isRun)
         {
             checkCoolTime();
@@ -33,7 +29,6 @@ public class spellFill : MonoBehaviour
     {
         cooltime = cd;
         startSpell();
-        Debug.Log(img.type);
     }
 
     public void startSpell()
@@ -48,7 +43,7 @@ public class spellFill : MonoBehaviour
         timeCurrent = Time.time - timeStart;
         if(timeCurrent < cooltime)
         {
-            img.fillAmount = 0;
+            img.fillAmount = timeCurrent/cooltime;
         }
         else
         {

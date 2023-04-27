@@ -56,45 +56,51 @@ public class Behavior : Control
 
     public IEnumerator W()
     {
-        SkillSlot testobj;
+        SkillSlot spellw;
         float cd = 0f;
-        testobj = skillslots[2].GetComponent<SkillSlot>();
-        if (testobj.isSet() != null)
+        spellw = GameManager.SkillSlot.getSlot(2).GetComponent<SkillSlot>();
+        if (spellw.isSet() != null)
         {
-            testobj.useSkill();
-            cd = testobj.getCD();
+            cdQ = true;
+            spellw.useSkill();
+            cd = spellw.getCD();
         }
 
         yield return new WaitForSeconds(cd);
+        cdW = false;
         //쿨다운 완료
     }
 
     public IEnumerator E()
     {
-        SkillSlot testobj;
+        SkillSlot spelle;
         float cd = 0f;
-        testobj = skillslots[3].GetComponent<SkillSlot>();
-        if (testobj.isSet() != null)
+        spelle = GameManager.SkillSlot.getSlot(1).GetComponent<SkillSlot>();
+        if (spelle.isSet() != null)
         {
-            testobj.useSkill();
-            cd = testobj.getCD();
+            cdQ = true;
+            spelle.useSkill();
+            cd = spelle.getCD();
         }
 
         yield return new WaitForSeconds(cd);
+        cdE = false;
         //쿨다운 완료
     }
     public IEnumerator R()
     {
-        SkillSlot testobj;
+        SkillSlot spellr;
         float cd = 0f;
-        testobj = skillslots[4].GetComponent<SkillSlot>();
-        if (testobj.isSet() != null)
+        spellr = GameManager.SkillSlot.getSlot(1).GetComponent<SkillSlot>();
+        if (spellr.isSet() != null)
         {
-            testobj.useSkill();
-            cd = testobj.getCD();
+            cdQ = true;
+            spellr.useSkill();
+            cd = spellr.getCD();
         }
 
         yield return new WaitForSeconds(cd);
+        cdR = false;
         //쿨다운 완료
     }
 }

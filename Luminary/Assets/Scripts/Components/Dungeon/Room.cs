@@ -23,7 +23,7 @@ public class Room : MonoBehaviour
     }
 
     // Loading Objects in this Room
-    void setObjects()
+    public void setObjects()
     {
 
     }

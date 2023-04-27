@@ -33,17 +33,14 @@ public class MapGen
     {
         List<GameObject> ret = new List<GameObject>();
         KeyValuePair<int, int> target;
-
         GameObject room = null;
         GameObject tmp = GameObject.Find("Dungeon");
         if (tmp != null)
         {
             GameManager.Resource.Destroy(tmp);
         }
-        dungeon = new GameObject("Dungeon");
-        dungeonRoom = new GameObject("rooms");
-        dungeonRoom.transform.parent = dungeon.transform;
-        
+
+        setParents();
         // Generate StartRoom
         room = startRoomGen();
         addRoom(0,0, room);
@@ -77,6 +74,15 @@ public class MapGen
         ret.Add(room);
 
         return ret;
+    }
+
+    private void setParents()
+    {
+        dungeon = new GameObject("Dungeon");
+        dungeonRoom = new GameObject("rooms");
+        dungeonGate = new GameObject("gates");
+        dungeonRoom.transform.parent = dungeon.transform;
+        dungeonGate.transform.parent = dungeon.transform;
     }
 
     // Return created room prefab
@@ -136,9 +142,6 @@ public class MapGen
     // O(n^2) Create Gates between Rooms
     public List<GameObject> setGates(List<GameObject> rms)
     {
-        dungeon = GameObject.Find("Dungeon");
-        dungeonGate = new GameObject("gates");
-        dungeonGate.transform.parent = dungeon.transform;
 
         List<GameObject> ret = new List<GameObject>();
         int cnt = rms.Count();

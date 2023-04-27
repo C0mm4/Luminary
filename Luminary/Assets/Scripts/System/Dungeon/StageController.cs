@@ -99,4 +99,13 @@ public class StageController
             isVIsit = new bool[0];
         }
     }
+
+    public void moveRoom(int n)
+    {
+        currentRoom = n;
+        isVIsit[currentRoom] = true;
+
+        rooms[currentRoom].GetComponent<Room>().setObjects();
+    }
+
 }

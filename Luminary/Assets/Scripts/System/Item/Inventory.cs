@@ -12,7 +12,9 @@ public class Inventory : MonoBehaviour
 
     public List<Item> items;
     RectTransform rt;
-    
+
+    public GameObject itemin;
+
     private void OnValidate()
     {
         slots = bag.GetComponentsInChildren<ItemSlot>();
@@ -25,9 +27,14 @@ public class Inventory : MonoBehaviour
         rt.transform.SetParent(GameManager.Instance.canvas.transform);
         rt.transform.localScale = Vector3.one;
         rt.transform.localPosition = Vector3.zero;
+        itemin = new GameObject("Item In");
+        itemin.transform.parent = this.transform;
 
+        // Test
         GameObject go = GameManager.Resource.Instantiate("Item/TestItem");
-        addItem(go.GetComponent<Item>());
+        go.transform.parent = itemin.transform;
+        addItem(go);
+
     }
     
     private void Awake()
@@ -48,11 +55,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void addItem(Item _item)
+    public void addItem(GameObject _item)
     {
+        Item itm = _item.GetComponent<Item>();
         if(items.Count < slots.Length)
         {
-            items.Add(_item);
+            _item.transform.parent = itemin.transform;
+            items.Add(itm);
             freshSlot();
         }
         else

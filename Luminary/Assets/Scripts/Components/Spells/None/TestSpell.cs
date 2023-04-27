@@ -46,5 +46,6 @@ public class TestSpell : Spell
     {
         obj.GetComponent<Behavior>().speed = originspd;
     }
+
    
 }

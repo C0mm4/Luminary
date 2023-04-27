@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     SkillSlotManager _skillSlotManager = new SkillSlotManager();
     public static SkillSlotManager SkillSlot { get { return gm_Instance._skillSlotManager; } }
 
+    SpellManager _spellManager = new SpellManager();
+    public static SpellManager Spells { get { return gm_Instance._spellManager; } }
+
     public struct SerializedGameData
     {
         public List<Resolution> resolutionList;
@@ -111,6 +114,10 @@ public class GameManager : MonoBehaviour
         _camera = cmr.GetComponent<CameraManager>();
         _camera.GetComponent<CameraManager>().init();
 
+        // Spell 객체를 로드하고 만드는 객체 초기화
+        Spells.init();
+        
+        // Spell 슬롯 관리 객체 초기화 = Spell 객체 로드 먼저 해야함.
         SkillSlot.init();
         Random.init("");
         MapGen.init();

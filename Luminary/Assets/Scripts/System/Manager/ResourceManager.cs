@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 
@@ -31,6 +32,20 @@ public class ResourceManager
         return Object.Instantiate(prefab, parent);
     }
 
+    public XmlDocument LoadXML(string path)
+    {
+        XmlDocument xml = new XmlDocument();
+        TextAsset txtAsset = Load<TextAsset>($"XML/{path}");
+        xml.LoadXml(txtAsset.text);
+
+        if (xml == null)
+        {
+            Debug.Log($"Failed to load XML : {path}");
+            return null;
+        }
+
+        return xml;
+    }
 
     public void Destroy(GameObject go)
     {

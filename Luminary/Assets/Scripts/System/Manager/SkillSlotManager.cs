@@ -8,7 +8,6 @@ public class SkillSlotManager
 
     public SkillSlot[] slots;
     public GameObject slot;
-    public GameObject spells;
     public SkillSlotUI skillslotUI;
 
     public void init()
@@ -16,7 +15,6 @@ public class SkillSlotManager
         slot = GameManager.Resource.Instantiate("SkillSlots");
         slots = slot.GetComponentsInChildren<SkillSlot>();
         skillslotUI = slot.GetComponent<SkillSlotUI>();
-        spells = new GameObject();
         SetRoll();
         
     }
@@ -43,6 +41,14 @@ public class SkillSlotManager
         setImg();
     }
 
+    public void setImg()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].slotImg.updateImg();
+        }
+    }
+
     public void deSetSlot(int n)
     {
         slots[n].deSetCommand();
@@ -52,17 +58,7 @@ public class SkillSlotManager
     // test
     public void SetRoll()
     {
-        spells.AddComponent<TestSpell>();
-        Spell spl = spells.GetComponent<TestSpell>();
-        setSlot(0, spl);
+        GameObject obj = GameManager.Spells.allspells[0];
+        setSlot(0, obj.GetComponent<Spell>());
     }
-
-    public void setImg()
-    {
-        for(int i = 0; i < slots.Length; i++)
-        {
-            slots[i].slotImg.updateImg();
-        }
-    }
-
 }

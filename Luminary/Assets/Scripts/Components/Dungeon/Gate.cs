@@ -12,6 +12,6 @@ public class Gate : MonoBehaviour
     // set position
     public void set()
     {
-        this.gameObject.transform.position = new Vector3((float)(posx * 20.5), posy * 11, 0);
+        this.gameObject.transform.position = new Vector3((float)(posx * 19.2), posy * 10.8f, 0);
     }
 }
