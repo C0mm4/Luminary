@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
             return gm_Instance;
         }
     }
+    SceneTransition _sceneTransition = new SceneTransition();
+    public static SceneTransition sceneTransition { get { return gm_Instance._sceneTransition; } }
 
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return gm_Instance._resource; } }
@@ -123,7 +125,7 @@ public class GameManager : MonoBehaviour
         MapGen.init();
 
         // 다른 객체 영향을 받기에 항상 마지막에 실행해야 함.
-        uiManager.init();
+        //uiManager.init();
 
     }
 
@@ -139,9 +141,16 @@ public class GameManager : MonoBehaviour
         gameData.musicVolume = PlayerPrefs.GetFloat("musicVolume", 0.3f);
         // load volume
     }
+
     public void saveData()
     {
 
+    }
+
+    public static void sceneControl(string targetScene)
+    {
+        Debug.Log("Transition Start to " + targetScene);
+        sceneTransition.sceneLoad(targetScene);
     }
 
     public void gameStart()
@@ -259,7 +268,7 @@ public class GameManager : MonoBehaviour
     public void playerGen()
     {
         GameObject player = Resource.Instantiate("PlayerbleChara");
-        player.transform.position = new Vector3(0, 0, 0);
+        player.transform.position = new Vector3(0, 0, -1);
         player.name = "PlayerbleChara";
         _camera.setCamera(player.transform);
     }

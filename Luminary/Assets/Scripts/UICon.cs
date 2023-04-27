@@ -14,6 +14,7 @@ public class UICon : MonoBehaviour
         GameManager.StageC.init();
     }
 
+    
     public void nextStage()
     {
         GameManager.clear();
