@@ -27,7 +27,7 @@ public class SpellManager
             allspells.Add(spl);
             spl.transform.parent = Spells.transform;
             spl.AddComponent(Type.GetType(node.InnerText));
-            Debug.Log(node.InnerText);
+            Debug.Log(node.InnerText[3]);
         }
     }
 
