@@ -5,6 +5,6 @@ Please Don't read This FILE
 TILE SIZE = 52Pixels
 
 MapSize = 1920 * 1080  
-Wall Size 1920 * 150, 1080 * 124  
-TileMap Size 1632 * 832  
-Tile Count 31 * 16  
+Wall Size 1920 * 154, 1080 * 98  
+TileMap Size 1612 * 884  
+Tile Count 31 * 17  
