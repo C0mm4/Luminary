@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4549913171267635944}
   - component: {fileID: 660349782921485568}
   m_Layer: 0
-  m_Name: TestItem
+  m_Name: TestItem0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &660349782921485568
 MonoBehaviour:
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281e8c7fa6ece14498387ca96a8cc0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 595d9145d3915bd418df1080301890c7, type: 2}
+  data: {fileID: 11400000, guid: b36287ce154c97649bb5f4d187392f0e, type: 2}

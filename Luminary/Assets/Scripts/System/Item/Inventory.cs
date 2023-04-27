@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
         itemin.transform.parent = this.transform;
 
         // Test
-        GameObject go = GameManager.Resource.Instantiate("Item/TestItem");
+        GameObject go = GameManager.Resource.Instantiate("Item/TestItem0");
         go.transform.parent = itemin.transform;
         addItem(go);
 
