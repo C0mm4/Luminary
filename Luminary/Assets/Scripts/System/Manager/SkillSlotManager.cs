@@ -12,7 +12,7 @@ public class SkillSlotManager
 
     public void init()
     {
-        slot = GameManager.Resource.Instantiate("SkillSlots");
+        slot = GameManager.Resource.Instantiate("UI/SkillSlots");
         slots = slot.GetComponentsInChildren<SkillSlot>();
         skillslotUI = slot.GetComponent<SkillSlotUI>();
         SetRoll();

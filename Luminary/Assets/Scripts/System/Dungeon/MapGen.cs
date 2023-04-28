@@ -88,22 +88,22 @@ public class MapGen
     // Return created room prefab
     private GameObject startRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
         return room;
     }
     private GameObject normalRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
         return room;
     }
     private GameObject shopRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
         return room;
     }
     private GameObject bossRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
         return room;
     }
 
@@ -159,31 +159,43 @@ public class MapGen
                 {
                     if (currentx + xpos[k] == nextx && currenty + ypos[k] == nexty)
                     {
-                        GameObject gate = GameManager.Resource.Instantiate("Gate");
+                        GameObject gate = GameManager.Resource.Instantiate("Dungeon/Gate");
                         gate.GetComponent<Gate>().index = gatecnt;
+                        Char[] strI = rms.ElementAt(i).GetComponent<Room>().gatedir.ToCharArray();
+                        Char[] strJ = rms.ElementAt(j).GetComponent<Room>().gatedir.ToCharArray();
                         switch (k)
                         {
                             case 0:
                                 rms.ElementAt(i).GetComponent<Room>().gateU = gatecnt;
+                                strI[3] = '1';
                                 rms.ElementAt(j).GetComponent<Room>().gateD = gatecnt;
+                                strJ[2] = '1';
                                 break;
                             case 1:
                                 rms.ElementAt(i).GetComponent<Room>().gateR = gatecnt;
+                                strI[0] = '1';
                                 rms.ElementAt(j).GetComponent<Room>().gateL = gatecnt;
+                                strJ[1] = '1';
                                 break;
                             case 2:
                                 rms.ElementAt(i).GetComponent<Room>().gateL = gatecnt;
+                                strI[1] = '1';
                                 rms.ElementAt(j).GetComponent<Room>().gateR = gatecnt;
+                                strJ[0] = '1';
                                 break;
                             case 3:
                                 rms.ElementAt(i).GetComponent<Room>().gateD = gatecnt;
+                                strI[2] = '1';
                                 rms.ElementAt(j).GetComponent<Room>().gateU = gatecnt;
+                                strJ[3] = '1';
                                 break;
                         }
 
                         gate.GetComponent<Gate>().posx = (float)(currentx + nextx) / 2;
                         gate.GetComponent<Gate>().posy = (float)(currenty + nexty) / 2;
 
+                        rms.ElementAt(i).GetComponent<Room>().gatedir = new string(strI);
+                        rms.ElementAt(j).GetComponent<Room>().gatedir = new string(strJ);
 
                         gate.GetComponent<Gate>().room1 = rms.ElementAt(i).GetComponent<Room>().index;
                         gate.GetComponent<Gate>().room2 = rms.ElementAt(j).GetComponent<Room>().index;

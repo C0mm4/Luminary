@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void init()
     {
-        _inventory = Resource.Instantiate("Inventory");
+        _inventory = Resource.Instantiate("UI/Inventory");
 
         Camera cmr  = GameObject.Find("Main Camera").GetComponents<Camera>()[0];
         _camera = cmr.GetComponent<CameraManager>();
@@ -119,13 +119,15 @@ public class GameManager : MonoBehaviour
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
         
+        StageC.init();
+
         // Spell 슬롯 관리 객체 초기화 = Spell 객체 로드 먼저 해야함.
         SkillSlot.init();
         Random.init("");
         MapGen.init();
 
         // 다른 객체 영향을 받기에 항상 마지막에 실행해야 함.
-        //uiManager.init();
+        uiManager.init();
 
     }
 
@@ -227,38 +229,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public Type GetTypeFromAssemblies(string TypeName)
-    {
-        // null 반환 없이 Type이 얻어진다면 얻어진 그대로 반환.
-        var type = Type.GetType(TypeName);
-        if (type != null)
-            return type;
-
-        // 프로젝트에 분명히 포함된 클래스임에도 불구하고 Type이 찾아지지 않는다면,
-        // 실행중인 어셈블리를 모두 탐색 하면서 그 안에 찾고자 하는 Type이 있는지 검사.
-        var currentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-        var referencedAssemblies = currentAssembly.GetReferencedAssemblies();
-        foreach (var assemblyName in referencedAssemblies)
-        {
-            var assembly = System.Reflection.Assembly.Load(assemblyName);
-            if (assembly != null)
-            {
-                // 찾았다 요놈!!!
-                type = assembly.GetType(TypeName);
-                if (type != null)
-                    return type;
-            }
-        }
-
-        // 못 찾았음;;; 클래스 이름이 틀렸던가, 아니면 알 수 없는 문제 때문이겠지...
-        return null;
-    }
 
     //testcase
     public static void mapgen()
     {
         clear();
-        StageC.init();
+        StageC.gameStart();
     }
 
     public static void clear()

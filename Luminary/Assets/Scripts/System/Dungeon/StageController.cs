@@ -1,5 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StageController
@@ -14,9 +19,18 @@ public class StageController
     public int roomNo;
     public int stageNo;
 
+    XmlDocument mapDatas;
+    XmlNodeList roomDatas;
+
 
     // When Game Starts Create Stage 1 Dungeon
     public void init()
+    {
+        mapDatas = GameManager.Resource.LoadXML("MapsXML");
+        roomDatas = mapDatas.GetElementsByTagName("Room");
+    }
+
+    public void gameStart()
     {
         stageNo = 1;
         startStage();
@@ -34,11 +48,14 @@ public class StageController
     {
         setRoom();
         setGate();
+        setRoomCompo();
         if (GameObject.Find("PlayerbleChara"))
         {
             GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
         }
+        moveRoom(0);
         GameManager.Instance.playerGen();
+
     }
 
     // Create Rooms
@@ -77,6 +94,56 @@ public class StageController
         foreach(GameObject go in gates)
         {
             go.GetComponent<Gate>().set();
+        }
+    }
+
+    // Set Room Grid
+    public void setRoomCompo()
+    {
+        foreach(GameObject go in rooms)
+        {
+            List<int> lists = new List<int>();
+            Room r = go.GetComponent<Room>();
+            char[] str = r.gatedir.ToCharArray();
+            foreach(XmlNode node in roomDatas)
+            {
+                char[] mopen = node["open"].InnerText.ToCharArray();
+                int i = 0;
+                for(; i < 4; i++)
+                {
+                    if (str[i] == '1')
+                    {
+                        if (mopen[i] == '1')
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                if(i == 4)
+                {
+                    lists.Add(int.Parse(node["id"].InnerText));
+                }
+            }
+            int target = GameManager.Random.getMapNext(0,lists.Count);
+            string ary = roomDatas[target]["data"].InnerText;
+            
+            ary = ary.Replace("\t\t\t", string.Empty);
+            ary = ary.Replace("\n", string.Empty);
+            Debug.Log("ARY is :" + ary);
+            string[] sstr = ary.Split('\t');
+            Debug.Log(sstr[sstr.Length-1]);
+            int[] iary = Array.ConvertAll(sstr,  s=> int.TryParse(s, out var x) ? x : -1);
+            
+            go.GetComponent<Room>().setData(iary);
+
         }
     }
 
