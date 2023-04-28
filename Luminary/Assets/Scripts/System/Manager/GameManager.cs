@@ -23,8 +23,7 @@ public class GameManager : MonoBehaviour
             return gm_Instance;
         }
     }
-    SceneTransition _sceneTransition = new SceneTransition();
-    public static SceneTransition sceneTransition { get { return gm_Instance._sceneTransition; } }
+    public static SceneTransition sceneTransition;
 
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return gm_Instance._resource; } }
@@ -78,6 +77,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(persistentObject);
         gm_Instance = this;
+        sceneTransition = GameObject.Find("GameManager").GetComponent<SceneTransition>();
         bool isFirstRun = PlayerPrefs.GetInt("isFirstRun", 1) == 1;
         if (isFirstRun)
         {
@@ -149,6 +149,8 @@ public class GameManager : MonoBehaviour
 
     public static void sceneControl(string targetScene)
     {
+        
+
         Debug.Log("Transition Start to " + targetScene);
         sceneTransition.sceneLoad(targetScene);
     }
