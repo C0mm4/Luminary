@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public static SceneTransition sceneTransition;
+    public static CameraManager cameraManager;
 
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return gm_Instance._resource; } }
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     // 시스템 변수
 
-    CameraManager _camera;
+    
     [SerializeField]
     public Canvas canvas;
 
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(persistentObject);
         gm_Instance = this;
         sceneTransition = GameObject.Find("GameManager").GetComponent<SceneTransition>();
+        cameraManager = GameObject.Find("GameManager").GetComponent<CameraManager>();
         bool isFirstRun = PlayerPrefs.GetInt("isFirstRun", 1) == 1;
         if (isFirstRun)
         {
@@ -112,20 +114,15 @@ public class GameManager : MonoBehaviour
     {
         _inventory = Resource.Instantiate("UI/Inventory");
 
-        Camera cmr  = GameObject.Find("Main Camera").GetComponents<Camera>()[0];
-        _camera = cmr.GetComponent<CameraManager>();
-        _camera.GetComponent<CameraManager>().init();
 
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
         
-        StageC.init();
-
         // Spell 슬롯 관리 객체 초기화 = Spell 객체 로드 먼저 해야함.
         SkillSlot.init();
         Random.init("");
         MapGen.init();
-
+        StageC.init();
         // 다른 객체 영향을 받기에 항상 마지막에 실행해야 함.
         uiManager.init();
 
@@ -149,12 +146,32 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public static void sceneControl(string targetScene)
+    public void sceneControl(string targetScene)
     {
         
 
         Debug.Log("Transition Start to " + targetScene);
         sceneTransition.sceneLoad(targetScene);
+    }
+
+    public void sceneInit(string targetScene)
+    {
+        switch (targetScene)
+        {
+            case "LobbyScene":
+                lobbySceneInit();
+                break;
+            default:
+                break;
+        }
+    }
+    public void lobbySceneInit()
+    {
+        Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        SpriteRenderer lobbyField = GameObject.Find("LobbyField").GetComponent<SpriteRenderer>();
+        cameraManager.camera = mainCamera;
+        cameraManager.background = lobbyField;
+        playerGen();
     }
 
     public void gameStart()
@@ -229,8 +246,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-    //testcase
+   
     public static void mapgen()
     {
         clear();
@@ -248,6 +264,6 @@ public class GameManager : MonoBehaviour
         GameObject player = Resource.Instantiate("PlayerbleChara");
         player.transform.position = new Vector3(0, 0, -1);
         player.name = "PlayerbleChara";
-        _camera.setCamera(player.transform);
+        cameraManager.setCamera(player.transform);
     }
 }

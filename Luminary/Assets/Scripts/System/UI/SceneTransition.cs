@@ -70,6 +70,7 @@ public class SceneTransition : MonoBehaviour
         {
             yield return null;
         }
+        GameManager.Instance.sceneInit(targetScene);
         //SceneManager.LoadScene(targetScene);
         CreateFadeOutObject();
         fadeImage = GameObject.Find("fadeOut(Clone)").GetComponent<Image>();
