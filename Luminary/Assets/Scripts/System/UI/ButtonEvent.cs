@@ -8,6 +8,6 @@ public class ButtonEvent : MonoBehaviour
 
     public void gameInit()
     {
-        GameManager.Instance.sceneControl("LobbyScene");
+        GameManager.sceneControl("LobbyScene");
     }
 }
