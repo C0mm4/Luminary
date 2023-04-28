@@ -19,9 +19,11 @@ public class CameraManager : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("test");
-        cameraHeight = camera.orthographicSize;
-        cameraWidth = cameraHeight * camera.aspect;
+        if(camera != null)
+        {
+            cameraHeight = camera.orthographicSize;
+            cameraWidth = cameraHeight * camera.aspect;
+        }
     }
 
     public void init()
@@ -38,7 +40,7 @@ public class CameraManager : MonoBehaviour
     {
         if (player != null)
         {
-            Vector3 targetPos = new Vector3(player.position.x, player.position.y, transform.position.z);
+            Vector3 targetPos = new Vector3(player.position.x, player.position.y, camera.transform.position.z);
 
             float minX = background.bounds.min.x + cameraWidth;
             Debug.Log("minX" + minX);
@@ -54,7 +56,7 @@ public class CameraManager : MonoBehaviour
             Debug.Log("targetPos.x : " + targetPos.x);
             targetPos.y = Mathf.Clamp(targetPos.y, minY, maxY);
             Debug.Log("targetPos.y : " + targetPos.y);
-            transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5f);
+            camera.transform.position = Vector3.Lerp(camera.transform.position, targetPos, Time.deltaTime * 5f);
             // Relatively smooth tracking of playr positions
         }
 
