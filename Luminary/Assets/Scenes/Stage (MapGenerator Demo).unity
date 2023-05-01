@@ -823,7 +823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistentObject: {fileID: 861472413}
   audioSourceBGM: {fileID: 0}
-  canvas: {fileID: 1190592172}
+  canvas: {fileID: 0}
   _inventory: {fileID: 0}
   uiManager: {fileID: 1190592175}
 --- !u!114 &861472417
@@ -1208,7 +1208,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190592169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.010005882, y: 0.010005882, z: 0.010005882}
   m_ConstrainProportionsScale: 0
   m_Children:

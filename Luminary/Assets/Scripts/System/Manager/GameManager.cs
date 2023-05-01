@@ -74,6 +74,10 @@ public class GameManager : MonoBehaviour
     public GameObject _inventory;
     public UIManager uiManager;
 
+    [SerializeField]
+    // 0 = loading 1 = lobby 2 = inGame 3 = gameOver
+    public int state;
+
     private void Awake()
     {
         DontDestroyOnLoad(persistentObject);
@@ -96,7 +100,20 @@ public class GameManager : MonoBehaviour
         Screen.SetResolution(gameData.resolution.width, gameData.resolution.height, gameData.isFullscreen);
 
 
-        init();
+        if(canvas == null)
+        {
+            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            if(canvas.gameObject.GetComponent<UIManager>() == null)
+            {
+                canvas.gameObject.AddComponent<UIManager>();
+            }
+
+            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            canvas.planeDistance = 10;
+        }
+        state = 0;
+//        init();
     }
 
     // Start is called before the first frame update
@@ -108,12 +125,34 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (canvas == null)
+        {
+            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            if (canvas.gameObject.GetComponent<UIManager>() == null)
+            {
+                canvas.gameObject.AddComponent<UIManager>();
+            }
+
+            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            canvas.planeDistance = 10;
+        }
+        switch (state)
+        {
+            case 0:
+                break;
+            case 1:
+                init();
+                state = 2;
+                break;
+            case 2:
+                break;  
+        }
     }
 
     public void init()
     {
         _inventory = Resource.Instantiate("UI/Inventory");
-
 
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
@@ -160,6 +199,7 @@ public class GameManager : MonoBehaviour
         {
             case "LobbyScene":
                 lobbySceneInit();
+                state = 1;
                 break;
             default:
                 break;

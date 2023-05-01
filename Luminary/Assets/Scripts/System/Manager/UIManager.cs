@@ -42,6 +42,33 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(camera == null)
+        {
+            camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        }
+        if(canvas == null)
+        {
+            if(GameManager.Instance.canvas != null)
+            {
+                canvas = GameManager.Instance.canvas;
+            }
+        }
+        if(inventory == null)
+        {
+            if (GameManager.Instance._inventory != null)
+            {
+                inventory = GameManager.Instance._inventory.GetComponent<Inventory>();
+            }
+        }
+        if (skillslot == null)
+        {
+            if (GameManager.SkillSlot.skillslotUI != null)
+            {
+                skillslot = GameManager.SkillSlot.skillslotUI;
+            }
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             mapUI = !mapUI;

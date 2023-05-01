@@ -22,12 +22,10 @@ public class SpellManager
         XmlNodeList text = doc.GetElementsByTagName("name");
         foreach ( XmlNode node in text)
         {
-            Debug.Log("Load1");
             GameObject spl = new GameObject("spl");
             allspells.Add(spl);
             spl.transform.parent = Spells.transform;
             spl.AddComponent(Type.GetType(node.InnerText));
-            Debug.Log(node.InnerText[3]);
         }
     }
 

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 37611620}
   - component: {fileID: 37611619}
   - component: {fileID: 37611618}
+  - component: {fileID: 37611622}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -191,8 +192,8 @@ Canvas:
   m_GameObject: {fileID: 37611617}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1855561243}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -225,6 +226,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &37611622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37611617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f906df1a889c95348937bbe4816f1a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 37611620}
+  camera: {fileID: 1855561243}
 --- !u!1 &683660111
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,9 +273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistentObject: {fileID: 683660111}
   audioSourceBGM: {fileID: 0}
-  canvas: {fileID: 0}
+  canvas: {fileID: 37611620}
   _inventory: {fileID: 0}
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 37611622}
 --- !u!4 &683660113
 Transform:
   m_ObjectHideFlags: 0
@@ -305,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbed6a4a40e15e44e84522d01f44face, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  camera: {fileID: 1855561243}
   player: {fileID: 0}
   background: {fileID: 0}
 --- !u!1 &1038865800
