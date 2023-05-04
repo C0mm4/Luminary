@@ -31,9 +31,9 @@ public class Inventory : MonoBehaviour
         itemin.transform.parent = this.transform;
 
         // Test
-        GameObject go = GameManager.Resource.Instantiate("Item/TestItem0");
-        go.transform.parent = itemin.transform;
-        addItem(go);
+        //GameObject go = GameManager.Resource.Instantiate("Item/Item0");
+        //go.transform.parent = itemin.transform;
+        //addItem(go);
 
     }
     
@@ -55,10 +55,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void ItemGen()
+    {
+        int n = Random.Range(0, 9);
+        Debug.Log(n);
+        GameObject item = GameManager.Resource.Instantiate("Item/Item" + n);
+        addItem(item);
+    }
+
     public void addItem(GameObject _item)
     {
         Item itm = _item.GetComponent<Item>();
-        if(items.Count < slots.Length)
+        
+        if (items.Count < slots.Length)
         {
             _item.transform.parent = itemin.transform;
             items.Add(itm);
