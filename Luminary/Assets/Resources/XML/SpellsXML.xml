@@ -5,14 +5,5 @@
 		<name>TestSpell</name>
 		<spr>TestSpell</spr>
 	</Spell>
-	<Spell>
-		<id>2</id>
-		<name>TestSpell2</name>
-		<spr>TestSpell</spr>
-	</Spell>
-	<Spell>
-		<id>1</id>
-		<name>t		ww	w</name>
-		<spr>TestSpell</spr>
-	</Spell>
+	
 </SpellData>

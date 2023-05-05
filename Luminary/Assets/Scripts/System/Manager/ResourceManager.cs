@@ -47,6 +47,18 @@ public class ResourceManager
         return xml;
     }
 
+    public Sprite LoadSprite(string path)
+    {
+        Sprite spr;
+        spr = Load<Sprite>($"Sprites/{path}");
+        if (spr == null)
+        {
+            Debug.Log($"Failed to load Sprite : {path}");
+        }
+
+        return spr;
+    }
+
     public void Destroy(GameObject go)
     {
         if (go == null) return;

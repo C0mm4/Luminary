@@ -61,9 +61,9 @@ public class UIManager : MonoBehaviour
         }
         if (skillslot == null)
         {
-//            if (GameManager.SkillSlot.skillslotUI != null)
+            if (GameManager.SkillSlot.skillslotUI != null)
             {
- //               skillslot = GameManager.SkillSlot.skillslotUI;
+                skillslot = GameManager.SkillSlot.skillslotUI;
             }
         }
 

@@ -20,7 +20,7 @@ public class SpellManager
         XmlDocument doc = GameManager.Resource.LoadXML(spellXMLFile);
         allspells = new List<GameObject>();
 
-        text = doc.GetElementsByTagName("name");
+        text = doc.GetElementsByTagName("Spell");
 
         createSpellObj();
     }
@@ -35,8 +35,9 @@ public class SpellManager
             GameObject spl = new GameObject("spl");
             allspells.Add(spl);
             spl.transform.parent = Spells.transform;
-            spl.AddComponent(Type.GetType(node.InnerText));
-            //            spl.GetComponent<Spell>().spr;
+            Debug.Log(node["name"].InnerText);
+            spl.AddComponent(Type.GetType(node["name"].InnerText));
+            spl.GetComponent<Spell>().spr = GameManager.Resource.LoadSprite(node["spr"].InnerText);
         }
     }
 
