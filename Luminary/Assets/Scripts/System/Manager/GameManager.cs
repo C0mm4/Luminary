@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     }
     public static SceneTransition sceneTransition;
     public static CameraManager cameraManager;
+    public static PlayerDataManager playerDataManager;
 
 
     ResourceManager _resource = new ResourceManager();
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
         gm_Instance = this;
         sceneTransition = GameObject.Find("GameManager").GetComponent<SceneTransition>();
         cameraManager = GameObject.Find("GameManager").GetComponent<CameraManager>();
+        playerDataManager = GameObject.Find("GameManager").GetComponent<PlayerDataManager>();
         bool isFirstRun = PlayerPrefs.GetInt("isFirstRun", 1) == 1;
         if (isFirstRun)
         {
@@ -157,6 +159,8 @@ public class GameManager : MonoBehaviour
 
     public void loadData()
     {
+        playerDataManager.loadKeySetting();
+
         gameData.resolution.width = PlayerPrefs.GetInt("resolutionW", Screen.currentResolution.width);
         gameData.resolution.height = PlayerPrefs.GetInt("resolutionH", Screen.currentResolution.height);
         gameData.isFullscreen = PlayerPrefs.GetInt("isFullscreen", Screen.fullScreen ? 1 : 0) == 1;

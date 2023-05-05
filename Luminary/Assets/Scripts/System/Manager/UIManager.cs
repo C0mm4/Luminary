@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
             skillslot.gameObject.SetActive(bskillSlotUI);
         }
 
-        if (Input.GetKeyDown("i"))
+        if (Input.GetKeyDown(PlayerDataManager.keySetting.inventoryKey))
         {
             binvenUI = !binvenUI;
             if (invUI != null)

@@ -11,23 +11,10 @@ public class PlayerDataManager : MonoBehaviour
         public KeyCode InteractionKey;
     }
 
-    public void initializingKeySetting()
-    {
-        keySetting.inventoryKey = KeyCode.I;
-        keySetting.InteractionKey = KeyCode.G;
-    }
     public void loadKeySetting()
     {
-        int keyCodeSave = PlayerPrefs.GetInt("KeyCode", 0);
-        if(keyCodeSave == 1)
-        {
-            keySetting.inventoryKey = (KeyCode)PlayerPrefs.GetInt("inventoryKey", 0);
-            keySetting.InteractionKey = (KeyCode)PlayerPrefs.GetInt("InteractionKey", 0);
-        }
-        else
-        {
-            initializingKeySetting();
-        }
+        keySetting.inventoryKey = (KeyCode)PlayerPrefs.GetInt("inventoryKey", (int)KeyCode.I);
+        keySetting.InteractionKey = (KeyCode)PlayerPrefs.GetInt("InteractionKey", (int)KeyCode.G);
     }
     public void saveKeySetting()
     {
