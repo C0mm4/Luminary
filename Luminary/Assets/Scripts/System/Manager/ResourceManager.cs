@@ -53,4 +53,9 @@ public class ResourceManager
         Object.Destroy(go);
     }
 
+    public void test()
+    {
+        Debug.Log("Test");
+    }
+
 }

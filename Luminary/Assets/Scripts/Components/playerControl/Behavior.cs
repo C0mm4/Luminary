@@ -6,9 +6,6 @@ using UnityEngine;
 public class Behavior : Control
 {
     [SerializeField]
-    public float speed = 5f;
-
-    [SerializeField]
     private GameObject[] spellPrefab;
 
     [SerializeField]
@@ -78,7 +75,7 @@ public class Behavior : Control
     {
         SkillSlot spelle;
         float cd = 0f;
-        spelle = GameManager.SkillSlot.getSlot(1).GetComponent<SkillSlot>();
+        spelle = GameManager.SkillSlot.getSlot(3).GetComponent<SkillSlot>();
         if (spelle.isSet() != null)
         {
             cdQ = true;
@@ -94,7 +91,7 @@ public class Behavior : Control
     {
         SkillSlot spellr;
         float cd = 0f;
-        spellr = GameManager.SkillSlot.getSlot(1).GetComponent<SkillSlot>();
+        spellr = GameManager.SkillSlot.getSlot(4).GetComponent<SkillSlot>();
         if (spellr.isSet() != null)
         {
             cdQ = true;

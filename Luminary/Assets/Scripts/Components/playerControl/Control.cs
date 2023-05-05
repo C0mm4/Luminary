@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
  
-public class Control : MonoBehaviour
+public class Control : Charactor
 {
     Behavior behavior;
 
     protected bool cdRoll, cdQ, cdW, cdE, cdR;
     protected Vector3 mousePos, transPos, targetPos;
 
+
+
+    protected Inventory inven;
+
     void Awake()
     {
         behavior = GetComponent<Behavior>();
+        sMachine = new StateMachine();
+        sMachine.changeState(new PlayerIdleState(), this);
     }
 
     protected virtual void Update()

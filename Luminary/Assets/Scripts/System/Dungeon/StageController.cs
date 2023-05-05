@@ -136,10 +136,8 @@ public class StageController
             string ary = roomDatas[target]["data"].InnerText;
             
             ary = ary.Replace("\t\t\t", string.Empty);
-            ary = ary.Replace("\n", string.Empty);
-            Debug.Log("ARY is :" + ary);
+            ary = ary.Replace("\n", string.Empty); 
             string[] sstr = ary.Split('\t');
-            Debug.Log(sstr[sstr.Length-1]);
             int[] iary = Array.ConvertAll(sstr,  s=> int.TryParse(s, out var x) ? x : -1);
             
             go.GetComponent<Room>().setData(iary);

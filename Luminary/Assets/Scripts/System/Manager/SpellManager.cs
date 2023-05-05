@@ -13,19 +13,30 @@ public class SpellManager
     string spellXMLFile = "SpellsXML";
     string test = "TestSpell";
 
+    XmlNodeList text;
+
     public void init()
     {
         XmlDocument doc = GameManager.Resource.LoadXML(spellXMLFile);
         allspells = new List<GameObject>();
-        Spells = new GameObject("SPELLS");
 
-        XmlNodeList text = doc.GetElementsByTagName("name");
-        foreach ( XmlNode node in text)
+        text = doc.GetElementsByTagName("name");
+
+        createSpellObj();
+    }
+
+
+    public void createSpellObj()
+    {
+        allspells.Clear();
+        Spells = new GameObject("SPELLS");
+        foreach (XmlNode node in text)
         {
             GameObject spl = new GameObject("spl");
             allspells.Add(spl);
             spl.transform.parent = Spells.transform;
             spl.AddComponent(Type.GetType(node.InnerText));
+            //            spl.GetComponent<Spell>().spr;
         }
     }
 

@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Mob : MonoBehaviour
+public class Mob : Charactor
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Mob Attack Prefab
+    [SerializeField]
+    public GameObject[] attackPrefab;
 
-    // Update is called once per frame
-    void Update()
+
+    // Start is called before the first frame update
+    public void Start()
     {
-        
+        sMachine = new StateMachine();
+        sMachine.changeState(new MobIdleState(), this);
+        player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
     }
 }

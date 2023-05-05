@@ -53,14 +53,14 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator FadeOut(string targetScene)
     {
-        Debug.Log("FadeOut Init");
+ //       Debug.Log("FadeOut Init");
         float t = 0f;
         Color color = fadeImage.color;
         while (t < fadeOutTime)
         {
             t += Time.deltaTime;
             float alpha = Mathf.Lerp(0f, 1f, t / fadeOutTime);
-            Debug.Log("alpha : " + alpha);
+ //           Debug.Log("alpha : " + alpha);
             color.a = alpha;
             fadeImage.color = color;
             yield return null;
@@ -79,14 +79,14 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        Debug.Log("FadeIn Init");
+//        Debug.Log("FadeIn Init");
         float t = 0f;
         Color color = fadeImage.color;
         while (t < fadeInTime)
         {
             t += Time.deltaTime;
             float alpha = Mathf.Lerp(1f, 0f, t / fadeInTime);
-            Debug.Log("alpha : " + alpha);
+ //           Debug.Log("alpha : " + alpha);
             color.a = alpha;
             fadeImage.color = color;
             yield return null;

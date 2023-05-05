@@ -276,6 +276,7 @@ MonoBehaviour:
   canvas: {fileID: 37611620}
   _inventory: {fileID: 0}
   uiManager: {fileID: 37611622}
+  state: 0
 --- !u!4 &683660113
 Transform:
   m_ObjectHideFlags: 0
@@ -722,7 +723,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -28,7 +28,6 @@ public class Room : MonoBehaviour
     {
         for (int i = 0; i < data.Length; i++)
         {
-            Debug.Log(data[i]);
             int si = i % 33;
             int sj = i / 33;
             this.roomGrid[sj, si] = data[i];
@@ -43,7 +42,6 @@ public class Room : MonoBehaviour
         {
             for (int j = 0;  j < roomGrid.GetLength(1); j++)
             {
-                Debug.Log(roomGrid[i, j]);
                 if (roomGrid[i,j] != 0)
                 {
                     GameObject go = new GameObject();

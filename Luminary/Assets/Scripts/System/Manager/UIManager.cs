@@ -10,10 +10,12 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     Camera camera;
-    bool invenUI = false, skillUI = false, skillSlotUI = false, inGameUI = false, bossUI = false, mapUI = false;
+    bool binvenUI = false, bskillUI = false, bskillSlotUI = false, binGameUI = false, bbossUI = false, bmapUI = false;
 
     SkillSlotUI skillslot;
-    Inventory inventory;
+    [SerializeField]
+    GameObject invUI;
+    GameObject skillSlotUI;
 
     private void Awake()
     { /*
@@ -26,17 +28,16 @@ public class UIManager : MonoBehaviour
         */
     }
 
-    // Manager °´Ã¼ÀÇ ¿µÇâÀ» ¹Þ±â¿¡ Manager °´Ã¼µéÀÇ Initializion ÀÌÈÄ È£ÃâÇØ¾ß ÇÔ.
+    // Manager ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ±â¿¡ Manager ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ Initializion ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½.
     public void init()
     {
-        inventory = GameManager.Instance._inventory.GetComponent<Inventory>();
         skillslot = GameManager.SkillSlot.skillslotUI;
-
-        inventory.init();
         skillslot.init();
-
-        inventory.gameObject.SetActive(false);
         skillslot.gameObject.SetActive(false);
+
+        invUI = GameManager.Resource.Instantiate("UI/Inventory");
+        invUI.GetComponent<Inventory>().init();
+        invUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,37 +54,42 @@ public class UIManager : MonoBehaviour
                 canvas = GameManager.Instance.canvas;
             }
         }
-        if(inventory == null)
+        if(invUI == null)
         {
-            if (GameManager.Instance._inventory != null)
-            {
-                inventory = GameManager.Instance._inventory.GetComponent<Inventory>();
-            }
+            Debug.Log("INVNULL");
+            invUI = canvas.transform.Find("Inventory(Clone)").gameObject;
         }
         if (skillslot == null)
         {
-            if (GameManager.SkillSlot.skillslotUI != null)
+//            if (GameManager.SkillSlot.skillslotUI != null)
             {
-                skillslot = GameManager.SkillSlot.skillslotUI;
+ //               skillslot = GameManager.SkillSlot.skillslotUI;
             }
         }
 
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            mapUI = !mapUI;
+            bmapUI = !bmapUI;
         }
 
         if (Input.GetKeyDown("k"))
         {
-            skillSlotUI = !skillSlotUI;
-            skillslot.gameObject.SetActive(skillSlotUI);
+            bskillSlotUI = !bskillSlotUI;
+            skillslot.gameObject.SetActive(bskillSlotUI);
         }
 
         if (Input.GetKeyDown("i"))
         {
-            invenUI = !invenUI;
-            inventory.gameObject.SetActive(invenUI);
+            binvenUI = !binvenUI;
+            if (invUI != null)
+            {
+                invUI.SetActive(binvenUI);
+            }
+            else
+            {
+                Debug.Log("NOT");
+            }
         }
         if (Input.GetKeyDown("a"))
         {

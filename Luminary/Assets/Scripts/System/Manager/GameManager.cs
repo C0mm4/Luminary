@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public Canvas canvas;
 
-    public GameObject _inventory;
     public UIManager uiManager;
 
     [SerializeField]
@@ -112,8 +111,7 @@ public class GameManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
         }
-        state = 0;
-//        init();
+        init();
     }
 
     // Start is called before the first frame update
@@ -137,22 +135,11 @@ public class GameManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
         }
-        switch (state)
-        {
-            case 0:
-                break;
-            case 1:
-                init();
-                state = 2;
-                break;
-            case 2:
-                break;  
-        }
+        Resource.test();
     }
 
     public void init()
     {
-        _inventory = Resource.Instantiate("UI/Inventory");
 
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
@@ -191,6 +178,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Transition Start to " + targetScene);
         sceneTransition.sceneLoad(targetScene);
+
     }
 
     public void sceneInit(string targetScene)
@@ -211,6 +199,7 @@ public class GameManager : MonoBehaviour
         SpriteRenderer lobbyField = GameObject.Find("LobbyField").GetComponent<SpriteRenderer>();
         cameraManager.camera = mainCamera;
         cameraManager.background = lobbyField;
+        sceneInit();
         playerGen();
     }
 
@@ -305,5 +294,14 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector3(0, 0, -1);
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);
+
+        Resource.Instantiate("Mobs/TestMob");
+    }
+
+    public void sceneInit()
+    {
+        Spells.createSpellObj();
+        SkillSlot.init();
+        uiManager.init();
     }
 }

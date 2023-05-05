@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3215300491380893799}
   - component: {fileID: 2042081870811035912}
   - component: {fileID: 822224891981862580}
-  - component: {fileID: 9158317627643034382}
+  - component: {fileID: 7976401498833128132}
   m_Layer: 0
   m_Name: PlayerbleChara
   m_TagString: Untagged
@@ -134,8 +134,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &9158317627643034382
-BoxCollider2D:
+--- !u!58 &7976401498833128132
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -167,15 +167,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
