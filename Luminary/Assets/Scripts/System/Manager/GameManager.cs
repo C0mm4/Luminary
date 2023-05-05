@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public static SceneTransition sceneTransition;
     public static CameraManager cameraManager;
 
+
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return gm_Instance._resource; } }
 
@@ -174,14 +175,12 @@ public class GameManager : MonoBehaviour
 
     public void sceneControl(string targetScene)
     {
-        
-
         Debug.Log("Transition Start to " + targetScene);
         sceneTransition.sceneLoad(targetScene);
 
     }
 
-    public void sceneInit(string targetScene)
+    public void transitionInit(string targetScene)
     {
         switch (targetScene)
         {

@@ -240,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 37611620}
   camera: {fileID: 1855561243}
+  invUI: {fileID: 0}
 --- !u!1 &683660111
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +275,6 @@ MonoBehaviour:
   persistentObject: {fileID: 683660111}
   audioSourceBGM: {fileID: 0}
   canvas: {fileID: 37611620}
-  _inventory: {fileID: 0}
   uiManager: {fileID: 37611622}
   state: 0
 --- !u!4 &683660113
