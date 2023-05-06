@@ -39,7 +39,7 @@ public class Behavior : Control
     
     public IEnumerator Q()
     {
-        Testbuff tst = new Testbuff(player, player);
+        Buff tst = new Testbuff(player, player);
 
         yield return 0;
         /*

@@ -21,6 +21,7 @@ public class Control : Charactor
 
     protected virtual void Update()
     {
+        runBufss();
         if (Input.GetMouseButton(1))
             calTargetPos();
 

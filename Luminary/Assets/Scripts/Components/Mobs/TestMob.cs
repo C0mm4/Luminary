@@ -25,7 +25,6 @@ public class TestMob : Mob
         }
         else
         {
-            Debug.Log("CHASE");
             if (sMachine.getState().GetType() != typeof(MobChaseState))
             {
                 sMachine.changeState(new MobChaseState(), this);

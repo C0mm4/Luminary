@@ -38,20 +38,21 @@ public class Buff
         // Extention Classes Doesn't Call
         Debug.Log(target);
 
-        if(target.buffs.FindIndex(buff => buff.id == id) != -1)
+        if(target.buffs.FindIndex(buff => buff.id == id) == -1)
         {
             target.buffs.Add(instance);
         }
         startTime = Time.time;
     }
 
-    public void durateEffect()
+    public virtual void durateEffect()
     {
         // on Tick Buffs
         // Extenttion Contents
         //
         // base.durateEffect();
 
+        Debug.Log("BUFF");
         currentTime = Time.time - startTime;
         if(currentTime >= durate)
         {
@@ -59,7 +60,7 @@ public class Buff
         }
     }
 
-    public void endEffect()
+    public virtual void endEffect()
     {
         //
         // Extention Contents

@@ -34,13 +34,17 @@ public class Charactor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+
     }
 
     public void runBufss()
     {
-
+        foreach (Buff buff in buffs)
+        {
+            Debug.Log(buff.durate);
+            buff.durateEffect();
+        }
     }
 }

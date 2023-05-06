@@ -14,7 +14,6 @@ public class MobChaseState : State
 
     public override void UpdateState()
     {
-        Debug.Log("Chase");
         base.UpdateState();
         Vector3 dir = new Vector3(charactor.player.transform.position.x - charactor.transform.position.x,
                                    charactor.player.transform.position.y - charactor.transform.position.y,

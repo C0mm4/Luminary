@@ -8,12 +8,19 @@ public class Testbuff : Buff
     public Testbuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
         this.durate = 5f;
+        target.speed += 10;
     }
     
-    public new void durateEffect()
+    public override void durateEffect()
     {
-        target.speed += 1;
 
+        Debug.Log("spdUp");
         base.durateEffect();
+    }
+
+    public override void endEffect()
+    {
+        target.speed -= 10;
+        base.endEffect();
     }
 }
