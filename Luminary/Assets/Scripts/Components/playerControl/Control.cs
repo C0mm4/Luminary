@@ -16,8 +16,7 @@ public class Control : Charactor
     void Awake()
     {
         behavior = GetComponent<Behavior>();
-        sMachine = new StateMachine();
-        sMachine.changeState(new PlayerIdleState(), this);
+        player = this;
     }
 
     protected virtual void Update()

@@ -13,7 +13,7 @@ public class Charactor : MonoBehaviour
     protected int Level;
 
     // Charactor Buffs / Debufs
-    protected List<Buff> buffs;
+    public List<Buff> buffs;
 
     // Charactor Items
     public List<Item> items;
@@ -27,12 +27,20 @@ public class Charactor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        buffs = new List<Buff>();
+        items = new List<Item>();
+        sMachine = new StateMachine();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void runBufss()
+    {
+
     }
 }

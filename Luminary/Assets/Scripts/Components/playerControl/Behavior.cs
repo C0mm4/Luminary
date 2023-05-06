@@ -39,6 +39,10 @@ public class Behavior : Control
     
     public IEnumerator Q()
     {
+        Testbuff tst = new Testbuff(player, player);
+
+        yield return 0;
+        /*
         SkillSlot spellq;
         float cd = 0f;
         spellq = GameManager.SkillSlot.getSlot(1).GetComponent<SkillSlot>();
@@ -51,7 +55,7 @@ public class Behavior : Control
         
         yield return new WaitForSeconds(cd);
         cdQ = false;
-        //쿨다운 완료
+        //쿨다운 완료*/
     }
 
     public IEnumerator W()

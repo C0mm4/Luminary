@@ -171,6 +171,7 @@ public class StageController
         isVIsit[currentRoom] = true;
 
         rooms[currentRoom].GetComponent<Room>().setObjects();
+        GameManager.cameraManager.background = rooms[currentRoom].GetComponent<SpriteRenderer>();
     }
 
 }
