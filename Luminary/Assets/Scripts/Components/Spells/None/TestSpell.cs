@@ -33,10 +33,10 @@ public class TestSpell : Spell
     public void run()
     {
         // Finding Original Player Speed
-        originspd = obj.GetComponent<Behavior>().speed;
+        originspd = obj.GetComponent<Behavior>().speedIncrease;
 
         // Accelerated Player Speed
-        obj.GetComponent<Behavior>().speed = 10f;
+        obj.GetComponent<Behavior>().speedIncrease = 10f;
 
         // After 0.3f seconds rollback Player Speed
         Invoke("endrun", 0.3f);
@@ -44,7 +44,7 @@ public class TestSpell : Spell
     
     public void endrun()
     {
-        obj.GetComponent<Behavior>().speed = originspd;
+        obj.GetComponent<Behavior>().speedIncrease = originspd;
     }
 
    

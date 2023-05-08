@@ -8,7 +8,7 @@ public class Testbuff : Buff
     public Testbuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
         this.durate = 5f;
-        target.speed += 10;
+        target.speedIncrease += 10;
     }
     
     public override void durateEffect()
@@ -20,7 +20,7 @@ public class Testbuff : Buff
 
     public override void endEffect()
     {
-        target.speed -= 10;
+        target.speedIncrease -= 10;
         base.endEffect();
     }
 }

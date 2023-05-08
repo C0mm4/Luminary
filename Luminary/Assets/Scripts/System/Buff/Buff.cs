@@ -16,6 +16,8 @@ public class Buff
 
     public Buff instance;
 
+    Sprite img;
+
     public int id;
     public Buff()
     {

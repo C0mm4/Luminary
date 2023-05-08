@@ -7,13 +7,17 @@ public class Charactor : MonoBehaviour
 {
     // Charactor Base Status
     protected int MaxHP;
+    public int HPIncrease;
     protected int CurrentHP;
     [SerializeField]
     public float speed;
+    public float speedIncrease;
+
     protected int Level;
 
     // Charactor Buffs / Debufs
     public List<Buff> buffs;
+    public List<Buff> endBuffs;
 
     // Charactor Items
     public List<Item> items;
@@ -24,7 +28,6 @@ public class Charactor : MonoBehaviour
     // player instance
     public Charactor player;
 
-    public List<Buff> endBuffs;
 
     // Start is called before the first frame update
     void Start()

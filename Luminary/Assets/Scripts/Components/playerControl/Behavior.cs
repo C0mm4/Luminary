@@ -17,7 +17,7 @@ public class Behavior : Control
 //        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         Vector3 dir = new Vector3(targetPos.x - transform.position.x, targetPos.y - transform.position.y, targetPos.z - transform.position.z);
         dir.Normalize();
-        GetComponent<Rigidbody2D>().velocity = dir * speed;
+        GetComponent<Rigidbody2D>().velocity = dir * (speed + speedIncrease);
     }
     
     public IEnumerator roll()
