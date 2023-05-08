@@ -56,7 +56,7 @@ public class Buff
         currentTime = Time.time - startTime;
         if(currentTime >= durate)
         {
-            endEffect();
+            target.endBuffs.Add(instance);
         }
     }
 

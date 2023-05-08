@@ -138,7 +138,6 @@ public class GameManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
         }
-        Resource.test();
     }
 
     public void init()

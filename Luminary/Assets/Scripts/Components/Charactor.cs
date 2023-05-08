@@ -24,10 +24,13 @@ public class Charactor : MonoBehaviour
     // player instance
     public Charactor player;
 
+    public List<Buff> endBuffs;
+
     // Start is called before the first frame update
     void Start()
     {
         buffs = new List<Buff>();
+        endBuffs = new List<Buff> ();
         items = new List<Item>();
         sMachine = new StateMachine();
         
@@ -46,5 +49,17 @@ public class Charactor : MonoBehaviour
             Debug.Log(buff.durate);
             buff.durateEffect();
         }
+
+        desetBuffs();
+    }
+
+    public void desetBuffs()
+    {
+        foreach (Buff buff in endBuffs)
+        {
+            buff.endEffect();
+
+        }
+        endBuffs.Clear();
     }
 }
