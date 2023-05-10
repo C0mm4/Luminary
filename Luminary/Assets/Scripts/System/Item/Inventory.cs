@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -60,13 +61,11 @@ public class Inventory : MonoBehaviour
         int n = Random.Range(0, 9);
         Debug.Log(n);
         GameObject item = GameManager.Resource.Instantiate("Item/Item" + n);
-        addItem(item);
     }
 
     public void addItem(GameObject _item)
     {
         Item itm = _item.GetComponent<Item>();
-        
         if (items.Count < slots.Length)
         {
             _item.transform.parent = itemin.transform;
@@ -77,5 +76,12 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Inventory is Full");
         }
+    }
+
+    public void delItem(GameObject _item)
+    {
+        Item itm = _item.GetComponent<Item>();
+            items.Remove(itm);
+            freshSlot();
     }
 }

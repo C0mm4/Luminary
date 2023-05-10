@@ -16,7 +16,13 @@ public class Control : Charactor
     void Awake()
     {
         behavior = GetComponent<Behavior>();
+        inven = GetComponent<Inventory>();
         player = this;
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     protected virtual void Update()
@@ -81,5 +87,14 @@ public class Control : Charactor
         targetPos = new Vector3(transPos.x, transPos.y, 0);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Inventory inventory = new Inventory();
+        if (other.gameObject.CompareTag("Item"))
+        {
+            GameObject item = other.gameObject;
+            inven.addItem(item);
+        }
+    }
 
 }

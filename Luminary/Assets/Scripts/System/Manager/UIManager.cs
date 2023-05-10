@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
         skillslot.init();
         skillslot.gameObject.SetActive(false);
 
-        invUI = GameManager.Resource.Instantiate("UI/Inventory");
+        invUI = GameManager.Resource.Instantiate("UI/Inventory2");
         invUI.GetComponent<Inventory>().init();
         invUI.SetActive(false);
     }
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
         if(invUI == null)
         {
             Debug.Log("INVNULL");
-            invUI = canvas.transform.Find("Inventory(Clone)").gameObject;
+            invUI = canvas.transform.Find("Inventory2(Clone)").gameObject;
         }
         if (skillslot == null)
         {

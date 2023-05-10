@@ -107,4 +107,6 @@ public class Behavior : Control
         cdR = false;
         //쿨다운 완료
     }
+
+    
 }
