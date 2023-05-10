@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7976401498833128132}
   m_Layer: 0
   m_Name: PlayerbleChara
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,11 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e756604c783644ba85f38e9bb9090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HPIncrease: 0
   speed: 5
+  speedIncrease: 0
+  items: []
+  player: {fileID: 0}
   spellPrefab: []
   skillslots:
   - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
-  - {fileID: 8422531939610926057, guid: dae085fa071a85441ba80f83639640d6, type: 3}
+  - {fileID: 0}
   - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
   - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
   - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}

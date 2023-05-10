@@ -16,5 +16,6 @@ public class Spell_Fire : Spell
 
     public override void execute()
     {
+        
     }
 }
