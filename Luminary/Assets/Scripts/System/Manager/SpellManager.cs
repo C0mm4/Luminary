@@ -8,37 +8,50 @@ using UnityEngine;
 
 public class SpellManager
 {
-    public List<GameObject> allspells;
-    public GameObject Spells;
+    public Dictionary<int, Spell> spells;
+
     string spellXMLFile = "SpellsXML";
-    string test = "TestSpell";
 
     XmlNodeList text;
 
     public void init()
     {
         XmlDocument doc = GameManager.Resource.LoadXML(spellXMLFile);
-        allspells = new List<GameObject>();
+        spells = new Dictionary<int, Spell>();  
 
         text = doc.GetElementsByTagName("Spell");
 
         createSpellObj();
+        Debug.Log(spells[1]);
     }
 
 
     public void createSpellObj()
     {
-        allspells.Clear();
-        Spells = new GameObject("SPELLS");
         foreach (XmlNode node in text)
         {
-            GameObject spl = new GameObject("spl");
-            allspells.Add(spl);
-            spl.transform.parent = Spells.transform;
-            Debug.Log(node["name"].InnerText);
-            spl.AddComponent(Type.GetType(node["name"].InnerText));
-            spl.GetComponent<Spell>().spr = GameManager.Resource.LoadSprite(node["spr"].InnerText);
+
+            Spell spl = new Spell();
+            spl.setData(setSpellData(node));
+            spells.Add(int.Parse(node["id"].InnerText), spl);
+
         }
     }
+    
+    public SpellData setSpellData(XmlNode node)
+    {
+        SpellData spellData = new SpellData();
+        spellData.cd = float.Parse(node["cd"].InnerText);
+        spellData.circle = int.Parse(node["circle"].InnerText);
+        spellData.type = int.Parse(node["type"].InnerText);
+        spellData.xRange = float.Parse(node["xRange"].InnerText);
+        spellData.yRange = float.Parse(node["yRange"].InnerText);
+        spellData.damage = float.Parse(node["damage"].InnerText);
+        spellData.hits = float.Parse(node["hits"].InnerText);
+        spellData.castTime = float.Parse(node["castT"].InnerText);
+        spellData.path = node["prefabpath"].InnerText;
+        spellData.spr = GameManager.Resource.LoadSprite(node["spr"].InnerText);
 
+        return spellData;
+    }
 }

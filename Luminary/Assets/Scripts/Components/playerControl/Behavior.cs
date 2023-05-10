@@ -8,9 +8,49 @@ public class Behavior : Control
     [SerializeField]
     private GameObject[] spellPrefab;
 
-    [SerializeField]
-    private GameObject[] skillslots;
 
+    public SkillSlot[] skillSlots;
+
+    public override void Start()
+    {
+        base.Start();
+        skillSlots = new SkillSlot[5];
+        setSkillSlots();
+        skillSlots[0].setCommand(GameManager.Spells.spells[1]);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        CheckCDs();
+    }
+
+    public void CheckCDs()
+    {
+        foreach(SkillSlot slot in skillSlots)
+        {
+            if (slot.isSet())
+            {
+                if (slot.getSpell().isCool)
+                {
+                    slot.getSpell().ct = Time.time - slot.getSpell().st;
+                    if (slot.getSpell().ct > slot.getSpell().getCD())
+                    {
+                        slot.getSpell().isCool = false;
+                    }
+                }
+            }
+        }
+    }
+
+    private void setSkillSlots()
+    {
+        skillSlots[0] = new SkillSlot();
+        skillSlots[1] = new SkillSlot();
+        skillSlots[2] = new SkillSlot();
+        skillSlots[3] = new SkillSlot();
+        skillSlots[4] = new SkillSlot();
+    }
 
     public void move()
     {
@@ -22,14 +62,12 @@ public class Behavior : Control
     
     public IEnumerator roll()
     {
-        SkillSlot spellRoll;
         float cd = 0f;
-        spellRoll = GameManager.SkillSlot.getSlot(0).GetComponent<SkillSlot>();
-        if(spellRoll.isSet() != null)
+        if (skillSlots[0].isSet())
         {
             cdRoll = true;
-            spellRoll.useSkill();
-            cd = spellRoll.getCD();
+            skillSlots[0].useSkill();
+            cd = skillSlots[0].getCD();
         }
 
         yield return new WaitForSeconds(cd);
@@ -61,14 +99,14 @@ public class Behavior : Control
     public IEnumerator W()
     {
         SkillSlot spellw;
-        float cd = 0f;
+        float cd = 0f;/*
         spellw = GameManager.SkillSlot.getSlot(2).GetComponent<SkillSlot>();
         if (spellw.isSet() != null)
         {
             cdQ = true;
             spellw.useSkill();
             cd = spellw.getCD();
-        }
+        }*/
 
         yield return new WaitForSeconds(cd);
         cdW = false;
@@ -78,14 +116,14 @@ public class Behavior : Control
     public IEnumerator E()
     {
         SkillSlot spelle;
-        float cd = 0f;
+        float cd = 0f;/*
         spelle = GameManager.SkillSlot.getSlot(3).GetComponent<SkillSlot>();
         if (spelle.isSet() != null)
         {
             cdQ = true;
             spelle.useSkill();
             cd = spelle.getCD();
-        }
+        }*/
 
         yield return new WaitForSeconds(cd);
         cdE = false;
@@ -94,7 +132,7 @@ public class Behavior : Control
     public IEnumerator R()
     {
         SkillSlot spellr;
-        float cd = 0f;
+        float cd = 0f;/*
         spellr = GameManager.SkillSlot.getSlot(4).GetComponent<SkillSlot>();
         if (spellr.isSet() != null)
         {
@@ -102,7 +140,7 @@ public class Behavior : Control
             spellr.useSkill();
             cd = spellr.getCD();
         }
-
+*/
         yield return new WaitForSeconds(cd);
         cdR = false;
         //쿨다운 완료

@@ -3,6 +3,15 @@
 	<Spell>
 		<id>1</id>
 		<name>TestSpell</name>
+		<cd>1</cd>
+		<circle>0</circle>
+		<type>0</type>
+		<xRange>0</xRange>
+		<yRange>0</yRange>
+		<damage>0</damage>
+		<hits>0</hits>
+		<castT>0</castT>
+		<prefabpath>Spell/TestSpell</prefabpath>
 		<spr>TestSpell</spr>
 	</Spell>
 	

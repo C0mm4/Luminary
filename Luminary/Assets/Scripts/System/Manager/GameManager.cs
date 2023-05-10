@@ -40,9 +40,6 @@ public class GameManager : MonoBehaviour
     StageController _stageController = new StageController();
     public static StageController StageC { get { return gm_Instance._stageController; } }
 
-    SkillSlotManager _skillSlotManager = new SkillSlotManager();
-    public static SkillSlotManager SkillSlot { get { return gm_Instance._skillSlotManager; } }
-
     SpellManager _spellManager = new SpellManager();
     public static SpellManager Spells { get { return gm_Instance._spellManager; } }
 
@@ -147,7 +144,6 @@ public class GameManager : MonoBehaviour
         Spells.init();
         
         // Spell 슬롯 관리 객체 초기화 = Spell 객체 로드 먼저 해야함.
-        SkillSlot.init();
         Random.init("");
         MapGen.init();
         StageC.init();
@@ -201,8 +197,8 @@ public class GameManager : MonoBehaviour
         SpriteRenderer lobbyField = GameObject.Find("LobbyField").GetComponent<SpriteRenderer>();
         cameraManager.camera = mainCamera;
         cameraManager.background = lobbyField;
-        sceneInit();
         playerGen();
+        sceneInit();
     }
 
     public void gameStart()
@@ -302,8 +298,6 @@ public class GameManager : MonoBehaviour
 
     public void sceneInit()
     {
-        Spells.createSpellObj();
-        SkillSlot.init();
         uiManager.init();
     }
 }

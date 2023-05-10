@@ -12,10 +12,9 @@ public class UIManager : MonoBehaviour
     Camera camera;
     bool binvenUI = false, bskillUI = false, bskillSlotUI = false, binGameUI = false, bbossUI = false, bmapUI = false;
 
-    SkillSlotUI skillslot;
     [SerializeField]
     GameObject invUI;
-    GameObject skillSlotUI;
+    public GameObject skillSlotUI;
 
     private void Awake()
     { /*
@@ -31,13 +30,14 @@ public class UIManager : MonoBehaviour
     // Manager ��ü�� ������ �ޱ⿡ Manager ��ü���� Initializion ���� ȣ���ؾ� ��.
     public void init()
     {
-        skillslot = GameManager.SkillSlot.skillslotUI;
-        skillslot.init();
-        skillslot.gameObject.SetActive(false);
 
         invUI = GameManager.Resource.Instantiate("UI/Inventory2");
         invUI.GetComponent<Inventory>().init();
         invUI.SetActive(false);
+
+        skillSlotUI = GameManager.Resource.Instantiate("UI/SkillSlots");
+        skillSlotUI.GetComponent<SkillSlotUI>().init(); 
+        skillSlotUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -59,12 +59,9 @@ public class UIManager : MonoBehaviour
             Debug.Log("INVNULL");
             invUI = canvas.transform.Find("Inventory2(Clone)").gameObject;
         }
-        if (skillslot == null)
+        if (skillSlotUI == null)
         {
-            if (GameManager.SkillSlot.skillslotUI != null)
-            {
-                skillslot = GameManager.SkillSlot.skillslotUI;
-            }
+            skillSlotUI = canvas.transform.Find("SkillSlots(Clone)").gameObject;
         }
 
 
@@ -76,7 +73,7 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown("k"))
         {
             bskillSlotUI = !bskillSlotUI;
-            skillslot.gameObject.SetActive(bskillSlotUI);
+            skillSlotUI.gameObject.SetActive(bskillSlotUI);
         }
 
         if (Input.GetKeyDown(PlayerDataManager.keySetting.inventoryKey))

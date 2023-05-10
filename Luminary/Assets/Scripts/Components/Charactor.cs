@@ -30,7 +30,7 @@ public class Charactor : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         buffs = new List<Buff>();
         endBuffs = new List<Buff> ();
@@ -40,7 +40,7 @@ public class Charactor : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
 
     }

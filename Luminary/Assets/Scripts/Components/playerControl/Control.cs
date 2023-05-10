@@ -25,7 +25,7 @@ public class Control : Charactor
         
     }
 
-    protected virtual void Update()
+    public virtual void Update()
     {
         runBufss();
         if (Input.GetMouseButton(1))

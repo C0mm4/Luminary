@@ -4,39 +4,27 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TestSpell : Spell
+public class TestSpell : MonoBehaviour 
 {
-    float originspd;
+    [SerializeField]
+    GameObject target;
 
-    public override void set()
+    public void Start()
     {
-        
-        // Setting Spell's Cooltime
-        cd = 1f;
-        types = 5;
-        circle = 0;
-
-        // Searching Player Object
-        obj = GameObject.Find("PlayerbleChara");
-        
+        execute();
     }
 
-    public override void execute()
+    public void execute()
     {
-        base.execute();
-        // Setting Spell Components
-        set();
         // Running This Spell
+        target = GameObject.FindGameObjectWithTag("Player");
         run();
     }
     
     public void run()
     {
-        // Finding Original Player Speed
-        originspd = obj.GetComponent<Behavior>().speedIncrease;
-
         // Accelerated Player Speed
-        obj.GetComponent<Behavior>().speedIncrease = 10f;
+        target.GetComponent<Behavior>().speedIncrease += 10f;
 
         // After 0.3f seconds rollback Player Speed
         Invoke("endrun", 0.3f);
@@ -44,7 +32,8 @@ public class TestSpell : Spell
     
     public void endrun()
     {
-        obj.GetComponent<Behavior>().speedIncrease = originspd;
+        target.GetComponent<Behavior>().speedIncrease -= 10f;
+        GameManager.Resource.Destroy(this.gameObject);
     }
 
    

@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillSlot : MonoBehaviour
+public class SkillSlot
 {
     // Get Spell in Command pattern
     private Spell skillCommand = null;
-    public SlotImg slotImg = null;
-    spellFill spf = null;
+
+    public SkillSlotUI ui;
+
+
+
+    public SkillSlot()
+    {
+        ui = GameManager.Instance.uiManager.skillSlotUI.GetComponent<SkillSlotUI>();
+    }
 
     // Set Spell command target
     public void setCommand(Spell command)
     {
-        slotImg = GetComponentInChildren<SlotImg>();
-        spf = GetComponentInChildren<spellFill>();
         skillCommand = command;
-        setImg();
+        ui.setImg();
     }
     // Set Command to Null
     public void deSetCommand()
     {
         skillCommand = null;
-        slotImg.deSetImg();
+        ui.setImg();
     }
 
     public Spell getSpell()
@@ -34,7 +39,8 @@ public class SkillSlot : MonoBehaviour
     public void useSkill()
     {
         skillCommand.execute();
-        spf.setCooltime(skillCommand.getCD());
+        skillCommand.isCool = true;
+        skillCommand.st = Time.time;
     }
 
     // return Spell Cooltime 
@@ -44,14 +50,17 @@ public class SkillSlot : MonoBehaviour
     }
 
     // Returning skillCommand
-    public Spell isSet()
+    public bool isSet()
     {
-        return skillCommand;
+        if(skillCommand != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public void setImg()
-    {
-        slotImg.setImg(skillCommand.spr);
-    }
 
 }
