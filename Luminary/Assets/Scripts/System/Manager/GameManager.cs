@@ -294,7 +294,7 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector3(0, 0, -1);
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);
-
+        PlayerDataManager.interactionDistance = 1000.0f;
         Resource.Instantiate("Mobs/TestMob");
     }
 

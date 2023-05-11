@@ -18,6 +18,17 @@ public class InteractionTrriger : MonoBehaviour
         if(GameManager.gameState == GameManager.GameState.InPlay)
         {
             distanceToPlayer = Vector3.Distance(transform.position, GameManager.player.transform.position);
+            if(distanceToPlayer <= 5.0f && distanceToPlayer < PlayerDataManager.interactionDistance)
+            {
+                PlayerDataManager.interactionObject = objectName;
+                Debug.Log("Now interactionObject is " + objectName);
+                // ac
+            }
+            else
+            {
+                Debug.Log("Now interactionObject is not" + objectName);
+                //ac
+            }
         }
     }
 }

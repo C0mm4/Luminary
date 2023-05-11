@@ -6,6 +6,10 @@ public class PlayerDataManager : MonoBehaviour
 {
     public static SerializedKeySetting keySetting = new SerializedKeySetting();
     public static SerializedPlayerStatus playerStatus = new SerializedPlayerStatus();
+
+    public static string interactionObject = null;
+    public static float interactionDistance;
+
     public struct SerializedKeySetting
     {
         public KeyCode inventoryKey;
