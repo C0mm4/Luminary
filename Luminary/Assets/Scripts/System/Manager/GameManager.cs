@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     public static SceneTransition sceneTransition;
     public static CameraManager cameraManager;
     public static PlayerDataManager playerDataManager;
+    public static GameObject player;
+    public enum GameState { Loading, InPlay, Pause };
+
+    public static GameState gameState;
+
 
 
     ResourceManager _resource = new ResourceManager();
@@ -72,9 +77,6 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
 
-    [SerializeField]
-    // 0 = loading 1 = lobby 2 = inGame 3 = gameOver
-    public int state;
 
     private void Awake()
     {
@@ -174,9 +176,9 @@ public class GameManager : MonoBehaviour
 
     public void sceneControl(string targetScene)
     {
+        gameState = GameState.Loading;
         Debug.Log("Transition Start to " + targetScene);
         sceneTransition.sceneLoad(targetScene);
-
     }
 
     public void transitionInit(string targetScene)
@@ -185,7 +187,6 @@ public class GameManager : MonoBehaviour
         {
             case "LobbyScene":
                 lobbySceneInit();
-                state = 1;
                 break;
             default:
                 break;
@@ -199,6 +200,7 @@ public class GameManager : MonoBehaviour
         cameraManager.background = lobbyField;
         playerGen();
         sceneInit();
+        gameState = GameState.InPlay;
     }
 
     public void gameStart()
@@ -288,7 +290,7 @@ public class GameManager : MonoBehaviour
 
     public void playerGen()
     {
-        GameObject player = Resource.Instantiate("PlayerbleChara");
+        player = Resource.Instantiate("PlayerbleChara");
         player.transform.position = new Vector3(0, 0, -1);
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);

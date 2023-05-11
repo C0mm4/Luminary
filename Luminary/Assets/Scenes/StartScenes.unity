@@ -241,6 +241,7 @@ MonoBehaviour:
   canvas: {fileID: 37611620}
   camera: {fileID: 1855561243}
   invUI: {fileID: 0}
+  skillSlotUI: {fileID: 0}
 --- !u!1 &683660111
 GameObject:
   m_ObjectHideFlags: 0

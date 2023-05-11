@@ -5,10 +5,20 @@ using UnityEngine;
 public class PlayerDataManager : MonoBehaviour
 {
     public static SerializedKeySetting keySetting = new SerializedKeySetting();
+    public static SerializedPlayerStatus playerStatus = new SerializedPlayerStatus();
     public struct SerializedKeySetting
     {
         public KeyCode inventoryKey;
         public KeyCode InteractionKey;
+    }
+
+    public struct SerializedPlayerStatus
+    {
+        private int dexterity; // dex
+        private int strength;  // str
+        private int Intellect; // int
+        public int playerDamageStatus;  // player damage by status (Excluding buffs and property damage effect increases)
+        public int level;
     }
 
     public void loadKeySetting()
