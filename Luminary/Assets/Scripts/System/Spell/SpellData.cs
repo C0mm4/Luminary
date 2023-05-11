@@ -4,12 +4,14 @@ using UnityEngine;
 
 public struct SpellData
 {
+    public string name;
     public float cd;
     public int circle;
     public int type;
     public float xRange, yRange;
-    public float damage, hits;
+    public int damage, hits;
     public float castTime;
+    public float debufP;
     public string path;
     public Sprite spr;
 }

@@ -11,8 +11,9 @@ public class Mob : Charactor
 
 
     // Start is called before the first frame update
-    public void Start()
+    public override void Start()
     {
+        base.Start();
         sMachine = new StateMachine();
         sMachine.changeState(new MobIdleState(), this);
         player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();

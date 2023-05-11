@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Spell
 {
-    SpellData data;
+    public SpellData data;
 
 
     public bool isCool = false;
     public float ct, st;
 
-    public virtual void set()
-    {
-
-    }
 
     public virtual void execute() 
     {
-        GameManager.Resource.Instantiate(data.path);
+        GameObject obj = GameManager.Resource.Instantiate(data.path);
+        obj.GetComponent<SpellObj>().setData(data);
     }
 
     public virtual float getCD()

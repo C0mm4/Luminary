@@ -9,6 +9,8 @@ public class TestMob : Mob
     public void Start()
     {
         base.Start();
+        MaxHP = 10;
+        CurrentHP = 10;
     }
 
     // Update is called once per frame

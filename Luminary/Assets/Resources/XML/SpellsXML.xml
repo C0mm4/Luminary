@@ -11,8 +11,23 @@
 		<damage>0</damage>
 		<hits>0</hits>
 		<castT>0</castT>
+		<debufP>0</debufP>
 		<prefabpath>Spell/TestSpell</prefabpath>
-		<spr>TestSpell</spr>
+		<spr>Spells/TestSpell</spr>
 	</Spell>
-	
+	<Spell>
+		<id>2</id>
+		<name>Fire</name>
+		<cd>2</cd>
+		<circle>1</circle>
+		<type>1</type>
+		<xRange>4</xRange>
+		<yRange>1</yRange>
+		<damage>4</damage>
+		<hits>1</hits>
+		<castT>0.1</castT>
+		<debufP>0.1</debufP>
+		<prefabpath>Spell/SpellFire</prefabpath>
+		<spr>Spells/SpellFire</spr>
+	</Spell>
 </SpellData>

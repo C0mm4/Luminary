@@ -16,7 +16,10 @@ public class Behavior : Control
         base.Start();
         skillSlots = new SkillSlot[5];
         setSkillSlots();
+        Debug.Log(GameManager.Spells.spells[1].data.name);
+        Debug.Log(GameManager.Spells.spells[2].data.name);
         skillSlots[0].setCommand(GameManager.Spells.spells[1]);
+        skillSlots[1].setCommand(GameManager.Spells.spells[2]);
     }
 
     public override void Update()
@@ -77,23 +80,19 @@ public class Behavior : Control
     
     public IEnumerator Q()
     {
-        Buff tst = new Testbuff(player, player);
+//        Buff tst = new Testbuff(player, player);
 
-        yield return 0;
-        /*
-        SkillSlot spellq;
         float cd = 0f;
-        spellq = GameManager.SkillSlot.getSlot(1).GetComponent<SkillSlot>();
-        if (spellq.isSet() != null)
+        if (skillSlots[1].isSet())
         {
             cdQ = true;
-            spellq.useSkill();
-            cd = spellq.getCD();
+            skillSlots[1].useSkill();
+            cd = skillSlots[1].getCD();
         }
-        
+
         yield return new WaitForSeconds(cd);
         cdQ = false;
-        //쿨다운 완료*/
+        yield return 0;
     }
 
     public IEnumerator W()

@@ -83,7 +83,6 @@ public class SkillSlotUI : MonoBehaviour
             {
                 if (slots[i].isSet())
                 {
-                    Debug.Log(i);
                     if (slots[i].getSpell().isCool)
                     {
                         fillImg[i].color = new Color(0f, 0f, 0f, 0.8f);

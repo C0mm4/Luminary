@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Charactor : MonoBehaviour
 {
     // Charactor Base Status
     protected int MaxHP;
-    public int HPIncrease;
+    public int HPUp;
     protected int CurrentHP;
     [SerializeField]
     public float speed;
@@ -64,5 +65,28 @@ public class Charactor : MonoBehaviour
 
         }
         endBuffs.Clear();
+    }
+
+    public void HPIncrease(int pts)
+    {
+        CurrentHP += pts;
+        if(CurrentHP <= MaxHP + HPUp)
+        {
+            CurrentHP = MaxHP + HPUp;
+        }
+    }
+
+    public void HPDecrease(int pts)
+    { 
+        CurrentHP -= pts;
+        if(CurrentHP <= 0)
+        {
+            DieObject();
+        }
+    }
+
+    public void DieObject()
+    {
+
     }
 }
