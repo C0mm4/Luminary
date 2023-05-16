@@ -7,36 +7,49 @@ public class SpellObj : MonoBehaviour
     // Start is called before the first frame update
 
     public SpellData data;
-    public float spawnTime, currentTime;
+    public float spawnTime, currentTime, deltaTime;
     public Vector3 spawnPos = new Vector3(0,0,0);
 
     public GameObject player;
     public GameObject target;
 
+    public Vector3 mos;
+
 
     public virtual void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameManager.player;
     }
 
-    public virtual void setData(SpellData dts)
+    public void setData(SpellData dts)
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameManager.player;
         data = dts;
         spawnTime = Time.time;
-        spawnPos.x = player.transform.position.x;
+        currentTime = spawnTime;
+        spawnPos = player.transform.position;
         
 
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        var obj = collision.gameObject;
-        if (obj.tag == "Mob")
+        Debug.Log("COLLISION something");
+        if (other.tag == "Mob")
         {
-            obj.GetComponent<Mob>().HPDecrease(data.damage);
+            other.GetComponent<Mob>().HPDecrease(data.damage);
+            GameManager.Resource.Destroy(this.gameObject);
+            Debug.Log("Mob Collision");
+        }
+        else if (other.tag == "Wall")
+        {
             GameManager.Resource.Destroy(this.gameObject);
         }
     }
 
+    public virtual void Update()
+    {
+        deltaTime = Time.time - currentTime;
+        currentTime = Time.time;
+    }
 }

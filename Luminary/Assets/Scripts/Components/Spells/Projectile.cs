@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellFire : Projectile
+public class Projectile : SpellObj
 {
-    [SerializeField]
     Vector3 dir;
-
     public override void Start()
     {
         base.Start();
@@ -18,13 +15,13 @@ public class SpellFire : Projectile
         dir.Normalize();
 
         transform.position = player.transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     public override void Update()
     {
         base.Update();
-        
+        transform.position += dir * 7 * deltaTime;
     }
 }

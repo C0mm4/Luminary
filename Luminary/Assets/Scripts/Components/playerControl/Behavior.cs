@@ -10,6 +10,8 @@ public class Behavior : Control
 
 
     public SkillSlot[] skillSlots;
+    [SerializeField]
+    Vector3 mos;
 
     public override void Start()
     {
@@ -25,6 +27,7 @@ public class Behavior : Control
     public override void Update()
     {
         base.Update();
+        mos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         CheckCDs();
     }
 
