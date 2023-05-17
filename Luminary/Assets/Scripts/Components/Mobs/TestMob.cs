@@ -11,11 +11,13 @@ public class TestMob : Mob
         base.Start();
         MaxHP = 10;
         CurrentHP = 10;
+
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
         if (player == null)
         {
             player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
@@ -33,6 +35,6 @@ public class TestMob : Mob
             }
         }
 
-        sMachine.updateState();
     }
+
 }

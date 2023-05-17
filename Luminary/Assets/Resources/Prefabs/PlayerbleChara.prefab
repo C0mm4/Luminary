@@ -99,18 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e756604c783644ba85f38e9bb9090e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPIncrease: 0
+  HPUp: 0
   speed: 5
   speedIncrease: 0
-  items: []
+  items:
+  - {fileID: 660349782921485568, guid: ff143bfc912c51441acb8888ddd19c59, type: 3}
   player: {fileID: 0}
   spellPrefab: []
-  skillslots:
-  - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
-  - {fileID: 0}
-  - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
-  - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
-  - {fileID: 8422531939610926057, guid: ed3b5542dca9d0f4b9e466da0a416e0a, type: 3}
+  mos: {x: 0, y: 0, z: 0}
 --- !u!50 &822224891981862580
 Rigidbody2D:
   serializedVersion: 4

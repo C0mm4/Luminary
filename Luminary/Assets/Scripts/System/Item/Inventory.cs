@@ -11,10 +11,12 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Transform bag;
 
-    public List<Item> items;
     RectTransform rt;
 
     public GameObject itemin;
+
+    [SerializeField]
+    private GameObject target;
 
     private void OnValidate()
     {
@@ -30,7 +32,7 @@ public class Inventory : MonoBehaviour
         rt.transform.localPosition = Vector3.zero;
         itemin = new GameObject("Item In");
         itemin.transform.parent = this.transform;
-
+        target = GameManager.player;
         // Test
         //GameObject go = GameManager.Resource.Instantiate("Item/Item0");
         //go.transform.parent = itemin.transform;
@@ -45,14 +47,17 @@ public class Inventory : MonoBehaviour
 
     public void freshSlot()
     {
-        int i = 0;
-        for (; i < slots.Length && i < items.Count; i++)
+        if (target != null)
         {
-            slots[i].item = items[i];
-        }
-        for (; i < slots.Length; i++)
-        {
-            slots[i].item = null;
+            int i = 0;
+            for (; i < slots.Length && i < target.GetComponent<Charactor>().items.Count; i++)
+            {
+                slots[i].item = target.GetComponent<Charactor>().items[i];
+            }
+            for (; i < slots.Length; i++)
+            {
+                slots[i].item = null;
+            }
         }
     }
 
@@ -63,25 +68,10 @@ public class Inventory : MonoBehaviour
         GameObject item = GameManager.Resource.Instantiate("Item/Item" + n);
     }
 
-    public void addItem(GameObject _item)
-    {
-        Item itm = _item.GetComponent<Item>();
-        if (items.Count < slots.Length)
-        {
-            _item.transform.parent = itemin.transform;
-            items.Add(itm);
-            freshSlot();
-        }
-        else
-        {
-            Debug.Log("Inventory is Full");
-        }
-    }
-
     public void delItem(GameObject _item)
     {
         Item itm = _item.GetComponent<Item>();
-            items.Remove(itm);
+            target.GetComponent<Charactor>().items.Remove(itm);
             freshSlot();
     }
 }

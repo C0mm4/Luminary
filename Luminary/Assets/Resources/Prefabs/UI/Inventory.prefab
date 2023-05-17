@@ -400,7 +400,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 756, y: 426}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6536355762171893068
 MonoBehaviour:
@@ -436,8 +436,8 @@ MonoBehaviour:
   - {fileID: 5277025872230111610}
   - {fileID: 155023744571711354}
   bag: {fileID: 6881559907927847761}
-  items: []
   itemin: {fileID: 0}
+  target: {fileID: 0}
 --- !u!1 &2779238997155696907
 GameObject:
   m_ObjectHideFlags: 0

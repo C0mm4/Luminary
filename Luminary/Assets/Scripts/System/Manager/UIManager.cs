@@ -40,6 +40,11 @@ public class UIManager : MonoBehaviour
         skillSlotUI.SetActive(false);
     }
 
+    public void invenFrest()
+    {
+        invUI.GetComponent<Inventory>().freshSlot();
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,12 @@ public class Control : Charactor
 
 
 
-    protected Inventory inven;
-
     void Awake()
     {
         behavior = GetComponent<Behavior>();
-        inven = GetComponent<Inventory>();
         player = this;
+        GameManager.Input.KeyAction -= onKeyboard;
+        GameManager.Input.KeyAction += onKeyboard;
     }
 
     private void OnEnable()
@@ -28,11 +28,36 @@ public class Control : Charactor
     public virtual void Update()
     {
         runBufss();
+        behavior.move();
+    }
+
+    void calTargetPos()
+    {
+        mousePos = Input.mousePosition;
+        transPos = Camera.main.ScreenToWorldPoint(mousePos);
+        targetPos = new Vector3(transPos.x, transPos.y, 0);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Inventory inventory = new Inventory();
+        if (other.gameObject.CompareTag("Item"))
+        {
+            GameObject item = other.gameObject;
+            items.Add(other.GetComponent<Item>());
+        }
+    }
+
+
+    void onKeyboard()
+    {
         if (Input.GetMouseButton(1))
             calTargetPos();
 
-        behavior.move();
-
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("A pressed");
+        }
 
         if (Input.GetKeyDown("space"))
         {
@@ -79,22 +104,4 @@ public class Control : Charactor
             Debug.Log("\"I\" KEY INPUT");
         }
     }
-
-    void calTargetPos()
-    {
-        mousePos = Input.mousePosition;
-        transPos = Camera.main.ScreenToWorldPoint(mousePos);
-        targetPos = new Vector3(transPos.x, transPos.y, 0);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        //Inventory inventory = new Inventory();
-        if (other.gameObject.CompareTag("Item"))
-        {
-            GameObject item = other.gameObject;
-            inven.addItem(item);
-        }
-    }
-
 }

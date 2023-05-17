@@ -37,13 +37,15 @@ public class Charactor : MonoBehaviour
         endBuffs = new List<Buff> ();
         items = new List<Item>();
         sMachine = new StateMachine();
-        
+        GameObject test = GameManager.Resource.Instantiate("Item/Item0");
+        test.layer = LayerMask.NameToLayer("inventory");
+        ItemAdd(test.GetComponent<Item>());
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-
+        sMachine.updateState();
     }
 
     public void runBufss()
@@ -87,6 +89,20 @@ public class Charactor : MonoBehaviour
 
     public void DieObject()
     {
+        GameManager.Resource.Destroy(this.gameObject);
+    }
+
+    public void ItemAdd(Item item)
+    {
+        if (items.Count < 8)
+        {
+            items.Add(item);
+            GameManager.Instance.uiManager.invenFrest();
+        }
+        else
+        {
+            Debug.Log("Inventory is Full");
+        }
 
     }
 }
