@@ -7,9 +7,15 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     private ItemSlot[] slots;
+
+    [SerializeField]
+    private Equip[] equips;
     
     [SerializeField]
     private Transform bag;
+
+    [SerializeField]
+    private Transform equip;
 
     RectTransform rt;
 
@@ -21,6 +27,7 @@ public class Inventory : MonoBehaviour
     private void OnValidate()
     {
         slots = bag.GetComponentsInChildren<ItemSlot>();
+        equips = equip.GetComponentsInChildren<Equip>();
         GetComponent<RectTransform>().localScale = Vector3.one;
     }
 
@@ -54,9 +61,17 @@ public class Inventory : MonoBehaviour
             {
                 slots[i].item = target.GetComponent<Charactor>().items[i];
             }
+            for (; i < equips.Length && i < target.GetComponent<Charactor>().equips.Count; i++)
+            {
+                equips[i].item = target.GetComponent<Charactor>().equips[i];
+            }
             for (; i < slots.Length; i++)
             {
                 slots[i].item = null;
+            }
+            for (; i < equips.Length; i++)
+            {
+                equips[i].item = null;
             }
         }
     }

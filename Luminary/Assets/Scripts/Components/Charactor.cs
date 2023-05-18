@@ -22,6 +22,7 @@ public class Charactor : MonoBehaviour
 
     // Charactor Items
     public List<Item> items;
+    public List<Item> equips;
 
     // Charactor State Machine
     protected StateMachine sMachine;
@@ -36,6 +37,7 @@ public class Charactor : MonoBehaviour
         buffs = new List<Buff>();
         endBuffs = new List<Buff> ();
         items = new List<Item>();
+        equips = new List<Item>();
         sMachine = new StateMachine();
         GameObject test = GameManager.Resource.Instantiate("Item/Item0");
         test.layer = LayerMask.NameToLayer("inventory");
@@ -103,6 +105,33 @@ public class Charactor : MonoBehaviour
         {
             Debug.Log("Inventory is Full");
         }
+    }
 
+    public void ItemEqip(Item item) 
+    {
+        if (equips.Count < 4)
+        {
+            equips.Add(item);
+            items.Remove(item);
+            GameManager.Instance.uiManager.invenFrest();
+        }
+        else
+        {
+            Debug.Log("Full Equiped");
+        }
+    }
+
+    public void ItemUnequip(Item item)
+    {
+        if (items.Count < 8)
+        {
+            equips.Remove(item);
+            items.Add(item);
+            GameManager.Instance.uiManager.invenFrest();
+        }
+        else
+        {
+            Debug.Log("Inventory is Full");
+        }
     }
 }
