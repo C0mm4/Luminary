@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public static CameraManager cameraManager;
     public static PlayerDataManager playerDataManager;
     public static GameObject player;
+    public static InputManager inputManager;
     public enum GameState { Loading, InPlay, Pause };
 
     public static GameState gameState;
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
         sceneTransition = GameObject.Find("GameManager").GetComponent<SceneTransition>();
         cameraManager = GameObject.Find("GameManager").GetComponent<CameraManager>();
         playerDataManager = GameObject.Find("GameManager").GetComponent<PlayerDataManager>();
+        inputManager = GameObject.Find("GameManager").GetComponent<InputManager>();
         bool isFirstRun = PlayerPrefs.GetInt("isFirstRun", 1) == 1;
         if (isFirstRun)
         {
@@ -137,6 +139,8 @@ public class GameManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
         }
+
+        inputManager.OnUpdate();  //Key input ctrl
     }
 
     public void init()

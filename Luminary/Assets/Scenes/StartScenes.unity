@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 683660114}
   - component: {fileID: 683660115}
   - component: {fileID: 683660116}
+  - component: {fileID: 683660117}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -278,7 +279,6 @@ MonoBehaviour:
   audioSourceBGM: {fileID: 0}
   canvas: {fileID: 37611620}
   uiManager: {fileID: 37611622}
-  state: 0
 --- !u!4 &683660113
 Transform:
   m_ObjectHideFlags: 0
@@ -336,6 +336,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b2303b972d50ca4f8dcd1b26b67da67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &683660117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683660111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16019c9670ec4bb4e9f87b74e1bb9b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1038865800

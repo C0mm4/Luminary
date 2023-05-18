@@ -38,7 +38,7 @@ public class Charactor : MonoBehaviour
         items = new List<Item>();
         sMachine = new StateMachine();
         GameObject test = GameManager.Resource.Instantiate("Item/Item0");
-        test.layer = LayerMask.NameToLayer("inventory");
+        //test.layer = LayerMask.NameToLayer("inventory");
         ItemAdd(test.GetComponent<Item>());
     }
 

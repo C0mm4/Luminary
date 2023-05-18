@@ -16,8 +16,8 @@ public class Control : Charactor
     {
         behavior = GetComponent<Behavior>();
         player = this;
-        GameManager.Input.KeyAction -= onKeyboard;
-        GameManager.Input.KeyAction += onKeyboard;
+        GameManager.inputManager.KeyAction -= onKeyboard;
+        GameManager.inputManager.KeyAction += onKeyboard;
     }
 
     private void OnEnable()
