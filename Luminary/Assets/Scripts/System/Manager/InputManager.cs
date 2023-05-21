@@ -14,4 +14,9 @@ public class InputManager : MonoBehaviour
         if (KeyAction != null)
             KeyAction.Invoke();
     }
+
+    public void Update()
+    {
+        OnUpdate();
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -36,14 +37,25 @@ public class UIManager : MonoBehaviour
         invUI.SetActive(false);
 
         skillSlotUI = GameManager.Resource.Instantiate("UI/SkillSlots");
-        skillSlotUI.GetComponent<SkillSlotUI>().init(); 
+        skillSlotUI.GetComponent<SkillSlotUI>().init();
         skillSlotUI.SetActive(false);
+
+        DrawTextUI("TEST TEXT UI");
     }
 
     public void invenFrest()
     {
         invUI.GetComponent<Inventory>().freshSlot();
     }
+
+
+    public void DrawTextUI(string txt)
+    {
+        var obj = GameManager.Resource.Instantiate("UI/TextUI");
+        obj.GetComponent<TextUI>().text = txt;
+        
+    }
+
 
     // Update is called once per frame
     void Update()

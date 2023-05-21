@@ -15,7 +15,7 @@ public class InteractionTrriger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.gameState == GameManager.GameState.InPlay)
+        if(GameManager.gameState == GameState.InPlay)
         {
             distanceToPlayer = Vector3.Distance(transform.position, GameManager.player.transform.position);
             if(distanceToPlayer <= 5.0f && distanceToPlayer < PlayerDataManager.interactionDistance)

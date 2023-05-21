@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     public static PlayerDataManager playerDataManager;
     public static GameObject player;
     public static InputManager inputManager;
-    public enum GameState { Loading, InPlay, Pause };
 
     public static GameState gameState;
 
@@ -140,7 +139,6 @@ public class GameManager : MonoBehaviour
             canvas.planeDistance = 10;
         }
 
-        inputManager.OnUpdate();  //Key input ctrl
     }
 
     public void init()
