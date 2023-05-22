@@ -6,6 +6,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public Action KeyAction = null;
+    public InputState inputstate;
     public void OnUpdate()
     {
         if (Input.anyKey == false)

@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour
     public static InputManager inputManager;
 
     public static GameState gameState;
-
+    [SerializeField]
+    public UIState uiState;
 
 
     ResourceManager _resource = new ResourceManager();
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     public Canvas canvas;
-
+    [SerializeField]
     public UIManager uiManager;
 
 
@@ -133,7 +134,7 @@ public class GameManager : MonoBehaviour
             {
                 canvas.gameObject.AddComponent<UIManager>();
             }
-
+            uiManager = canvas.GetComponent<UIManager>();
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
@@ -201,8 +202,9 @@ public class GameManager : MonoBehaviour
         cameraManager.camera = mainCamera;
         cameraManager.background = lobbyField;
         playerGen();
-        sceneInit();
+        sceneinit();
         gameState = GameState.InPlay;
+        uiManager.ChangeState(UIState.InPlay);
     }
 
     public void gameStart()
@@ -299,8 +301,7 @@ public class GameManager : MonoBehaviour
         PlayerDataManager.interactionDistance = 1000.0f;
         Resource.Instantiate("Mobs/TestMob");
     }
-
-    public void sceneInit()
+    public void sceneinit()
     {
         uiManager.init();
     }
