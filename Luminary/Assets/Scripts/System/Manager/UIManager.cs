@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject invUI;
     public GameObject skillSlotUI;
+
+    Queue<string> textUIqueue = new Queue<string>();
+    private float textUItime = -3f;
+
+    public UIState uistate;
 
     private void Awake()
     { /*
@@ -40,7 +46,8 @@ public class UIManager : MonoBehaviour
         skillSlotUI.GetComponent<SkillSlotUI>().init();
         skillSlotUI.SetActive(false);
 
-        DrawTextUI("TEST TEXT UI");
+        textUI("TEST TEXT UI");
+        textUI("new Text UI");
     }
 
     public void invenFrest()
@@ -49,17 +56,37 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void DrawTextUI(string txt)
+    public void textUI(string txt)
     {
+        textUIqueue.Enqueue(txt);
+    }
+
+    private void GenTextUI()
+    {
+
         var obj = GameManager.Resource.Instantiate("UI/TextUI");
-        obj.GetComponent<TextUI>().text = txt;
-        
+        obj.GetComponent<TextUI>().text = textUIqueue.Dequeue();
+    }
+
+    public void inPlayInput()
+    {
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
+    // Draw TEXT UI
+        if(textUIqueue.Count > 0)
+        {
+            if(Time.time - textUItime > 2.5f)
+            {
+                textUItime = Time.time;
+                GenTextUI();
+            }
+        }
+
         if(camera == null)
         {
             camera = GameObject.Find("Main Camera").GetComponent<Camera>();
