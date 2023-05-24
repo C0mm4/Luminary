@@ -6,9 +6,8 @@ public class FireBuff : Buff
 {
     public FireBuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
-        setDurate(5);
-        setTickTime(1);
-        Debug.Log(Time.time);
+        setDurate(5.2f);
+        setTickTime(1f);
         
     }
 
@@ -16,19 +15,23 @@ public class FireBuff : Buff
     {
         if (currentTime - lastTickTime >= tickTime)
         {
-            Debug.Log(currentTime);
-            Debug.Log(lastTickTime);
             onTick();
             lastTickTime = currentTime;
         }
+        target.element.Fire = true;
         base.durateEffect();
+        
     }
 
     public override void onTick()
     {
         target.HPDecrease(1);
-        Debug.Log(Time.time);
-        Debug.Log("On Tick");
         base.onTick();
+    }
+
+    public override void endEffect()
+    {
+        target.element.Fire = false;
+        base.endEffect();
     }
 }

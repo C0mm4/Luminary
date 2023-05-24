@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Item
   - Wall
+  - Mob
+  - SpellEffect
   layers:
   - Default
   - TransparentFX

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,26 +8,6 @@ using UnityEngine.Experimental.AI;
 
 public class Charactor : MonoBehaviour
 {
-    // Charactor Base Status
-    protected int MaxHP;
-    public int HPUp;
-    [SerializeField]
-    protected int CurrentHP;
-    [SerializeField]
-    public float speed;
-    public float speedIncrease;
-
-    protected int Level;
-
-    // Charactor Buffs / Debufs
-    [SerializeField]
-    public List<Buff> buffs;
-    public List<Buff> endBuffs;
-
-    // Charactor Items
-    public List<Item> items;
-    public List<Item> equips;
-
     // Charactor State Machine
     protected StateMachine sMachine;
 
@@ -34,22 +15,58 @@ public class Charactor : MonoBehaviour
     public Charactor player;
 
     // Element State Data
-    ElementData element;
+    public ElementData element;
+
+    public SerializedPlayerStatus status;
 
 
     // Start is called before the first frame update
     public virtual void Start()
     {
-        buffs = new List<Buff>();
-        endBuffs = new List<Buff> ();
-        items = new List<Item>();
-        equips = new List<Item>();
+        status.buffs = new List<Buff>();
+        status.endbuffs = new List<Buff> ();
+        status.items = new List<Item>();
+        status.equips = new List<Item>();
         sMachine = new StateMachine();
         element = new ElementData();
 
-        GameObject test = GameManager.Resource.Instantiate("Item/Item0");
-        test.layer = LayerMask.NameToLayer("Inventory");
-        ItemAdd(test.GetComponent<Item>());
+        statusInit();
+    }
+
+    public virtual void statusInit()
+    {
+        // Charactor base Status
+        // overriding this func and reset base status values
+        /*
+        status.baseHP = 10;
+        status.baseDMG = 1;
+        status.basespeed = 5;
+        */
+
+        status.increaseDMG = 0;
+        status.increaseSpeed = 0;
+        status.increseMaxHP = 0;
+        status.pIncreaseDMG = 0;
+        status.pIncreaseMaxHP = 0;
+        status.pIncreaseSpeed = 0;
+        status.pGetDMG = 1;
+        status.level = 1;
+        calcStatus();
+        status.currentHP = status.maxHP;
+        Debug.Log(status.maxHP);
+        Debug.Log(status.currentHP);
+    }
+
+    public virtual void calcStatus()
+    {
+        // HP status Calculate
+        status.maxHP = (int)Math.Round((status.baseHP + status.increseMaxHP) * (status.pIncreaseMaxHP+1));
+
+        // damage Calculate
+        status.finalDMG = (int)Math.Round((status.baseDMG + status.increaseDMG) * (status.pIncreaseDMG+1));
+
+        // speed Calculate
+        status.speed = (int)Math.Round((status.basespeed + status.increaseSpeed) * (status.pIncreaseSpeed+1));
     }
 
     // Update is called once per frame
@@ -61,7 +78,7 @@ public class Charactor : MonoBehaviour
 
     public void runBufss()
     {
-        foreach (Buff buff in buffs)
+        foreach (Buff buff in status.buffs)
         {
             if (buff != null)
             {
@@ -74,7 +91,7 @@ public class Charactor : MonoBehaviour
 
     public void desetBuffs()
     {
-        foreach (Buff buff in endBuffs)
+        foreach (Buff buff in status.endbuffs)
         {
             if (buff != null)
             {
@@ -82,22 +99,23 @@ public class Charactor : MonoBehaviour
             }
 
         }
-        endBuffs.Clear();
+        status.endbuffs.Clear();
     }
 
     public void HPIncrease(int pts)
     {
-        CurrentHP += pts;
-        if(CurrentHP <= MaxHP + HPUp)
+        status.currentHP += pts;
+        if(status.currentHP >= status.maxHP)
         {
-            CurrentHP = MaxHP + HPUp;
+            status.currentHP = status.maxHP;
         }
     }
 
     public void HPDecrease(int pts)
     { 
-        CurrentHP -= pts;
-        if(CurrentHP <= 0)
+        status.currentHP -= pts;
+        Debug.Log(pts + " get damage " + status.currentHP);
+        if(status.currentHP <= 0)
         {
             DieObject();
         }
@@ -111,9 +129,9 @@ public class Charactor : MonoBehaviour
 
     public void ItemAdd(Item item)
     {
-        if (items.Count < 8)
+        if (status.items.Count < 8)
         {
-            items.Add(item);
+            status.items.Add(item);
             GameManager.Instance.uiManager.invenFrest();
         }
         else
@@ -124,10 +142,10 @@ public class Charactor : MonoBehaviour
 
     public void ItemEqip(Item item) 
     {
-        if (equips.Count < 4)
+        if (status.equips.Count < 4)
         {
-            equips.Add(item);
-            items.Remove(item);
+            status.equips.Add(item);
+            status.items.Remove(item);
             GameManager.Instance.uiManager.invenFrest();
         }
         else
@@ -138,10 +156,10 @@ public class Charactor : MonoBehaviour
 
     public void ItemUnequip(Item item)
     {
-        if (items.Count < 8)
+        if (status.items.Count < 8)
         {
-            equips.Remove(item);
-            items.Add(item);
+            status.equips.Remove(item);
+            status.items.Add(item);
             GameManager.Instance.uiManager.invenFrest();
         }
         else

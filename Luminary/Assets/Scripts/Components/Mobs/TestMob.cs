@@ -6,18 +6,14 @@ using UnityEngine;
 public class TestMob : Mob
 {
     // Start is called before the first frame update
-    public void Start()
+    public override void Start()
     {
         base.Start();
-        MaxHP = 10;
-        CurrentHP = 10;
-
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        base.Update();
         if (player == null)
         {
             player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
@@ -35,6 +31,7 @@ public class TestMob : Mob
             }
         }
 
+        base.Update();
     }
 
 }

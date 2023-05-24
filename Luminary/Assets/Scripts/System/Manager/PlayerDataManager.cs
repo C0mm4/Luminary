@@ -16,13 +16,19 @@ public class PlayerDataManager : MonoBehaviour
         public KeyCode InteractionKey;
     }
 
-    public struct SerializedPlayerStatus
+    public void playerDataInit()
     {
-        private int dexterity; // dex
-        private int strength;  // str
-        private int Intellect; // int
-        public int playerDamageStatus;  // player damage by status (Excluding buffs and property damage effect increases)
-        public int level;
+        playerStatus.baseHP = 10;
+        playerStatus.baseDMG = 1;
+        playerStatus.basespeed = 5;
+        playerStatus.increaseDMG = 0;
+        playerStatus.increaseSpeed = 0;
+        playerStatus.increseMaxHP = 0;
+        playerStatus.pIncreaseDMG = 0;
+        playerStatus.pIncreaseMaxHP = 0;
+        playerStatus.pIncreaseSpeed = 0;
+        playerStatus.pGetDMG = 1;
+        playerStatus.level = 1;
     }
 
     public void loadKeySetting()
@@ -36,6 +42,9 @@ public class PlayerDataManager : MonoBehaviour
         PlayerPrefs.SetInt("InteractionKey", (int)keySetting.InteractionKey);
     }
 
+    public void savePlayerData()
+    {
 
+    }
 
 }

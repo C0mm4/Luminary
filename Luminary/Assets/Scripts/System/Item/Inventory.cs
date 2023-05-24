@@ -57,13 +57,13 @@ public class Inventory : MonoBehaviour
         if (target != null)
         {
             int i = 0;
-            for (; i < slots.Length && i < target.GetComponent<Charactor>().items.Count; i++)
+            for (; i < slots.Length && i < target.GetComponent<Charactor>().status.items.Count; i++)
             {
-                slots[i].item = target.GetComponent<Charactor>().items[i];
+                slots[i].item = target.GetComponent<Charactor>().status.items[i];
             }
-            for (; i < equips.Length && i < target.GetComponent<Charactor>().equips.Count; i++)
+            for (; i < equips.Length && i < target.GetComponent<Charactor>().status.equips.Count; i++)
             {
-                equips[i].item = target.GetComponent<Charactor>().equips[i];
+                equips[i].item = target.GetComponent<Charactor>().status.equips[i];
             }
             for (; i < slots.Length; i++)
             {
@@ -86,7 +86,7 @@ public class Inventory : MonoBehaviour
     public void delItem(GameObject _item)
     {
         Item itm = _item.GetComponent<Item>();
-            target.GetComponent<Charactor>().items.Remove(itm);
+            target.GetComponent<Charactor>().status.items.Remove(itm);
             freshSlot();
     }
 }

@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
 
 
+
     private void Awake()
     {
         DontDestroyOnLoad(persistentObject);
@@ -159,12 +160,10 @@ public class GameManager : MonoBehaviour
 
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
-        
         Random.init("");
         MapGen.init();
         StageC.init();
-        // 다른 객체 영향을 받기에 항상 마지막에 실행해야 함.
-        uiManager.init();
+        playerDataManager.playerDataInit();
 
     }
 
@@ -228,13 +227,12 @@ public class GameManager : MonoBehaviour
         cameraManager.camera = mainCamera;
         cameraManager.background = lobbyField;
         playerGen();
-//        sceneinit();
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
     }
     public void stageSceneInit()
     {
-//        uiManager.init();
+        mapgen();
     }
 
     public void gameStart()
@@ -344,10 +342,11 @@ public class GameManager : MonoBehaviour
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);
         PlayerDataManager.interactionDistance = 1000.0f;
+        Debug.Log("Trigger");
         Resource.Instantiate("Mobs/TestMob");
     }
     public void sceneinit()
     {
-        uiManager.init();
+//        uiManager.init();
     }
 }

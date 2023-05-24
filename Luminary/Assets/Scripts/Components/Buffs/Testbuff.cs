@@ -8,8 +8,8 @@ public class Testbuff : Buff
     public Testbuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
         setDurate(5);
-        target.speedIncrease += 10;
-
+        target.status.pIncreaseSpeed += 0.1f;
+        target.calcStatus();
         Debug.Log(durate);
     }
     
@@ -21,13 +21,15 @@ public class Testbuff : Buff
 
     public override void resetEffect(int i)
     {
-        target.speedIncrease -= 10;
+        target.status.pIncreaseSpeed -= 0.1f;
+        target.calcStatus();
         base.resetEffect(i);
     }
 
     public override void endEffect()
     {
-        target.speedIncrease -= 10;
+        target.status.pIncreaseSpeed -= 0.1f;
+        target.calcStatus();
         base.endEffect();
     }
 }

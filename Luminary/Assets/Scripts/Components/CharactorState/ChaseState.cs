@@ -20,6 +20,6 @@ public class MobChaseState : State
                                    charactor.player.transform.position.z - charactor.transform.position.z);
 
         dir.Normalize();
-        charactor.GetComponent<Rigidbody2D>().velocity = dir * charactor.speed;
+        charactor.GetComponent<Rigidbody2D>().velocity = dir * charactor.status.speed;
     }
 }

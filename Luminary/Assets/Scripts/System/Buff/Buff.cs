@@ -38,12 +38,12 @@ public class Buff
         startEffect();
     }
 
-    public void setDurate(int d)
+    public void setDurate(float d)
     {
         durate = d;
     }
 
-    public void setTickTime(int t)
+    public void setTickTime(float t)
     {
         tickTime = t;
     }
@@ -51,10 +51,10 @@ public class Buff
     public void startEffect()
     {
         // Extention Classes Doesn't Call
-        int index = target.buffs.FindIndex(buff => buff.id == id);
+        int index = target.status.endbuffs.FindIndex(buff => buff.id == id);
         if (index == -1)
         {
-            target.buffs.Add(instance);
+            target.status.buffs.Add(instance);
         }
         else
         {
@@ -62,12 +62,11 @@ public class Buff
         }
         startTime = Time.time;
         lastTickTime = startTime;
-        Debug.Log(lastTickTime);
     }
 
     public virtual void durateEffect()
     {
-        // on Tick Buffs
+
         // Extenttion Contents
         //
         // base.durateEffect();
@@ -75,13 +74,12 @@ public class Buff
         currentTime = Time.time;
         if(currentTime - startTime >= durate)
         {
-            target.endBuffs.Add(instance);
+            target.status.endbuffs.Add(instance);
         }
     }
 
     public virtual void onTick()
     {
-        Debug.Log("Tick");
     }
 
     public virtual void resetEffect(int i)
@@ -91,8 +89,8 @@ public class Buff
         //
         // base.resetEffect();
 
-        target.buffs.RemoveAt(i);
-        target.buffs.Add(instance);
+        target.status.buffs.RemoveAt(i);
+        target.status.buffs.Add(instance);
     }
 
     public virtual void endEffect()
@@ -101,7 +99,7 @@ public class Buff
         // Extention Contents
         //
         // base.endEffect();
-        int targetid = target.buffs.FindIndex(item => item.instance.Equals(instance));
-        target.buffs.RemoveAt(targetid);
+        int targetid = target.status.buffs.FindIndex(item => item.instance.Equals(instance));
+        target.status.buffs.RemoveAt(targetid);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ElementData
 {
-    bool Fire, Ice, Wind, Rock;
+    public bool Fire, Ice, Wind, Rock;
     public void init()
     {
         Fire = false; Ice = false; Wind = false; Rock = false;

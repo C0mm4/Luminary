@@ -33,7 +33,10 @@ public class SpellFire : Projectile
     {
         if (other.tag == "Mob")
         {
-            Buff newbuff = new FireBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+            if (GameManager.Random.getGeneralNext(0, 100) <= data.debufP * 100)
+            {
+                Buff newbuff = new FireBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+            }
         }
 
         base.OnTriggerEnter2D(other);

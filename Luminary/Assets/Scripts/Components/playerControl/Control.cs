@@ -19,7 +19,7 @@ public class Control : Charactor
         player = this;
         GameManager.inputManager.KeyAction -= onKeyboard;
         GameManager.inputManager.KeyAction += onKeyboard;
-
+        status = PlayerDataManager.playerStatus;
         GameManager.Instance.SceneChangeAction += DieObject;
     }
 
@@ -46,7 +46,7 @@ public class Control : Charactor
         if (other.gameObject.CompareTag("Item"))
         {
             GameObject item = other.gameObject;
-            items.Add(other.GetComponent<Item>());
+            status.items.Add(other.GetComponent<Item>());
         }
     }
 
@@ -54,6 +54,7 @@ public class Control : Charactor
     {
         GameManager.inputManager.KeyAction -= onKeyboard;
         GameManager.Instance.SceneChangeAction -= DieObject;
+        PlayerDataManager.playerStatus = status;
         base.DieObject();
 
     }
