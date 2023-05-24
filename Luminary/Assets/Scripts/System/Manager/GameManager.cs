@@ -186,15 +186,27 @@ public class GameManager : MonoBehaviour
 
     public void transitionInit(string targetScene)
     {
+        sceneSetClear();
+
         switch (targetScene)
         {
             case "LobbyScene":
                 lobbySceneInit();
                 break;
+            case "StageScene":
+                stageSceneInit();
+                break;
             default:
                 break;
         }
     }
+
+    public void sceneSetClear()
+    {
+        PlayerDataManager.interactionObject = null;
+        PlayerDataManager.interactionDistance = 5.5f;
+    }
+
     public void lobbySceneInit()
     {
         Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -207,6 +219,11 @@ public class GameManager : MonoBehaviour
         uiManager.ChangeState(UIState.InPlay);
     }
 
+    public void stageSceneInit()
+    {
+        uiManager.init();
+    }
+
     public void gameStart()
     {
         mapgen();
@@ -216,6 +233,20 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         // end
+    }
+
+    public void interaction()
+    {
+        switch (PlayerDataManager.interactionObject)
+        {
+            case "InitPlayObject":
+                Debug.Log("InteractionObject is InitPlayObject");
+                sceneControl("StageScene");
+                break;
+            default:
+                Debug.Log("InteractionObject is null");
+                break;
+        }
     }
 
     public void pauseGame()

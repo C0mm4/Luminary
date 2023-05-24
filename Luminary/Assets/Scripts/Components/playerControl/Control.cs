@@ -101,7 +101,7 @@ public class Control : Charactor
 
         if (Input.GetKeyDown("i"))
         {
-            Debug.Log("\"I\" KEY INPUT");
+            GameManager.Instance.interaction();
         }
     }
 }
