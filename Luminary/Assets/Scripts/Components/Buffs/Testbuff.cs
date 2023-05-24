@@ -7,15 +7,22 @@ public class Testbuff : Buff
     
     public Testbuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
-        this.durate = 5f;
+        setDurate(5);
         target.speedIncrease += 10;
+
+        Debug.Log(durate);
     }
     
     public override void durateEffect()
     {
 
-        Debug.Log("spdUp");
         base.durateEffect();
+    }
+
+    public override void resetEffect(int i)
+    {
+        target.speedIncrease -= 10;
+        base.resetEffect(i);
     }
 
     public override void endEffect()

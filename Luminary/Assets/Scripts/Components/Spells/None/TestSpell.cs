@@ -28,4 +28,5 @@ public class TestSpell : SpellObj
         player.GetComponent<Behavior>().speedIncrease -= 10f;
         GameManager.Resource.Destroy(this.gameObject);
     }
+
 }

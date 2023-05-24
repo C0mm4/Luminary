@@ -32,18 +32,16 @@ public class SpellObj : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("COLLISION something");
         if (other.tag == "Mob")
         {
             other.GetComponent<Mob>().HPDecrease(data.damage);
-            GameManager.Resource.Destroy(this.gameObject);
-            Debug.Log("Mob Collision");
+            OnDestroy();
         }
         else if (other.tag == "Wall")
         {
-            GameManager.Resource.Destroy(this.gameObject);
+            OnDestroy();
         }
     }
 
@@ -51,5 +49,10 @@ public class SpellObj : MonoBehaviour
     {
         deltaTime = Time.time - currentTime;
         currentTime = Time.time;
+    }
+
+    public virtual void OnDestroy()
+    {
+        GameManager.Resource.Destroy(this.gameObject);
     }
 }

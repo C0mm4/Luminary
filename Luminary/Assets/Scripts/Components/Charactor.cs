@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class Charactor : MonoBehaviour
 {
     // Charactor Base Status
     protected int MaxHP;
     public int HPUp;
+    [SerializeField]
     protected int CurrentHP;
     [SerializeField]
     public float speed;
@@ -17,6 +19,7 @@ public class Charactor : MonoBehaviour
     protected int Level;
 
     // Charactor Buffs / Debufs
+    [SerializeField]
     public List<Buff> buffs;
     public List<Buff> endBuffs;
 
@@ -30,6 +33,9 @@ public class Charactor : MonoBehaviour
     // player instance
     public Charactor player;
 
+    // Element State Data
+    ElementData element;
+
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -39,8 +45,10 @@ public class Charactor : MonoBehaviour
         items = new List<Item>();
         equips = new List<Item>();
         sMachine = new StateMachine();
+        element = new ElementData();
+
         GameObject test = GameManager.Resource.Instantiate("Item/Item0");
-        //test.layer = LayerMask.NameToLayer("inventory");
+        test.layer = LayerMask.NameToLayer("Inventory");
         ItemAdd(test.GetComponent<Item>());
     }
 
@@ -48,14 +56,18 @@ public class Charactor : MonoBehaviour
     public virtual void Update()
     {
         sMachine.updateState();
+        runBufss();
     }
 
     public void runBufss()
     {
         foreach (Buff buff in buffs)
         {
-            Debug.Log(buff.durate);
-            buff.durateEffect();
+            Debug.Log(buff);
+            if (buff != null)
+            {
+                buff.durateEffect();
+            }
         }
 
         desetBuffs();
@@ -65,7 +77,10 @@ public class Charactor : MonoBehaviour
     {
         foreach (Buff buff in endBuffs)
         {
-            buff.endEffect();
+            if (buff != null)
+            {
+                buff.endEffect();
+            }
 
         }
         endBuffs.Clear();
@@ -89,8 +104,9 @@ public class Charactor : MonoBehaviour
         }
     }
 
-    public void DieObject()
+    public virtual void DieObject()
     {
+        
         GameManager.Resource.Destroy(this.gameObject);
     }
 

@@ -15,19 +15,21 @@ public class Control : Charactor
     void Awake()
     {
         behavior = GetComponent<Behavior>();
+        Debug.Log("Behavior Set "+ behavior);
         player = this;
         GameManager.inputManager.KeyAction -= onKeyboard;
         GameManager.inputManager.KeyAction += onKeyboard;
+
+        GameManager.Instance.SceneChangeAction += DieObject;
     }
 
-    private void OnEnable()
+    public override void Update()
     {
-        
-    }
-
-    public virtual void Update()
-    {
-        runBufss();
+        base.Update();
+        if (behavior == null )
+        {
+            behavior = GetComponent<Behavior>();
+        }
         behavior.move();
     }
 
@@ -48,6 +50,13 @@ public class Control : Charactor
         }
     }
 
+    public override void DieObject()
+    {
+        GameManager.inputManager.KeyAction -= onKeyboard;
+        GameManager.Instance.SceneChangeAction -= DieObject;
+        base.DieObject();
+
+    }
 
     void onKeyboard()
     {
@@ -102,6 +111,11 @@ public class Control : Charactor
         if (Input.GetKeyDown("i"))
         {
             GameManager.Instance.interaction();
+        }
+
+        if (Input.GetKeyDown("s"))
+        {
+            Buff newbuff = new Testbuff(player, player);
         }
     }
 }

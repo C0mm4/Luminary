@@ -18,8 +18,9 @@ public class Behavior : Control
         base.Start();
         skillSlots = new SkillSlot[5];
         setSkillSlots();
+        Debug.Log("PlayerGen");
         Debug.Log(GameManager.Spells.spells[1].data.name);
-        Debug.Log(GameManager.Spells.spells[2].data.name);
+        Debug.Log(GameManager.Spells.spells[2].data.name); 
         skillSlots[0].setCommand(GameManager.Spells.spells[1]);
         skillSlots[1].setCommand(GameManager.Spells.spells[2]);
     }
@@ -83,7 +84,6 @@ public class Behavior : Control
     
     public IEnumerator Q()
     {
-//        Buff tst = new Testbuff(player, player);
 
         float cd = 0f;
         if (skillSlots[1].isSet())

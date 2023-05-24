@@ -11,6 +11,9 @@ public class Buff
     public float currentTime;
     public float leftTime;
 
+    public float tickTime;
+    public float lastTickTime;
+
     public float dmg;
     public float durate;
 
@@ -35,16 +38,27 @@ public class Buff
         startEffect();
     }
 
+    public void setDurate(int d)
+    {
+        durate = d;
+    }
+
     public void startEffect()
     {
         // Extention Classes Doesn't Call
-        Debug.Log(target);
-
-        if(target.buffs.FindIndex(buff => buff.id == id) == -1)
+        int index = target.buffs.FindIndex(buff => buff.id == id);
+        if (index == -1)
         {
+            Debug.Log(durate);
+            Debug.Log("INPUT LIST");
             target.buffs.Add(instance);
         }
+        else
+        {
+            resetEffect(index);
+        }
         startTime = Time.time;
+        lastTickTime = startTime;
     }
 
     public virtual void durateEffect()
@@ -54,12 +68,37 @@ public class Buff
         //
         // base.durateEffect();
 
-        Debug.Log("BUFF");
+
+        Debug.Log(durate);
+        Debug.Log("INDURATE");
+
         currentTime = Time.time - startTime;
+        if (currentTime - lastTickTime > tickTime)
+        {
+            onTick();
+            lastTickTime = currentTime;
+
+        }
         if(currentTime >= durate)
         {
             target.endBuffs.Add(instance);
         }
+    }
+
+    public virtual void onTick()
+    {
+
+    }
+
+    public virtual void resetEffect(int i)
+    {
+        //
+        // Extention Contents
+        //
+        // base.resetEffect();
+
+        target.buffs.RemoveAt(i);
+        target.buffs.Add(instance);
     }
 
     public virtual void endEffect()
@@ -68,7 +107,6 @@ public class Buff
         // Extention Contents
         //
         // base.endEffect();
-
         int targetid = target.buffs.FindIndex(item => item.instance.Equals(instance));
         target.buffs.RemoveAt(targetid);
     }

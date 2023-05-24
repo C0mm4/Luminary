@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     }
     public static SceneTransition sceneTransition;
     public static CameraManager cameraManager;
+    [SerializeField]
     public static PlayerDataManager playerDataManager;
     public static GameObject player;
     public static InputManager inputManager;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public UIState uiState;
 
+    public Action SceneChangeAction;
 
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return gm_Instance._resource; } }
@@ -115,6 +117,8 @@ public class GameManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
         }
+
+        SceneChangeAction += GameObjectReSet;
         init();
     }
 
@@ -142,13 +146,20 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void GameObjectReSet()
+    {
+        Resource.Destroy(GameObject.FindGameObjectsWithTag("Player"));
+        Resource.Destroy(GameObject.FindGameObjectsWithTag("Item"));
+        Resource.Destroy(GameObject.FindGameObjectsWithTag("Mob"));
+        Resource.Destroy(GameObject.FindGameObjectsWithTag("SpellEffect"));
+    }
+
     public void init()
     {
 
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
         
-        // Spell 슬롯 관리 객체 초기화 = Spell 객체 로드 먼저 해야함.
         Random.init("");
         MapGen.init();
         StageC.init();
@@ -181,6 +192,8 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.Loading;
         Debug.Log("Transition Start to " + targetScene);
+        SceneChangeAction?.Invoke();
+        
         sceneTransition.sceneLoad(targetScene);
     }
 
@@ -207,6 +220,7 @@ public class GameManager : MonoBehaviour
         PlayerDataManager.interactionDistance = 5.5f;
     }
 
+
     public void lobbySceneInit()
     {
         Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -218,7 +232,6 @@ public class GameManager : MonoBehaviour
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
     }
-
     public void stageSceneInit()
     {
         uiManager.init();
@@ -248,6 +261,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
 
     public void pauseGame()
     {

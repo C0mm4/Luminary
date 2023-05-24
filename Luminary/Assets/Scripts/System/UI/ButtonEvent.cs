@@ -10,4 +10,8 @@ public class ButtonEvent : MonoBehaviour
     {
         GameManager.Instance.sceneControl("LobbyScene");
     }
+    public void inStage()
+    {
+        GameManager.Instance.sceneControl("Stage (MapGenerator Demo)");
+    }
 }

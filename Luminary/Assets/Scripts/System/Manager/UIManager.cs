@@ -157,7 +157,6 @@ public class UIManager : MonoBehaviour
     // Draw TEXT UI
         if(textUIqueue.Count > 0)
         {
-            Debug.Log("TextUI Queue Exists UI Time is : " + textUItime);
             if(Time.time - textUItime > 2.5f)
             {
                 textUItime = Time.time;
@@ -167,7 +166,6 @@ public class UIManager : MonoBehaviour
 
         if(invUI == null)
         {
-            Debug.Log("INVNULL");
             invUI = canvas.transform.Find("Inventory2(Clone)").gameObject;
         }
         if (skillSlotUI == null)

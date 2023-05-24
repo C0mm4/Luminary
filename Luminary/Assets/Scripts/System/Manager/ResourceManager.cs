@@ -65,5 +65,15 @@ public class ResourceManager
         Object.Destroy(go);
     }
 
+    public void Destroy(GameObject[] go)
+    {
+        foreach(GameObject g in go)
+        {
+            if(g != null)
+            {
+                Object.Destroy(g);
+            }
+        }
+    }
 
 }

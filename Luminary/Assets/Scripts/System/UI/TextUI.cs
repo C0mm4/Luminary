@@ -50,7 +50,7 @@ public class TextUI : MonoBehaviour
             rt.localPosition = rt.localPosition + new Vector3(0, 0.15f * duratetime, 0);
             float a = img.color.a - 0.001f * duratetime;
             img.color = new Color(0, 0, 0, a);
-            txt.alpha -= 0.001f * duratetime;
+            txt.color -= new Color(0, 0, 0, 0.001f * duratetime);
         }
         if(txt.alpha <= 0)
         {
