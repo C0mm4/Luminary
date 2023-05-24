@@ -63,7 +63,6 @@ public class Charactor : MonoBehaviour
     {
         foreach (Buff buff in buffs)
         {
-            Debug.Log(buff);
             if (buff != null)
             {
                 buff.durateEffect();

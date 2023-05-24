@@ -29,4 +29,14 @@ public class SpellFire : Projectile
         
     }
 
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Mob")
+        {
+            Buff newbuff = new FireBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+        }
+
+        base.OnTriggerEnter2D(other);
+    }
+
 }

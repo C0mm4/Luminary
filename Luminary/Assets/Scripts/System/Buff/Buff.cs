@@ -43,14 +43,17 @@ public class Buff
         durate = d;
     }
 
+    public void setTickTime(int t)
+    {
+        tickTime = t;
+    }
+
     public void startEffect()
     {
         // Extention Classes Doesn't Call
         int index = target.buffs.FindIndex(buff => buff.id == id);
         if (index == -1)
         {
-            Debug.Log(durate);
-            Debug.Log("INPUT LIST");
             target.buffs.Add(instance);
         }
         else
@@ -59,6 +62,7 @@ public class Buff
         }
         startTime = Time.time;
         lastTickTime = startTime;
+        Debug.Log(lastTickTime);
     }
 
     public virtual void durateEffect()
@@ -68,18 +72,8 @@ public class Buff
         //
         // base.durateEffect();
 
-
-        Debug.Log(durate);
-        Debug.Log("INDURATE");
-
-        currentTime = Time.time - startTime;
-        if (currentTime - lastTickTime > tickTime)
-        {
-            onTick();
-            lastTickTime = currentTime;
-
-        }
-        if(currentTime >= durate)
+        currentTime = Time.time;
+        if(currentTime - startTime >= durate)
         {
             target.endBuffs.Add(instance);
         }
@@ -87,7 +81,7 @@ public class Buff
 
     public virtual void onTick()
     {
-
+        Debug.Log("Tick");
     }
 
     public virtual void resetEffect(int i)

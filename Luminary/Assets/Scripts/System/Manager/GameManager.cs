@@ -228,13 +228,13 @@ public class GameManager : MonoBehaviour
         cameraManager.camera = mainCamera;
         cameraManager.background = lobbyField;
         playerGen();
-        sceneinit();
+//        sceneinit();
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
     }
     public void stageSceneInit()
     {
-        uiManager.init();
+//        uiManager.init();
     }
 
     public void gameStart()
