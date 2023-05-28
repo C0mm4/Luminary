@@ -17,15 +17,26 @@ public class TestSpell : SpellObj
     public void run()
     {
         // Accelerated Player Speed
-        player.GetComponent<Behavior>().status.increaseSpeed += 10;
-        player.GetComponent<Charactor>().calcStatus();
-        // After 0.3f seconds rollback Player Speed
-        Invoke("endrun", 0.3f);
+        State getspell = player.GetComponent<Charactor>().getState();
+        if (getspell.GetType().Name == "PlayerMoveState")
+        {
+            Debug.Log("Player Moving");
+            player.GetComponent<Charactor>().changeState(new PlayerRollState());
+            player.GetComponent<Charactor>().status.increaseSpeed += 10;
+            player.GetComponent<Charactor>().calcStatus();
+            // After 0.3f seconds rollback Player Speed
+            Invoke("endrun", 0.3f);
+        }
+        else
+        {
+            Debug.Log("Player Doesn't Move");
+        }
     }
     
     public void endrun()
     {
-        player.GetComponent<Behavior>().status.increaseSpeed -= 10;
+        Debug.Log(player);
+        player.GetComponent<Charactor>().status.increaseSpeed -= 10;
         player.GetComponent<Charactor>().calcStatus();
         GameManager.Resource.Destroy(this.gameObject);
     }

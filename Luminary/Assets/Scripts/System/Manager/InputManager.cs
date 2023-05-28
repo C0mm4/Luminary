@@ -7,6 +7,9 @@ public class InputManager : MonoBehaviour
 {
     public Action KeyAction = null;
     public InputState inputstate;
+    public Vector3 mousePos = new Vector3(), mouseWorldPos = new Vector3();
+
+
     public void OnUpdate()
     {
         if (Input.anyKey == false)
@@ -19,5 +22,8 @@ public class InputManager : MonoBehaviour
     public void Update()
     {
         OnUpdate();
+        mousePos = Input.mousePosition;
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        mouseWorldPos.z = 0;
     }
 }

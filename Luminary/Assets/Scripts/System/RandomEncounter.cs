@@ -40,8 +40,6 @@ public class RandomEncounter
         mapSeed = new System.Random(seedHash);
         shopSeed = new System.Random(seedHash);
         generalSeed = new System.Random(seedHash);
-        Debug.Log(gameSeed);
-        Debug.Log(seedHash);
 
     }
 

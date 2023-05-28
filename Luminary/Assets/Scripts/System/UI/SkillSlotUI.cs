@@ -22,7 +22,7 @@ public class SkillSlotUI : MonoBehaviour
 
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
-            slots = GameObject.FindGameObjectWithTag("Player").GetComponent<Behavior>().skillSlots;
+            slots = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().skillslots;
             setImg();
         }
 
@@ -34,7 +34,7 @@ public class SkillSlotUI : MonoBehaviour
         {
             if (GameObject.FindGameObjectWithTag("Player") != null)
             {
-                slots = GameObject.FindGameObjectWithTag("Player").GetComponent<Behavior>().skillSlots;
+                slots = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().skillslots;
                 setImg();
             }
         }

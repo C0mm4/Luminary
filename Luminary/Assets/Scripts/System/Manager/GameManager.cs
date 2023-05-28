@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public static GameState gameState;
     [SerializeField]
-    public UIState uiState;
+    public static UIState uiState;
 
     public Action SceneChangeAction;
 
@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
             canvas.planeDistance = 10;
         }
 
+        Application.targetFrameRate = 240;
         SceneChangeAction += GameObjectReSet;
         init();
     }
@@ -157,7 +158,7 @@ public class GameManager : MonoBehaviour
 
     public void init()
     {
-
+        Debug.Log("GameManager Awake Init");
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
         Random.init("");
@@ -190,7 +191,6 @@ public class GameManager : MonoBehaviour
     public void sceneControl(string targetScene)
     {
         gameState = GameState.Loading;
-        Debug.Log("Transition Start to " + targetScene);
         SceneChangeAction?.Invoke();
         
         sceneTransition.sceneLoad(targetScene);
@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
     public void transitionInit(string targetScene)
     {
         sceneSetClear();
-
+        Debug.Log("Scene Load in GameManager : " + targetScene);
         switch (targetScene)
         {
             case "LobbyScene":
@@ -232,7 +232,13 @@ public class GameManager : MonoBehaviour
     }
     public void stageSceneInit()
     {
-        mapgen();
+        if(gameState == GameState.Loading)
+        {
+            mapgen();
+            gameState = GameState.InPlay;
+        }
+
+        uiManager.ChangeState(UIState.InPlay);
     }
 
     public void gameStart()
@@ -251,11 +257,9 @@ public class GameManager : MonoBehaviour
         switch (PlayerDataManager.interactionObject)
         {
             case "InitPlayObject":
-                Debug.Log("InteractionObject is InitPlayObject");
                 sceneControl("StageScene");
                 break;
             default:
-                Debug.Log("InteractionObject is null");
                 break;
         }
     }
@@ -342,8 +346,6 @@ public class GameManager : MonoBehaviour
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);
         PlayerDataManager.interactionDistance = 1000.0f;
-        Debug.Log("Trigger");
-        Resource.Instantiate("Mobs/TestMob");
     }
     public void sceneinit()
     {

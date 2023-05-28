@@ -9,7 +9,6 @@ public class InteractionTrriger : MonoBehaviour
     void Awake()
     {
         objectName = gameObject.name;
-        Debug.Log("interactive object: " + objectName);
     }
 
     // Update is called once per frame

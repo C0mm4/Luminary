@@ -22,7 +22,6 @@ public class SpellManager
         text = doc.GetElementsByTagName("Spell");
 
         createSpellObj();
-        Debug.Log(spells[2].data.name);
     }
 
 

@@ -21,14 +21,18 @@ public class Charactor : MonoBehaviour
 
 
     // Start is called before the first frame update
-    public virtual void Start()
+    public virtual void Awake()
     {
-        status.buffs = new List<Buff>();
-        status.endbuffs = new List<Buff> ();
-        status.items = new List<Item>();
-        status.equips = new List<Item>();
+        Debug.Log("Charactor Awake");
+        status = new SerializedPlayerStatus
+        {
+            buffs = new List<Buff>(),
+            endbuffs = new List<Buff>(),
+            items = new List<Item>(),
+            equips = new List<Item>(),
+            element = new ElementData(),
+        };
         sMachine = new StateMachine();
-        element = new ElementData();
 
         statusInit();
     }
@@ -53,8 +57,6 @@ public class Charactor : MonoBehaviour
         status.level = 1;
         calcStatus();
         status.currentHP = status.maxHP;
-        Debug.Log(status.maxHP);
-        Debug.Log(status.currentHP);
     }
 
     public virtual void calcStatus()
@@ -166,5 +168,15 @@ public class Charactor : MonoBehaviour
         {
             Debug.Log("Inventory is Full");
         }
+    }
+
+    public void changeState(State state)
+    {
+        sMachine.changeState(state, this);
+    }
+
+    public State getState()
+    {
+        return sMachine.getState();
     }
 }

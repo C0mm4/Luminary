@@ -15,7 +15,6 @@ public class SceneTransition : MonoBehaviour
 
     public void CreateFadeOutObject()
     {
-        Debug.Log("Create FadeOut Object");
 
         Canvas canvas = FindObjectOfType<Canvas>();
 
@@ -34,7 +33,6 @@ public class SceneTransition : MonoBehaviour
 
             //fadeOut.GetComponent<Canvas>().sortingOrder = 999;
 
-            Debug.Log("Create FadeOut Object Done");
         }
         else
         {
@@ -44,10 +42,10 @@ public class SceneTransition : MonoBehaviour
 
     public void sceneLoad(string targetScene)
     {
+        GameManager.gameState = GameState.Loading;
         CreateFadeOutObject();
 
         fadeImage = GameObject.Find("fadeOut(Clone)").GetComponent<Image>();
-        Debug.Log("fadeImage.name : " + fadeImage.name);
         StartCoroutine(FadeOut(targetScene));
     }
 
@@ -70,6 +68,7 @@ public class SceneTransition : MonoBehaviour
         {
             yield return null;
         }
+        Debug.Log("Scene Load Complete : " + SceneManager.GetActiveScene().name);
         GameManager.Instance.transitionInit(targetScene);
         //SceneManager.LoadScene(targetScene);
         CreateFadeOutObject();

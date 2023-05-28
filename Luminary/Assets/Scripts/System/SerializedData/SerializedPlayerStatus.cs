@@ -23,7 +23,7 @@ public struct SerializedPlayerStatus
     public int basespeed; // base Speed
     public int increaseSpeed; // const increase Speed
     public float pIncreaseSpeed; // percent increase Speed ( 10 % + 20 % = 30 % )
-    public int speed; // appying speed
+    public float speed; // appying speed
 
     public float pGetDMG; // get DMG percent default = 1(00%)
 

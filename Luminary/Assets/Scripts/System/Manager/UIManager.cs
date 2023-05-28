@@ -183,7 +183,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeState(UIState state)
     {
-        switch (GameManager.Instance.uiState)
+        switch (GameManager.uiState)
         {
             case UIState.Loading:
                 break;
@@ -205,9 +205,9 @@ public class UIManager : MonoBehaviour
                 break;
         }
 
-        GameManager.Instance.uiState = state;
+        GameManager.uiState = state;
 
-        switch (GameManager.Instance.uiState)
+        switch (GameManager.uiState)
         {
             case UIState.Loading:
                 break;

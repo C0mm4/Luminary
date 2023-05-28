@@ -10,6 +10,7 @@ public class State
 
     public virtual void EnterState(Charactor chr)
     {
+        Debug.Log(this);
         charactor = chr;
     }
 

@@ -12,14 +12,16 @@ public class Control : Charactor
 
 
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
+        Debug.Log("Control Awake");
         behavior = GetComponent<Behavior>();
-        Debug.Log("Behavior Set "+ behavior);
         player = this;
         GameManager.inputManager.KeyAction -= onKeyboard;
         GameManager.inputManager.KeyAction += onKeyboard;
-        status = PlayerDataManager.playerStatus;
+//        base.status = PlayerDataManager.playerStatus;
+        
         GameManager.Instance.SceneChangeAction += DieObject;
     }
 

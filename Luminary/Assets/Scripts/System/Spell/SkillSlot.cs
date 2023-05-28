@@ -39,7 +39,6 @@ public class SkillSlot
     public void useSkill()
     {
         skillCommand.execute();
-        Debug.Log(skillCommand.data.name);
         skillCommand.isCool = true;
         skillCommand.st = Time.time;
     }

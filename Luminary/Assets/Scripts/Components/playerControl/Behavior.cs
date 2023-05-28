@@ -13,14 +13,12 @@ public class Behavior : Control
     [SerializeField]
     Vector3 mos;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
+        Debug.Log("Behavior Awake");
         skillSlots = new SkillSlot[5];
         setSkillSlots();
-        Debug.Log("PlayerGen");
-        Debug.Log(GameManager.Spells.spells[1].data.name);
-        Debug.Log(GameManager.Spells.spells[2].data.name); 
         skillSlots[0].setCommand(GameManager.Spells.spells[1]);
         skillSlots[1].setCommand(GameManager.Spells.spells[2]);
     }
