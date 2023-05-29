@@ -23,11 +23,12 @@ public class Player : Charactor
         skillslots[0].setCommand(GameManager.Spells.spells[1]);
         skillslots[1].setCommand(GameManager.Spells.spells[2]);
 
-        status.speed = 5f;
+        status.basespeed = 5f;
+        calcStatus();
 
         GameManager.inputManager.KeyAction += onKeyboard;
         GameManager.Instance.SceneChangeAction += DieObject;
-        sMachine.changeState(new PlayerIdleState(), this);
+        sMachine.changeState(new PlayerIdleState());
     }
     private void setSkillSlots()
     {
@@ -53,13 +54,14 @@ public class Player : Charactor
         {
             changeState(new PlayerIdleState());
         }
+        CheckCDs();
     }
 
     public void onKeyboard()
     {
         if (Input.GetMouseButton(1))
         {
-            sMachine.changeState(new PlayerMoveState(), this);
+            sMachine.changeState(new PlayerMoveState());
         }
         
         if (Input.GetKeyDown(KeyCode.Q))
@@ -93,6 +95,25 @@ public class Player : Charactor
             }
         }
     }
+
+    public void CheckCDs()
+    {
+        foreach (SkillSlot slot in skillslots)
+        {
+            if (slot.isSet())
+            {
+                if (slot.getSpell().isCool)
+                {
+                    slot.getSpell().ct = Time.time - slot.getSpell().st;
+                    if (slot.getSpell().ct > slot.getSpell().getCD())
+                    {
+                        slot.getSpell().isCool = false;
+                    }
+                }
+            }
+        }
+    }
+
     public IEnumerator roll()
     {
         float cd = 0f;

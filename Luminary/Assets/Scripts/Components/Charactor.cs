@@ -32,9 +32,11 @@ public class Charactor : MonoBehaviour
             equips = new List<Item>(),
             element = new ElementData(),
         };
-        sMachine = new StateMachine();
+        sMachine = new StateMachine(this);
 
         statusInit();
+
+        Debug.Log(GameManager.FSM.fsm["PlayerIdleState"]);
     }
 
     public virtual void statusInit()
@@ -172,7 +174,12 @@ public class Charactor : MonoBehaviour
 
     public void changeState(State state)
     {
-        sMachine.changeState(state, this);
+        sMachine.changeState(state);
+    }
+
+    public void endCurrentState()
+    {
+        sMachine.exitState();
     }
 
     public State getState()

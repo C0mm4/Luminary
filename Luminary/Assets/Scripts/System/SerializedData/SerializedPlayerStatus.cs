@@ -20,8 +20,8 @@ public struct SerializedPlayerStatus
     public int maxHP; // (base HP + const HP increase) * HP increase Percent (Rounds)
     public int currentHP;
 
-    public int basespeed; // base Speed
-    public int increaseSpeed; // const increase Speed
+    public float basespeed; // base Speed
+    public float increaseSpeed; // const increase Speed
     public float pIncreaseSpeed; // percent increase Speed ( 10 % + 20 % = 30 % )
     public float speed; // appying speed
 

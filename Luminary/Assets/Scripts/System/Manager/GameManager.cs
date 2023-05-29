@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
     SpellManager _spellManager = new SpellManager();
     public static SpellManager Spells { get { return gm_Instance._spellManager; } }
 
+    FSMManager _fsmManager = new FSMManager();
+    public static FSMManager FSM { get { return gm_Instance._fsmManager; } }
+
     public struct SerializedGameData
     {
         public List<Resolution> resolutionList;
@@ -119,7 +122,7 @@ public class GameManager : MonoBehaviour
             canvas.planeDistance = 10;
         }
 
-        Application.targetFrameRate = 240;
+        Application.targetFrameRate = 30;
         SceneChangeAction += GameObjectReSet;
         init();
     }
@@ -161,6 +164,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager Awake Init");
         // Spell 객체를 로드하고 만드는 객체 초기화
         Spells.init();
+        FSM.init();
         Random.init("");
         MapGen.init();
         StageC.init();
@@ -342,7 +346,7 @@ public class GameManager : MonoBehaviour
     public void playerGen()
     {
         player = Resource.Instantiate("PlayerbleChara");
-        player.transform.position = new Vector3(0, 0, -1);
+        player.transform.position = new Vector3(0, 0, 1);
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);
         PlayerDataManager.interactionDistance = 1000.0f;

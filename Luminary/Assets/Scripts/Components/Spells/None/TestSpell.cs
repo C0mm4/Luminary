@@ -11,6 +11,8 @@ public class TestSpell : SpellObj
     {
         base.Start();
         run();
+        player.GetComponent<Charactor>().status.increaseSpeed += 3;
+        player.GetComponent<Charactor>().calcStatus();
     }
 
     
@@ -22,22 +24,22 @@ public class TestSpell : SpellObj
         {
             Debug.Log("Player Moving");
             player.GetComponent<Charactor>().changeState(new PlayerRollState());
-            player.GetComponent<Charactor>().status.increaseSpeed += 10;
-            player.GetComponent<Charactor>().calcStatus();
             // After 0.3f seconds rollback Player Speed
             Invoke("endrun", 0.3f);
         }
         else
         {
             Debug.Log("Player Doesn't Move");
+            player.GetComponent<Charactor>().status.increaseSpeed -= 3;
+            GameManager.Resource.Destroy(this.gameObject);
         }
     }
     
     public void endrun()
     {
-        Debug.Log(player);
-        player.GetComponent<Charactor>().status.increaseSpeed -= 10;
+        player.GetComponent<Charactor>().status.increaseSpeed -= 3;
         player.GetComponent<Charactor>().calcStatus();
+        player.GetComponent<Charactor>().endCurrentState();
         GameManager.Resource.Destroy(this.gameObject);
     }
 

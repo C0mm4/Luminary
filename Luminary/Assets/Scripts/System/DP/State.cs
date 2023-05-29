@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class State
+public abstract class State
 {
     protected Charactor charactor;
 
 
-    public virtual void EnterState(Charactor chr)
-    {
-        Debug.Log(this);
-        charactor = chr;
-    }
+    public abstract void EnterState(Charactor chr);
 
-    public virtual void ExitState() 
-    {
-        charactor = null;  
-    }
+    public abstract void ExitState();
 
-    public virtual void UpdateState() { }
+    public abstract void UpdateState();
+
+    public abstract void ReSetState(); 
 }

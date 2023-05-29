@@ -20,14 +20,14 @@ public class TestMob : Mob
 
             if(player == null)
             {
-                sMachine.changeState(new MobIdleState(), this);
+                sMachine.changeState(new MobIdleState());
             }
         }
         else
         {
             if (sMachine.getState().GetType() != typeof(MobChaseState))
             {
-                sMachine.changeState(new MobChaseState(), this);
+                sMachine.changeState(new MobChaseState());
             }
         }
 

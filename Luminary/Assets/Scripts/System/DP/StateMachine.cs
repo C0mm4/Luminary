@@ -4,21 +4,56 @@ using UnityEngine;
 
 public class StateMachine
 {
-    private State currentState;
+    public Stack<State> stateStack = new Stack<State>();
+    private State currentState = null;
 
-    public void changeState(State newState, Charactor chr)
+    private Charactor target;
+
+    public StateMachine(Charactor chr)
     {
-        if(currentState != null)
+        target = chr;
+        
+    }
+
+
+    public void changeState(State newState)
+    {
+
+        if (currentState != null) {
+            if (GameManager.FSM.getList(currentState.GetType().Name).Contains(newState.GetType().Name))
+            {
+                Debug.Log(newState);
+                
+                if (currentState.GetType().Name != newState.GetType().Name)
+                {
+                    // Save Previous State
+                    stateStack.Push(currentState);
+
+                    // change New State
+                    currentState = newState;
+
+                    // State Enter Logic Process
+                    currentState.EnterState(target);
+                }
+                // if currentState is Equal State
+                else
+                {
+                    // change New State
+                    currentState = newState;
+
+                    // State Enter Logic Process
+                    currentState.EnterState(target);
+                }
+            }
+        }
+        else
         {
-            currentState.ExitState();
+            Debug.Log(newState);
+            currentState = newState;
+
+            currentState.EnterState(target);
         }
 
-        currentState = newState;
-
-        if(currentState != null)
-        {
-            currentState.EnterState(chr);
-        }
     }
 
     public void updateState()
@@ -31,7 +66,18 @@ public class StateMachine
 
     public void exitState()
     {
-        currentState = null;
+        currentState.ExitState();
+        if (stateStack.Count > 0)
+        {
+            currentState = stateStack.Pop();
+
+            currentState.ReSetState();
+        }
+    }
+
+    public string getStateStr()
+    {
+        return currentState.GetType().Name;
     }
 
     public State getState()

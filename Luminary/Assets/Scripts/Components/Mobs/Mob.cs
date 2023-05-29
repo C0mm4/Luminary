@@ -14,8 +14,7 @@ public class Mob : Charactor
     public override void Awake()
     {
         base.Awake();
-        sMachine = new StateMachine();
-        sMachine.changeState(new MobIdleState(), this);
+        sMachine.changeState(new MobIdleState());
         player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
         
     }

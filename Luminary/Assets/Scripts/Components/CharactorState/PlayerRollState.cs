@@ -5,14 +5,41 @@ using UnityEngine;
 public class PlayerRollState : State
 {
     // Start is called before the first frame update
-    float startrolltime;
+
+    Vector3 dir = new Vector3();
     public override void EnterState(Charactor chr)
     {
-        base.EnterState(chr);
+        charactor = chr;
 
-        startrolltime = Time.time;
+        Vector3 targetPos = GameManager.inputManager.mouseWorldPos;
+        targetPos.z = 1;
 
+        dir = new Vector3(targetPos.x - chr.transform.position.x, targetPos.y - chr.transform.position.y, 1);
+        dir.Normalize();
+        charactor.GetComponent<Charactor>().status.increaseSpeed += 5;
+        charactor.GetComponent<Charactor>().calcStatus();
+
+        charactor.GetComponent<Rigidbody2D>().velocity = dir * (charactor.status.speed);
+
+        Debug.Log(charactor.GetComponent<Charactor>().status.speed);
+    }
+    
+    public override void UpdateState()
+    {
     }
 
+    public override void ReSetState()
+    {
+        EnterState(charactor);
+    }
 
+    public override void ExitState()
+    {
+        charactor.GetComponent<Charactor>().status.increaseSpeed -= 5;
+        charactor.GetComponent<Charactor>().calcStatus();
+        Debug.Log(charactor.GetComponent<Charactor>().status.speed);
+        charactor.GetComponent<Rigidbody2D>().velocity = dir * (charactor.status.speed);
+        charactor = null;
+        
+    }
 }
