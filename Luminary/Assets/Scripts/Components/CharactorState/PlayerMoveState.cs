@@ -22,13 +22,9 @@ public class PlayerMoveState : State
             charactor.GetComponent<Charactor>().endCurrentState();
         }
 
-        /*
-        GameManager.inputManager.KeyAction -= chr.GetComponent<Player>().onKeyboard;*/
     }
     public override void UpdateState()
     {
-        
-
         if (Vector3.Dot(targetPos - charactor.transform.position, dir) <= 0)
         {
             charactor.GetComponent<Charactor>().endCurrentState();
@@ -48,6 +44,7 @@ public class PlayerMoveState : State
         }
         else
         {
+            
         }
     }
 

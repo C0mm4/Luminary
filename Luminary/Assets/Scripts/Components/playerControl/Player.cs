@@ -117,35 +117,44 @@ public class Player : Charactor
     public IEnumerator roll()
     {
         float cd = 0f;
-        if (skillslots[0].isSet())
+        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState")) 
         {
-            skillslots[0].getSpell().isCool = true;
-            skillslots[0].useSkill();
-            cd = skillslots[0].getCD();
+            if (skillslots[0].isSet())
+            {
+                changeState(new PlayerCastingState(skillslots[0].getSpell()));
+                skillslots[0].getSpell().isCool = true;
+                skillslots[0].useSkill();
+                cd = skillslots[0].getCD();
+            }
+
+            yield return new WaitForSeconds(cd);
+            if (skillslots[0].isSet())
+            {
+                skillslots[0].getSpell().isCool = false;
+            }
         }
 
-        yield return new WaitForSeconds(cd); 
-        if (skillslots[0].isSet())
-        {
-            skillslots[0].getSpell().isCool = false;
-        }
     }
     public IEnumerator Q()
     {
-
         float cd = 0f;
-        if (skillslots[1].isSet())
+        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
-            skillslots[1].getSpell().isCool = true;
-            skillslots[1].useSkill();
-            cd = skillslots[1].getCD();
+            if (skillslots[1].isSet())
+            {
+                changeState(new PlayerCastingState(skillslots[1].getSpell()));
+                skillslots[1].getSpell().isCool = true;
+                skillslots[1].useSkill();
+                cd = skillslots[1].getCD();
+            }
+
+            yield return new WaitForSeconds(cd);
+            if (skillslots[1].isSet())
+            {
+                skillslots[1].getSpell().isCool = false;
+            }
         }
 
-        yield return new WaitForSeconds(cd);
-        if (skillslots[1].isSet())
-        {
-            skillslots[1].getSpell().isCool = false;
-        }
     }
 
     public IEnumerator W()

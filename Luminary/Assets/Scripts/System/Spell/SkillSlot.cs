@@ -38,7 +38,7 @@ public class SkillSlot
     // Use Spell in triggered
     public void useSkill()
     {
-        skillCommand.execute();
+//        skillCommand.execute();
         skillCommand.isCool = true;
         skillCommand.st = Time.time;
     }
