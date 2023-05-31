@@ -54,6 +54,7 @@ public class FSMManager
             "MobATKState",
             "MobHitState",
             "MobDieState",
+            "MobMoveState",
         };
 
         // Mob Idle State FSM
@@ -62,7 +63,29 @@ public class FSMManager
             mobState[1], mobState[2], mobState[3], mobState[4], mobState[5], mobState[6],
         };
         fsm[mobState[0]] = mobFSM;
-        
+
+        // Mob Chase State FSM
+        mobFSM = new List<string>();
+        fsm[mobState[1]] = mobFSM;
+
+        // Mob Run State FSM
+        fsm[mobState[2]] = mobFSM;
+
+        // Mob Cast State FSM
+        fsm[mobState[3]] = mobFSM;
+
+        // Mob ATK State FSM
+        fsm[mobState[4]] = mobFSM;
+
+        // Mob Hit State FSM
+        fsm[mobState[5]] = mobFSM;
+
+        // Mob Die State FSM
+        fsm[mobState[6]] = mobFSM;
+
+        // mob Move State FSM
+        fsm[mobState[7]] = mobFSM;
+
 
     }
 
