@@ -16,7 +16,7 @@
 		<spr>Spells/TestSpell</spr>
 	</Spell>
 	<Spell>
-		<id>2</id>
+		<id>1003000</id>
 		<name>Fire</name>
 		<cd>2</cd>
 		<circle>1</circle>
@@ -29,5 +29,35 @@
 		<debufP>0.1</debufP>
 		<prefabpath>Spell/SpellFire</prefabpath>
 		<spr>Spells/SpellFire</spr>
+	</Spell>
+	<Spell>
+		<id>1003001</id>
+		<name>FireBall</name>
+		<cd>3</cd>
+		<circle>2</circle>
+		<type>1</type>
+		<xRange>8</xRange>
+		<yRange>1</yRange>
+		<damage>7</damage>
+		<hits>1</hits>
+		<castT>0.1</castT>
+		<debufP>0.15</debufP>
+		<prefabpath>Spell/SpellFireBall</prefabpath>
+		<spr>Spells/SpellFireBall</spr>
+	</Spell>
+	<Spell>
+		<id>1003002</id>
+		<name>FireWall</name>
+		<cd>8</cd>
+		<circle>3</circle>
+		<type>2</type>
+		<xRange>8</xRange>
+		<yRange>1</yRange>
+		<damage>4</damage>
+		<hits>1</hits>
+		<castT>0.2</castT>
+		<debufP>0.4</debufP>
+		<prefabpath>Spell/SpellFireWall</prefabpath>
+		<spr>Spells/SpellFireWall</spr>
 	</Spell>
 </SpellData>

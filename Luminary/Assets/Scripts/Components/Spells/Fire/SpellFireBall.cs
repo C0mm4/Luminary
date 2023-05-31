@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellFire : Projectile
+public class SpellFireBall : Projectile
 {
     Vector3 dir;
+
 
     public override void Start()
     {

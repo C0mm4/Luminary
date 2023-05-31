@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Projectile : SpellObj
 {
+
+    [SerializeField]
+    float speed;
+
+    [SerializeField]
     Vector3 dir;
+
     public override void Start()
     {
         base.Start();
@@ -22,6 +28,6 @@ public class Projectile : SpellObj
     public override void Update()
     {
         base.Update();
-        transform.position += dir * 7 * deltaTime;
+        transform.position += dir * speed * deltaTime;
     }
 }
