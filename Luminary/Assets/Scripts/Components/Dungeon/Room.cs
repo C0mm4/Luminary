@@ -8,13 +8,16 @@ public class Room : MonoBehaviour
     
     public int x, y;
     public int width, height;
+    [SerializeField]
     public int index;
     public int[,] roomGrid;
-    public int mobCount;
+    public int mobCount = 0;
 
 
     public int gateU, gateD, gateL, gateR;
     public string gatedir = "0000";
+    [SerializeField]
+    public SpriteRenderer bg;
 
     // set position
     public void set()
@@ -55,11 +58,41 @@ public class Room : MonoBehaviour
                             GameManager.Resource.Destroy(go);
                             go = GameManager.Resource.Instantiate("Dungeon/Rock");
                             break;
+                        case 3:
+                            GameManager.Resource.Destroy(go);
+                            go = GameManager.Resource.Instantiate("Mobs/TestMob");
+                            mobCount += 1;
+                            break;
+
+
+                        default:
+                            GameManager.Resource.Destroy(go);
+                            break;
                     }
                     go.transform.parent = this.transform;
-                    go.transform.position = new Vector3((this.transform.position.x + ((j-16) * 0.52f)) , (this.transform.position.y + (-(i-9) * 0.52f)), 0);
+                    go.transform.position = new Vector3((this.transform.position.x + ((j-16) * 0.52f)) , (this.transform.position.y + (-(i-9) * 0.52f)), 2);
                 }
             }
+        }
+    }
+
+    public void clearRoom()
+    {
+        if(gateU != -1)
+        {
+
+        }
+        if(gateD != -1)
+        {
+
+        }
+        if(gateL != -1)
+        {
+
+        }
+        if(gateR != -1)
+        {
+
         }
     }
 }

@@ -21,7 +21,6 @@ public class PlayerRollState : State
 
         charactor.GetComponent<Rigidbody2D>().velocity = dir * (charactor.status.speed);
 
-        Debug.Log(charactor.GetComponent<Charactor>().status.speed);
     }
     
     public override void UpdateState()
@@ -37,7 +36,6 @@ public class PlayerRollState : State
     {
         charactor.GetComponent<Charactor>().status.increaseSpeed -= 5;
         charactor.GetComponent<Charactor>().calcStatus();
-        Debug.Log(charactor.GetComponent<Charactor>().status.speed);
         charactor.GetComponent<Rigidbody2D>().velocity = dir * (charactor.status.speed);
         charactor = null;
         

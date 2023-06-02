@@ -35,6 +35,7 @@ public class SpellFire : Projectile
             {
                 Buff newbuff = new FireBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
             }
+            other.GetComponent<Charactor>().changeState(new MobHitState(other.transform.position - this.transform.position));
         }
 
         base.OnTriggerEnter2D(other);

@@ -34,7 +34,7 @@ public class PlayerDataManager : MonoBehaviour
     public void loadKeySetting()
     {
         keySetting.inventoryKey = (KeyCode)PlayerPrefs.GetInt("inventoryKey", (int)KeyCode.I);
-        keySetting.InteractionKey = (KeyCode)PlayerPrefs.GetInt("InteractionKey", (int)KeyCode.G);
+        keySetting.InteractionKey = (KeyCode)PlayerPrefs.GetInt("InteractionKey", (int)KeyCode.F);
     }
     public void saveKeySetting()
     {

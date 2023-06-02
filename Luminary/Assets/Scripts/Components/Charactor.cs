@@ -19,11 +19,11 @@ public class Charactor : MonoBehaviour
 
     public SerializedPlayerStatus status;
 
+    public bool isHit = false;
 
     // Start is called before the first frame update
     public virtual void Awake()
     {
-        Debug.Log("Charactor Awake");
         status = new SerializedPlayerStatus
         {
             buffs = new List<Buff>(),
@@ -36,7 +36,6 @@ public class Charactor : MonoBehaviour
 
         statusInit();
 
-        Debug.Log(GameManager.FSM.fsm["PlayerIdleState"]);
     }
 
     public virtual void statusInit()
@@ -74,7 +73,7 @@ public class Charactor : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    public virtual void FixedUpdate()
     {
         sMachine.updateState();
         runBufss();

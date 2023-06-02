@@ -21,12 +21,11 @@ public class Player : Charactor
 
 
         skillslots[0].setCommand(GameManager.Spells.spells[1]);
-        skillslots[1].setCommand(GameManager.Spells.spells[2]);
+        skillslots[1].setCommand(GameManager.Spells.spells[1003000]);
 
         status.basespeed = 5f;
         calcStatus();
 
-        GameManager.inputManager.KeyAction += onKeyboard;
         GameManager.Instance.SceneChangeAction += DieObject;
         sMachine.changeState(new PlayerIdleState());
     }
@@ -41,15 +40,16 @@ public class Player : Charactor
 
     public override void DieObject()
     {
-        GameManager.inputManager.KeyAction -= onKeyboard;
+        GameManager.inputManager.KeyAction -= moveKey;
+        GameManager.inputManager.KeyAction -= spellKey;
         GameManager.Instance.SceneChangeAction -= DieObject;
         
         base.DieObject();
     }
 
-    public override void Update()
+    public override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
         if(getState() == null)
         {
             changeState(new PlayerIdleState());
@@ -57,33 +57,13 @@ public class Player : Charactor
         CheckCDs();
     }
 
-    public void onKeyboard()
+    public void moveKey()
     {
         if (Input.GetMouseButton(1))
         {
             sMachine.changeState(new PlayerMoveState());
         }
-        
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (skillslots[1].isSet())
-            {
-                if (!skillslots[1].getSpell().isCool)
-                StartCoroutine("Q");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
 
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-
-        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (skillslots[0].isSet())
@@ -92,6 +72,47 @@ public class Player : Charactor
                 {
                     StartCoroutine("roll");
                 }
+            }
+        }
+        if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
+        {
+            Debug.Log("Interection Key pressed");
+            GameManager.Instance.interaction();
+        }
+    }
+
+    public void spellKey()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (skillslots[1].isSet())
+            {
+                if (!skillslots[1].getSpell().isCool)
+                    StartCoroutine("Q");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (skillslots[2].isSet())
+            {
+                if (!skillslots[2].getSpell().isCool)
+                    StartCoroutine("W");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (skillslots[3].isSet())
+            {
+                if (!skillslots[3].getSpell().isCool)
+                    StartCoroutine("E");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (skillslots[4].isSet())
+            {
+                if (!skillslots[4].getSpell().isCool)
+                    StartCoroutine("R");
             }
         }
     }
@@ -121,7 +142,7 @@ public class Player : Charactor
         {
             if (skillslots[0].isSet())
             {
-                changeState(new PlayerCastingState(skillslots[0].getSpell()));
+                changeState(new PlayerCastingState(skillslots[0].getSpell(), GameManager.inputManager.mouseWorldPos));
                 skillslots[0].getSpell().isCool = true;
                 skillslots[0].useSkill();
                 cd = skillslots[0].getCD();
@@ -142,7 +163,7 @@ public class Player : Charactor
         {
             if (skillslots[1].isSet())
             {
-                changeState(new PlayerCastingState(skillslots[1].getSpell()));
+                changeState(new PlayerCastingState(skillslots[1].getSpell(), GameManager.inputManager.mouseWorldPos));
                 skillslots[1].getSpell().isCool = true;
                 skillslots[1].useSkill();
                 cd = skillslots[1].getCD();
@@ -159,49 +180,64 @@ public class Player : Charactor
 
     public IEnumerator W()
     {
-        SkillSlot spellw;
-        float cd = 0f;/*
-        spellw = GameManager.SkillSlot.getSlot(2).GetComponent<SkillSlot>();
-        if (spellw.isSet() != null)
+        float cd = 0f;
+        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
-            cdQ = true;
-            spellw.useSkill();
-            cd = spellw.getCD();
-        }*/
+            if (skillslots[2].isSet())
+            {
+                changeState(new PlayerCastingState(skillslots[2].getSpell(), GameManager.inputManager.mouseWorldPos));
+                skillslots[2].getSpell().isCool = true;
+                skillslots[2].useSkill();
+                cd = skillslots[2].getCD();
+            }
 
-        yield return new WaitForSeconds(cd);
-        //Äð´Ù¿î ¿Ï·á
+            yield return new WaitForSeconds(cd);
+            if (skillslots[2].isSet())
+            {
+                skillslots[2].getSpell().isCool = false;
+            }
+        }
     }
 
     public IEnumerator E()
     {
-        SkillSlot spelle;
-        float cd = 0f;/*
-        spelle = GameManager.SkillSlot.getSlot(3).GetComponent<SkillSlot>();
-        if (spelle.isSet() != null)
+        float cd = 0f;
+        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
-            cdQ = true;
-            spelle.useSkill();
-            cd = spelle.getCD();
-        }*/
+            if (skillslots[1].isSet())
+            {
+                changeState(new PlayerCastingState(skillslots[3].getSpell(), GameManager.inputManager.mouseWorldPos));
+                skillslots[3].getSpell().isCool = true;
+                skillslots[3].useSkill();
+                cd = skillslots[3].getCD();
+            }
 
-        yield return new WaitForSeconds(cd);
-        //Äð´Ù¿î ¿Ï·á
+            yield return new WaitForSeconds(cd);
+            if (skillslots[3].isSet())
+            {
+                skillslots[3].getSpell().isCool = false;
+            }
+        }
     }
     public IEnumerator R()
     {
-        SkillSlot spellr;
-        float cd = 0f;/*
-        spellr = GameManager.SkillSlot.getSlot(4).GetComponent<SkillSlot>();
-        if (spellr.isSet() != null)
+        float cd = 0f;
+        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
-            cdQ = true;
-            spellr.useSkill();
-            cd = spellr.getCD();
+            if (skillslots[1].isSet())
+            {
+                changeState(new PlayerCastingState(skillslots[4].getSpell(), GameManager.inputManager.mouseWorldPos));
+                skillslots[4].getSpell().isCool = true;
+                skillslots[4].useSkill();
+                cd = skillslots[4].getCD();
+            }
+
+            yield return new WaitForSeconds(cd);
+            if (skillslots[4].isSet())
+            {
+                skillslots[4].getSpell().isCool = false;
+            }
         }
-*/
-        yield return new WaitForSeconds(cd);
-        //Äð´Ù¿î ¿Ï·á
     }
 
 

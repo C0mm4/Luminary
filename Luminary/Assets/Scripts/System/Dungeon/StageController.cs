@@ -54,7 +54,6 @@ public class StageController
             GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
         }
         moveRoom(0);
-        GameManager.Instance.playerGen();
 
     }
 
@@ -134,7 +133,8 @@ public class StageController
             }
             int target = GameManager.Random.getMapNext(0,lists.Count);
             string ary = roomDatas[target]["data"].InnerText;
-            
+
+            ary = ary.Substring(6);
             ary = ary.Replace("\t\t\t", string.Empty);
             ary = ary.Replace("\n", string.Empty); 
             string[] sstr = ary.Split('\t');
@@ -168,10 +168,18 @@ public class StageController
     public void moveRoom(int n)
     {
         currentRoom = n;
+        if (!isVIsit[currentRoom])
+        {
+            rooms[currentRoom].GetComponent<Room>().setObjects();
+        }
+        if (rooms[currentRoom].GetComponent<Room>().mobCount == 0)
+        {
+            isClear[currentRoom] = true;
+            rooms[currentRoom].GetComponent<Room>().clearRoom();
+        }
         isVIsit[currentRoom] = true;
-
-        rooms[currentRoom].GetComponent<Room>().setObjects();
-        GameManager.cameraManager.background = rooms[currentRoom].GetComponent<SpriteRenderer>();
+        GameManager.cameraManager.background = rooms[currentRoom].GetComponent<Room>().bg;
     }
+
 
 }

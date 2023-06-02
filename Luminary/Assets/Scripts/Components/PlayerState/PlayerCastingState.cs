@@ -7,10 +7,13 @@ public class PlayerCastingState : State
     Spell spell;
     float castingT;
     float startT;
-    public PlayerCastingState(Spell spl) : base()
+    Vector3 mos = new Vector3();
+
+    public PlayerCastingState(Spell spl, Vector3 mos) : base()
     {
         spell = spl;
         castingT = spl.data.castTime;
+        this.mos = mos;
     }
 
     public override void EnterState(Charactor chr)
@@ -26,7 +29,7 @@ public class PlayerCastingState : State
         if(Time.time - startT >= castingT)
         {
             charactor.GetComponent<Charactor>().endCurrentState();
-            spell.execute();
+            spell.execute(mos);
         }
     }
 

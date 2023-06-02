@@ -11,10 +11,11 @@ public class Spell
     public float ct, st;
 
 
-    public virtual void execute() 
+    public virtual void execute(Vector3 mos) 
     {
         GameObject obj = GameManager.Resource.Instantiate(data.path);
-        obj.GetComponent<SpellObj>().setData(data);
+        obj.GetComponent<SpellObj>().setData(data, mos);
+
     }
 
     public virtual float getCD()

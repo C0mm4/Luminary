@@ -203,6 +203,7 @@ public class GameManager : MonoBehaviour
     public void transitionInit(string targetScene)
     {
         sceneSetClear();
+        setCanvas();
         Debug.Log("Scene Load in GameManager : " + targetScene);
         switch (targetScene)
         {
@@ -231,17 +232,17 @@ public class GameManager : MonoBehaviour
         cameraManager.camera = mainCamera;
         cameraManager.background = lobbyField;
         playerGen();
-        gameState = GameState.InPlay;
-        uiManager.ChangeState(UIState.InPlay);
+        uiManager.ChangeState(UIState.Lobby);
     }
     public void stageSceneInit()
     {
+        Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        cameraManager.camera = mainCamera;
         if(gameState == GameState.Loading)
         {
             mapgen();
-            gameState = GameState.InPlay;
+            playerGen();
         }
-
         uiManager.ChangeState(UIState.InPlay);
     }
 
@@ -276,11 +277,16 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 0f; // Pause Game
                 isPaused = true;
+                GameObject go = Resource.Instantiate("UI/Pause", canvas.transform);
+                go.name = "pause";
             }
             else
             {
+                GameObject go = GameObject.Find("pause");
+                Resource.Destroy(go);
                 Time.timeScale = 1f; // Resume Game
                 isPaused = false;
+
             }
         }
 
@@ -351,8 +357,19 @@ public class GameManager : MonoBehaviour
         cameraManager.setCamera(player.transform);
         PlayerDataManager.interactionDistance = 1000.0f;
     }
-    public void sceneinit()
+
+
+    public void setCanvas()
     {
-//        uiManager.init();
+        Debug.Log("Set Canvas");
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        if (canvas.gameObject.GetComponent<UIManager>() == null)
+        {
+            canvas.gameObject.AddComponent<UIManager>();
+        }
+        uiManager = canvas.GetComponent<UIManager>();
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        canvas.planeDistance = 10;
     }
 }

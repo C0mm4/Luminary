@@ -60,7 +60,7 @@ public class FSMManager
         // Mob Idle State FSM
         List<string> mobFSM = new List<string>
         {
-            mobState[1], mobState[2], mobState[3], mobState[4], mobState[5], mobState[6],
+            mobState[1], mobState[2], mobState[3], mobState[4], mobState[5], mobState[6], mobState[7]
         };
         fsm[mobState[0]] = mobFSM;
 

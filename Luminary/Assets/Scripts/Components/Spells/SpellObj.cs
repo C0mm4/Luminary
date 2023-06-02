@@ -21,14 +21,14 @@ public class SpellObj : MonoBehaviour
         player = GameManager.player;
     }
 
-    public void setData(SpellData dts)
+    public void setData(SpellData dts, Vector3 mos)
     {
         player = GameManager.player;
         data = dts;
         spawnTime = Time.time;
         currentTime = spawnTime;
         spawnPos = player.transform.position;
-        
+        this.mos = mos;
 
     }
 

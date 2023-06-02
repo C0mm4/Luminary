@@ -27,7 +27,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.1</debufP>
-		<prefabpath>Spell/SpellFire</prefabpath>
+		<prefabpath>Spell/Fire/SpellFire</prefabpath>
 		<spr>Spells/SpellFire</spr>
 	</Spell>
 	<Spell>
@@ -42,7 +42,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.15</debufP>
-		<prefabpath>Spell/SpellFireBall</prefabpath>
+		<prefabpath>Spell/Fire/SpellFireBall</prefabpath>
 		<spr>Spells/SpellFireBall</spr>
 	</Spell>
 	<Spell>
@@ -57,7 +57,7 @@
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.4</debufP>
-		<prefabpath>Spell/SpellFireWall</prefabpath>
+		<prefabpath>Spell/Fire/SpellFireWall</prefabpath>
 		<spr>Spells/SpellFireWall</spr>
 	</Spell>
 </SpellData>

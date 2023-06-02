@@ -22,7 +22,6 @@ public class StateMachine
         if (currentState != null) {
             if (GameManager.FSM.getList(currentState.GetType().Name).Contains(newState.GetType().Name))
             {
-                Debug.Log(newState);
                 
                 if (currentState.GetType().Name != newState.GetType().Name)
                 {
@@ -48,7 +47,6 @@ public class StateMachine
         }
         else
         {
-            Debug.Log(newState);
             currentState = newState;
 
             currentState.EnterState(target);

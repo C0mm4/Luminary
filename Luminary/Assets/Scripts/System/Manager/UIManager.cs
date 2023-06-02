@@ -17,15 +17,48 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject invUI;
     public GameObject skillSlotUI;
+    public GameObject menuUI;
+    public GameObject pauseUI;
+    public GameObject loadUI;
+
+    public bool isInit = false;
+
 
     Queue<string> textUIqueue = new Queue<string>();
     private float textUItime = -3f;
 
+    public Menu currentMenu = null;
+    public Stack<Menu> menuStack = new Stack<Menu>();
 
-    private void Awake()
+    Stack<UIState> uistack = new Stack<UIState>();
+
+    private void Start()
     {
+        if (GameManager.Instance.uiManager != null)
+        {
+            init();
+        }
     }
 
+    public void addMenu(Menu menu)
+    {
+        if(currentMenu != null)
+        {
+            menuStack.Push(currentMenu);
+        }
+        currentMenu = menu;
+        switch (menu.GetType().Name)
+        {
+            case "PauseMenu":
+                ChangeState(UIState.Pause);
+                break;
+            case "SettingMenu":
+                ChangeState(UIState.Setting);
+                break;
+            case "":
+                break;
+        }
+    }
 
     // Manager ��ü�� ������ �ޱ⿡ Manager ��ü���� Initializion ���� ȣ���ؾ� ��.
     public void init()
@@ -58,14 +91,9 @@ public class UIManager : MonoBehaviour
         skillSlotUI.GetComponent<SkillSlotUI>().init();
         skillSlotUI.SetActive(false);
         textUItime = -3f;
-        textUI("TEST TEXT UI");
-        textUI("new Text UI");
+        isInit = true;
     }
 
-    public void Start()
-    {
-        init();
-    }
 
     private void UIClear()
     {
@@ -104,19 +132,6 @@ public class UIManager : MonoBehaviour
             skillSlotUI.gameObject.SetActive(bskillSlotUI);
         }
 
-        if (Input.GetKeyDown(PlayerDataManager.keySetting.inventoryKey))
-        {
-            binvenUI = !binvenUI;
-            if (invUI != null)
-            {
-                invUI.SetActive(binvenUI);
-                ChangeState(UIState.Inventory);
-            }
-            else
-            {
-                Debug.Log("NOT");
-            }
-        }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             bmapUI = !bmapUI;
@@ -128,21 +143,27 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void InventoryInput()
+    public void InventoryToggleInput()
     {
         if (Input.GetKeyDown(PlayerDataManager.keySetting.inventoryKey))
         {
-            binvenUI = !binvenUI;
-            if (invUI != null)
+            if (GameManager.uiState != UIState.Inventory) 
             {
-                invUI.SetActive(binvenUI);
-                ChangeState(UIState.InPlay);
+                ChangeStateOnStack(UIState.Inventory);
+                invUI.SetActive(true);
             }
             else
             {
-                Debug.Log("NOT");
+                PopStateStack();
+                invUI.SetActive(false);
             }
+
         }
+    }
+
+    public void InventoryInInput()
+    {
+
     }
 
     public void PauseInput()
@@ -154,6 +175,13 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isInit)
+        {
+            if(GameManager.Instance.uiManager != null)
+            {
+                init();
+            }
+        }
     // Draw TEXT UI
         if(textUIqueue.Count > 0)
         {
@@ -174,60 +202,24 @@ public class UIManager : MonoBehaviour
         }
 
 
-
-        if (Input.GetKeyDown("a"))
-        {
-            
-        }
     }
 
     public void ChangeState(UIState state)
     {
-        switch (GameManager.uiState)
-        {
-            case UIState.Loading:
-                break;
-            case UIState.InPlay:
-                GameManager.inputManager.KeyAction -= InPlayInput;
-                break;
-            case UIState.Title:
-                break;
-            case UIState.CutScene:
-                break;
-            case UIState.Menu:
-                GameManager.inputManager.KeyAction -= MenuInput;
-                break;
-            case UIState.Inventory:
-                GameManager.inputManager.KeyAction -= InventoryInput;
-                break;
-            case UIState.Pause:
-                GameManager.inputManager.KeyAction -= PauseInput;
-                break;
-        }
-
+        
         GameManager.uiState = state;
 
-        switch (GameManager.uiState)
-        {
-            case UIState.Loading:
-                break;
-            case UIState.InPlay:
-                GameManager.inputManager.KeyAction += InPlayInput;
-                break;
-            case UIState.Title:
-                break;
-            case UIState.CutScene:
-                break;
-            case UIState.Menu:
-                GameManager.inputManager.KeyAction += MenuInput;
-                break;
-            case UIState.Inventory:
-                GameManager.inputManager.KeyAction += InventoryInput;
-                break;
-            case UIState.Pause:
-                GameManager.inputManager.KeyAction += PauseInput;
-                break;
-        }
+        GameManager.inputManager.changeInputState();
     }
     
+    public void ChangeStateOnStack(UIState state)
+    {
+        uistack.Push(GameManager.uiState);
+        ChangeState(state);
+    }
+
+    public void PopStateStack()
+    {
+        ChangeState(uistack.Pop());
+    }
 }

@@ -14,7 +14,6 @@ public class Projectile : SpellObj
     public override void Start()
     {
         base.Start();
-        mos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
 
         dir = mos - spawnPos;
         dir.z = 0;
