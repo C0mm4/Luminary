@@ -38,9 +38,28 @@ public class SkillSlot
     // Use Spell in triggered
     public void useSkill()
     {
-//        skillCommand.execute();
-        skillCommand.isCool = true;
-        skillCommand.st = Time.time;
+        switch (skillCommand.data.type)
+        {
+            case 0:
+            case 1:
+            case 3:
+                Vector3 pos = GameManager.inputManager.mouseWorldPos;
+
+                GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), GameManager.inputManager.mouseWorldPos));
+                skillCommand.isCool = true;
+                skillCommand.st = Time.time;
+                break;
+            case 2:
+                GameObject tar = getMousePosObj();
+                if(tar != null)
+                {
+                    GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), tar));
+                    skillCommand.isCool = true;
+                    skillCommand.st = Time.time;
+                }
+                break;
+        }
+
     }
 
     // return Spell Cooltime 
@@ -62,5 +81,27 @@ public class SkillSlot
         }
     }
 
+    public GameObject getMousePosObj()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(GameManager.inputManager.mousePos);
+
+        List<RaycastHit> hits = new List<RaycastHit>();
+
+        RaycastHit[] allHits = Physics.RaycastAll(ray);
+        hits.AddRange(allHits);
+
+        hits.Sort((hit1, hit2) => hit1.distance.CompareTo(hit2.distance));
+
+        foreach (RaycastHit hit in hits)
+        {
+            GameObject closestObject = hit.collider.gameObject;
+            if (closestObject.CompareTag("Mob"))
+            {
+                return closestObject;
+            }
+        }
+
+        return null;
+    }
 
 }

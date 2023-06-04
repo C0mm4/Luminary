@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCastingState : State
 {
     Spell spell;
+    GameObject target;
     float castingT;
     float startT;
     Vector3 mos = new Vector3();
@@ -14,6 +15,13 @@ public class PlayerCastingState : State
         spell = spl;
         castingT = spl.data.castTime;
         this.mos = mos;
+    }
+
+    public PlayerCastingState(Spell spl, GameObject obj) : base()
+    {
+        spell = spl;
+        castingT = spl.data.castTime;
+        target = obj;
     }
 
     public override void EnterState(Charactor chr)
@@ -29,7 +37,19 @@ public class PlayerCastingState : State
         if(Time.time - startT >= castingT)
         {
             charactor.GetComponent<Charactor>().endCurrentState();
-            spell.execute(mos);
+            switch (spell.data.type)
+            {
+                case 0:
+                case 1:
+                    spell.execute(mos);
+                    break;
+                case 2:
+                    spell.execute(target);
+                    break;
+                case 3:
+                    spell.execute(mos);
+                    break;
+            }
         }
     }
 

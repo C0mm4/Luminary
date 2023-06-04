@@ -53,7 +53,6 @@ public class StageController
         {
             GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
         }
-        moveRoom(0);
 
     }
 
