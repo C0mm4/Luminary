@@ -13,14 +13,23 @@ public class FireBuff : Buff
 
     public override void durateEffect()
     {
-        if (currentTime - lastTickTime >= tickTime)
+        if(target != null)
         {
-            onTick();
-            lastTickTime = currentTime;
+
+            if (currentTime - lastTickTime >= tickTime)
+            {
+                onTick();
+                lastTickTime = currentTime;
+            }
+            target.element.Fire = true;
+            base.durateEffect();
+
         }
-        target.element.Fire = true;
-        base.durateEffect();
-        
+        else
+        {
+            target = null;
+            attacker = null;
+        }
     }
 
     public override void onTick()

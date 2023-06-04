@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Type : 0 = None   1 = projectile    2 = targeting   3 = field-->
 <SpellData>
 	<Spell>
 		<id>1</id>
@@ -12,6 +13,7 @@
 		<hits>0</hits>
 		<castT>0</castT>
 		<debufP>0</debufP>
+		<durateT>0</durateT>
 		<prefabpath>Spell/TestSpell</prefabpath>
 		<spr>Spells/TestSpell</spr>
 	</Spell>
@@ -27,6 +29,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.1</debufP>
+		<durateT>0</durateT>
 		<prefabpath>Spell/Fire/SpellFire</prefabpath>
 		<spr>Spells/SpellFire</spr>
 	</Spell>
@@ -35,13 +38,14 @@
 		<name>FireBall</name>
 		<cd>3</cd>
 		<circle>2</circle>
-		<type>1</type>
+		<type>2</type>
 		<xRange>8</xRange>
 		<yRange>1</yRange>
 		<damage>7</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.15</debufP>
+		<durateT>0</durateT>
 		<prefabpath>Spell/Fire/SpellFireBall</prefabpath>
 		<spr>Spells/SpellFireBall</spr>
 	</Spell>
@@ -50,13 +54,14 @@
 		<name>FireWall</name>
 		<cd>8</cd>
 		<circle>3</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>8</xRange>
 		<yRange>1</yRange>
 		<damage>4</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.4</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Fire/SpellFireWall</prefabpath>
 		<spr>Spells/SpellFireWall</spr>
 	</Spell>

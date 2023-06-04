@@ -23,7 +23,7 @@ public class Room : MonoBehaviour
     public void set()
     {
         gateU = gateD = gateL = gateR = -1;
-        this.gameObject.transform.position = new Vector3((float)(x * 19.2f), (y * 10.8f), 0);
+        this.gameObject.transform.position = new Vector3((float)(x * 19.2f), (y * 10.8f), 2);
         roomGrid = new int[19,33];
     }
 

@@ -12,6 +12,7 @@ public struct SpellData
     public int damage, hits;
     public float castTime;
     public float debufP;
+    public float durateT;
     public string path;
     public Sprite spr;
 }

@@ -126,10 +126,6 @@ public class Player : Charactor
                 if (slot.getSpell().isCool)
                 {
                     slot.getSpell().ct = Time.time - slot.getSpell().st;
-                    if (slot.getSpell().ct > slot.getSpell().getCD())
-                    {
-                        slot.getSpell().isCool = false;
-                    }
                 }
             }
         }
@@ -163,8 +159,6 @@ public class Player : Charactor
         {
             if (skillslots[1].isSet())
             {
-                changeState(new PlayerCastingState(skillslots[1].getSpell(), GameManager.inputManager.mouseWorldPos));
-                skillslots[1].getSpell().isCool = true;
                 skillslots[1].useSkill();
                 cd = skillslots[1].getCD();
             }

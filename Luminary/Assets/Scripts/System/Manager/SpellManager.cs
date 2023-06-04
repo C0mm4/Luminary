@@ -50,6 +50,7 @@ public class SpellManager
         spellData.hits = int.Parse(node["hits"].InnerText);
         spellData.castTime = float.Parse(node["castT"].InnerText);
         spellData.debufP = float.Parse(node["debufP"].InnerText);
+        spellData.durateT = float.Parse(node["durateT"].InnerText);
         spellData.path = node["prefabpath"].InnerText;
         spellData.spr = GameManager.Resource.LoadSprite(node["spr"].InnerText);
 

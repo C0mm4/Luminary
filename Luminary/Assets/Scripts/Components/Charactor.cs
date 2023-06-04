@@ -126,7 +126,6 @@ public class Charactor : MonoBehaviour
 
     public virtual void DieObject()
     {
-        
         GameManager.Resource.Destroy(this.gameObject);
     }
 

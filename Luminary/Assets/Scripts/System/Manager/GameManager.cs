@@ -233,6 +233,7 @@ public class GameManager : MonoBehaviour
         cameraManager.background = lobbyField;
         playerGen();
         uiManager.ChangeState(UIState.Lobby);
+        gameState = GameState.InPlay;
     }
     public void stageSceneInit()
     {
@@ -243,6 +244,7 @@ public class GameManager : MonoBehaviour
             mapgen();
             playerGen();
         }
+        gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
     }
 
@@ -250,6 +252,7 @@ public class GameManager : MonoBehaviour
     {
         mapgen();
         playerGen();
+        StageC.moveRoom(0);
     }
 
     public void gameOver()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Spell
 {
@@ -18,6 +19,13 @@ public class Spell
 
     }
 
+    public virtual void execute(GameObject target)
+    {
+        GameObject obj = GameManager.Resource.Instantiate(data.path);
+        obj.GetComponent<SpellObj>().setData(data, target);
+
+    }
+
     public virtual float getCD()
     {
         return data.cd;
@@ -31,4 +39,6 @@ public class Spell
     {
         data = dt;
     }
+
+
 }
