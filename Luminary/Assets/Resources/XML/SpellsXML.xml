@@ -79,6 +79,7 @@
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.2</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Fire/SpellFireBolt</prefabpath>
 		<spr>Spells/SpellFireBolt</spr>
 	</Spell>
@@ -87,13 +88,14 @@
 		<name>MagmaField</name>
 		<cd>15</cd>
 		<circle>4</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>16</xRange>
 		<yRange>2</yRange>
 		<damage>6</damage>
 		<hits>5</hits>
 		<castT>0.4</castT>
 		<debufP>0.45</debufP>
+		<durateT>5</durateT>
 		<prefabpath>Spell/Fire/SpellMagmaField</prefabpath>
 		<spr>Spells/SpellMagmaField</spr>
 	</Spell>
@@ -102,13 +104,14 @@
 		<name>FlameStrike</name>
 		<cd>12</cd>
 		<circle>4</circle>
-		<type>1</type>
+		<type>2</type>
 		<xRange>20</xRange>
 		<yRange>1</yRange>
 		<damage>40</damage>
 		<hits>1</hits>
 		<castT>0.4</castT>
 		<debufP>0.45</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Fire/SpellFlameStrike</prefabpath>
 		<spr>Spells/SpellFlameStrike</spr>
 	</Spell>
@@ -117,13 +120,14 @@
 		<name>MeteorSwarm</name>
 		<cd>30</cd>
 		<circle>5</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>32</xRange>
 		<yRange>20</yRange>
 		<damage>50</damage>
 		<hits>8</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>5</durateT>
 		<prefabpath>Spell/Fire/SpellMeteorSwarm</prefabpath>
 		<spr>Spells/SpellMeteorSwarm</spr>
 	</Spell>
@@ -132,13 +136,14 @@
 		<name>Meteor</name>
 		<cd>25</cd>
 		<circle>5</circle>
-		<type>1</type>
+		<type>2</type>
 		<xRange>20</xRange>
 		<yRange>13</yRange>
 		<damage>50</damage>
 		<hits>1</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>5</durateT>
 		<prefabpath>Spell/Fire/SpellMeteor</prefabpath>
 		<spr>Spells/SpellMeteor</spr>
 	</Spell>
@@ -156,6 +161,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.5</debufP>
+		<durateT>2</durateT>
 		<prefabpath>Spell/Ice/SpellIce</prefabpath>
 		<spr>Spells/SpellIce</spr>
 	</Spell>
@@ -171,6 +177,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.6</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Ice/SpellIceSpear</prefabpath>
 		<spr>Spells/SpellIceSpear</spr>
 	</Spell>
@@ -186,6 +193,7 @@
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.75</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Ice/SpellFrostNova</prefabpath>
 		<spr>Spells/SpellFrostNova</spr>
 	</Spell>
@@ -194,13 +202,14 @@
 		<name>FrozenOrb</name>
 		<cd>9</cd>
 		<circle>3</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>10</xRange>
 		<yRange>5</yRange>
 		<damage>2</damage>
 		<hits>3</hits>
 		<castT>0.2</castT>
 		<debufP>0.75</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Ice/SpellFrozenOrb</prefabpath>
 		<spr>Spells/SpellFrozenOrb</spr>
 	</Spell>
@@ -209,13 +218,14 @@
 		<name>IceAge</name>
 		<cd>18</cd>
 		<circle>4</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>16</xRange>
 		<yRange>10</yRange>
 		<damage>20</damage>
 		<hits>5</hits>
 		<castT>0.4</castT>
 		<debufP>0.8</debufP>
+		<durateT>5</durateT>
 		<prefabpath>Spell/Ice/SpellIceAge</prefabpath>
 		<spr>Spells/SpellIceAge</spr>
 	</Spell>
@@ -231,6 +241,7 @@
 		<hits>1</hits>
 		<castT>0.4</castT>
 		<debufP>0.8</debufP>
+		<durateT>5</durateT>
 		<prefabpath>Spell/Ice/SpellIceCrystal</prefabpath>
 		<spr>Spells/SpellIceCrystal</spr>
 	</Spell>
@@ -239,13 +250,14 @@
 		<name>Blizzard</name>
 		<cd>25</cd>
 		<circle>5</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>32</xRange>
 		<yRange>20</yRange>
 		<damage>12</damage>
 		<hits>5</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>5</durateT>
 		<prefabpath>Spell/Ice/SpellBlizzard</prefabpath>
 		<spr>Spells/SpellBlizzard</spr>
 	</Spell>
@@ -261,6 +273,7 @@
 		<hits>1</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>10</durateT>
 		<prefabpath>Spell/Ice/SpellIcePrison</prefabpath>
 		<spr>Spells/SpellIcePrison</spr>
 	</Spell>
@@ -278,6 +291,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.05</debufP>
+		<durateT>2</durateT>
 		<prefabpath>Spell/Wind/SpellWind</prefabpath>
 		<spr>Spells/SpellWind</spr>
 	</Spell>
@@ -293,6 +307,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.1</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Wind/SpellWindArrow</prefabpath>
 		<spr>Spells/SpellWindArrow</spr>
 	</Spell>
@@ -301,13 +316,14 @@
 		<name>WindCutter</name>
 		<cd>5</cd>
 		<circle>3</circle>
-		<type>1</type>
+		<type>3</type>
 		<xRange>8</xRange>
 		<yRange>1</yRange>
 		<damage>10</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.15</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Wind/SpellWindCutter</prefabpath>
 		<spr>Spells/SpellWindCutter</spr>
 	</Spell>
@@ -316,13 +332,14 @@
 		<name>WindScrew</name>
 		<cd>6</cd>
 		<circle>3</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>10</xRange>
 		<yRange>2</yRange>
 		<damage>8</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.15</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Wind/SpellWindScrew</prefabpath>
 		<spr>Spells/SpellWindScrew</spr>
 	</Spell>
@@ -338,6 +355,7 @@
 		<hits>1</hits>
 		<castT>0.4</castT>
 		<debufP>0.5</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Wind/SpellWindHawk</prefabpath>
 		<spr>Spells/SpellWindHawk</spr>
 	</Spell>
@@ -346,13 +364,14 @@
 		<name>WindField</name>
 		<cd>20</cd>
 		<circle>4</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>20</xRange>
 		<yRange>5</yRange>
 		<damage>1</damage>
 		<hits>8</hits>
 		<castT>0.4</castT>
 		<debufP>0.5</debufP>
+		<durateT>8</durateT>
 		<prefabpath>Spell/Wind/SpellWindField</prefabpath>
 		<spr>Spells/SpellWindField</spr>
 	</Spell>
@@ -368,6 +387,7 @@
 		<hits>10</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>10</durateT>
 		<prefabpath>Spell/Wind/SpellTornado</prefabpath>
 		<spr>Spells/SpellTornado</spr>
 	</Spell>
@@ -376,13 +396,14 @@
 		<name>Hurricane</name>
 		<cd>30</cd>
 		<circle>5</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>20</xRange>
 		<yRange>20</yRange>
 		<damage>4</damage>
 		<hits>15</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>15</durateT>
 		<prefabpath>Spell/Wind/SpellHurricane</prefabpath>
 		<spr>Spells/SpellHurricane</spr>
 	</Spell>
@@ -400,6 +421,7 @@
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.1</debufP>
+		<durateT>2</durateT>
 		<prefabpath>Spell/Rock/SpellRock</prefabpath>
 		<spr>Spells/SpellRock</spr>
 	</Spell>
@@ -408,13 +430,14 @@
 		<name>StoneShower</name>
 		<cd>2.5</cd>
 		<circle>2</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>8</xRange>
 		<yRange>3</yRange>
 		<damage>4</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
 		<debufP>0.2</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellStoneShower</prefabpath>
 		<spr>Spells/SpellStoneShower</spr>
 	</Spell>
@@ -430,6 +453,7 @@
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.3</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellStoneHand</prefabpath>
 		<spr>Spells/SpellStoneHand</spr>
 	</Spell>
@@ -445,6 +469,7 @@
 		<hits>1</hits>
 		<castT>0.2</castT>
 		<debufP>0.3</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellRockBullet</prefabpath>
 		<spr>Spells/SpellRockBullet</spr>
 	</Spell>
@@ -453,13 +478,14 @@
 		<name>ShockWave</name>
 		<cd>15</cd>
 		<circle>4</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>16</xRange>
 		<yRange>2</yRange>
 		<damage>30</damage>
 		<hits>1</hits>
 		<castT>0.4</castT>
 		<debufP>0.45</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellShockWave</prefabpath>
 		<spr>Spells/SpellShockWave</spr>
 	</Spell>
@@ -475,6 +501,7 @@
 		<hits>1</hits>
 		<castT>0.4</castT>
 		<debufP>0.45</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellStoneFist</prefabpath>
 		<spr>Spells/SpellStoneFist</spr>
 	</Spell>
@@ -483,13 +510,14 @@
 		<name>EarthQuake</name>
 		<cd>23</cd>
 		<circle>5</circle>
-		<type>2</type>
+		<type>3</type>
 		<xRange>32</xRange>
 		<yRange>20</yRange>
 		<damage>80</damage>
 		<hits>5</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>5</durateT>
 		<prefabpath>Spell/Rock/SpellEarthQuake</prefabpath>
 		<spr>Spells/SpellEarthQuake</spr>
 	</Spell>
@@ -505,6 +533,7 @@
 		<hits>1</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
+		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellTitanHand</prefabpath>
 		<spr>Spells/SpellTitanHand</spr>
 	</Spell>
@@ -531,7 +560,7 @@
 		<name>MagicShield</name>
 		<cd>60</cd>
 		<circle>1</circle>
-		<type>1</type>
+		<type>0</type>
 		<xRange>0</xRange>
 		<yRange>0</yRange>
 		<damage>0</damage>
@@ -547,7 +576,7 @@
 		<name>Blink</name>
 		<cd>4</cd>
 		<circle>1</circle>
-		<type>1</type>
+		<type>0</type>
 		<xRange>3</xRange>
 		<yRange>3</yRange>
 		<damage>0</damage>
@@ -563,7 +592,7 @@
 		<name>Teleport</name>
 		<cd>8</cd>
 		<circle>1</circle>
-		<type>1</type>
+		<type>0</type>
 		<xRange>8</xRange>
 		<yRange>8</yRange>
 		<damage>0</damage>
