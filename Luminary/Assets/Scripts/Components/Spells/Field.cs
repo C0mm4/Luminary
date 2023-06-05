@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Field : SpellObj
 {
+    [SerializeField]
+    float speed;
+
     float TickTime = 1f;
     float lastTickTime;
     bool onTick;

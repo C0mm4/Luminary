@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellFireWall : Field
+public class SpellTornado : Targeting
 {
     Vector3 dir;
 
-    float TickTime = 1f;
-    float lastTickTime;
-    bool onTick;
-
-    List<GameObject> trig;
 
     public override void Start()
     {
         base.Start();
-        lastTickTime = Time.time - TickTime;
-        onTick = true;
-        trig = new List<GameObject>();
+        mos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        dir = mos - spawnPos;
+        dir.z = 0;
+        dir.Normalize();
+
+        transform.position = player.transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
     }
 
     public override void Update()
@@ -33,7 +34,7 @@ public class SpellFireWall : Field
         {
             if (GameManager.Random.getGeneralNext(0, 100) <= data.debufP * 100)
             {
-                Buff newbuff = new FireBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+                Buff newbuff = new WindBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
             }
         }
 

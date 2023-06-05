@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2658388385335573208}
-  - component: {fileID: 8222010372599148405}
   - component: {fileID: 7543481563577147170}
   - component: {fileID: 4416327909536164280}
+  - component: {fileID: 6260267128873509638}
   m_Layer: 0
-  m_Name: SpellFire
+  m_Name: SpellIceSpear
   m_TagString: SpellEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,28 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8222010372599148405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5944328252796013934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee3692f39b15fe4dab310cb1a7acddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnTime: 0
-  currentTime: 0
-  deltaTime: 0
-  spawnPos: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
-  target: {fileID: 0}
-  mos: {x: 0, y: 0, z: 0}
-  pos: {x: 0, y: 0, z: 0}
-  speed: 7
-  dir: {x: 0, y: 0, z: 0}
 --- !u!212 &7543481563577147170
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -97,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4ec441e24885b124d8bf7413ce05ce28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1401049a430947d439c41f7241e8cddc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,3 +121,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28
+--- !u!114 &6260267128873509638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5944328252796013934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c747376fea965b642b65a489da8154bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTime: 0
+  currentTime: 0
+  deltaTime: 0
+  spawnPos: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
+  target: {fileID: 0}
+  mos: {x: 0, y: 0, z: 0}
+  pos: {x: 0, y: 0, z: 0}
+  speed: 14
+  dir: {x: 0, y: 0, z: 0}

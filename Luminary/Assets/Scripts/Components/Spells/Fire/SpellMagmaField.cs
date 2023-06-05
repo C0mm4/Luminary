@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellFireWall : Field
+public class SpellMagmaField : Field
 {
     Vector3 dir;
 

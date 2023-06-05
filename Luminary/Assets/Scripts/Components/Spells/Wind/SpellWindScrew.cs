@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellFireWall : Field
+public class SpellWindScrew : Field
 {
     Vector3 dir;
 
@@ -33,7 +33,7 @@ public class SpellFireWall : Field
         {
             if (GameManager.Random.getGeneralNext(0, 100) <= data.debufP * 100)
             {
-                Buff newbuff = new FireBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+                Buff newbuff = new WindBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
             }
         }
 
