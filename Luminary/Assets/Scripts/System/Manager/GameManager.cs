@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public static GameState gameState;
     [SerializeField]
-    public static UIState uiState;
+    public static UIState uiState = UIState.Title;
 
     public Action SceneChangeAction;
 
@@ -169,7 +169,6 @@ public class GameManager : MonoBehaviour
         MapGen.init();
         StageC.init();
         playerDataManager.playerDataInit();
-
     }
 
     public void loadData()
@@ -241,8 +240,7 @@ public class GameManager : MonoBehaviour
         cameraManager.camera = mainCamera;
         if(gameState == GameState.Loading)
         {
-            mapgen();
-            playerGen();
+            gameStart();
         }
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);

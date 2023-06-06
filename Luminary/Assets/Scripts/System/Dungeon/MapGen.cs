@@ -29,7 +29,7 @@ public class MapGen
     }
 
 
-    public List<GameObject> mapGen(int roomNo)
+    public List<GameObject> mapGen(int roomNo, int stageNo)
     {
         List<GameObject> ret = new List<GameObject>();
         KeyValuePair<int, int> target;
@@ -57,21 +57,35 @@ public class MapGen
             room.transform.parent = dungeonRoom.transform;
             ret.Add(room);
         }
+        if(stageNo == 6)
+        {
 
-        // Generate ShopRoom
-        target = getRandompos();
-        room = shopRoomGen();
-        addRoom(target.Key, target.Value, room);
-        room.transform.parent = dungeonRoom.transform;
-        ret.Add(room);
+            // Generate ShopRoom
+            target = getRandompos();
+            room = shopRoomGen();
+            addRoom(target.Key, target.Value, room);
+            room.GetComponent<Room>().index = roomNo + 1;
+            room.transform.parent = dungeonRoom.transform;
+            ret.Add(room);
 
-        // Generate BossRoom
-        target = getRandompos();
-        room = bossRoomGen();
-        addRoom(target.Key, target.Value, room);
-        room.GetComponent<Room>().index = roomNo + 1;
-        room.transform.parent = dungeonRoom.transform;
-        ret.Add(room);
+            // Generate BossRoom
+            target = getRandompos();
+            room = bossRoomGen();
+            addRoom(target.Key, target.Value, room);
+            room.GetComponent<Room>().index = roomNo + 2;
+            room.transform.parent = dungeonRoom.transform;
+            ret.Add(room);
+        }
+        else
+        {
+            // Generate BossRoom
+            target = getRandompos();
+            room = bossRoomGen();
+            addRoom(target.Key, target.Value, room);
+            room.GetComponent<Room>().index = roomNo + 1;
+            room.transform.parent = dungeonRoom.transform;
+            ret.Add(room);
+        }
 
         return ret;
     }

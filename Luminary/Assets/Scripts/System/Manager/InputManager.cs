@@ -49,7 +49,7 @@ public class InputManager : MonoBehaviour
         switch (GameManager.uiState)
         {
             case UIState.Title:
-                TitleInput();
+                KeyAction += TitleInput;
                 break;
             case UIState.Lobby:
                 LobbyInput();
@@ -79,6 +79,7 @@ public class InputManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
+            GameManager.Instance.uiManager.ChangeState(UIState.Loading);
             GameManager.Instance.sceneControl("LobbyScene");
         }
     }
