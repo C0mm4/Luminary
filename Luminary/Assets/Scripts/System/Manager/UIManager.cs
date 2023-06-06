@@ -63,6 +63,10 @@ public class UIManager : MonoBehaviour
     // Manager ��ü�� ������ �ޱ⿡ Manager ��ü���� Initializion ���� ȣ���ؾ� ��.
     public void init()
     {
+        if(GameManager.uiState == UIState.Title)
+        {
+            ChangeState(UIState.Title);
+        }
         // Find Camera and Canvas Objects
         if (camera == null)
         {

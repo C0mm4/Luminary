@@ -15,7 +15,7 @@
 		<debufP>0</debufP>
 		<durateT>0</durateT>
 		<prefabpath>Spell/TestSpell</prefabpath>
-		<spr>Spells/TestSpell</spr>
+		<spr>Spells/Icon/TestSpell</spr>
 	</Spell>
 	
 	
@@ -33,14 +33,14 @@
 		<debufP>0.1</debufP>
 		<durateT>0</durateT>
 		<prefabpath>Spell/Fire/SpellFire</prefabpath>
-		<spr>Spells/SpellFire</spr>
+		<spr>Spells/Icon/SpellFire</spr>
 	</Spell>
 	<Spell>
 		<id>1003001</id>
 		<name>FireBall</name>
 		<cd>3</cd>
 		<circle>2</circle>
-		<type>1</type>
+		<type>2</type>
 		<xRange>8</xRange>
 		<yRange>1</yRange>
 		<damage>7</damage>
@@ -49,7 +49,7 @@
 		<debufP>0.15</debufP>
 		<durateT>0</durateT>
 		<prefabpath>Spell/Fire/SpellFireBall</prefabpath>
-		<spr>Spells/SpellFireBall</spr>
+		<spr>Spells/Icon/SpellFireBall</spr>
 	</Spell>
 	<Spell>
 		<id>1003002</id>
@@ -65,7 +65,7 @@
 		<debufP>0.4</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Fire/SpellFireWall</prefabpath>
-		<spr>Spells/SpellFireWall</spr>
+		<spr>Spells/Icon/SpellFireWall</spr>
 	</Spell>
 	<Spell>
 		<id>1003003</id>
@@ -81,7 +81,7 @@
 		<debufP>0.2</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Fire/SpellFireBolt</prefabpath>
-		<spr>Spells/SpellFireBolt</spr>
+		<spr>Spells/Icon/SpellFireBolt</spr>
 	</Spell>
 	<Spell>
 		<id>1003004</id>
@@ -97,7 +97,7 @@
 		<debufP>0.45</debufP>
 		<durateT>5.2</durateT>
 		<prefabpath>Spell/Fire/SpellMagmaField</prefabpath>
-		<spr>Spells/SpellMagmaField</spr>
+		<spr>Spells/Icon/SpellMagmaField</spr>
 	</Spell>
 	<Spell>
 		<id>1003005</id>
@@ -113,7 +113,7 @@
 		<debufP>0.45</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Fire/SpellFlameStrike</prefabpath>
-		<spr>Spells/SpellFlameStrike</spr>
+		<spr>Spells/Icon/SpellFlameStrike</spr>
 	</Spell>
 	<Spell>
 		<id>1003006</id>
@@ -129,7 +129,7 @@
 		<debufP>1.0</debufP>
 		<durateT>5.2</durateT>
 		<prefabpath>Spell/Fire/SpellMeteorSwarm</prefabpath>
-		<spr>Spells/SpellMeteorSwarm</spr>
+		<spr>Spells/Icon/SpellMeteorSwarm</spr>
 	</Spell>
 	<Spell>
 		<id>1003007</id>
@@ -145,7 +145,7 @@
 		<debufP>1.0</debufP>
 		<durateT>5</durateT>
 		<prefabpath>Spell/Fire/SpellMeteor</prefabpath>
-		<spr>Spells/SpellMeteor</spr>
+		<spr>Spells/Icon/SpellMeteor</spr>
 	</Spell>
 
 
@@ -163,7 +163,7 @@
 		<debufP>0.5</debufP>
 		<durateT>2</durateT>
 		<prefabpath>Spell/Ice/SpellIce</prefabpath>
-		<spr>Spells/SpellIce</spr>
+		<spr>Spells/Icon/SpellIce</spr>
 	</Spell>
 	<Spell>
 		<id>1003101</id>
@@ -179,7 +179,7 @@
 		<debufP>0.6</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Ice/SpellIceSpear</prefabpath>
-		<spr>Spells/SpellIceSpear</spr>
+		<spr>Spells/Icon/SpellIceSpear</spr>
 	</Spell>
 	<Spell>
 		<id>1003102</id>
@@ -195,7 +195,7 @@
 		<debufP>0.75</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Ice/SpellFrostNova</prefabpath>
-		<spr>Spells/SpellFrostNova</spr>
+		<spr>Spells/Icon/SpellFrostNova</spr>
 	</Spell>
 	<Spell>
 		<id>1003103</id>
@@ -211,7 +211,7 @@
 		<debufP>0.75</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Ice/SpellFrozenOrb</prefabpath>
-		<spr>Spells/SpellFrozenOrb</spr>
+		<spr>Spells/Icon/SpellFrozenOrb</spr>
 	</Spell>
 	<Spell>
 		<id>1003104</id>
@@ -227,7 +227,7 @@
 		<debufP>0.8</debufP>
 		<durateT>5.2</durateT>
 		<prefabpath>Spell/Ice/SpellIceAge</prefabpath>
-		<spr>Spells/SpellIceAge</spr>
+		<spr>Spells/Icon/SpellIceAge</spr>
 	</Spell>
 	<Spell>
 		<id>1003105</id>
@@ -243,7 +243,7 @@
 		<debufP>0.8</debufP>
 		<durateT>5</durateT>
 		<prefabpath>Spell/Ice/SpellIceCrystal</prefabpath>
-		<spr>Spells/SpellIceCrystal</spr>
+		<spr>Spells/Icon/SpellIceCrystal</spr>
 	</Spell>
 	<Spell>
 		<id>1003106</id>
@@ -259,7 +259,7 @@
 		<debufP>1.0</debufP>
 		<durateT>5.2</durateT>
 		<prefabpath>Spell/Ice/SpellBlizzard</prefabpath>
-		<spr>Spells/SpellBlizzard</spr>
+		<spr>Spells/Icon/SpellBlizzard</spr>
 	</Spell>
 	<Spell>
 		<id>1003107</id>
@@ -275,7 +275,7 @@
 		<debufP>1.0</debufP>
 		<durateT>10</durateT>
 		<prefabpath>Spell/Ice/SpellIcePrison</prefabpath>
-		<spr>Spells/SpellIcePrison</spr>
+		<spr>Spells/Icon/SpellIcePrison</spr>
 	</Spell>
 
 
@@ -293,7 +293,7 @@
 		<debufP>0.05</debufP>
 		<durateT>2</durateT>
 		<prefabpath>Spell/Wind/SpellWind</prefabpath>
-		<spr>Spells/SpellWind</spr>
+		<spr>Spells/Icon/SpellWind</spr>
 	</Spell>
 	<Spell>
 		<id>1003201</id>
@@ -309,7 +309,7 @@
 		<debufP>0.1</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Wind/SpellWindArrow</prefabpath>
-		<spr>Spells/SpellWindArrow</spr>
+		<spr>Spells/Icon/SpellWindArrow</spr>
 	</Spell>
 	<Spell>
 		<id>1003202</id>
@@ -325,7 +325,7 @@
 		<debufP>0.15</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Wind/SpellWindCutter</prefabpath>
-		<spr>Spells/SpellWindCutter</spr>
+		<spr>Spells/Icon/SpellWindCutter</spr>
 	</Spell>
 	<Spell>
 		<id>1003203</id>
@@ -341,7 +341,7 @@
 		<debufP>0.15</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Wind/SpellWindScrew</prefabpath>
-		<spr>Spells/SpellWindScrew</spr>
+		<spr>Spells/Icon/SpellWindScrew</spr>
 	</Spell>
 	<Spell>
 		<id>1003204</id>
@@ -357,7 +357,7 @@
 		<debufP>0.5</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Wind/SpellWindHawk</prefabpath>
-		<spr>Spells/SpellWindHawk</spr>
+		<spr>Spells/Icon/SpellWindHawk</spr>
 	</Spell>
 	<Spell>
 		<id>1003205</id>
@@ -373,7 +373,7 @@
 		<debufP>0.5</debufP>
 		<durateT>8.2</durateT>
 		<prefabpath>Spell/Wind/SpellWindField</prefabpath>
-		<spr>Spells/SpellWindField</spr>
+		<spr>Spells/Icon/SpellWindField</spr>
 	</Spell>
 	<Spell>
 		<id>1003206</id>
@@ -389,7 +389,7 @@
 		<debufP>1.0</debufP>
 		<durateT>10</durateT>
 		<prefabpath>Spell/Wind/SpellTornado</prefabpath>
-		<spr>Spells/SpellTornado</spr>
+		<spr>Spells/Icon/SpellTornado</spr>
 	</Spell>
 	<Spell>
 		<id>1003207</id>
@@ -405,7 +405,7 @@
 		<debufP>1.0</debufP>
 		<durateT>15.2</durateT>
 		<prefabpath>Spell/Wind/SpellHurricane</prefabpath>
-		<spr>Spells/SpellHurricane</spr>
+		<spr>Spells/Icon/SpellHurricane</spr>
 	</Spell>
 
 
@@ -423,7 +423,7 @@
 		<debufP>0.1</debufP>
 		<durateT>2.2</durateT>
 		<prefabpath>Spell/Rock/SpellRock</prefabpath>
-		<spr>Spells/SpellRock</spr>
+		<spr>Spells/Icon/SpellRock</spr>
 	</Spell>
 	<Spell>
 		<id>1003301</id>
@@ -439,7 +439,7 @@
 		<debufP>0.2</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Rock/SpellStoneShower</prefabpath>
-		<spr>Spells/SpellStoneShower</spr>
+		<spr>Spells/Icon/SpellStoneShower</spr>
 	</Spell>
 	<Spell>
 		<id>1003302</id>
@@ -455,7 +455,7 @@
 		<debufP>0.3</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Rock/SpellStoneHand</prefabpath>
-		<spr>Spells/SpellStoneHand</spr>
+		<spr>Spells/Icon/SpellStoneHand</spr>
 	</Spell>
 	<Spell>
 		<id>1003303</id>
@@ -471,7 +471,7 @@
 		<debufP>0.3</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellRockBullet</prefabpath>
-		<spr>Spells/SpellRockBullet</spr>
+		<spr>Spells/Icon/SpellRockBullet</spr>
 	</Spell>
 	<Spell>
 		<id>1003304</id>
@@ -487,7 +487,7 @@
 		<debufP>0.45</debufP>
 		<durateT>3.2</durateT>
 		<prefabpath>Spell/Rock/SpellShockWave</prefabpath>
-		<spr>Spells/SpellShockWave</spr>
+		<spr>Spells/Icon/SpellShockWave</spr>
 	</Spell>
 	<Spell>
 		<id>1003305</id>
@@ -503,7 +503,7 @@
 		<debufP>0.45</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellStoneFist</prefabpath>
-		<spr>Spells/SpellStoneFist</spr>
+		<spr>Spells/Icon/SpellStoneFist</spr>
 	</Spell>
 	<Spell>
 		<id>1003306</id>
@@ -519,7 +519,7 @@
 		<debufP>1.0</debufP>
 		<durateT>5.2</durateT>
 		<prefabpath>Spell/Rock/SpellEarthQuake</prefabpath>
-		<spr>Spells/SpellEarthQuake</spr>
+		<spr>Spells/Icon/SpellEarthQuake</spr>
 	</Spell>
 	<Spell>
 		<id>1003307</id>
@@ -535,7 +535,7 @@
 		<debufP>1.0</debufP>
 		<durateT>3</durateT>
 		<prefabpath>Spell/Rock/SpellTitanHand</prefabpath>
-		<spr>Spells/SpellTitanHand</spr>
+		<spr>Spells/Icon/SpellTitanHand</spr>
 	</Spell>
 
 
@@ -553,7 +553,7 @@
 		<debufP>0.0</debufP>
 		<durateT>1</durateT>
 		<prefabpath>Spell/None/SpellMagicMissile</prefabpath>
-		<spr>Spells/SpellMagicMissile</spr>
+		<spr>Spells/Icon/SpellMagicMissile</spr>
 	</Spell>
 	<Spell>
 		<id>1003401</id>
@@ -569,7 +569,7 @@
 		<debufP>0.0</debufP>
 		<durateT>20</durateT>
 		<prefabpath>Spell/None/SpellMagicShield</prefabpath>
-		<spr>Spells/SpellMagicShield</spr>
+		<spr>Spells/Icon/SpellMagicShield</spr>
 	</Spell>
 	<Spell>
 		<id>1003402</id>
@@ -585,7 +585,7 @@
 		<debufP>0.0</debufP>
 		<durateT>1</durateT>
 		<prefabpath>Spell/None/SpellBlink</prefabpath>
-		<spr>Spells/SpellBlink</spr>
+		<spr>Spells/Icon/SpellBlink</spr>
 	</Spell>
 	<Spell>
 		<id>1003403</id>
@@ -601,7 +601,7 @@
 		<debufP>0.0</debufP>
 		<durateT>1</durateT>
 		<prefabpath>Spell/None/SpellTeleport</prefabpath>
-		<spr>Spells/SpellTeleport</spr>
+		<spr>Spells/Icon/SpellTeleport</spr>
 	</Spell>
 	
 

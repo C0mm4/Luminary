@@ -22,6 +22,7 @@ public class Player : Charactor
 
         skillslots[0].setCommand(GameManager.Spells.spells[1]);
         skillslots[1].setCommand(GameManager.Spells.spells[1003000]);
+        skillslots[2].setCommand(GameManager.Spells.spells[1003001]);
 
         status.basespeed = 5f;
         calcStatus();
@@ -180,8 +181,6 @@ public class Player : Charactor
         {
             if (skillslots[2].isSet())
             {
-                changeState(new PlayerCastingState(skillslots[2].getSpell(), GameManager.inputManager.mouseWorldPos));
-                skillslots[2].getSpell().isCool = true;
                 skillslots[2].useSkill();
                 cd = skillslots[2].getCD();
             }
@@ -192,6 +191,7 @@ public class Player : Charactor
                 skillslots[2].getSpell().isCool = false;
             }
         }
+
     }
 
     public IEnumerator E()
@@ -199,10 +199,8 @@ public class Player : Charactor
         float cd = 0f;
         if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
-            if (skillslots[1].isSet())
+            if (skillslots[3].isSet())
             {
-                changeState(new PlayerCastingState(skillslots[3].getSpell(), GameManager.inputManager.mouseWorldPos));
-                skillslots[3].getSpell().isCool = true;
                 skillslots[3].useSkill();
                 cd = skillslots[3].getCD();
             }
@@ -213,16 +211,16 @@ public class Player : Charactor
                 skillslots[3].getSpell().isCool = false;
             }
         }
+
     }
+
     public IEnumerator R()
     {
         float cd = 0f;
         if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
-            if (skillslots[1].isSet())
+            if (skillslots[4].isSet())
             {
-                changeState(new PlayerCastingState(skillslots[4].getSpell(), GameManager.inputManager.mouseWorldPos));
-                skillslots[4].getSpell().isCool = true;
                 skillslots[4].useSkill();
                 cd = skillslots[4].getCD();
             }
@@ -233,7 +231,6 @@ public class Player : Charactor
                 skillslots[4].getSpell().isCool = false;
             }
         }
+
     }
-
-
 }

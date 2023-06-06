@@ -50,9 +50,11 @@ public class SkillSlot
                 skillCommand.st = Time.time;
                 break;
             case 2:
-                GameObject tar = getMousePosObj();
-                if(tar != null)
+                GameObject tar = GetClosestObjectToMouse();
+                Debug.Log(tar);
+                if (tar != null)
                 {
+                    Debug.Log("Target isn't null");
                     GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), tar));
                     skillCommand.isCool = true;
                     skillCommand.st = Time.time;
@@ -71,7 +73,7 @@ public class SkillSlot
     // Returning skillCommand
     public bool isSet()
     {
-        if(skillCommand != null)
+        if (skillCommand != null)
         {
             return true;
         }
@@ -81,27 +83,33 @@ public class SkillSlot
         }
     }
 
-    public GameObject getMousePosObj()
+    public GameObject GetClosestObjectToMouse()
     {
-        Ray ray = Camera.main.ScreenPointToRay(GameManager.inputManager.mousePos);
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D[] colliders = Physics2D.OverlapPointAll(mousePosition);
 
-        List<RaycastHit> hits = new List<RaycastHit>();
+        float closestDistance = float.MaxValue;
+        GameObject closestObject = null;
 
-        RaycastHit[] allHits = Physics.RaycastAll(ray);
-        hits.AddRange(allHits);
-
-        hits.Sort((hit1, hit2) => hit1.distance.CompareTo(hit2.distance));
-
-        foreach (RaycastHit hit in hits)
+        if(colliders.Length == 0)
         {
-            GameObject closestObject = hit.collider.gameObject;
-            if (closestObject.CompareTag("Mob"))
-            {
-                return closestObject;
-            }
+            Debug.Log("Doesn't Colliding");
         }
 
-        return null;
-    }
+        foreach (Collider2D collider in colliders)
+        {
+            if(collider.gameObject.tag == "Mob")
+            {
+                float distance = Vector2.Distance(collider.transform.position, mousePosition);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestObject = collider.gameObject;
+                }
+            }
 
+        }
+
+        return closestObject;
+    }
 }

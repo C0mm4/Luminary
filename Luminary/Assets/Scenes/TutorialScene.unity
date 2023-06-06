@@ -1261,6 +1261,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1206286136}
     m_Modifications:
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: room1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: room2
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1623276522967290185, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
       propertyPath: m_Name
       value: Gate
@@ -3303,6 +3315,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1418030255}
     m_Modifications:
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: room1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: room2
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1623276522967290185, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
       propertyPath: m_Name
       value: Gate
@@ -4169,6 +4193,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1771555252544480567, guid: d6ffed0aa4ddf7a49b04ff0deebbe175, type: 3}
+      propertyPath: index
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2811492558936542508, guid: d6ffed0aa4ddf7a49b04ff0deebbe175, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4996,6 +5024,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 390914509}
     m_Modifications:
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: room1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -328899816817401707, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
+      propertyPath: room2
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1623276522967290185, guid: 2bc82eb7fcdeb754682943f9afae7c57, type: 3}
       propertyPath: m_Name
       value: Gate
@@ -8924,6 +8964,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1771555252544480567, guid: d6ffed0aa4ddf7a49b04ff0deebbe175, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2811492558936542508, guid: d6ffed0aa4ddf7a49b04ff0deebbe175, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10170,6 +10214,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1771555252544480567, guid: d6ffed0aa4ddf7a49b04ff0deebbe175, type: 3}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2811492558936542508, guid: d6ffed0aa4ddf7a49b04ff0deebbe175, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

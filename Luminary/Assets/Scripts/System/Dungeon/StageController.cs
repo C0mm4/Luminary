@@ -67,7 +67,7 @@ public class StageController
         roomNoM += stageNo * 2;
 
         roomNo = GameManager.Random.getGeneralNext(roomNom, roomNoM);
-        rooms = GameManager.MapGen.mapGen(roomNo);
+        rooms = GameManager.MapGen.mapGen(roomNo, stageNo);
 
         foreach(GameObject go in rooms)
         {

@@ -45,6 +45,8 @@ public class SpellObj : MonoBehaviour
         currentTime = spawnTime;
         spawnPos = player.transform.position;
         target = obj;
+        Debug.Log(target);
+        Debug.Log("target : " + target.GetHashCode());
     }
 
 

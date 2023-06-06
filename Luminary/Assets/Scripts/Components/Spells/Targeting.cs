@@ -5,7 +5,7 @@ using UnityEngine;
 public class Targeting : SpellObj
 {
     [SerializeField]
-    float speed;
+    float speed = 1f;
 
     [SerializeField]
     Vector3 dir;
@@ -13,7 +13,7 @@ public class Targeting : SpellObj
     public override void Start()
     {
         base.Start();
-        dir = mos - spawnPos;
+        dir = target.transform.position - spawnPos;
         dir.z = 0;
         dir.Normalize();
 
@@ -30,17 +30,22 @@ public class Targeting : SpellObj
         dir.z = 0;
         dir.Normalize();
 
-        transform.position = player.transform.position;
+        transform.position += dir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if(other == target)
+        Debug.Log(other.gameObject);
+        Debug.Log("Collision : " + other.gameObject.GetHashCode());
+        if(other == target.gameObject)
         {
-
-            base.OnTriggerEnter2D(other);
+            for(int i = 0; i < data.hits; i++)
+            {
+                other.GetComponent<Mob>().HPDecrease(data.damage);
+            }
+            OnDestroy();
 
         }
     }

@@ -21,7 +21,7 @@ public class FireBuff : Buff
                 onTick();
                 lastTickTime = currentTime;
             }
-            target.element.Fire = true;
+            target.status.element.Fire = true;
             base.durateEffect();
 
         }
@@ -40,7 +40,7 @@ public class FireBuff : Buff
 
     public override void endEffect()
     {
-        target.element.Fire = false;
+        target.status.element.Fire = false;
         base.endEffect();
     }
 }
