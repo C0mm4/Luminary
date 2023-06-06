@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class SceneTransition : MonoBehaviour
 {
-    public float fadeOutTime = 1f;
-    public float fadeInTime = 1f;
+    public float fadeOutTime = 1.0f;
+    public float fadeInTime = 1.0f;
     public string nextScene;
 
     public Image fadeImage;

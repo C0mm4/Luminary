@@ -8,7 +8,7 @@ public class Player : Charactor
     // Start is called before the first frame update
 
     public SkillSlot[] skillslots;
-
+    InteractionTrriger interactionTrriger;
 
     public override void Awake()
     {
@@ -77,7 +77,8 @@ public class Player : Charactor
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
             Debug.Log("Interection Key pressed");
-            GameManager.Instance.interaction();
+            interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
+            interactionTrriger.isInteraction();
         }
     }
 

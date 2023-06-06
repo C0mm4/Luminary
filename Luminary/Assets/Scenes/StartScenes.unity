@@ -243,6 +243,11 @@ MonoBehaviour:
   camera: {fileID: 1855561243}
   invUI: {fileID: 0}
   skillSlotUI: {fileID: 0}
+  menuUI: {fileID: 0}
+  pauseUI: {fileID: 0}
+  loadUI: {fileID: 0}
+  isInit: 0
+  currentMenu: {fileID: 0}
 --- !u!1 &345728778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1026,14 @@ PrefabInstance:
     - target: {fileID: 3735164814193579668, guid: 4750728aa6c5b614f8913d569c30a4e8, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880657285583131123, guid: 4750728aa6c5b614f8913d569c30a4e8, type: 3}
+      propertyPath: fadeInTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880657285583131123, guid: 4750728aa6c5b614f8913d569c30a4e8, type: 3}
+      propertyPath: fadeOutTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8555632739789745024, guid: 4750728aa6c5b614f8913d569c30a4e8, type: 3}
       propertyPath: m_RootOrder

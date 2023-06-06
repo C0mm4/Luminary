@@ -260,19 +260,7 @@ public class GameManager : MonoBehaviour
         // end
     }
 
-    public void interaction()
-    {
-        switch (PlayerDataManager.interactionObject)
-        {
-            case "InitPlayObject":
-                sceneControl("StageScene");
-                break;
-            default:
-                break;
-        }
-    }
-
-
+    
     public void pauseGame()
     {
         {
