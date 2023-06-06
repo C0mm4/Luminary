@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Mob
   - SpellEffect
+  - Room
   layers:
   - Default
   - TransparentFX

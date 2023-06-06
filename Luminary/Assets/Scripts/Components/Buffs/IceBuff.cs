@@ -21,7 +21,7 @@ public class IceBuff : Buff
                 onTick();
                 lastTickTime = currentTime;
             }
-            target.element.Ice = true;
+            target.status.element.Ice = true;
             base.durateEffect();
 
         }

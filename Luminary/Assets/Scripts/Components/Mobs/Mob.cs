@@ -15,7 +15,14 @@ public class Mob : Charactor
     {
         base.Awake();
         sMachine.changeState(new MobIdleState());
-        player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
+        try
+        {
+            player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
+        }
+        catch
+        {
+
+        }
         
     }
 
@@ -28,4 +35,20 @@ public class Mob : Charactor
         base.statusInit();
     }
 
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if(player == null)
+        {
+            try
+            {
+                player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
+            }
+            catch
+            {
+
+            }
+
+        }
+    }
 }

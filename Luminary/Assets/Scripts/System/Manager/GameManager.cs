@@ -212,6 +212,9 @@ public class GameManager : MonoBehaviour
             case "StageScene":
                 stageSceneInit();
                 break;
+            case "TutorialScene":
+                tutorialSceneInit();
+                break;
             default:
                 break;
         }
@@ -242,6 +245,15 @@ public class GameManager : MonoBehaviour
         {
             gameStart();
         }
+        gameState = GameState.InPlay;
+        uiManager.ChangeState(UIState.InPlay);
+    }
+    public void tutorialSceneInit() 
+    {
+        Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        cameraManager.camera = mainCamera;
+        StageC.tutorial();
+        playerGen();
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
     }
@@ -345,6 +357,7 @@ public class GameManager : MonoBehaviour
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);
         PlayerDataManager.interactionDistance = 1000.0f;
+        uiManager.skillSlotUI.SetActive(true);
     }
 
 

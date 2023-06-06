@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            bmapUI = !bmapUI;
+            // Tap Interaction
         }
     }
 

@@ -30,6 +30,15 @@ public class StageController
         roomDatas = mapDatas.GetElementsByTagName("Room");
     }
 
+    public void tutorial()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Room");
+        foreach(GameObject obj in objs)
+        {
+            rooms.Insert(obj.GetComponent<Room>().index, obj);
+        }
+    }
+
     public void gameStart()
     {
         stageNo = 1;
