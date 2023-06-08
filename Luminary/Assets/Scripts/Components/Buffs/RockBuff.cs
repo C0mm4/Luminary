@@ -6,8 +6,7 @@ public class RockBuff : Buff
 {
     public RockBuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
-        setDurate(5.2f);
-        setTickTime(1f);
+        setDurate(2f);
         
     }
 
@@ -15,13 +14,9 @@ public class RockBuff : Buff
     {
         if(target != null)
         {
-
-            if (currentTime - lastTickTime >= tickTime)
-            {
-                onTick();
-                lastTickTime = currentTime;
-            }
-            target.element.Rock = true;
+            target.status.element.Rock = true;
+            target.status.pIncreaseDMG = -0.03f;
+            target.calcStatus();
             base.durateEffect();
 
         }
@@ -32,15 +27,10 @@ public class RockBuff : Buff
         }
     }
 
-    public override void onTick()
-    {
-        target.HPDecrease(1);
-        base.onTick();
-    }
-
+ 
     public override void endEffect()
     {
-        target.element.Rock = false;
+        target.status.element.Rock = false;
         base.endEffect();
     }
 }

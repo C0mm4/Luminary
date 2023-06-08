@@ -1,27 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class IceBuff : Buff
 {
     public IceBuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
-        setDurate(5.2f);
-        setTickTime(1f);
-        
+        setDurate(3.0f);
     }
 
     public override void durateEffect()
     {
         if(target != null)
         {
-
-            if (currentTime - lastTickTime >= tickTime)
-            {
-                onTick();
-                lastTickTime = currentTime;
-            }
             target.status.element.Ice = true;
+            attacker.status.pIncreaseDMG = 0.03f;
+            attacker.calcStatus();
             base.durateEffect();
 
         }
@@ -32,15 +27,10 @@ public class IceBuff : Buff
         }
     }
 
-    public override void onTick()
-    {
-        target.HPDecrease(1);
-        base.onTick();
-    }
 
     public override void endEffect()
     {
-        target.element.Ice = false;
+        target.status.element.Ice = false;
         base.endEffect();
     }
 }

@@ -6,8 +6,7 @@ public class WindBuff : Buff
 {
     public WindBuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
-        setDurate(5.2f);
-        setTickTime(1f);
+        setDurate(3f);
         
     }
 
@@ -15,13 +14,9 @@ public class WindBuff : Buff
     {
         if(target != null)
         {
-
-            if (currentTime - lastTickTime >= tickTime)
-            {
-                onTick();
-                lastTickTime = currentTime;
-            }
-            target.element.Wind = true;
+            target.status.element.Wind = true;
+            target.status.pIncreaseSpeed = -0.5f;
+            target.calcStatus();
             base.durateEffect();
 
         }
@@ -32,15 +27,9 @@ public class WindBuff : Buff
         }
     }
 
-    public override void onTick()
-    {
-        target.HPDecrease(1);
-        base.onTick();
-    }
-
     public override void endEffect()
     {
-        target.element.Wind = false;
+        target.status.element.Wind = false;
         base.endEffect();
     }
 }
