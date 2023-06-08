@@ -32,6 +32,8 @@ public class Projectile : SpellObj
     public override void Update()
     {
         base.Update();
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         if (IsPointInEllipse())
         {

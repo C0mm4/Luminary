@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 [DisallowMultipleComponent]
 public class Room : MonoBehaviour
@@ -20,7 +19,12 @@ public class Room : MonoBehaviour
     public SpriteRenderer bg;
 
     [SerializeField]
-    GameObject[] objs;
+    public List<GameObject> objs;
+
+    [SerializeField]
+    public GameObject components;
+    [SerializeField]
+    public GameObject enemies;
 
     // set position
     public void set()
@@ -28,10 +32,6 @@ public class Room : MonoBehaviour
         gateU = gateD = gateL = gateR = -1;
         this.gameObject.transform.position = new Vector3((float)(x * 19.2f), (y * 10.8f), 2);
         roomGrid = new int[19,33];
-        foreach(GameObject obj in objs)
-        {
-            obj.SetActive(false);
-        }
     }
 
     public void setData(int[] data)
@@ -47,10 +47,7 @@ public class Room : MonoBehaviour
     // Loading Objects in this Room
     public void setObjects()
     {
-        foreach(GameObject obj in objs)
-        {
-            obj.SetActive(true);
-        }
+
         for (int i = 0; i < roomGrid.GetLength(0); i++)
         {
             for (int j = 0;  j < roomGrid.GetLength(1); j++)
@@ -71,6 +68,7 @@ public class Room : MonoBehaviour
                         case 3:
                             GameManager.Resource.Destroy(go);
                             go = GameManager.Resource.Instantiate("Mobs/TestMob");
+                            objs.Add(go);
                             mobCount += 1;
                             break;
 
@@ -82,6 +80,21 @@ public class Room : MonoBehaviour
                     go.transform.parent = this.transform;
                     go.transform.position = new Vector3((this.transform.position.x + ((j-16) * 0.52f)) , (this.transform.position.y + (-(i-9) * 0.52f)), 2);
                 }
+            }
+        }
+    }
+    public void ActiveEnemies()
+    {
+        Invoke("ActiveEnemiesCallback", 0.5f);
+    }
+
+    private void ActiveEnemiesCallback()
+    {
+        foreach (GameObject obj in objs)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(true);
             }
         }
     }

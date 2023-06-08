@@ -50,7 +50,6 @@ public class Gate : MonoBehaviour
         {
             if(horizonDist > 0)
             {
-                Debug.Log("Right");
                 return PointPosition.Right;
             }
             else
