@@ -5,20 +5,11 @@ using UnityEngine;
 
 public class SpellBlizzard : Field
 {
-    Vector3 dir;
-
-    float TickTime = 1f;
-    float lastTickTime;
-    bool onTick;
-
-    List<GameObject> trig;
-
+    
     public override void Start()
     {
         base.Start();
-        lastTickTime = Time.time - TickTime;
-        onTick = true;
-        trig = new List<GameObject>();
+       
     }
 
     public override void Update()

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellFlameStrike : Projectile
+public class SpellMagicMissile : Projectile
 {
-
+    
     public override void Start()
     {
         base.Start();
@@ -24,8 +24,9 @@ public class SpellFlameStrike : Projectile
         {
             if (GameManager.Random.getGeneralNext(0, 100) <= data.debufP * 100)
             {
-                Buff newbuff = new FireBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+                Buff newbuff = new IceBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
             }
+            other.GetComponent<Charactor>().changeState(new MobHitState(other.transform.position - this.transform.position));
         }
 
         base.OnTriggerEnter2D(other);

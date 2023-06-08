@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2658388385335573208}
   - component: {fileID: 7543481563577147170}
   - component: {fileID: 4416327909536164280}
-  - component: {fileID: 4303416826728961721}
+  - component: {fileID: -709005692103725398}
   m_Layer: 0
-  m_Name: SpellIcePrison
+  m_Name: SpellGlacial
   m_TagString: SpellEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28
---- !u!114 &4303416826728961721
+--- !u!114 &-709005692103725398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
