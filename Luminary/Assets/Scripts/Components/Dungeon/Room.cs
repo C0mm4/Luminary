@@ -19,12 +19,19 @@ public class Room : MonoBehaviour
     [SerializeField]
     public SpriteRenderer bg;
 
+    [SerializeField]
+    GameObject[] objs;
+
     // set position
     public void set()
     {
         gateU = gateD = gateL = gateR = -1;
         this.gameObject.transform.position = new Vector3((float)(x * 19.2f), (y * 10.8f), 2);
         roomGrid = new int[19,33];
+        foreach(GameObject obj in objs)
+        {
+            obj.SetActive(false);
+        }
     }
 
     public void setData(int[] data)
@@ -40,7 +47,10 @@ public class Room : MonoBehaviour
     // Loading Objects in this Room
     public void setObjects()
     {
-        
+        foreach(GameObject obj in objs)
+        {
+            obj.SetActive(true);
+        }
         for (int i = 0; i < roomGrid.GetLength(0); i++)
         {
             for (int j = 0;  j < roomGrid.GetLength(1); j++)

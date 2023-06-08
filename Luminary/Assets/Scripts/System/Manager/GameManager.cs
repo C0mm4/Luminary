@@ -374,4 +374,18 @@ public class GameManager : MonoBehaviour
         canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas.planeDistance = 10;
     }
+
+    public void moveRoom(int targetRoomindex)
+    {
+        StageC.moveRoom(targetRoomindex);
+        gameState = GameState.Loading;
+        uiManager.ChangeState(UIState.Loading);
+        Invoke("callbackmoveRoom", 0.5f);
+    }
+
+    public void callbackmoveRoom()
+    {
+        gameState = GameState.InPlay;
+        uiManager.ChangeState(UIState.InPlay);
+    }
 }

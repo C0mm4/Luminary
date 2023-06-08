@@ -22,6 +22,7 @@ public class Mob : Charactor
         catch
         {
 
+            sMachine.changeState(new MobIdleState());
         }
         
     }
@@ -47,6 +48,7 @@ public class Mob : Charactor
             catch
             {
 
+                sMachine.changeState(new MobIdleState());
             }
 
         }

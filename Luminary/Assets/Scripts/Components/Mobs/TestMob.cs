@@ -14,24 +14,13 @@ public class TestMob : Mob
     // Update is called once per frame
     public override void FixedUpdate()
     {
-        if (player == null)
-        {
-            player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
-
-            if(player == null)
-            {
-                sMachine.changeState(new MobIdleState());
-            }
-        }
-        else
-        {
-            if (sMachine.getState().GetType() != typeof(MobChaseState))
-            {
-                sMachine.changeState(new MobChaseState());
-            }
-        }
-
         base.FixedUpdate();
+        if (player != null)
+        {
+            sMachine.changeState(new MobChaseState());
+
+        }
+
     }
 
 }

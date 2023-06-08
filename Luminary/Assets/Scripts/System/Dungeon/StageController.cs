@@ -33,8 +33,10 @@ public class StageController
     public void tutorial()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Room");
-        foreach(GameObject obj in objs)
+        rooms = new List<GameObject>(5);
+        foreach (GameObject obj in objs)
         {
+            Debug.Log(obj);
             rooms.Insert(obj.GetComponent<Room>().index, obj);
         }
     }

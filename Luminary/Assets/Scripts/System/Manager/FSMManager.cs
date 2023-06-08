@@ -19,18 +19,19 @@ public class FSMManager
             "PlayerCastingState",
             "PlayerDieState",
             "PlayerHitState",
+            "PlayerMoveAbsolState",
         };
         // Idle State FSM
         List<string> playerfsm = new List<string>
         {
-            playerstate[1], playerstate[2], playerstate[3], playerstate[4], playerstate[5],
+            playerstate[1], playerstate[2], playerstate[3], playerstate[4], playerstate[5], playerstate[6],
         };
         fsm[playerstate[0]] = playerfsm;
-        
+
         // Move State FSM
         playerfsm = new List<string>
         {
-            playerstate[1], playerstate[2], playerstate[3], playerstate[4], playerstate[5],
+            playerstate[1], playerstate[2], playerstate[3], playerstate[4], playerstate[5], playerstate[6],
         };
         fsm[playerstate[1]] = playerfsm;
 
@@ -44,6 +45,8 @@ public class FSMManager
         fsm[playerstate[4]] = playerfsm;
         // Hit State FSM
         fsm[playerstate[5]] = playerfsm;
+        // Absolute Move FSM
+        fsm[playerstate[6]] = playerfsm;
 
         List<string> mobState = new List<string>
         {

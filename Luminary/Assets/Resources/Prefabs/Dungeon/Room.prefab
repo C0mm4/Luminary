@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1771555252544480567}
   m_Layer: 0
   m_Name: Room
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +57,7 @@ MonoBehaviour:
   gateR: 0
   gatedir: 0000
   bg: {fileID: 4010395122367447931}
+  objs: []
 --- !u!1 &7831603424952746640
 GameObject:
   m_ObjectHideFlags: 0
