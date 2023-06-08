@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellFireBall : Targeting
+public class SpellFireBall : Projectile
 {
-    Vector3 dir;
-
-
+ 
     public override void Start()
     {
         base.Start();
+
     }
 
     public override void Update()

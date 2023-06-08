@@ -25,8 +25,8 @@
 		<cd>2</cd>
 		<circle>1</circle>
 		<type>1</type>
-		<xRange>4</xRange>
-		<yRange>1</yRange>
+		<xRange>6</xRange>
+		<yRange>4</yRange>
 		<damage>4</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -40,9 +40,9 @@
 		<name>FireBall</name>
 		<cd>3</cd>
 		<circle>2</circle>
-		<type>2</type>
+		<type>1</type>
 		<xRange>8</xRange>
-		<yRange>1</yRange>
+		<yRange>6</yRange>
 		<damage>7</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -58,7 +58,7 @@
 		<circle>3</circle>
 		<type>3</type>
 		<xRange>8</xRange>
-		<yRange>1</yRange>
+		<yRange>6</yRange>
 		<damage>4</damage>
 		<hits>3</hits>
 		<castT>0.2</castT>
@@ -73,8 +73,8 @@
 		<cd>5</cd>
 		<circle>3</circle>
 		<type>1</type>
-		<xRange>10</xRange>
-		<yRange>1</yRange>
+		<xRange>12</xRange>
+		<yRange>8</yRange>
 		<damage>15</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
@@ -89,8 +89,8 @@
 		<cd>15</cd>
 		<circle>4</circle>
 		<type>3</type>
-		<xRange>16</xRange>
-		<yRange>2</yRange>
+		<xRange>15</xRange>
+		<yRange>10</yRange>
 		<damage>6</damage>
 		<hits>5</hits>
 		<castT>0.4</castT>
@@ -105,8 +105,8 @@
 		<cd>12</cd>
 		<circle>4</circle>
 		<type>1</type>
-		<xRange>20</xRange>
-		<yRange>1</yRange>
+		<xRange>18</xRange>
+		<yRange>12</yRange>
 		<damage>40</damage>
 		<hits>1</hits>
 		<castT>0.4</castT>
@@ -121,7 +121,7 @@
 		<cd>30</cd>
 		<circle>5</circle>
 		<type>3</type>
-		<xRange>32</xRange>
+		<xRange>30</xRange>
 		<yRange>20</yRange>
 		<damage>50</damage>
 		<hits>8</hits>
@@ -137,8 +137,8 @@
 		<cd>25</cd>
 		<circle>5</circle>
 		<type>1</type>
-		<xRange>20</xRange>
-		<yRange>13</yRange>
+		<xRange>21</xRange>
+		<yRange>14</yRange>
 		<damage>50</damage>
 		<hits>1</hits>
 		<castT>1.0</castT>
@@ -155,8 +155,8 @@
 		<cd>2</cd>
 		<circle>1</circle>
 		<type>1</type>
-		<xRange>4</xRange>
-		<yRange>1</yRange>
+		<xRange>6</xRange>
+		<yRange>4</yRange>
 		<damage>2</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -172,7 +172,7 @@
 		<circle>2</circle>
 		<type>1</type>
 		<xRange>8</xRange>
-		<yRange>1</yRange>
+		<yRange>6</yRange>
 		<damage>5</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -186,9 +186,9 @@
 		<name>FrostNova</name>
 		<cd>6</cd>
 		<circle>3</circle>
-		<type>1</type>
+		<type>3</type>
 		<xRange>8</xRange>
-		<yRange>2</yRange>
+		<yRange>6</yRange>
 		<damage>12</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
@@ -202,9 +202,9 @@
 		<name>FrozenOrb</name>
 		<cd>9</cd>
 		<circle>3</circle>
-		<type>3</type>
-		<xRange>10</xRange>
-		<yRange>5</yRange>
+		<type>1</type>
+		<xRange>12</xRange>
+		<yRange>8</yRange>
 		<damage>2</damage>
 		<hits>3</hits>
 		<castT>0.2</castT>
@@ -219,7 +219,7 @@
 		<cd>18</cd>
 		<circle>4</circle>
 		<type>3</type>
-		<xRange>16</xRange>
+		<xRange>15</xRange>
 		<yRange>10</yRange>
 		<damage>20</damage>
 		<hits>5</hits>
@@ -235,8 +235,8 @@
 		<cd>11</cd>
 		<circle>4</circle>
 		<type>1</type>
-		<xRange>10</xRange>
-		<yRange>5</yRange>
+		<xRange>18</xRange>
+		<yRange>12</yRange>
 		<damage>30</damage>
 		<hits>1</hits>
 		<castT>0.4</castT>
@@ -251,7 +251,7 @@
 		<cd>25</cd>
 		<circle>5</circle>
 		<type>3</type>
-		<xRange>32</xRange>
+		<xRange>30</xRange>
 		<yRange>20</yRange>
 		<damage>12</damage>
 		<hits>5</hits>
@@ -263,19 +263,19 @@
 	</Spell>
 	<Spell>
 		<id>1003107</id>
-		<name>IcePrison</name>
+		<name>Glacial</name>
 		<cd>22</cd>
 		<circle>5</circle>
 		<type>1</type>
-		<xRange>20</xRange>
-		<yRange>10</yRange>
+		<xRange>21</xRange>
+		<yRange>14</yRange>
 		<damage>50</damage>
 		<hits>1</hits>
 		<castT>1.0</castT>
 		<debufP>1.0</debufP>
 		<durateT>10</durateT>
-		<prefabpath>Spell/Ice/SpellIcePrison</prefabpath>
-		<spr>Spells/Icon/SpellIcePrison</spr>
+		<prefabpath>Spell/Ice/SpellGlacial</prefabpath>
+		<spr>Spells/Icon/SpellGlacial</spr>
 	</Spell>
 
 
@@ -284,9 +284,9 @@
 		<name>Wind</name>
 		<cd>2</cd>
 		<circle>1</circle>
-		<type>2</type>
-		<xRange>4</xRange>
-		<yRange>1</yRange>
+		<type>1</type>
+		<xRange>6</xRange>
+		<yRange>4</yRange>
 		<damage>2</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -300,9 +300,9 @@
 		<name>WindArrow</name>
 		<cd>3</cd>
 		<circle>2</circle>
-		<type>2</type>
+		<type>1</type>
 		<xRange>8</xRange>
-		<yRange>1</yRange>
+		<yRange>6</yRange>
 		<damage>5</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -316,9 +316,9 @@
 		<name>WindCutter</name>
 		<cd>5</cd>
 		<circle>3</circle>
-		<type>2</type>
+		<type>1</type>
 		<xRange>8</xRange>
-		<yRange>1</yRange>
+		<yRange>6</yRange>
 		<damage>10</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
@@ -332,9 +332,9 @@
 		<name>WindScrew</name>
 		<cd>6</cd>
 		<circle>3</circle>
-		<type>3</type>
-		<xRange>10</xRange>
-		<yRange>2</yRange>
+		<type>1</type>
+		<xRange>12</xRange>
+		<yRange>8</yRange>
 		<damage>8</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
@@ -348,9 +348,9 @@
 		<name>WindHawk</name>
 		<cd>10</cd>
 		<circle>4</circle>
-		<type>2</type>
-		<xRange>16</xRange>
-		<yRange>3</yRange>
+		<type>1</type>
+		<xRange>15</xRange>
+		<yRange>10</yRange>
 		<damage>32</damage>
 		<hits>1</hits>
 		<castT>0.4</castT>
@@ -365,8 +365,8 @@
 		<cd>20</cd>
 		<circle>4</circle>
 		<type>3</type>
-		<xRange>20</xRange>
-		<yRange>5</yRange>
+		<xRange>18</xRange>
+		<yRange>12</yRange>
 		<damage>1</damage>
 		<hits>8</hits>
 		<castT>0.4</castT>
@@ -380,9 +380,9 @@
 		<name>Tornado</name>
 		<cd>25</cd>
 		<circle>5</circle>
-		<type>2</type>
-		<xRange>32</xRange>
-		<yRange>5</yRange>
+		<type>3</type>
+		<xRange>30</xRange>
+		<yRange>20</yRange>
 		<damage>6</damage>
 		<hits>10</hits>
 		<castT>1.0</castT>
@@ -397,8 +397,8 @@
 		<cd>30</cd>
 		<circle>5</circle>
 		<type>3</type>
-		<xRange>20</xRange>
-		<yRange>20</yRange>
+		<xRange>21</xRange>
+		<yRange>14</yRange>
 		<damage>4</damage>
 		<hits>15</hits>
 		<castT>1.0</castT>
@@ -414,9 +414,9 @@
 		<name>Rock</name>
 		<cd>1.5</cd>
 		<circle>1</circle>
-		<type>3</type>
-		<xRange>4</xRange>
-		<yRange>2</yRange>
+		<type>1</type>
+		<xRange>6</xRange>
+		<yRange>4</yRange>
 		<damage>1</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -432,7 +432,7 @@
 		<circle>2</circle>
 		<type>3</type>
 		<xRange>8</xRange>
-		<yRange>3</yRange>
+		<yRange>6</yRange>
 		<damage>4</damage>
 		<hits>1</hits>
 		<castT>0.1</castT>
@@ -446,9 +446,9 @@
 		<name>StoneHand</name>
 		<cd>5</cd>
 		<circle>3</circle>
-		<type>3</type>
+		<type>1</type>
 		<xRange>8</xRange>
-		<yRange>4</yRange>
+		<yRange>6</yRange>
 		<damage>8</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
@@ -463,8 +463,8 @@
 		<cd>7</cd>
 		<circle>3</circle>
 		<type>1</type>
-		<xRange>10</xRange>
-		<yRange>1</yRange>
+		<xRange>12</xRange>
+		<yRange>8</yRange>
 		<damage>12</damage>
 		<hits>1</hits>
 		<castT>0.2</castT>
@@ -478,9 +478,9 @@
 		<name>ShockWave</name>
 		<cd>15</cd>
 		<circle>4</circle>
-		<type>3</type>
-		<xRange>16</xRange>
-		<yRange>2</yRange>
+		<type>1</type>
+		<xRange>15</xRange>
+		<yRange>10</yRange>
 		<damage>30</damage>
 		<hits>1</hits>
 		<castT>0.4</castT>
@@ -495,8 +495,8 @@
 		<cd>10</cd>
 		<circle>4</circle>
 		<type>1</type>
-		<xRange>20</xRange>
-		<yRange>3</yRange>
+		<xRange>18</xRange>
+		<yRange>12</yRange>
 		<damage>35</damage>
 		<hits>1</hits>
 		<castT>0.4</castT>
@@ -511,7 +511,7 @@
 		<cd>23</cd>
 		<circle>5</circle>
 		<type>3</type>
-		<xRange>32</xRange>
+		<xRange>30</xRange>
 		<yRange>20</yRange>
 		<damage>80</damage>
 		<hits>5</hits>
@@ -527,8 +527,8 @@
 		<cd>22</cd>
 		<circle>5</circle>
 		<type>1</type>
-		<xRange>20</xRange>
-		<yRange>10</yRange>
+		<xRange>21</xRange>
+		<yRange>14</yRange>
 		<damage>85</damage>
 		<hits>1</hits>
 		<castT>1.0</castT>
