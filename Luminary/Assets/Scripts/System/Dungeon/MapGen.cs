@@ -101,22 +101,22 @@ public class MapGen
     // Return created room prefab
     private GameObject startRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/StartRoom");
         return room;
     }
     private GameObject normalRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/NormalRoom");
         return room;
     }
     private GameObject shopRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/ShopRoom");
         return room;
     }
     private GameObject bossRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/BossRoom");
         return room;
     }
 

@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 7553281215820885349}
   - component: {fileID: 1771555252544480567}
   m_Layer: 0
-  m_Name: Room
+  m_Name: NormalRoom
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   objs: []
   components: {fileID: 3297629578708409645}
   enemies: {fileID: 5062521571087607942}
+  types: 1
 --- !u!1 &5062521571087607942
 GameObject:
   m_ObjectHideFlags: 0

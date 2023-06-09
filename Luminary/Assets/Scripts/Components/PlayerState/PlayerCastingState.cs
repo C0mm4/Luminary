@@ -29,7 +29,6 @@ public class PlayerCastingState : State
         charactor = chr;
         startT = Time.time;
         charactor.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        Debug.Log(castingT);
     }
 
     public override void UpdateState()

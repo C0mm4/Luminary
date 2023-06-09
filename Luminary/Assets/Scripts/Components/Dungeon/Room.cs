@@ -26,6 +26,9 @@ public class Room : MonoBehaviour
     [SerializeField]
     public GameObject enemies;
 
+    [SerializeField]
+    public int types;
+
     // set position
     public void set()
     {
@@ -69,6 +72,7 @@ public class Room : MonoBehaviour
                             GameManager.Resource.Destroy(go);
                             go = GameManager.Resource.Instantiate("Mobs/TestMob");
                             objs.Add(go);
+                            go.SetActive(false);
                             mobCount += 1;
                             break;
 

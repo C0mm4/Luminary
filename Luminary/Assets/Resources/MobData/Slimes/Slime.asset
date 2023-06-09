@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHP: 10
   baseDMG: 2
-  basespeed: 4
+  basespeed: 2
   items: []

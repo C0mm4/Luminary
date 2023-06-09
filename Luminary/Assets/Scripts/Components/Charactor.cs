@@ -117,7 +117,6 @@ public class Charactor : MonoBehaviour
     public void HPDecrease(int pts)
     { 
         status.currentHP -= pts;
-        Debug.Log(pts + " get damage " + status.currentHP);
         if(status.currentHP <= 0)
         {
             DieObject();
@@ -178,6 +177,14 @@ public class Charactor : MonoBehaviour
     public void endCurrentState()
     {
         sMachine.exitState();
+    }
+
+    public void setIdleState()
+    {
+        while(sMachine.getStateStr() != "MobIdleState" || sMachine.getStateStr() != "PlayerIdleState")
+        {
+            endCurrentState();
+        }
     }
 
     public State getState()

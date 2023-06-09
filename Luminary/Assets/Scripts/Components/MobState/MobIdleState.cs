@@ -11,7 +11,7 @@ public class MobIdleState : State
 
     public override void UpdateState()
     {
-        Debug.Log("Idle");
+
     }
 
     public override void ReSetState()
