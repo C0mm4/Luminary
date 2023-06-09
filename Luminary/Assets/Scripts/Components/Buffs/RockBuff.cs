@@ -31,6 +31,8 @@ public class RockBuff : Buff
     public override void endEffect()
     {
         target.status.element.Rock = false;
+        target.status.pIncreaseDMG = 0.0f;
+        target.calcStatus();
         base.endEffect();
     }
 }

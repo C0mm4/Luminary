@@ -30,6 +30,8 @@ public class WindBuff : Buff
     public override void endEffect()
     {
         target.status.element.Wind = false;
+        target.status.pIncreaseSpeed = 0.0f;
+        target.calcStatus();
         base.endEffect();
     }
 }

@@ -31,6 +31,8 @@ public class IceBuff : Buff
     public override void endEffect()
     {
         target.status.element.Ice = false;
+        target.status.pGetDMG = 1.0f;
+        target.calcStatus();
         base.endEffect();
     }
 }
