@@ -20,6 +20,7 @@ public class Charactor : MonoBehaviour
     public SerializedPlayerStatus status;
 
     public bool isHit = false;
+    public float hitTime = 0;
 
     // Start is called before the first frame update
     public virtual void Awake()
@@ -115,12 +116,24 @@ public class Charactor : MonoBehaviour
     }
 
     public void HPDecrease(int pts)
-    { 
-        status.currentHP -= pts;
-        if(status.currentHP <= 0)
+    {
+        if (!isHit)
         {
-            DieObject();
+            Debug.Log("Hit");
+            isHit = true;
+            status.currentHP -= pts;
+
+            if (status.currentHP <= 0)
+            {
+                DieObject();
+            }
+            Invoke("reclusiveHitBox", 1f);
         }
+    }
+
+    public void reclusiveHitbox()
+    {
+        isHit = false;
     }
 
     public virtual void DieObject()

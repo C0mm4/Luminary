@@ -18,7 +18,6 @@ public class PlayerMoveAbsolState : State
         dir = new Vector3(targetPos.x - chr.transform.position.x, targetPos.y - chr.transform.position.y, 1);
         dir.Normalize();
 
-        Debug.Log("AbsolMove target pos : " + targetPos);
     }
 
     public override void ExitState()

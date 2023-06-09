@@ -387,5 +387,6 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
+        StageC.closeDoor();
     }
 }

@@ -123,7 +123,6 @@ public class StageController
     {
         foreach(GameObject go in rooms)
         {
-            Debug.Log(go.name);
             Room r = go.GetComponent<Room>();
 
             char[] str = r.gatedir.ToCharArray();
@@ -162,7 +161,6 @@ public class StageController
             }
             
             string ary = roomDatas[target]["data"].InnerText;
-            Debug.Log(target);
 
             ary = ary.Substring(6);
             ary = ary.Replace("\t\t\t", string.Empty);
@@ -217,4 +215,28 @@ public class StageController
         isVIsit[currentRoom] = true;
     }
 
+    public void closeDoor()
+    {
+        if (!isClear[currentRoom])
+        {
+            foreach (GameObject gate in gates)
+            {
+                if (gate != null)
+                {
+                    gate.GetComponent<Gate>().closeGate();
+                }
+            }
+        }
+    }
+
+    public void openDoor()
+    {
+        foreach(GameObject gate in gates)
+        {
+            if (gate != null)
+            {
+                gate.GetComponent<Gate>().openGate();
+            }
+        }
+    }
 }

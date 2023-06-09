@@ -15,7 +15,7 @@ public class IceBuff : Buff
         if(target != null)
         {
             target.status.element.Ice = true;
-            target.status.pGetDMG = 1.03f;
+            target.status.pGetDMG += 0.03f;
             target.calcStatus();
             base.durateEffect();
 
@@ -31,7 +31,7 @@ public class IceBuff : Buff
     public override void endEffect()
     {
         target.status.element.Ice = false;
-        target.status.pGetDMG = 1.0f;
+        target.status.pGetDMG -= 0.03f;
         target.calcStatus();
         base.endEffect();
     }

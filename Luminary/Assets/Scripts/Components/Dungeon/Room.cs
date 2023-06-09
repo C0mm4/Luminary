@@ -61,8 +61,6 @@ public class Room : MonoBehaviour
                     switch(roomGrid[i,j])
                     {
                         case 1:
-                            GameManager.Resource.Destroy(go);
-                            go = GameManager.Resource.Instantiate("Dungeon/Wall");
                             break;
                         case 2:
                             GameManager.Resource.Destroy(go);
@@ -92,6 +90,7 @@ public class Room : MonoBehaviour
         Invoke("ActiveEnemiesCallback", 0.5f);
     }
 
+
     private void ActiveEnemiesCallback()
     {
         foreach (GameObject obj in objs)
@@ -105,21 +104,6 @@ public class Room : MonoBehaviour
 
     public void clearRoom()
     {
-        if(gateU != -1)
-        {
-
-        }
-        if(gateD != -1)
-        {
-
-        }
-        if(gateL != -1)
-        {
-
-        }
-        if(gateR != -1)
-        {
-
-        }
+        GameManager.StageC.openDoor();
     }
 }

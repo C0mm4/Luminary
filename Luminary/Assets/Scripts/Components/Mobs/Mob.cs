@@ -53,4 +53,23 @@ public class Mob : Charactor
 
         }
     }
+
+    public override void DieObject()
+    {
+        GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount -= 1;
+        if(GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount == 0)
+        {
+            GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().clearRoom();
+        }
+        base.DieObject();
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            Debug.Log("Player Collision");
+            other.GetComponent<Charactor>().HPDecrease(1);
+        }
+    }
 }
