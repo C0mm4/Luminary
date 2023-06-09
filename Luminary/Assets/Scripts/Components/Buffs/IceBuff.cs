@@ -15,8 +15,8 @@ public class IceBuff : Buff
         if(target != null)
         {
             target.status.element.Ice = true;
-            attacker.status.pIncreaseDMG = 0.03f;
-            attacker.calcStatus();
+            target.status.pGetDMG = 1.03f;
+            target.calcStatus();
             base.durateEffect();
 
         }
