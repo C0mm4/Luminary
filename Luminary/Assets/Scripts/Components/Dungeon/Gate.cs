@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Gate : MonoBehaviour
@@ -9,6 +8,9 @@ public class Gate : MonoBehaviour
     public int room1, room2;
     public float posx, posy;
     public int index;
+
+    [SerializeField]
+    GameObject border;
 
     // set position
     public void set()
@@ -21,7 +23,6 @@ public class Gate : MonoBehaviour
         if(other.tag == "Player")
         {
             int croom = GameManager.StageC.currentRoom;
-            Debug.Log("PlayerCollision");
             GameManager.Instance.moveRoom(croom != room1 ? room1 : room2);
             other.GetComponent<Charactor>().endCurrentState();
             switch(GetPointPosition(other.transform.position, transform.position))
@@ -40,6 +41,16 @@ public class Gate : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void closeGate()
+    {
+        border.SetActive(true);
+    }
+
+    public void openGate()
+    {
+        border.SetActive(false);
     }
 
     public PointPosition GetPointPosition(Vector2 playerP, Vector2 gateP)

@@ -15,7 +15,7 @@ public class WindBuff : Buff
         if(target != null)
         {
             target.status.element.Wind = true;
-            target.status.pIncreaseSpeed = -0.5f;
+            target.status.pIncreaseSpeed -= 0.5f;
             target.calcStatus();
             base.durateEffect();
 
@@ -30,6 +30,8 @@ public class WindBuff : Buff
     public override void endEffect()
     {
         target.status.element.Wind = false;
+        target.status.pIncreaseSpeed += 0.5f;
+        target.calcStatus();
         base.endEffect();
     }
 }

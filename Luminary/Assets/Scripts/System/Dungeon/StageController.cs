@@ -123,37 +123,43 @@ public class StageController
     {
         foreach(GameObject go in rooms)
         {
-            List<int> lists = new List<int>();
             Room r = go.GetComponent<Room>();
+
             char[] str = r.gatedir.ToCharArray();
-            foreach(XmlNode node in roomDatas)
+            int target;
+            if (r.types == 1)
             {
-                char[] mopen = node["open"].InnerText.ToCharArray();
-                int i = 0;
-                for(; i < 4; i++)
+
+                List<int> lists = new List<int>();
+                foreach (XmlNode node in roomDatas)
                 {
-                    if (str[i] == '1')
+                    char[] mopen = node["open"].InnerText.ToCharArray();
+                    char[] comp = { '0', '0', '0', '0' };
+                    for(int i = 0; i < str.Length; i++)
                     {
-                        if (mopen[i] == '1')
+                        if (str[i] == mopen[i])
                         {
-                            continue;
+                            comp[i] = str[i];
                         }
                         else
                         {
-                            break;
+                            comp[i] = '0';
                         }
                     }
-                    else
+                    if (str.SequenceEqual(comp))
                     {
-                        continue;
+                        lists.Add(int.Parse(node["id"].InnerText));
+                        Debug.Log(int.Parse(node["id"].InnerText));
                     }
                 }
-                if(i == 4)
-                {
-                    lists.Add(int.Parse(node["id"].InnerText));
-                }
+                target = lists[GameManager.Random.getMapNext(0, lists.Count)];
+                lists.Clear();
             }
-            int target = GameManager.Random.getMapNext(0,lists.Count);
+            else
+            {
+                target = 0;
+            }
+            
             string ary = roomDatas[target]["data"].InnerText;
 
             ary = ary.Substring(6);
@@ -163,7 +169,7 @@ public class StageController
             int[] iary = Array.ConvertAll(sstr,  s=> int.TryParse(s, out var x) ? x : -1);
             
             go.GetComponent<Room>().setData(iary);
-
+            go.GetComponent<Room>().setObjects();
         }
     }
 
@@ -190,6 +196,7 @@ public class StageController
     public void moveRoom(int n)
     {
         currentRoom = n;
+        GameManager.cameraManager.background = rooms[currentRoom].GetComponent<Room>().bg;
         if (isTutorial)
         {
             Debug.Log("ISTUTORIAL");
@@ -198,7 +205,7 @@ public class StageController
         }
         else if (!isVIsit[currentRoom])
         {
-            rooms[currentRoom].GetComponent<Room>().setObjects();
+            rooms[currentRoom].GetComponent<Room>().ActiveEnemies();
         }
         if (rooms[currentRoom].GetComponent<Room>().mobCount == 0)
         {
@@ -206,8 +213,30 @@ public class StageController
             rooms[currentRoom].GetComponent<Room>().clearRoom();
         }
         isVIsit[currentRoom] = true;
-        GameManager.cameraManager.background = rooms[currentRoom].GetComponent<Room>().bg;
     }
 
+    public void closeDoor()
+    {
+        if (!isClear[currentRoom])
+        {
+            foreach (GameObject gate in gates)
+            {
+                if (gate != null)
+                {
+                    gate.GetComponent<Gate>().closeGate();
+                }
+            }
+        }
+    }
 
+    public void openDoor()
+    {
+        foreach(GameObject gate in gates)
+        {
+            if (gate != null)
+            {
+                gate.GetComponent<Gate>().openGate();
+            }
+        }
+    }
 }

@@ -20,6 +20,7 @@ public class Charactor : MonoBehaviour
     public SerializedPlayerStatus status;
 
     public bool isHit = false;
+    public float hitTime = 0;
 
     // Start is called before the first frame update
     public virtual void Awake()
@@ -115,13 +116,24 @@ public class Charactor : MonoBehaviour
     }
 
     public void HPDecrease(int pts)
-    { 
-        status.currentHP -= pts;
-        Debug.Log(pts + " get damage " + status.currentHP);
-        if(status.currentHP <= 0)
+    {
+        if (!isHit)
         {
-            DieObject();
+            Debug.Log("Hit");
+            isHit = true;
+            status.currentHP -= pts;
+
+            if (status.currentHP <= 0)
+            {
+                DieObject();
+            }
+            Invoke("reclusiveHitBox", 1f);
         }
+    }
+
+    public void reclusiveHitbox()
+    {
+        isHit = false;
     }
 
     public virtual void DieObject()
@@ -178,6 +190,14 @@ public class Charactor : MonoBehaviour
     public void endCurrentState()
     {
         sMachine.exitState();
+    }
+
+    public void setIdleState()
+    {
+        while(sMachine.getStateStr() != "MobIdleState" || sMachine.getStateStr() != "PlayerIdleState")
+        {
+            endCurrentState();
+        }
     }
 
     public State getState()

@@ -214,6 +214,24 @@ public class UIManager : MonoBehaviour
         GameManager.uiState = state;
 
         GameManager.inputManager.changeInputState();
+
+        switch (state)
+        {
+            case UIState.Inventory:
+                skillSlotUI.SetActive(false);
+                break;
+            case UIState.InPlay:
+                skillSlotUI.SetActive(true);
+                break;
+            case UIState.Loading:
+                break;
+            case UIState.Lobby:
+                break;
+            case UIState.CutScene:
+                break;
+            case UIState.Title:
+                break;
+        }
     }
     
     public void ChangeStateOnStack(UIState state)

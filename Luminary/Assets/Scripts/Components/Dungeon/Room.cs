@@ -26,6 +26,9 @@ public class Room : MonoBehaviour
     [SerializeField]
     public GameObject enemies;
 
+    [SerializeField]
+    public int types;
+
     // set position
     public void set()
     {
@@ -58,8 +61,6 @@ public class Room : MonoBehaviour
                     switch(roomGrid[i,j])
                     {
                         case 1:
-                            GameManager.Resource.Destroy(go);
-                            go = GameManager.Resource.Instantiate("Dungeon/Wall");
                             break;
                         case 2:
                             GameManager.Resource.Destroy(go);
@@ -69,6 +70,7 @@ public class Room : MonoBehaviour
                             GameManager.Resource.Destroy(go);
                             go = GameManager.Resource.Instantiate("Mobs/TestMob");
                             objs.Add(go);
+                            go.SetActive(false);
                             mobCount += 1;
                             break;
 
@@ -88,6 +90,7 @@ public class Room : MonoBehaviour
         Invoke("ActiveEnemiesCallback", 0.5f);
     }
 
+
     private void ActiveEnemiesCallback()
     {
         foreach (GameObject obj in objs)
@@ -101,21 +104,6 @@ public class Room : MonoBehaviour
 
     public void clearRoom()
     {
-        if(gateU != -1)
-        {
-
-        }
-        if(gateD != -1)
-        {
-
-        }
-        if(gateL != -1)
-        {
-
-        }
-        if(gateR != -1)
-        {
-
-        }
+        GameManager.StageC.openDoor();
     }
 }

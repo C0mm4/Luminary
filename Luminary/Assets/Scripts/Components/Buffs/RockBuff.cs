@@ -15,7 +15,7 @@ public class RockBuff : Buff
         if(target != null)
         {
             target.status.element.Rock = true;
-            target.status.pIncreaseDMG = -0.03f;
+            target.status.pIncreaseDMG -= 0.03f;
             target.calcStatus();
             base.durateEffect();
 
@@ -31,6 +31,8 @@ public class RockBuff : Buff
     public override void endEffect()
     {
         target.status.element.Rock = false;
+        target.status.pIncreaseDMG += 0.03f;
+        target.calcStatus();
         base.endEffect();
     }
 }
