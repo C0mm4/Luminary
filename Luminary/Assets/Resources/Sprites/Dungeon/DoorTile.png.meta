@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec3b7ce3a5db35a4ea9395d554e2af65
+guid: 361ea64feec07e8499d9ad7465ab1a82
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -131,7 +131,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WallTile_0
+      name: DoorTile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89286bcd88136a144881d92a4667d8c0
-      internalID: -1729819136
+      spriteID: 312b6ce825aef0645bcdca9eea598b69
+      internalID: -100484246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallTile_1
+      name: DoorTile_1
       rect:
         serializedVersion: 2
         x: 16
@@ -166,134 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19a3f248758652647ac9cca8631d1035
-      internalID: 340946275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallTile_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b763e34f5a793bb40a14141b22c358cc
-      internalID: -558263930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallTile_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c095f55ed6a29b444ace7637f061cbd5
-      internalID: -472706919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallTile_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ab9461a7d592d6419dd88c2ff2c22bb
-      internalID: -147066002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallTile_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e2a11774a23c774c86a892ca7c37b5b
-      internalID: 988253984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallTile_6
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 995ad178f2fcb5d4e9677fc9e17dacf6
-      internalID: 2031970019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallTile_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03272641c0ad69e4aa05c6ed4158faea
-      internalID: -1106658752
+      spriteID: 2bb6d3b9675ebce44b7d2d130a7800a8
+      internalID: 722395704
       vertices: []
       indices: 
       edges: []
@@ -309,14 +183,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WallTile_0: -1729819136
-      WallTile_1: 340946275
-      WallTile_2: -558263930
-      WallTile_3: -472706919
-      WallTile_4: -147066002
-      WallTile_5: 988253984
-      WallTile_6: 2031970019
-      WallTile_7: -1106658752
+      DoorTile_0: -100484246
+      DoorTile_1: 722395704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

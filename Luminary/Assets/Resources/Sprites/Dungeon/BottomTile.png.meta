@@ -403,6 +403,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BottomTile_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd98993c4451aab4c8aeb557d36cc50c
+      internalID: 1736904010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -419,6 +440,7 @@ TextureImporter:
       BottomTile_10: 1819431674
       BottomTile_11: 661070225
       BottomTile_12: -1204943791
+      BottomTile_13: 1736904010
       BottomTile_2: -2085066920
       BottomTile_3: 435322306
       BottomTile_4: 875161984
