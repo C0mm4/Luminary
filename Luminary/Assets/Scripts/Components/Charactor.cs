@@ -127,7 +127,7 @@ public class Charactor : MonoBehaviour
             {
                 DieObject();
             }
-            Invoke("reclusiveHitBox", 1f);
+            Invoke("reclusiveHitbox", 1f);
         }
     }
 
