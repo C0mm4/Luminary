@@ -14,7 +14,12 @@ public class Room : MonoBehaviour
 
 
     public int gateU, gateD, gateL, gateR;
+    [SerializeField]
     public string gatedir = "0000";
+
+    [SerializeField]
+    List<Transform> doorPos = new List<Transform>();
+
     [SerializeField]
     public SpriteRenderer bg;
 
