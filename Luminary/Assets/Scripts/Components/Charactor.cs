@@ -146,6 +146,7 @@ public class Charactor : MonoBehaviour
         if (status.items.Count < 8)
         {
             status.items.Add(item);
+            item.gameObject.layer = 6;
             GameManager.Instance.uiManager.invenFrest();
         }
         else

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -86,7 +87,8 @@ public class Inventory : MonoBehaviour
     public void delItem(GameObject _item)
     {
         Item itm = _item.GetComponent<Item>();
-            target.GetComponent<Charactor>().status.items.Remove(itm);
-            freshSlot();
+        itm.gameObject.layer = 0;
+        target.GetComponent<Charactor>().status.items.Remove(itm);
+        freshSlot();
     }
 }
