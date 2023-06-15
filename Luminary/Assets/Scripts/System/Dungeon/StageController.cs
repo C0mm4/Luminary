@@ -90,7 +90,7 @@ public class StageController
         roomNoM += stageNo * 2;
 
         roomNo = GameManager.Random.getGeneralNext(roomNom, roomNoM);
-        rooms = GameManager.MapGen.mapGen(roomNo, stageNo);
+        (rooms, gates) = GameManager.MapGen.mapGen(roomNo, stageNo);
 
         foreach(GameObject go in rooms)
         {
@@ -112,10 +112,6 @@ public class StageController
     public void setGate()
     {
         gates = GameManager.MapGen.setGates(rooms);
-        foreach(GameObject go in gates)
-        {
-            go.GetComponent<Gate>().set();
-        }
     }
 
     // Set Room Grid

@@ -33,9 +33,10 @@ public class MapGen
     }
 
 
-    public List<GameObject> mapGen(int roomNo, int stageNo)
+    public Tuple<List<GameObject>, List<GameObject>> mapGen(int roomNo, int stageNo)
     {
-        List<GameObject> ret = new List<GameObject>();
+        List<GameObject> ret1 = new List<GameObject>();
+        List<GameObject> ret2 = new List<GameObject>();
         KeyValuePair<int, int> target;
         GameObject room = null;
         GameObject tmp = GameObject.Find("Dungeon");
@@ -49,18 +50,22 @@ public class MapGen
         room = startRoomGen();
         room.GetComponent<Room>().index = 0;
         aadroom(room);
-        ret.Add(room);
+        ret1.Add(room);
 
         for(int i = 1; i <= roomNo; i++)
         {
             room = startRoomGen();
             room.GetComponent<Room>().index = 1;
             aadroom(room);
-            ret.Add(room);
-
+            ret1.Add(room);
+        }
+        Gate[] gts = dungeonGate.gameObject.GetComponentsInChildren<Gate>();
+        for(int i = 0; i < gts.Length; i++)
+        {
+            ret2.Add(gts[i].gameObject);
         }
 
-        return ret;
+        return new Tuple<List<GameObject>, List<GameObject>>(ret1, ret2);
 
         /*
 
