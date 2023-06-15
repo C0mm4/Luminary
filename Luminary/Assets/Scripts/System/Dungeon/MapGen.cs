@@ -49,14 +49,14 @@ public class MapGen
 
         room = startRoomGen();
         room.GetComponent<Room>().index = 0;
-        aadroom(room);
+        addroom(room);
         ret1.Add(room);
 
         for(int i = 1; i <= roomNo; i++)
         {
-            room = startRoomGen();
-            room.GetComponent<Room>().index = 1;
-            aadroom(room);
+            room = normalRoomGen();
+            room.GetComponent<Room>().index = i;
+            addroom(room);
             ret1.Add(room);
         }
         Gate[] gts = dungeonGate.gameObject.GetComponentsInChildren<Gate>();
@@ -67,67 +67,15 @@ public class MapGen
 
         return new Tuple<List<GameObject>, List<GameObject>>(ret1, ret2);
 
-        /*
-
-
-
-                // Generate StartRoom
-                room = startRoomGen();
-                addRoom(0,0, room);
-                room.GetComponent<Room>().index = 0;
-                room.transform.parent = dungeonRoom.transform;
-                ret.Add(room);
-                // Generate NormalRoom
-                for (int i = 0; i < roomNo; i++)
-                {
-                    target = getRandompos();
-                    room = normalRoomGen();
-                    addRoom(target.Key, target.Value, room);
-                    room.GetComponent<Room>().index = i + 1;
-                    room.transform.parent = dungeonRoom.transform;
-                    ret.Add(room);
-                }
-                if(stageNo == 6)
-                {
-
-                    // Generate ShopRoom
-                    target = getRandompos();
-                    room = shopRoomGen();
-                    addRoom(target.Key, target.Value, room);
-                    room.GetComponent<Room>().index = roomNo + 1;
-                    room.transform.parent = dungeonRoom.transform;
-                    ret.Add(room);
-
-                    // Generate BossRoom
-                    target = getRandompos();
-                    room = bossRoomGen();
-                    addRoom(target.Key, target.Value, room);
-                    room.GetComponent<Room>().index = roomNo + 2;
-                    room.transform.parent = dungeonRoom.transform;
-                    ret.Add(room);
-                }
-                else
-                {
-                    // Generate BossRoom
-                    target = getRandompos();
-                    room = bossRoomGen();
-                    addRoom(target.Key, target.Value, room);
-                    room.GetComponent<Room>().index = roomNo + 1;
-                    room.transform.parent = dungeonRoom.transform;
-                    ret.Add(room);
-                }
-
-                return ret;*/
     }
 
-    private void aadroom(GameObject room)
+    private void addroom(GameObject room)
     {
         PointPosition newPos = new PointPosition();
         bool isStart = false;
         // startRoom Generate
         if (ableDoorPos.Count == 0)
         {
-            Debug.Log("COUNT = 0");
             room.GetComponent<Room>().x = 0;
             room.GetComponent<Room>().y = 0;
             isStart = true;
@@ -184,7 +132,6 @@ public class MapGen
                     break;
             }
             Vector2 pos = new Vector2(room.GetComponent<Room>().doorPos[i].x + room.GetComponent<Room>().x, room.GetComponent<Room>().doorPos[i].y + room.GetComponent<Room>().y);
-            Debug.Log(pos);
             ableDoorPos.Add(new Tuple<Vector2, GameObject, PointPosition>(pos, room, door));
         }
         int roomleft = room.GetComponent<Room>().doorPos[2].x;
@@ -240,7 +187,9 @@ public class MapGen
         }
 
         GameObject go = GameManager.Resource.Instantiate("Dungeon/Gate", dungeonGate.transform);
-        go.transform.position = new Vector3(tpl.Item1.x, tpl.Item1.y, 2);
+        go.transform.position = new Vector3(tpl.Item1.x + 0.5f, tpl.Item1.y + 0.5f, 2);
+        go.GetComponent<Gate>().room1 = tpl.Item2.GetComponent<Room>().index;
+        go.GetComponent<Gate>().room2 = room.GetComponent<Room>().index;
 
         room.GetComponent<Room>().x = x;
         room.GetComponent<Room>().y = y;
@@ -262,12 +211,13 @@ public class MapGen
     // Return created room prefab
     private GameObject startRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/NewRoomsForm", dungeonRoom.transform);
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room0", dungeonRoom.transform);
         return room;
     }
     private GameObject normalRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/NormalRoom", dungeonRoom.transform);
+        int rnd = GameManager.Random.getMapNext(0, 4);
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room"+rnd, dungeonRoom.transform);
         return room;
     }
     private GameObject shopRoomGen()
@@ -290,111 +240,4 @@ public class MapGen
         ableDoorPos.Clear();
     }
 
-    // Filled new Room Object in Buffer and able new Position Add
-    private void addRoom(int x, int y, GameObject obj)
-    {
-        // °´Ã¼ x,y Ä­ ¼³Á¤
-        obj.GetComponent<Room>().x = x;
-        obj.GetComponent<Room>().y = y;
-        roomspos.Add(new KeyValuePair<int, int>(x, y));
-        for(int i = 0; i < 4; i++)
-        {
-            KeyValuePair<int, int> target = new KeyValuePair<int, int>(x + xpos[i], y + ypos[i]);
-            if(roomspos.IndexOf(new KeyValuePair<int, int>(target.Key, target.Value)) == -1)
-            {
-                if (!ablepos.ContainsKey(target))
-                {
-                    ablepos.Add(target, 1);
-                }
-                else
-                {
-                    ablepos[target] += 1;
-                }
-            }
-        }
-        ablepos.Remove(new KeyValuePair<int, int>(x, y));
-    }
-    
-    // O(n^2) Create Gates between Rooms
-    public List<GameObject> setGates(List<GameObject> rms)
-    {
-
-        List<GameObject> ret = new List<GameObject>();
-        int cnt = rms.Count();
-        int gatecnt = 0;
-        for (int i = 0; i < cnt -1; i++)
-        {
-            int currentx = rms.ElementAt(i).GetComponent<Room>().x;
-            int currenty = rms.ElementAt(i).GetComponent<Room>().y;
-            for(int j = i+1; j < cnt; j++)
-            {
-                int nextx = rms.ElementAt(j).GetComponent<Room>().x;
-                int nexty = rms.ElementAt (j).GetComponent<Room>().y;
-
-                for (int k = 0; k < 4; k++)
-                {
-                    if (currentx + xpos[k] == nextx && currenty + ypos[k] == nexty)
-                    {
-                        GameObject gate = GameManager.Resource.Instantiate("Dungeon/Gate");
-                        gate.GetComponent<Gate>().index = gatecnt;
-                        Char[] strI = rms.ElementAt(i).GetComponent<Room>().gatedir.ToCharArray();
-                        Char[] strJ = rms.ElementAt(j).GetComponent<Room>().gatedir.ToCharArray();
-                        switch (k)
-                        {
-                            case 0:
-                                rms.ElementAt(i).GetComponent<Room>().gateU = gatecnt;
-                                strI[3] = '1';
-                                rms.ElementAt(j).GetComponent<Room>().gateD = gatecnt;
-                                strJ[2] = '1';
-                                break;
-                            case 1:
-                                rms.ElementAt(i).GetComponent<Room>().gateR = gatecnt;
-                                strI[0] = '1';
-                                rms.ElementAt(j).GetComponent<Room>().gateL = gatecnt;
-                                strJ[1] = '1';
-                                break;
-                            case 2:
-                                rms.ElementAt(i).GetComponent<Room>().gateL = gatecnt;
-                                strI[1] = '1';
-                                rms.ElementAt(j).GetComponent<Room>().gateR = gatecnt;
-                                strJ[0] = '1';
-                                break;
-                            case 3:
-                                rms.ElementAt(i).GetComponent<Room>().gateD = gatecnt;
-                                strI[2] = '1';
-                                rms.ElementAt(j).GetComponent<Room>().gateU = gatecnt;
-                                strJ[3] = '1';
-                                break;
-                        }
-
-                        gate.GetComponent<Gate>().posx = (float)(currentx + nextx) / 2;
-                        gate.GetComponent<Gate>().posy = (float)(currenty + nexty) / 2;
-
-                        rms.ElementAt(i).GetComponent<Room>().gatedir = new string(strI);
-                        rms.ElementAt(j).GetComponent<Room>().gatedir = new string(strJ);
-
-                        gate.GetComponent<Gate>().room1 = rms.ElementAt(i).GetComponent<Room>().index;
-                        gate.GetComponent<Gate>().room2 = rms.ElementAt(j).GetComponent<Room>().index;
-                        gate.transform.parent = dungeonGate.transform;
-                        ret.Add(gate);
-                        gatecnt++;
-                    }
-
-                }
-            }
-        }
-        return ret;
-    }
-
-    // return Random Position In abldpos buffer
-    private KeyValuePair<int, int> getRandompos()
-    {
-        int acount = ablepos.Count();
-        KeyValuePair<KeyValuePair<int, int>, int> res = ablepos.ElementAt(GameManager.Random.getMapNext(0, acount));
-        while (res.Value >= 3)
-        {
-            res = ablepos.ElementAt(GameManager.Random.getMapNext(0, acount));
-        }
-        return res.Key;
-    }
 }

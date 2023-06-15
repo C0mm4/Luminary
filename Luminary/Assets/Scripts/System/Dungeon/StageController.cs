@@ -70,8 +70,6 @@ public class StageController
     private void startStage()
     {
         setRoom();
-//        setGate();
-//        setRoomCompo();
         if (GameObject.Find("PlayerbleChara"))
         {
             GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
@@ -108,66 +106,6 @@ public class StageController
 
     }
 
-    // Create Gates
-    public void setGate()
-    {
-        gates = GameManager.MapGen.setGates(rooms);
-    }
-
-    // Set Room Grid
-    public void setRoomCompo()
-    {
-        foreach(GameObject go in rooms)
-        {
-            Room r = go.GetComponent<Room>();
-
-            char[] str = r.gatedir.ToCharArray();
-            int target;
-            if (r.types == 1)
-            {
-
-                List<int> lists = new List<int>();
-                foreach (XmlNode node in roomDatas)
-                {
-                    char[] mopen = node["open"].InnerText.ToCharArray();
-                    char[] comp = { '0', '0', '0', '0' };
-                    for(int i = 0; i < str.Length; i++)
-                    {
-                        if (str[i] == mopen[i])
-                        {
-                            comp[i] = str[i];
-                        }
-                        else
-                        {
-                            comp[i] = '0';
-                        }
-                    }
-                    if (str.SequenceEqual(comp))
-                    {
-                        lists.Add(int.Parse(node["id"].InnerText));
-                        Debug.Log(int.Parse(node["id"].InnerText));
-                    }
-                }
-                target = lists[GameManager.Random.getMapNext(0, lists.Count)];
-                lists.Clear();
-            }
-            else
-            {
-                target = 0;
-            }
-            
-            string ary = roomDatas[target]["data"].InnerText;
-
-            ary = ary.Substring(6);
-            ary = ary.Replace("\t\t\t", string.Empty);
-            ary = ary.Replace("\n", string.Empty); 
-            string[] sstr = ary.Split('\t');
-            int[] iary = Array.ConvertAll(sstr,  s=> int.TryParse(s, out var x) ? x : -1);
-            
-            go.GetComponent<Room>().setData(iary);
-            go.GetComponent<Room>().setObjects();
-        }
-    }
 
     // Clear Buffer
     public void clear()

@@ -9,14 +9,7 @@ public class Gate : MonoBehaviour
     public float posx, posy;
     public int index;
 
-    [SerializeField]
-    GameObject border;
-
     // set position
-    public void set()
-    {
-        this.gameObject.transform.position = new Vector3((float)(posx * 19.2), posy * 10.8f, 3);
-    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -45,12 +38,12 @@ public class Gate : MonoBehaviour
 
     public void closeGate()
     {
-        border.SetActive(true);
+        GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
     public void openGate()
     {
-        border.SetActive(false);
+        GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     public PointPosition GetPointPosition(Vector2 playerP, Vector2 gateP)
