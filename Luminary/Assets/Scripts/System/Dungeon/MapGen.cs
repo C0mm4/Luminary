@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class MapGen
 {
@@ -17,11 +19,14 @@ public class MapGen
     GameObject dungeonRoom;
     GameObject dungeonGate;
 
+    private List<Vector2> disablePos = new List<Vector2>();
+    private List<Tuple<Vector2, GameObject, PointPosition>> ableDoorPos = new List<Tuple<Vector2, GameObject, PointPosition>>();
 
     public void init()
     {
         roomspos = new List<KeyValuePair<int, int>>();
         ablepos = new Dictionary<KeyValuePair<int, int>, int>();
+        disablePos = new List<Vector2>();
         //                  U, R, L, D
         xpos = new int[4] { 0, 1, -1, 0 };      
         ypos = new int[4] { 1, 0, 0, -1 };
@@ -40,52 +45,203 @@ public class MapGen
         }
 
         setParents();
-        // Generate StartRoom
+
         room = startRoomGen();
-        addRoom(0,0, room);
         room.GetComponent<Room>().index = 0;
-        room.transform.parent = dungeonRoom.transform;
+        aadroom(room);
         ret.Add(room);
-        // Generate NormalRoom
-        for (int i = 0; i < roomNo; i++)
+
+        for(int i = 1; i <= roomNo; i++)
         {
-            target = getRandompos();
-            room = normalRoomGen();
-            addRoom(target.Key, target.Value, room);
-            room.GetComponent<Room>().index = i + 1;
-            room.transform.parent = dungeonRoom.transform;
+            room = startRoomGen();
+            room.GetComponent<Room>().index = 1;
+            aadroom(room);
             ret.Add(room);
+
         }
-        if(stageNo == 6)
+
+        return ret;
+
+        /*
+
+
+
+                // Generate StartRoom
+                room = startRoomGen();
+                addRoom(0,0, room);
+                room.GetComponent<Room>().index = 0;
+                room.transform.parent = dungeonRoom.transform;
+                ret.Add(room);
+                // Generate NormalRoom
+                for (int i = 0; i < roomNo; i++)
+                {
+                    target = getRandompos();
+                    room = normalRoomGen();
+                    addRoom(target.Key, target.Value, room);
+                    room.GetComponent<Room>().index = i + 1;
+                    room.transform.parent = dungeonRoom.transform;
+                    ret.Add(room);
+                }
+                if(stageNo == 6)
+                {
+
+                    // Generate ShopRoom
+                    target = getRandompos();
+                    room = shopRoomGen();
+                    addRoom(target.Key, target.Value, room);
+                    room.GetComponent<Room>().index = roomNo + 1;
+                    room.transform.parent = dungeonRoom.transform;
+                    ret.Add(room);
+
+                    // Generate BossRoom
+                    target = getRandompos();
+                    room = bossRoomGen();
+                    addRoom(target.Key, target.Value, room);
+                    room.GetComponent<Room>().index = roomNo + 2;
+                    room.transform.parent = dungeonRoom.transform;
+                    ret.Add(room);
+                }
+                else
+                {
+                    // Generate BossRoom
+                    target = getRandompos();
+                    room = bossRoomGen();
+                    addRoom(target.Key, target.Value, room);
+                    room.GetComponent<Room>().index = roomNo + 1;
+                    room.transform.parent = dungeonRoom.transform;
+                    ret.Add(room);
+                }
+
+                return ret;*/
+    }
+
+    private void aadroom(GameObject room)
+    {
+        PointPosition newPos = new PointPosition();
+        bool isStart = false;
+        // startRoom Generate
+        if (ableDoorPos.Count == 0)
         {
-
-            // Generate ShopRoom
-            target = getRandompos();
-            room = shopRoomGen();
-            addRoom(target.Key, target.Value, room);
-            room.GetComponent<Room>().index = roomNo + 1;
-            room.transform.parent = dungeonRoom.transform;
-            ret.Add(room);
-
-            // Generate BossRoom
-            target = getRandompos();
-            room = bossRoomGen();
-            addRoom(target.Key, target.Value, room);
-            room.GetComponent<Room>().index = roomNo + 2;
-            room.transform.parent = dungeonRoom.transform;
-            ret.Add(room);
+            Debug.Log("COUNT = 0");
+            room.GetComponent<Room>().x = 0;
+            room.GetComponent<Room>().y = 0;
+            isStart = true;
         }
         else
         {
-            // Generate BossRoom
-            target = getRandompos();
-            room = bossRoomGen();
-            addRoom(target.Key, target.Value, room);
-            room.GetComponent<Room>().index = roomNo + 1;
-            room.transform.parent = dungeonRoom.transform;
-            ret.Add(room);
+            Vector2 rpos = getRndpos(room);
+        }
+        
+        for(int i = 0; i < 4; i++)
+        {
+            PointPosition door = 0;
+            switch (i)
+            {
+                case 0:
+                    if(!isStart)
+                    {
+                        if(newPos == PointPosition.Up)
+                        {
+                            continue;
+                        }
+                    }
+                    door = PointPosition.Up;
+                    break;
+                case 1:
+                    if (!isStart)
+                    { 
+                        if(newPos == PointPosition.Down)
+                        {
+                            continue;
+                        }
+                    }
+                    door = PointPosition.Down;
+                    break;
+                case 2:
+                    if (!isStart)
+                    {
+                        if (newPos == PointPosition.Left)
+                        {
+                            continue;
+                        }
+                    }
+                    door = PointPosition.Left;
+                    break;
+                case 3:
+                    if (!isStart)
+                    {
+                        if (newPos == PointPosition.Right)
+                        {
+                            continue;
+                        }
+                    }
+                    door = PointPosition.Right;
+                    break;
+            }
+            Vector2 pos = new Vector2(room.GetComponent<Room>().doorPos[i].x + room.GetComponent<Room>().x, room.GetComponent<Room>().doorPos[i].y + room.GetComponent<Room>().y);
+            Debug.Log(pos);
+            ableDoorPos.Add(new Tuple<Vector2, GameObject, PointPosition>(pos, room, door));
+        }
+        int roomleft = room.GetComponent<Room>().doorPos[2].x;
+        int roomright = room.GetComponent<Room>().doorPos[3].x;
+        int roomup = room.GetComponent<Room>().doorPos[0].y;
+        int roomdown = room.GetComponent<Room>().doorPos[1].y;
+        for (int i = room.GetComponent<Room>().x + roomleft + 1; i < room.GetComponent<Room>().x + roomright; i++)
+        {
+            for (int j = room.GetComponent<Room>().y + roomdown + 2; j < room.GetComponent<Room>().y + roomup; j++)
+            {
+                disablePos.Add(new Vector2(i, j));
+            }
+        }
+    }
+
+    private Vector2 getRndpos(GameObject room)
+    {
+        int roomleft = room.GetComponent<Room>().doorPos[2].x;
+        int roomright = room.GetComponent<Room>().doorPos[3].x;
+        int roomup = room.GetComponent<Room>().doorPos[0].y;
+        int roomdown = room.GetComponent<Room>().doorPos[1].y;
+
+        Tuple<Vector2, GameObject, PointPosition> tpl;
+        int x, y;
+        while (true)
+        {
+            tpl = ableDoorPos[GameManager.Random.getMapNext(0, ableDoorPos.Count)];
+            x = (int)tpl.Item1.x;
+            y = (int)tpl.Item1.y;
+            switch (tpl.Item3)
+            {
+                case PointPosition.Up:
+                    x -= room.GetComponent<Room>().doorPos[1].x;
+                    y -= room.GetComponent<Room>().doorPos[1].y;
+                    break;
+                case PointPosition.Down:
+                    x -= room.GetComponent<Room>().doorPos[0].x;
+                    y -= room.GetComponent<Room>().doorPos[0].y;
+                    break;
+                case PointPosition.Left:
+                    x -= room.GetComponent<Room>().doorPos[3].x;
+                    y -= room.GetComponent<Room>().doorPos[3].y;
+                    break;
+                case PointPosition.Right:
+                    x -= room.GetComponent<Room>().doorPos[2].x;
+                    y -= room.GetComponent<Room>().doorPos[2].y;
+                    break;
+            }
+            if (!disablePos.Contains(new Vector2(x, y)) && !disablePos.Contains(new Vector2(x + roomleft, y + roomup))
+    && !disablePos.Contains(new Vector2(x + roomright, y + roomup)) && !disablePos.Contains(new Vector2(x + roomleft, y + roomdown))
+    && !disablePos.Contains(new Vector2(x + roomright, y + roomdown)))
+                break;
         }
 
+        GameObject go = GameManager.Resource.Instantiate("Dungeon/Gate", dungeonGate.transform);
+        go.transform.position = new Vector3(tpl.Item1.x, tpl.Item1.y, 2);
+
+        room.GetComponent<Room>().x = x;
+        room.GetComponent<Room>().y = y;
+
+        Vector2 ret = new Vector2(x, y);
+        ableDoorPos.Remove(tpl);
         return ret;
     }
 
@@ -101,22 +257,22 @@ public class MapGen
     // Return created room prefab
     private GameObject startRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/StartRoom");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/NewRoomsForm", dungeonRoom.transform);
         return room;
     }
     private GameObject normalRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/NormalRoom");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/NormalRoom", dungeonRoom.transform);
         return room;
     }
     private GameObject shopRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/ShopRoom");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/ShopRoom", dungeonRoom.transform);
         return room;
     }
     private GameObject bossRoomGen()
     {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/BossRoom");
+        GameObject room = GameManager.Resource.Instantiate("Dungeon/BossRoom", dungeonRoom.transform);
         return room;
     }
 
@@ -125,6 +281,8 @@ public class MapGen
     {
         roomspos.Clear();
         ablepos.Clear();
+        disablePos.Clear();
+        ableDoorPos.Clear();
     }
 
     // Filled new Room Object in Buffer and able new Position Add

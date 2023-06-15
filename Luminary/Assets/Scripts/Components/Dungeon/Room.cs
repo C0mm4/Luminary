@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 [DisallowMultipleComponent]
 public class Room : MonoBehaviour
 {
@@ -18,7 +20,17 @@ public class Room : MonoBehaviour
     public string gatedir = "0000";
 
     [SerializeField]
-    List<Transform> doorPos = new List<Transform>();
+    public List<Vector3Int> doorPos = new List<Vector3Int>();
+    
+    List<int> doors;
+
+    [SerializeField]
+    Tilemap wallTileMap;
+
+
+    [SerializeField]
+    Tile tile;
+
 
     [SerializeField]
     public SpriteRenderer bg;
@@ -34,11 +46,12 @@ public class Room : MonoBehaviour
     [SerializeField]
     public int types;
 
+
     // set position
     public void set()
     {
         gateU = gateD = gateL = gateR = -1;
-        this.gameObject.transform.position = new Vector3((float)(x * 19.2f), (y * 10.8f), 2);
+        this.gameObject.transform.position = new Vector3((float)(x), (y), 2);
         roomGrid = new int[19,33];
     }
 

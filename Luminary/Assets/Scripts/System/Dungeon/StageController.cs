@@ -70,8 +70,8 @@ public class StageController
     private void startStage()
     {
         setRoom();
-        setGate();
-        setRoomCompo();
+//        setGate();
+//        setRoomCompo();
         if (GameObject.Find("PlayerbleChara"))
         {
             GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
