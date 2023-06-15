@@ -80,6 +80,11 @@ public class FireBuff : Buff
             target.calcStatus();
         }
 
+        if (target.status.element.FireWind == true)
+        {
+            target.status.element.FireWind = false;
+        }
+
         target.status.element.Fire = false;
         base.endEffect();
     }
