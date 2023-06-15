@@ -6,6 +6,8 @@ public class WindBuff : Buff
 {
     public WindBuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
+        target.status.pIncreaseSpeed -= 0.5f;
+        target.calcStatus();
         setDurate(3f);
         
     }
@@ -15,8 +17,6 @@ public class WindBuff : Buff
         if(target != null)
         {
             target.status.element.Wind = true;
-            target.status.pIncreaseSpeed -= 0.5f;
-            target.calcStatus();
             base.durateEffect();
 
         }

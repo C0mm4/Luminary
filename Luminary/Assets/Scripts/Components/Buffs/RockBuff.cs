@@ -6,6 +6,8 @@ public class RockBuff : Buff
 {
     public RockBuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
+        target.status.pIncreaseDMG -= 0.03f;
+        target.calcStatus();
         setDurate(2f);
         
     }
@@ -15,8 +17,6 @@ public class RockBuff : Buff
         if(target != null)
         {
             target.status.element.Rock = true;
-            target.status.pIncreaseDMG -= 0.03f;
-            target.calcStatus();
             base.durateEffect();
 
         }

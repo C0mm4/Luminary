@@ -7,6 +7,8 @@ public class IceBuff : Buff
 {
     public IceBuff(Charactor tar, Charactor atk) : base(tar, atk)
     {
+        target.status.pGetDMG += 0.03f;
+        target.calcStatus();
         setDurate(3.0f);
     }
 
@@ -15,8 +17,6 @@ public class IceBuff : Buff
         if(target != null)
         {
             target.status.element.Ice = true;
-            target.status.pGetDMG += 0.03f;
-            target.calcStatus();
             base.durateEffect();
 
         }
