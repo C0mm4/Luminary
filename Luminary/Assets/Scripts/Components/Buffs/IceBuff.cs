@@ -10,6 +10,11 @@ public class IceBuff : Buff
         target.status.pGetDMG += 0.03f;
         target.calcStatus();
         setDurate(3.0f);
+
+        if (target.status.element.Wind == true)
+        {
+            target.status.element.IceWind = true;
+        }
     }
 
     public override void durateEffect()
@@ -33,6 +38,11 @@ public class IceBuff : Buff
         target.status.element.Ice = false;
         target.status.pGetDMG -= 0.03f;
         target.calcStatus();
+
+        if (target.status.element.IceWind == true)
+        {
+            target.status.element.IceWind = true;
+        }
         base.endEffect();
     }
 }
