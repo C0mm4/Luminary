@@ -10,6 +10,8 @@ public class Player : Charactor
     public SkillSlot[] skillslots;
     InteractionTrriger interactionTrriger;
 
+    public bool isInit = false;
+
     public override void Awake()
     {
         base.Awake();
@@ -24,11 +26,17 @@ public class Player : Charactor
         skillslots[1].setCommand(GameManager.Spells.spells[1003000]);
         skillslots[2].setCommand(GameManager.Spells.spells[1003001]);
 
-        status.basespeed = 5f;
-        calcStatus();
 
+        status.baseHP = PlayerDataManager.playerStatus.baseHP;
+        status.baseDMG = PlayerDataManager.playerStatus.baseDMG;
+        status.basespeed = PlayerDataManager.playerStatus.basespeed;
+
+
+        calcStatus();
+        Debug.Log(status.maxHP);
         GameManager.Instance.SceneChangeAction += DieObject;
         sMachine.changeState(new PlayerIdleState());
+        isInit = true;
     }
     private void setSkillSlots()
     {

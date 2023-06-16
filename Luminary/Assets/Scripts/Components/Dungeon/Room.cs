@@ -8,29 +8,24 @@ public class Room : MonoBehaviour
 {
     
     public int x, y;
-    public int width, height;
     [SerializeField]
     public int index;
-    public int[,] roomGrid;
     public int mobCount = 0;
 
 
-    public int gateU, gateD, gateL, gateR;
-    [SerializeField]
-    public string gatedir = "0000";
+    public bool gateU = false;
+    public bool gateD = false;
+    public bool gateL = false;
+    public bool gateR = false;
 
     [SerializeField]
     public List<Vector3Int> doorPos = new List<Vector3Int>();
-    
-    List<int> doors;
+
+    [SerializeField]
+    public List<GameObject> enemyPos = new List<GameObject>();
 
     [SerializeField]
     Tilemap wallTileMap;
-
-
-    [SerializeField]
-    Tile tile;
-
 
     [SerializeField]
     public SpriteRenderer bg;
@@ -50,59 +45,39 @@ public class Room : MonoBehaviour
     // set position
     public void set()
     {
-        gateU = gateD = gateL = gateR = -1;
         this.gameObject.transform.position = new Vector3((float)(x), (y), 2);
-        roomGrid = new int[19,33];
-    }
-
-    public void setData(int[] data)
-    {
-        for (int i = 0; i < data.Length; i++)
+        if(gateD)
         {
-            int si = i % 33;
-            int sj = i / 33;
-            this.roomGrid[sj, si] = data[i];
+            wallTileMap.SetTile(doorPos[0], null);
+        }
+        if (gateU)
+        {
+            wallTileMap.SetTile(doorPos[1], null);
+        }
+        if (gateR)
+        {
+            wallTileMap.SetTile(doorPos[2], null);
+        }
+        if (gateL)
+        {
+            wallTileMap.SetTile(doorPos[3], null);
+        }
+        foreach(GameObject t in enemyPos)
+        {
+            GameObject go = GameManager.Resource.Instantiate("Mobs/TestMob", enemies.transform);
+            Debug.Log(go);
+            go.transform.position = t.transform.position;
+            go.transform.Rotate(90f, 0f, 0f);
+            mobCount++;
+            objs.Add(go);
+            go.SetActive(false);
+        }
+        if(mobCount == 0)
+        {
+            clearRoom();
         }
     }
 
-    // Loading Objects in this Room
-    public void setObjects()
-    {
-
-        for (int i = 0; i < roomGrid.GetLength(0); i++)
-        {
-            for (int j = 0;  j < roomGrid.GetLength(1); j++)
-            {
-                if (roomGrid[i,j] != 0)
-                {
-                    GameObject go = new GameObject();
-                    switch(roomGrid[i,j])
-                    {
-                        case 1:
-                            break;
-                        case 2:
-                            GameManager.Resource.Destroy(go);
-                            go = GameManager.Resource.Instantiate("Dungeon/Rock");
-                            break;
-                        case 3:
-                            GameManager.Resource.Destroy(go);
-                            go = GameManager.Resource.Instantiate("Mobs/TestMob");
-                            objs.Add(go);
-                            go.SetActive(false);
-                            mobCount += 1;
-                            break;
-
-
-                        default:
-                            GameManager.Resource.Destroy(go);
-                            break;
-                    }
-                    go.transform.parent = this.transform;
-                    go.transform.position = new Vector3((this.transform.position.x + ((j-16) * 0.52f)) , (this.transform.position.y + (-(i-9) * 0.52f)), 2);
-                }
-            }
-        }
-    }
     public void ActiveEnemies()
     {
         Invoke("ActiveEnemiesCallback", 0.5f);
@@ -123,5 +98,18 @@ public class Room : MonoBehaviour
     public void clearRoom()
     {
         GameManager.StageC.openDoor();
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+
+            Debug.Log("ASD");
+            if(GameManager.StageC.currentRoom != index)
+            {
+                GameManager.StageC.moveRoom(index);
+            }
+        }
     }
 }

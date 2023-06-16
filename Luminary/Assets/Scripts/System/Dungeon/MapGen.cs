@@ -166,18 +166,26 @@ public class MapGen
                 case PointPosition.Up:
                     x -= room.GetComponent<Room>().doorPos[1].x;
                     y -= room.GetComponent<Room>().doorPos[1].y;
+                    room.GetComponent<Room>().gateU = true;
+                    tpl.Item2.GetComponent<Room>().gateD = true;
                     break;
                 case PointPosition.Down:
                     x -= room.GetComponent<Room>().doorPos[0].x;
                     y -= room.GetComponent<Room>().doorPos[0].y;
+                    room.GetComponent<Room>().gateD = true;
+                    tpl.Item2.GetComponent<Room>().gateU = true;
                     break;
                 case PointPosition.Left:
                     x -= room.GetComponent<Room>().doorPos[3].x;
                     y -= room.GetComponent<Room>().doorPos[3].y;
+                    room.GetComponent<Room>().gateL = true;
+                    tpl.Item2.GetComponent<Room>().gateR = true;
                     break;
                 case PointPosition.Right:
                     x -= room.GetComponent<Room>().doorPos[2].x;
                     y -= room.GetComponent<Room>().doorPos[2].y;
+                    room.GetComponent<Room>().gateR = true;
+                    tpl.Item2.GetComponent<Room>().gateL = true;
                     break;
             }
             if (!disablePos.Contains(new Vector2(x, y)) && !disablePos.Contains(new Vector2(x + roomleft, y + roomup))

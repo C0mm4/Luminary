@@ -8,7 +8,8 @@ public class Gate : MonoBehaviour
     public int room1, room2;
     public float posx, posy;
     public int index;
-
+    [SerializeField]
+    GameObject collider;
     // set position
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -39,11 +40,13 @@ public class Gate : MonoBehaviour
     public void closeGate()
     {
         GetComponent<BoxCollider2D>().isTrigger = false;
+        collider.SetActive(true);
     }
 
     public void openGate()
     {
         GetComponent<BoxCollider2D>().isTrigger = true;
+        collider.SetActive(false);
     }
 
     public PointPosition GetPointPosition(Vector2 playerP, Vector2 gateP)

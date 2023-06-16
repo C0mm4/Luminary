@@ -94,12 +94,10 @@ public class StageController
         {
             go.GetComponent<Room>().set();
         }
-        Debug.Log(roomNo);
         if (stageNo == 7)
             roomNo += 2;
         else
             roomNo += 3;
-        Debug.Log(roomNo);
 
         isClear = new bool[roomNo];
         isVIsit = new bool[roomNo];
@@ -158,6 +156,7 @@ public class StageController
                 if (gate != null)
                 {
                     gate.GetComponent<Gate>().closeGate();
+                    //gate.SetActive(true);
                 }
             }
         }
@@ -170,6 +169,7 @@ public class StageController
             if (gate != null)
             {
                 gate.GetComponent<Gate>().openGate();
+                //gate.SetActive(false);
             }
         }
     }

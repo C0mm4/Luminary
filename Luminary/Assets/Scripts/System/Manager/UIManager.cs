@@ -93,6 +93,7 @@ public class UIManager : MonoBehaviour
 
         skillSlotUI = GameManager.Resource.Instantiate("UI/SkillSlots");
         skillSlotUI.GetComponent<SkillSlotUI>().init();
+        skillSlotUI.GetComponent<HPUI>().init();
         skillSlotUI.SetActive(false);
         textUItime = -3f;
         isInit = true;
@@ -226,6 +227,7 @@ public class UIManager : MonoBehaviour
             case UIState.Loading:
                 break;
             case UIState.Lobby:
+                skillSlotUI.SetActive(false);
                 break;
             case UIState.CutScene:
                 break;
