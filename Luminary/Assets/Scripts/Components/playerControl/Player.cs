@@ -30,13 +30,14 @@ public class Player : Charactor
         status.baseHP = PlayerDataManager.playerStatus.baseHP;
         status.baseDMG = PlayerDataManager.playerStatus.baseDMG;
         status.basespeed = PlayerDataManager.playerStatus.basespeed;
-
+        status.level = PlayerDataManager.playerStatus.level;
 
         calcStatus();
         Debug.Log(status.maxHP);
         GameManager.Instance.SceneChangeAction += DieObject;
         sMachine.changeState(new PlayerIdleState());
         isInit = true;
+        Debug.Log(status.level);
     }
     private void setSkillSlots()
     {
@@ -52,7 +53,7 @@ public class Player : Charactor
         GameManager.inputManager.KeyAction -= moveKey;
         GameManager.inputManager.KeyAction -= spellKey;
         GameManager.Instance.SceneChangeAction -= DieObject;
-        
+        PlayerDataManager.playerStatus = status;
         base.DieObject();
     }
 
@@ -64,6 +65,29 @@ public class Player : Charactor
             changeState(new PlayerIdleState());
         }
         CheckCDs();
+
+        if (Input.GetKey(KeyCode.W))
+        {
+
+        }
+        if(Input.GetKey(KeyCode.S))
+        {
+
+        }
+        if(Input.GetKey(KeyCode.D))
+        {
+
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }
+        
     }
 
     public void moveKey()
@@ -88,6 +112,12 @@ public class Player : Charactor
             Debug.Log("Interection Key pressed");
             interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
             interactionTrriger.isInteraction();
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            status.level++;
+            Debug.Log(status.level);
         }
     }
 

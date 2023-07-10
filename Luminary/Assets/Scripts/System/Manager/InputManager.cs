@@ -29,16 +29,7 @@ public class InputManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if(GameManager.gameState == GameState.Pause)
-                {
-                    GameManager.gameState = GameState.InPlay;
-                }
-                else
-                {
-                    GameManager.gameState = GameState.Pause;
-                    GameManager.Instance.uiManager.ChangeState(UIState.Pause);
-                }
-                
+                GameManager.Instance.pauseGame();
             }
         }
     }

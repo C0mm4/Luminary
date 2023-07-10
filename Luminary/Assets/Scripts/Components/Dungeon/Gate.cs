@@ -40,12 +40,14 @@ public class Gate : MonoBehaviour
     public void closeGate()
     {
         GetComponent<BoxCollider2D>().isTrigger = false;
+        GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
         collider.SetActive(true);
     }
 
     public void openGate()
     {
         GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<BoxCollider2D>().size = new Vector2(0.2f, 0.2f);
         collider.SetActive(false);
     }
 

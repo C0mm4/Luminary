@@ -8,6 +8,7 @@ public class PauseMenu : Menu
     {
         GameManager.Instance.uiManager.addMenu(this);
         GameManager.inputManager.KeyAction += moveMenu;
+        menusize = 3;
     }
 
     public override void moveMenu()
@@ -16,11 +17,16 @@ public class PauseMenu : Menu
         {
             index++;
             index %= menusize;
+            Debug.Log(index);
         }
-        if(Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             index--;
-            index %= menusize;
+            if(index < 0)
+            {
+                index = menusize - 1;
+            }
+            Debug.Log(index);
         }
         if(Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
         {
@@ -28,16 +34,25 @@ public class PauseMenu : Menu
             {
                 case 0:
                     GameManager.Instance.pauseGame();
-                    GameManager.inputManager.KeyAction -= moveMenu;
                     break;
                 case 1:
                     // Menu Set
                     break;
                 case 2:
                     // Save And End
+
+                    GameManager.Instance.pauseGame();
                     break;
 
             }
         }
+    }
+
+    
+
+    public void OnDestroy()
+    {
+        GameManager.inputManager.KeyAction -= moveMenu;
+        GameManager.Instance.uiManager.endMenu();
     }
 }

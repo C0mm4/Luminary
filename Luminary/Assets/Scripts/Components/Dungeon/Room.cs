@@ -25,7 +25,7 @@ public class Room : MonoBehaviour
     public List<GameObject> enemyPos = new List<GameObject>();
 
     [SerializeField]
-    Tilemap wallTileMap;
+    public Tilemap wallTileMap;
 
     [SerializeField]
     public SpriteRenderer bg;
@@ -46,22 +46,7 @@ public class Room : MonoBehaviour
     public void set()
     {
         this.gameObject.transform.position = new Vector3((float)(x), (y), 2);
-        if(gateD)
-        {
-            wallTileMap.SetTile(doorPos[0], null);
-        }
-        if (gateU)
-        {
-            wallTileMap.SetTile(doorPos[1], null);
-        }
-        if (gateR)
-        {
-            wallTileMap.SetTile(doorPos[2], null);
-        }
-        if (gateL)
-        {
-            wallTileMap.SetTile(doorPos[3], null);
-        }
+
         foreach(GameObject t in enemyPos)
         {
             GameObject go = GameManager.Resource.Instantiate("Mobs/TestMob", enemies.transform);

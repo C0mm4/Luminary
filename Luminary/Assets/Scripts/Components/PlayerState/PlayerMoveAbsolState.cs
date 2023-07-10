@@ -48,7 +48,7 @@ public class PlayerMoveAbsolState : State
         {
             dir = new Vector3(targetPos.x - charactor.transform.position.x, targetPos.y - charactor.transform.position.y, 1);
             dir.Normalize();
-            charactor.GetComponent<Rigidbody2D>().velocity = dir * (charactor.status.speed);
+            charactor.transform.position += dir * (charactor.status.speed) * Time.deltaTime;
         }
     }
 }

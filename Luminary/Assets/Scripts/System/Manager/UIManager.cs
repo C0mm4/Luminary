@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -44,6 +46,7 @@ public class UIManager : MonoBehaviour
     {
         if(currentMenu != null)
         {
+            currentMenu.hide();
             menuStack.Push(currentMenu);
         }
         currentMenu = menu;
@@ -57,6 +60,39 @@ public class UIManager : MonoBehaviour
                 break;
             case "":
                 break;
+        }
+    }
+
+    public void endMenu()
+    {
+        currentMenu = null;
+        if (menuStack.Count > 0)
+        {
+            currentMenu = menuStack.Pop();
+            currentMenu.show();
+            switch (currentMenu.GetType().Name)
+            {
+                case "PauseMenu":
+                    ChangeState(UIState.Pause);
+                    break;
+                case "SettingMenu":
+                    ChangeState(UIState.Setting);
+                    break;
+                case "":
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("In Play State");
+            if(SceneManager.GetActiveScene().name == "LobbyScene")
+            {
+                ChangeState(UIState.Lobby);
+            }
+            else
+            {
+                ChangeState(UIState.InPlay);
+            }
         }
     }
 

@@ -94,6 +94,15 @@ public class StageController
         {
             go.GetComponent<Room>().set();
         }
+
+        foreach(GameObject go in gates)
+        {
+            int r1 = go.GetComponent<Gate>().room1;
+            int r2 = go.GetComponent<Gate>().room2;
+            rooms[r1].GetComponent<Room>().wallTileMap.SetTile(rooms[r1].GetComponent<Room>().wallTileMap.WorldToCell(go.transform.position), null);
+            rooms[r2].GetComponent<Room>().wallTileMap.SetTile(rooms[r2].GetComponent<Room>().wallTileMap.WorldToCell(go.transform.position), null);
+        }
+
         if (stageNo == 7)
             roomNo += 2;
         else

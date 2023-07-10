@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
         }
-
+        Debug.Log(Random.getGeneralNext(0, 4));
     }
 
     public void GameObjectReSet()
@@ -276,6 +276,7 @@ public class GameManager : MonoBehaviour
         {
             if (!isPaused)
             {
+                Debug.Log("Pause");
                 Time.timeScale = 0f; // Pause Game
                 isPaused = true;
                 GameObject go = Resource.Instantiate("UI/Pause", canvas.transform);
@@ -283,6 +284,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("Resume");
                 GameObject go = GameObject.Find("pause");
                 Resource.Destroy(go);
                 Time.timeScale = 1f; // Resume Game

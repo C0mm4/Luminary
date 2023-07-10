@@ -9,4 +9,12 @@ public abstract class Menu : MonoBehaviour
 
 
     public abstract void moveMenu();
+    public void hide()
+    {
+        gameObject.SetActive(false);
+    }
+    public void show()
+    {
+        gameObject.SetActive(true);
+    }
 }
