@@ -30,6 +30,7 @@ public class Charactor : MonoBehaviour
             buffs = new List<Buff>(),
             endbuffs = new List<Buff>(),
             items = new List<Item>(),
+            weapons = new List<Item>(),
             equips = new List<Item>(),
             element = new ElementData(),
         };
@@ -141,17 +142,19 @@ public class Charactor : MonoBehaviour
         GameManager.Resource.Destroy(this.gameObject);
     }
 
-    public void ItemAdd(Item item)
+    public bool ItemAdd(Item item)
     {
         if (status.items.Count < 8)
         {
             status.items.Add(item);
-            item.gameObject.layer = 6;
             GameManager.Instance.uiManager.invenFrest();
+            return true;
         }
         else
         {
             Debug.Log("Inventory is Full");
+            GameManager.Instance.uiManager.textUI("Inventory is Full");
+            return false;
         }
     }
 
@@ -169,18 +172,25 @@ public class Charactor : MonoBehaviour
         }
     }
 
-    public void ItemUnequip(Item item)
+    public void ItemUnequip(int n)
     {
         if (status.items.Count < 8)
         {
-            status.equips.Remove(item);
-            status.items.Add(item);
+            Item rm = status.equips[n];
+            status.equips.Remove(rm);
+            status.items.Add(rm);
             GameManager.Instance.uiManager.invenFrest();
         }
         else
         {
             Debug.Log("Inventory is Full");
         }
+    }
+    
+
+    public void ItemDelete(int n)
+    {
+
     }
 
     public void changeState(State state)

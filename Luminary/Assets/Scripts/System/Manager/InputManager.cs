@@ -7,15 +7,23 @@ public class InputManager : MonoBehaviour
 {
     public Action KeyAction = null;
     public Vector3 mousePos = new Vector3(), mouseWorldPos = new Vector3();
-
+    private bool hasInput = false;
 
     public void OnUpdate()
     {
-        if (Input.anyKey == false)
-            return;
+        if (Input.anyKey)
+        {
+            hasInput = true;
+            if (KeyAction != null)
+            {
+                KeyAction();
+            }
 
-        if (KeyAction != null)
-            KeyAction.Invoke();
+        }
+        else
+        {
+            hasInput = false;
+        }
     }
 
     public void Update()
@@ -32,6 +40,11 @@ public class InputManager : MonoBehaviour
                 GameManager.Instance.pauseGame();
             }
         }
+    }
+
+    public bool HasInput()
+    {
+        return hasInput;
     }
 
     public void changeInputState()
@@ -77,14 +90,12 @@ public class InputManager : MonoBehaviour
 
     public void LobbyInput()
     {
-        KeyAction += GameManager.player.GetComponent<Player>().moveKey;
         KeyAction += GameManager.Instance.uiManager.InventoryToggleInput;
+        KeyAction += GameManager.player.GetComponent<Player>().spellKey;
     }
 
     public void InGameInput()
     {
-        KeyAction += GameManager.player.GetComponent<Player>().moveKey;
-        KeyAction += GameManager.player.GetComponent<Player>().spellKey;
         KeyAction += GameManager.Instance.uiManager.InPlayInput;
     }
 

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.Animations;
 
 
 // 리소스의 Load, Instantiate, Destroy 를 관리하는 리소스 매니저. 
@@ -29,6 +31,21 @@ public class ResourceManager
             return null;
         }
 
+        return Object.Instantiate(prefab, parent);
+    }
+
+    public GameObject Instantiate(GameObject obj, Transform parent = null)
+    {
+        if(obj == null)
+        {
+            return null;
+        }
+        GameObject prefab = Instantiate(obj, parent);
+        if (prefab == null)
+        {
+            Debug.Log($"Failed to laod prefab : {obj.name}");
+            return null;
+        }
         return Object.Instantiate(prefab, parent);
     }
 

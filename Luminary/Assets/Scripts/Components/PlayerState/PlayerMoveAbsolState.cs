@@ -44,6 +44,7 @@ public class PlayerMoveAbsolState : State
         {
             charactor.GetComponent<Charactor>().endCurrentState();
         }
+
         else
         {
             dir = new Vector3(targetPos.x - charactor.transform.position.x, targetPos.y - charactor.transform.position.y, 1);

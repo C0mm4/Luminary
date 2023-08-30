@@ -19,6 +19,7 @@ public class PlayerDataManager : MonoBehaviour
     public void playerDataInit()
     {
         playerStatus.baseHP = 10;
+        playerStatus.baseMana = 100;
         playerStatus.baseDMG = 1;
         playerStatus.basespeed = 5;
         playerStatus.increaseDMG = 0;
@@ -29,6 +30,11 @@ public class PlayerDataManager : MonoBehaviour
         playerStatus.pIncreaseSpeed = 0;
         playerStatus.pGetDMG = 1;
         playerStatus.level = 1;
+        playerStatus.element = new ElementData();
+        playerStatus.items = new List<Item>(8);
+        playerStatus.equips = new List<Item>(4);
+        playerStatus.buffs = new List<Buff>();
+        playerStatus.endbuffs = new List<Buff>();
     }
 
     public void loadKeySetting()

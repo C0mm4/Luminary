@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     bool binvenUI = false, bskillUI = false, bskillSlotUI = false, binGameUI = false, bbossUI = false, bmapUI = false;
 
     [SerializeField]
-    GameObject invUI;
+    public GameObject invUI;
     public GameObject skillSlotUI;
     public GameObject menuUI;
     public GameObject pauseUI;

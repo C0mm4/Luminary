@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Item : MonoBehaviour, Command
+public class Item : Command
 {
     [SerializeField]
     public ItemData data;

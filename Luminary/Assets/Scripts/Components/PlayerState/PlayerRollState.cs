@@ -6,20 +6,19 @@ public class PlayerRollState : State
 {
     // Start is called before the first frame update
 
-    Vector3 dir = new Vector3();
+    Vector2 dir = Vector2.one;
+    Vector2 pdir = new Vector2();
     public override void EnterState(Charactor chr)
     {
         charactor = chr;
 
-        Vector3 targetPos = GameManager.inputManager.mouseWorldPos;
-        targetPos.z = 1;
 
-        dir = new Vector3(targetPos.x - chr.transform.position.x, targetPos.y - chr.transform.position.y, 1);
-        dir.Normalize();
-        charactor.GetComponent<Charactor>().status.increaseSpeed += 5;
-        charactor.GetComponent<Charactor>().calcStatus();
-
-        charactor.GetComponent<Rigidbody2D>().velocity = dir * (charactor.status.speed);
+        Debug.Log(charactor.GetComponent<Player>().playerSpeed.x);
+        dir = dir * charactor.GetComponent<Player>().playerSpeed;
+        dir = dir.normalized;
+        pdir = charactor.GetComponent<Player>().playerSpeed;
+        pdir = pdir.normalized * pdir;
+        charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().playerSpeed + dir * 5;
 
     }
     
@@ -34,9 +33,7 @@ public class PlayerRollState : State
 
     public override void ExitState()
     {
-        charactor.GetComponent<Charactor>().status.increaseSpeed -= 5;
-        charactor.GetComponent<Charactor>().calcStatus();
-        charactor.GetComponent<Rigidbody2D>().velocity = dir * (charactor.status.speed);
+        charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().playerSpeed;
         charactor = null;
         
     }

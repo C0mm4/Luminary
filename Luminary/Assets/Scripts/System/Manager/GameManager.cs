@@ -360,6 +360,8 @@ public class GameManager : MonoBehaviour
         cameraManager.setCamera(player.transform);
         PlayerDataManager.interactionDistance = 1000.0f;
         uiManager.skillSlotUI.SetActive(true);
+
+        uiManager.invUI.GetComponent<Inventory>().targetSet();
     }
 
 

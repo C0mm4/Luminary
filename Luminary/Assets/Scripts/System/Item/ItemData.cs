@@ -11,7 +11,7 @@ public class ItemData : ScriptableObject, Command
     public Sprite itemImage;
     public string itemName;
     public int itemIndex;
-
+    public int spellnum;
 
 
     // Start is called before the first frame update

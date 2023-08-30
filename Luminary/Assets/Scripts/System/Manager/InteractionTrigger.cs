@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionTrriger : MonoBehaviour
+public abstract class InteractionTrriger : MonoBehaviour
 {
     private float distanceToPlayer;
 
@@ -17,28 +17,17 @@ public class InteractionTrriger : MonoBehaviour
             {
                 PlayerDataManager.interactionObject = gameObject;
                 distanceToPlayer = PlayerDataManager.interactionDistance;
-//                Debug.Log("Now interactionObject is " + objectName);
+//                Debug.Log("Now interactionObject is " + gameObject.name);
                 // ac
             }
             else if(PlayerDataManager.interactionObject == gameObject)
             {
                 PlayerDataManager.interactionObject = null;
                 PlayerDataManager.interactionDistance = 5.5f;
-//                Debug.Log("Now interactionObject is not" + objectName);
+//                Debug.Log("Now interactionObject is not" + gameObject.name);
                 //ac
             }
         }
     }
-    public void isInteraction()
-    {
-        switch (gameObject.name)
-        {
-            case "InitPlayObject":
-                
-                GameManager.Instance.sceneControl("StageScene");
-                break;
-            default:
-                break;
-        }
-    }
+    public abstract void isInteraction();
 }

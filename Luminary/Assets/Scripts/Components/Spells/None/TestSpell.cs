@@ -11,8 +11,6 @@ public class TestSpell : SpellObj
     {
         base.Start();
         run();
-        player.GetComponent<Charactor>().status.increaseSpeed += 3;
-        player.GetComponent<Charactor>().calcStatus();
     }
 
     
@@ -24,19 +22,16 @@ public class TestSpell : SpellObj
         {
             player.GetComponent<Charactor>().changeState(new PlayerRollState());
             // After 0.3f seconds rollback Player Speed
-            Invoke("endrun", 0.3f);
+            Invoke("endrun", 0.2f);
         }
         else
         {
-            player.GetComponent<Charactor>().status.increaseSpeed -= 3;
             GameManager.Resource.Destroy(this.gameObject);
         }
     }
     
     public void endrun()
     {
-        player.GetComponent<Charactor>().status.increaseSpeed -= 3;
-        player.GetComponent<Charactor>().calcStatus();
         player.GetComponent<Charactor>().endCurrentState();
         GameManager.Resource.Destroy(this.gameObject);
     }

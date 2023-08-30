@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     private ItemSlot[] slots;
 
     [SerializeField]
-    private Equip[] equips;
+    private ItemSlot[] equips;
     
     [SerializeField]
     private Transform bag;
@@ -18,7 +18,6 @@ public class Inventory : MonoBehaviour
 
     RectTransform rt;
 
-    public GameObject itemin;
 
     [SerializeField]
     private GameObject target;
@@ -26,7 +25,7 @@ public class Inventory : MonoBehaviour
     private void OnValidate()
     {
         slots = bag.GetComponentsInChildren<ItemSlot>();
-        equips = equip.GetComponentsInChildren<Equip>();
+        equips = equip.GetComponentsInChildren<ItemSlot>();
         GetComponent<RectTransform>().localScale = Vector3.one;
     }
 
@@ -37,14 +36,14 @@ public class Inventory : MonoBehaviour
         rt.transform.SetParent(GameManager.Instance.canvas.transform);
         rt.transform.localScale = Vector3.one;
         rt.transform.localPosition = Vector3.zero;
-        itemin = new GameObject("Item In");
-        itemin.transform.parent = this.transform;
         target = GameManager.player;
         // Test
-        //GameObject go = GameManager.Resource.Instantiate("Item/Item0");
-        //go.transform.parent = itemin.transform;
-        //addItem(go);
+    }
 
+    public void targetSet()
+    {
+        target = GameManager.player;
+        Debug.Log(target);
     }
     
     private void Awake()
@@ -86,7 +85,6 @@ public class Inventory : MonoBehaviour
     public void delItem(GameObject _item)
     {
         Item itm = _item.GetComponent<Item>();
-        itm.gameObject.layer = 0;
         target.GetComponent<Charactor>().status.items.Remove(itm);
         freshSlot();
     }

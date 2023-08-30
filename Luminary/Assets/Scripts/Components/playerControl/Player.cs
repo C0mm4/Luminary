@@ -8,9 +8,13 @@ public class Player : Charactor
     // Start is called before the first frame update
 
     public SkillSlot[] skillslots;
+    public List<SkillSlot> spells;
+    public SkillSlot currentSpell;
     InteractionTrriger interactionTrriger;
 
     public bool isInit = false;
+    public bool ismove = false;
+    public Vector2 playerSpeed = new Vector2();
 
     public override void Awake()
     {
@@ -19,6 +23,7 @@ public class Player : Charactor
         GameManager.player = player.gameObject;
 
         skillslots = new SkillSlot[5];
+        spells = new List<SkillSlot>();
         setSkillSlots();
 
 
@@ -26,17 +31,14 @@ public class Player : Charactor
         skillslots[1].setCommand(GameManager.Spells.spells[1003000]);
         skillslots[2].setCommand(GameManager.Spells.spells[1003001]);
 
-
-        status.baseHP = PlayerDataManager.playerStatus.baseHP;
-        status.baseDMG = PlayerDataManager.playerStatus.baseDMG;
-        status.basespeed = PlayerDataManager.playerStatus.basespeed;
-        status.level = PlayerDataManager.playerStatus.level;
+        status = PlayerDataManager.playerStatus;
 
         calcStatus();
         Debug.Log(status.maxHP);
         GameManager.Instance.SceneChangeAction += DieObject;
         sMachine.changeState(new PlayerIdleState());
         isInit = true;
+        currentSpell = skillslots[1];
         Debug.Log(status.level);
     }
     private void setSkillSlots()
@@ -47,6 +49,7 @@ public class Player : Charactor
         skillslots[3] = new SkillSlot();
         skillslots[4] = new SkillSlot();
     }
+
 
     public override void DieObject()
     {
@@ -59,42 +62,9 @@ public class Player : Charactor
 
     public override void FixedUpdate()
     {
-        base.FixedUpdate();
-        if(getState() == null)
+        if (getState() == null)
         {
             changeState(new PlayerIdleState());
-        }
-        CheckCDs();
-
-        if (Input.GetKey(KeyCode.W))
-        {
-
-        }
-        if(Input.GetKey(KeyCode.S))
-        {
-
-        }
-        if(Input.GetKey(KeyCode.D))
-        {
-
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-
-        }
-        
-    }
-
-    public void moveKey()
-    {
-        if (Input.GetMouseButton(1))
-        {
-            sMachine.changeState(new PlayerMoveState());
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -103,17 +73,50 @@ public class Player : Charactor
             {
                 if (!skillslots[0].getSpell().isCool)
                 {
-                    StartCoroutine("roll");
+                    if(ismove)
+                        StartCoroutine("roll");
                 }
             }
         }
+
+        playerSpeed = Vector2.zero;
+        if (Input.GetKey(KeyCode.W))
+        {
+            playerSpeed.y = status.speed;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            playerSpeed.y = -status.speed;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            playerSpeed.x = -status.speed;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            playerSpeed.x = status.speed;
+        }
+
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
-            Debug.Log("Interection Key pressed");
+
             interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
             interactionTrriger.isInteraction();
         }
 
+        if (!ismove && playerSpeed != Vector2.zero)
+        {
+            ismove = true;
+            changeState(new PlayerMoveState());
+        }
+        base.FixedUpdate();
+    }
+
+    public void moveKey()
+    {
         if (Input.GetKeyDown(KeyCode.A))
         {
             status.level++;
@@ -123,53 +126,25 @@ public class Player : Charactor
 
     public void spellKey()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentSpell.useSkill();
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (skillslots[1].isSet())
+            if(currentSpell == skillslots[1])
             {
-                if (!skillslots[1].getSpell().isCool)
-                    StartCoroutine("Q");
+                Debug.Log("SpellSlot Change 2");
+                currentSpell = skillslots[2];
             }
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (skillslots[2].isSet())
+            else
             {
-                if (!skillslots[2].getSpell().isCool)
-                    StartCoroutine("W");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (skillslots[3].isSet())
-            {
-                if (!skillslots[3].getSpell().isCool)
-                    StartCoroutine("E");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (skillslots[4].isSet())
-            {
-                if (!skillslots[4].getSpell().isCool)
-                    StartCoroutine("R");
+                Debug.Log("SpellSlot Change 1");
+                currentSpell = skillslots[1];
             }
         }
     }
 
-    public void CheckCDs()
-    {
-        foreach (SkillSlot slot in skillslots)
-        {
-            if (slot.isSet())
-            {
-                if (slot.getSpell().isCool)
-                {
-                    slot.getSpell().ct = Time.time - slot.getSpell().st;
-                }
-            }
-        }
-    }
 
     public IEnumerator roll()
     {
@@ -178,7 +153,7 @@ public class Player : Charactor
         {
             if (skillslots[0].isSet())
             {
-                changeState(new PlayerCastingState(skillslots[0].getSpell(), GameManager.inputManager.mouseWorldPos));
+                changeState(new PlayerCastingState(skillslots[0].getSpell(), playerSpeed));
                 skillslots[0].getSpell().isCool = true;
                 skillslots[0].useSkill();
                 cd = skillslots[0].getCD();

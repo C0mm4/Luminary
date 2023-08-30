@@ -5,9 +5,9 @@ using UnityEngine;
 
 public struct SerializedPlayerStatus
 {
-    private int dexterity; // dex
-    private int strength;  // str
-    private int Intellect; // int
+    public int dexterity; // dex
+    public int strength;  // str
+    public int Intellect; // int
 
     public int baseDMG; // base DMG
     public int increaseDMG; // const increase DMG
@@ -20,6 +20,12 @@ public struct SerializedPlayerStatus
     public int maxHP; // (base HP + const HP increase) * HP increase Percent (Rounds)
     public int currentHP;
 
+    public int baseMana; // base Mana
+    public int increaseMaxMana; // const Mana Increase
+    public float pIncreaseMaxMana; // Mana Increase percent
+    public int maxMana; // (base Mana + const Mana increase) * Mana increase Percent (Rounds)
+    public int currentMana;
+
     public float basespeed; // base Speed
     public float increaseSpeed; // const increase Speed
     public float pIncreaseSpeed; // percent increase Speed ( 10 % + 20 % = 30 % )
@@ -30,6 +36,7 @@ public struct SerializedPlayerStatus
     public ElementData element; // element debuf status
 
     public List<Item> items;
+    public List<Item> weapons;
     public List<Item> equips;
 
     public List<Buff> buffs;

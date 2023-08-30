@@ -47,9 +47,6 @@ public class PauseMenu : Menu
             }
         }
     }
-
-    
-
     public void OnDestroy()
     {
         GameManager.inputManager.KeyAction -= moveMenu;
