@@ -10,6 +10,8 @@ public class Player : Charactor
     public SkillSlot[] skillslots;
     public List<SkillSlot> spells;
     public SkillSlot currentSpell;
+
+    [SerializeField]
     InteractionTrriger interactionTrriger;
 
     public bool isInit = false;
@@ -34,20 +36,18 @@ public class Player : Charactor
         status = PlayerDataManager.playerStatus;
 
         calcStatus();
-        Debug.Log(status.maxHP);
         GameManager.Instance.SceneChangeAction += DieObject;
         sMachine.changeState(new PlayerIdleState());
         isInit = true;
         currentSpell = skillslots[1];
-        Debug.Log(status.level);
+
+        Debug.Log(status.inventory.Count);
     }
     private void setSkillSlots()
     {
         skillslots[0] = new SkillSlot();
         skillslots[1] = new SkillSlot();
         skillslots[2] = new SkillSlot();
-        skillslots[3] = new SkillSlot();
-        skillslots[4] = new SkillSlot();
     }
 
 
@@ -102,9 +102,12 @@ public class Player : Charactor
 
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
-
-            interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
-            interactionTrriger.isInteraction();
+            if(PlayerDataManager.interactionObject != null)
+            {
+                interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
+                interactionTrriger.isInteraction();
+            }
+                
         }
 
         if (!ismove && playerSpeed != Vector2.zero)
@@ -167,83 +170,93 @@ public class Player : Charactor
         }
 
     }
-    public IEnumerator Q()
+
+    public void ItemEquip(int index, Item item)
     {
-        float cd = 0f;
-        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
+        if (currentequipSize < 4)
         {
-            if (skillslots[1].isSet())
+            for (int i = 0; i < 4; i++)
             {
-                skillslots[1].useSkill();
-                cd = skillslots[1].getCD();
+                if (status.equips[i].item == null)
+                {
+                    status.equips[i].AddItem(item);
+                    break;
+                }
             }
-
-            yield return new WaitForSeconds(cd);
-            if (skillslots[1].isSet())
-            {
-                skillslots[1].getSpell().isCool = false;
-            }
+            status.inventory[index].RemoveItem();
+            GameManager.Instance.uiManager.invenFrest();
         }
-
+        else
+        {
+            Debug.Log("Full Equiped");
+        }
     }
 
-    public IEnumerator W()
+    public void WeaponEquip(int index, Item item)
     {
-        float cd = 0f;
-        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
+        if (currentweaponSize < 2)
         {
-            if (skillslots[2].isSet())
+            for (int i = 0; i < 2; i++)
             {
-                skillslots[2].useSkill();
-                cd = skillslots[2].getCD();
+                if (status.weapons[i].item == null)
+                {
+                    status.weapons[i].AddItem(item);
+                    skillslots[i + 1].setCommand(GameManager.Spells.spells[item.data.spellnum]);
+                    break;
+                }
             }
-
-            yield return new WaitForSeconds(cd);
-            if (skillslots[2].isSet())
-            {
-                skillslots[2].getSpell().isCool = false;
-            }
+            status.inventory[index].RemoveItem();
+            GameManager.Instance.uiManager.invenFrest();
         }
-
+        else
+        {
+            Debug.Log("Full Equiped");
+        }
     }
 
-    public IEnumerator E()
+    public void ItemUnequip(int n)
     {
-        float cd = 0f;
-        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
+        if (ItemAdd(status.equips[n].item))
         {
-            if (skillslots[3].isSet())
-            {
-                skillslots[3].useSkill();
-                cd = skillslots[3].getCD();
-            }
-
-            yield return new WaitForSeconds(cd);
-            if (skillslots[3].isSet())
-            {
-                skillslots[3].getSpell().isCool = false;
-            }
+            status.equips[n].RemoveItem();
+            GameManager.Instance.uiManager.invenFrest();
         }
-
+        else
+        {
+            Debug.Log("Inventory is Full");
+        }
     }
 
-    public IEnumerator R()
+    public void WeaponUnequip(int n)
     {
-        float cd = 0f;
-        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
+        if (ItemAdd(status.weapons[n].item))
         {
-            if (skillslots[4].isSet())
-            {
-                skillslots[4].useSkill();
-                cd = skillslots[4].getCD();
-            }
-
-            yield return new WaitForSeconds(cd);
-            if (skillslots[4].isSet())
-            {
-                skillslots[4].getSpell().isCool = false;
-            }
+            status.weapons[n].RemoveItem();
+            GameManager.Instance.uiManager.invenFrest();    
         }
+    }
 
+    public void Equip(int index, Item item)
+    {
+        if(item.data.type == 0)
+        {
+            WeaponEquip(index, item);
+        }
+        else
+        {
+            ItemEquip(index, item);
+        }
+    }
+
+    public void Unequip(int index, Item item)
+    {
+        if(item.data.type == 0)
+        {
+            WeaponUnequip(index);
+        }
+        else
+        {
+            ItemUnequip(index);
+        }
     }
 }

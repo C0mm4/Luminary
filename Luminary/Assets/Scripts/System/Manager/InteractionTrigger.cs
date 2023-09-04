@@ -17,14 +17,14 @@ public abstract class InteractionTrriger : MonoBehaviour
             {
                 PlayerDataManager.interactionObject = gameObject;
                 distanceToPlayer = PlayerDataManager.interactionDistance;
-//                Debug.Log("Now interactionObject is " + gameObject.name);
+                Debug.Log("Now interactionObject is " + gameObject.name);
                 // ac
             }
             else if(PlayerDataManager.interactionObject == gameObject)
             {
                 PlayerDataManager.interactionObject = null;
                 PlayerDataManager.interactionDistance = 5.5f;
-//                Debug.Log("Now interactionObject is not" + gameObject.name);
+                Debug.Log("Now interactionObject is not" + gameObject.name);
                 //ac
             }
         }

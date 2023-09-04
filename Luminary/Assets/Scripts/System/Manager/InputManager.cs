@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public Action KeyAction = null;
     public Vector3 mousePos = new Vector3(), mouseWorldPos = new Vector3();
     private bool hasInput = false;
+    public bool isDragging = false;
 
     public void OnUpdate()
     {

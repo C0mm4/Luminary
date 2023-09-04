@@ -19,13 +19,14 @@ public class DropItem : InteractionTrriger
     public void setItemData(ItemData data)
     {
         item.data = data;
-
+        
     }
 
     public override void isInteraction()
     {
         if (GameManager.player.GetComponent<Charactor>().ItemAdd(item))
         {
+            PlayerDataManager.interactionObject = null;
             GameManager.Resource.Destroy(this.gameObject);
         }
         

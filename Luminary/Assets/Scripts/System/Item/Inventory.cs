@@ -9,7 +9,10 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private ItemSlot[] equips;
-    
+
+    [SerializeField]
+    private ItemSlot[] equipWeapons;
+
     [SerializeField]
     private Transform bag;
 
@@ -21,6 +24,10 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private GameObject target;
+
+    public GameObject tmpitem;
+
+    public int clickIndex = -1;
 
     private void OnValidate()
     {
@@ -55,37 +62,18 @@ public class Inventory : MonoBehaviour
     {
         if (target != null)
         {
-            int i = 0;
-            for (; i < slots.Length && i < target.GetComponent<Charactor>().status.items.Count; i++)
+            for (int i = 0; i < slots.Length && i < target.GetComponent<Charactor>().status.inventory.Count; i++)
             {
-                slots[i].item = target.GetComponent<Charactor>().status.items[i];
+                slots[i].item = target.GetComponent<Charactor>().status.inventory[i].item;
             }
-            for (; i < equips.Length && i < target.GetComponent<Charactor>().status.equips.Count; i++)
+            for (int i = 0; i < equips.Length && i < target.GetComponent<Charactor>().status.equips.Count; i++)
             {
-                equips[i].item = target.GetComponent<Charactor>().status.equips[i];
+                equips[i].item = target.GetComponent<Charactor>().status.equips[i].item;
             }
-            for (; i < slots.Length; i++)
+            for (int i = 0; i < equipWeapons.Length && i < target.GetComponent<Charactor>().status.weapons.Count; i++)
             {
-                slots[i].item = null;
-            }
-            for (; i < equips.Length; i++)
-            {
-                equips[i].item = null;
+                equipWeapons[i].item = target.GetComponent<Charactor>().status.weapons[i].item;
             }
         }
-    }
-
-    public void ItemGen()
-    {
-        int n = Random.Range(0, 9);
-        Debug.Log(n);
-        GameObject item = GameManager.Resource.Instantiate("Item/Item" + n);
-    }
-
-    public void delItem(GameObject _item)
-    {
-        Item itm = _item.GetComponent<Item>();
-        target.GetComponent<Charactor>().status.items.Remove(itm);
-        freshSlot();
     }
 }

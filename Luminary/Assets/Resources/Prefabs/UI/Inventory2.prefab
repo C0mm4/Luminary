@@ -71,7 +71,6 @@ MonoBehaviour:
   - {fileID: 3162815035309443580}
   bag: {fileID: 5547126292967203423}
   equip: {fileID: 8089243624878456077}
-  itemin: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &105369210379869387
 GameObject:
@@ -125,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 5779362584418436329}
-  _item: {fileID: 0}
+  index: 0
 --- !u!222 &7185128231504142720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -216,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 3197159942275509033}
-  _item: {fileID: 0}
+  index: 11
 --- !u!222 &1582840521918716731
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -408,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1954472718138998085}
-  _item: {fileID: 0}
+  index: 6
 --- !u!222 &4249455553949693622
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -499,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 3755379581532684043}
-  _item: {fileID: 0}
+  index: 2
 --- !u!222 &6773271722350398865
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -590,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 7386381014032585748}
-  _item: {fileID: 0}
+  index: 1
 --- !u!222 &4339171354220990172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -681,7 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6912667181202124502}
-  _item: {fileID: 0}
+  index: 9
 --- !u!222 &7818742129011692841
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -772,7 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1956486942321301796}
-  _item: {fileID: 0}
+  index: 1
 --- !u!222 &2819963730604836380
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -863,7 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 33016646288051052}
-  _item: {fileID: 0}
+  index: 10
 --- !u!222 &6947423020735942056
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -954,7 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 176613365259013}
-  _item: {fileID: 0}
+  index: 8
 --- !u!222 &3678089301509931751
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1045,7 +1044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2468692062856097848}
-  _item: {fileID: 0}
+  index: 2
 --- !u!222 &150310074886505229
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1136,7 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 985149455151061410}
-  _item: {fileID: 0}
+  index: 7
 --- !u!222 &5948978925017527467
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1227,7 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2396923968438578092}
-  _item: {fileID: 0}
+  index: 3
 --- !u!222 &3599764060756961818
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1318,7 +1317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 8288485393231844965}
-  _item: {fileID: 11400000, guid: 502d9a025e7ed4a4e95929abdac634c3, type: 2}
+  index: 0
 --- !u!222 &1275278988155704873
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1409,7 +1408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6722971797380722263}
-  _item: {fileID: 0}
+  index: 4
 --- !u!222 &2500969130662206503
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1500,7 +1499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6938025314725156874}
-  _item: {fileID: 0}
+  index: 5
 --- !u!222 &4383902715573883987
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1591,7 +1590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 5024184875707820253}
-  _item: {fileID: 0}
+  index: 3
 --- !u!222 &7747371931751252500
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -35,9 +35,10 @@ public struct SerializedPlayerStatus
 
     public ElementData element; // element debuf status
 
-    public List<Item> items;
-    public List<Item> weapons;
-    public List<Item> equips;
+    public List<WeaponSlotChara> weapons;
+    public List<EquipSlotChara> equips;
+
+    public List<ItemSlotChara> inventory;
 
     public List<Buff> buffs;
     public List<Buff> endbuffs;

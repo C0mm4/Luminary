@@ -22,6 +22,15 @@ public class Charactor : MonoBehaviour
     public bool isHit = false;
     public float hitTime = 0;
 
+    public int invensize = 12;
+    public int currentInvenSize = 0;
+
+    public int equipsize = 4;
+    public int currentequipSize = 0;
+
+    public int weaponsize = 2;
+    public int currentweaponSize = 0;
+
     // Start is called before the first frame update
     public virtual void Awake()
     {
@@ -29,9 +38,9 @@ public class Charactor : MonoBehaviour
         {
             buffs = new List<Buff>(),
             endbuffs = new List<Buff>(),
-            items = new List<Item>(),
-            weapons = new List<Item>(),
-            equips = new List<Item>(),
+            inventory = new List<ItemSlotChara>(),
+            weapons = new List<WeaponSlotChara>(),
+            equips = new List<EquipSlotChara>(),
             element = new ElementData(),
         };
         sMachine = new StateMachine(this);
@@ -60,6 +69,18 @@ public class Charactor : MonoBehaviour
         status.level = 1;
         calcStatus();
         status.currentHP = status.maxHP;
+        for(int i = 0; i < 8; i++)
+        {
+            status.inventory.Add(new ItemSlotChara());
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            status.equips.Add(new EquipSlotChara());
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            status.weapons.Add(new WeaponSlotChara());
+        }
     }
 
     public virtual void calcStatus()
@@ -144,9 +165,16 @@ public class Charactor : MonoBehaviour
 
     public bool ItemAdd(Item item)
     {
-        if (status.items.Count < 8)
+        if (currentInvenSize < 8)
         {
-            status.items.Add(item);
+            for(int i = 0; i < 8; i++)
+            {
+                if(status.inventory[i].item == null)
+                {
+                    status.inventory[i].AddItem(item);
+                    break;
+                }
+            }
             GameManager.Instance.uiManager.invenFrest();
             return true;
         }
@@ -157,36 +185,6 @@ public class Charactor : MonoBehaviour
             return false;
         }
     }
-
-    public void ItemEqip(Item item) 
-    {
-        if (status.equips.Count < 4)
-        {
-            status.equips.Add(item);
-            status.items.Remove(item);
-            GameManager.Instance.uiManager.invenFrest();
-        }
-        else
-        {
-            Debug.Log("Full Equiped");
-        }
-    }
-
-    public void ItemUnequip(int n)
-    {
-        if (status.items.Count < 8)
-        {
-            Item rm = status.equips[n];
-            status.equips.Remove(rm);
-            status.items.Add(rm);
-            GameManager.Instance.uiManager.invenFrest();
-        }
-        else
-        {
-            Debug.Log("Inventory is Full");
-        }
-    }
-    
 
     public void ItemDelete(int n)
     {

@@ -31,10 +31,24 @@ public class PlayerDataManager : MonoBehaviour
         playerStatus.pGetDMG = 1;
         playerStatus.level = 1;
         playerStatus.element = new ElementData();
-        playerStatus.items = new List<Item>(8);
-        playerStatus.equips = new List<Item>(4);
+        playerStatus.inventory = new List<ItemSlotChara>();
+        playerStatus.equips = new List<EquipSlotChara>();
+        playerStatus.weapons = new List<WeaponSlotChara>();
         playerStatus.buffs = new List<Buff>();
         playerStatus.endbuffs = new List<Buff>();
+
+        for(int i = 0; i < 12; i++)
+        {
+            playerStatus.inventory.Add(new ItemSlotChara());
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            playerStatus.equips.Add(new EquipSlotChara());
+        }
+        for(int i = 0; i < 2; i++)
+        {
+            playerStatus.weapons.Add(new WeaponSlotChara());
+        }
     }
 
     public void loadKeySetting()
