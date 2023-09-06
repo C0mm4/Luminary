@@ -5,17 +5,16 @@ using UnityEngine;
 public class EquipSlotChara
 {
     public Item item = null;
-    public Charactor target = null;
 
     public void AddItem(Item item)
     {
         this.item = item;
-        target.currentequipSize++;
+        GameManager.player.GetComponent<Player>().currentequipSize++;
     }
 
     public void RemoveItem()
     {
         this.item = null;
-        target.currentInvenSize--;
+        GameManager.player.GetComponent<Player>().currentequipSize--;
     }
 }

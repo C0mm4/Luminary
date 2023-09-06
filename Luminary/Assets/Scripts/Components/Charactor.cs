@@ -176,6 +176,7 @@ public class Charactor : MonoBehaviour
                 }
             }
             GameManager.Instance.uiManager.invenFrest();
+            Debug.Log(item.data.type);
             return true;
         }
         else

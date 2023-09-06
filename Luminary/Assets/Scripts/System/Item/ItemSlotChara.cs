@@ -6,7 +6,6 @@ using UnityEngine;
 public class ItemSlotChara
 {
     public Item item = null;
-    public Charactor target;
 
 
     public void AddItem(Item item)

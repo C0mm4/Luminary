@@ -14,6 +14,8 @@ public class ItemData : ScriptableObject, Command
     public int itemIndex;
     public int spellnum;
 
+    [SerializeField]
+    public Item itemfunc;
 
     // Start is called before the first frame update
     public void execute()

@@ -246,6 +246,8 @@ public class Player : Charactor
         {
             ItemEquip(index, item);
         }
+
+        GameManager.Instance.uiManager.invenFrest();
     }
 
     public void Unequip(int index, Item item)
@@ -258,5 +260,6 @@ public class Player : Charactor
         {
             ItemUnequip(index);
         }
+        GameManager.Instance.uiManager.invenFrest();
     }
 }

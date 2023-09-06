@@ -59,23 +59,40 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
         // 드래그를 끝낼 때 호출되는 함수
         if (GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().clickIndex != -1)
         {
             if (eventData.pointerEnter != null)
             {
-                Debug.Log(eventData.pointerEnter.GetComponent<ItemSlot>().index);
-                ItemSlot targetSlot = eventData.pointerEnter.GetComponent<ItemSlot>();
-
-                if (targetSlot != null && targetSlot != this)
+                Equip equip = eventData.pointerEnter.GetComponent<Equip>();
+                if(equip != null)
                 {
-                    // 두 슬롯의 아이템 교환 로직
-                    Item itm = GameManager.player.GetComponent<Player>().status.inventory[index].item;
-                    GameManager.player.GetComponent<Player>().status.inventory[index].AddItem(GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].item);
-                    GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].AddItem(itm);
+                    if(equip != null && equip != this)
+                    {
+                        GameManager.player.GetComponent<Player>().Equip(index, GameManager.player.GetComponent<Player>().status.inventory[index].item);
+
+                    }
                 }
+                else
+                {
+                    ItemSlot targetSlot = eventData.pointerEnter.GetComponent<ItemSlot>();
+
+                    if (targetSlot != null && targetSlot != this)
+                    {
+                        // 두 슬롯의 아이템 교환 로직
+                        Item itm1 = GameManager.player.GetComponent<Player>().status.inventory[index].item;
+                        Item itm2 = GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].item;
+
+                        GameManager.player.GetComponent<Player>().status.inventory[index].RemoveItem();
+                        GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].RemoveItem();
+
+                        GameManager.player.GetComponent<Player>().status.inventory[index].AddItem(itm2);
+                        GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].AddItem(itm1);
+                    }
+                }
+
             }
         }
         GameManager.Resource.Destroy(GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem);
