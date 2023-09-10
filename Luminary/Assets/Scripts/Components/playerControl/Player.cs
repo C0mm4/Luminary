@@ -73,7 +73,7 @@ public class Player : Charactor
             {
                 if (!skillslots[0].getSpell().isCool)
                 {
-                    if(ismove)
+                    if (ismove)
                         StartCoroutine("roll");
                 }
             }
@@ -102,12 +102,12 @@ public class Player : Charactor
 
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
-            if(PlayerDataManager.interactionObject != null)
+            if (PlayerDataManager.interactionObject != null)
             {
                 interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
                 interactionTrriger.isInteraction();
             }
-                
+
         }
 
         if (!ismove && playerSpeed != Vector2.zero)
@@ -135,7 +135,7 @@ public class Player : Charactor
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(currentSpell == skillslots[1])
+            if (currentSpell == skillslots[1])
             {
                 Debug.Log("SpellSlot Change 2");
                 currentSpell = skillslots[2];
@@ -152,7 +152,7 @@ public class Player : Charactor
     public IEnumerator roll()
     {
         float cd = 0f;
-        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState")) 
+        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
             if (skillslots[0].isSet())
             {
@@ -171,20 +171,42 @@ public class Player : Charactor
 
     }
 
-    public void ItemEquip(int index, Item item)
+    public void ItemEquip(int index, Item item, int targetslotindex = -1)
     {
         if (currentequipSize < 4)
         {
-            for (int i = 0; i < 4; i++)
+            if (targetslotindex == -1)
             {
-                if (status.equips[i].item == null)
+                for (int i = 0; i < 4; i++)
                 {
-                    status.equips[i].AddItem(item);
-                    break;
+                    if (status.equips[i].item == null)
+                    {
+                        status.equips[i].AddItem(item);
+                        status.inventory[index].RemoveItem();
+                        status.equips[i].item.data.func.EquipEffect();
+                        break;
+                    }
                 }
             }
-            status.inventory[index].RemoveItem();
+            else
+            {
+                if (status.equips[targetslotindex].item != null)
+                {
+                    Item tmp = status.equips[targetslotindex].item;
+                    status.equips[targetslotindex].RemoveItem();
+                    status.equips[index].AddItem(status.inventory[index].item);
+                    status.inventory[index].RemoveItem();
+                    ItemAdd(tmp);
+                }
+                else
+                {
+                    status.equips[targetslotindex].AddItem(item);
+                    status.inventory[index].RemoveItem();
+                }
+                status.equips[targetslotindex].item.data.func.EquipEffect();
+            }
             GameManager.Instance.uiManager.invenFrest();
+            
         }
         else
         {
@@ -192,7 +214,7 @@ public class Player : Charactor
         }
     }
 
-    public void WeaponEquip(int index, Item item)
+    public void WeaponEquip(int index, Item item, int targetslotindex = -1)
     {
         if (currentweaponSize < 2)
         {
@@ -218,6 +240,7 @@ public class Player : Charactor
     {
         if (ItemAdd(status.equips[n].item))
         {
+            status.equips[n].item.data.func.UnEquipEffect();
             status.equips[n].RemoveItem();
             GameManager.Instance.uiManager.invenFrest();
         }
@@ -232,27 +255,28 @@ public class Player : Charactor
         if (ItemAdd(status.weapons[n].item))
         {
             status.weapons[n].RemoveItem();
-            GameManager.Instance.uiManager.invenFrest();    
+            GameManager.Instance.uiManager.invenFrest();
         }
     }
 
-    public void Equip(int index, Item item)
+    public void Equip(int targetindex, Item item, int targetslotindex = -1)
     {
-        if(item.data.type == 0)
+        if (item.data.type == 0)
         {
-            WeaponEquip(index, item);
+            WeaponEquip(targetindex, item, targetslotindex);
         }
         else
         {
-            ItemEquip(index, item);
+            ItemEquip(targetindex, item, targetslotindex);
         }
+
 
         GameManager.Instance.uiManager.invenFrest();
     }
 
     public void Unequip(int index, Item item)
     {
-        if(item.data.type == 0)
+        if (item.data.type == 0)
         {
             WeaponUnequip(index);
         }
@@ -260,6 +284,34 @@ public class Player : Charactor
         {
             ItemUnequip(index);
         }
+        GameManager.Instance.uiManager.invenFrest();
+    }
+
+
+    public void ItemSwap(int sindex, int tindex)
+    {
+        Item tmp = status.inventory[sindex].item;
+        status.inventory[sindex].item = status.inventory[tindex].item;
+        status.inventory[tindex].item = tmp;
+
+        GameManager.Instance.uiManager.invenFrest();
+    }
+
+    public void EquipSwap(int sindex, int tindex)
+    {
+        Item tmp = status.equips[sindex].item;
+        status.equips[sindex].item = status.equips[tindex].item;
+        status.equips[tindex].item = tmp;
+
+        GameManager.Instance.uiManager.invenFrest();
+    }
+
+    public void WeaponSwap(int sindex, int tindex)
+    {
+        Item tmp = status.equips[sindex].item;
+        status.weapons[sindex].item = status.weapons[tindex].item;
+        status.weapons[tindex].item= tmp;
+
         GameManager.Instance.uiManager.invenFrest();
     }
 }

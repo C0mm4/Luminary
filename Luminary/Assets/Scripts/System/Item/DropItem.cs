@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,23 @@ public class DropItem : InteractionTrriger
     [SerializeField]
     ItemData data;
 
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
     public void Start()
     {
         item = new Item();
         setItemData(data);
+        spriteRenderer.sprite = data.itemImage;
     }
 
     public void setItemData(ItemData data)
     {
         item.data = data;
-        
+        Type T = Type.GetType(data.funcName);
+        ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
+        data.func = func;
+        Debug.Log(data.func.GetType().ToString());
     }
 
     public override void isInteraction()

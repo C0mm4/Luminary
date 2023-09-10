@@ -10,7 +10,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
     private Image image;
 
     [SerializeField]
-    private int index;
+    public int index;
 
     [SerializeField]
     private Item _item;
@@ -71,7 +71,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
                 {
                     if(equip != null && equip != this)
                     {
-                        GameManager.player.GetComponent<Player>().Equip(index, GameManager.player.GetComponent<Player>().status.inventory[index].item);
+                        GameManager.player.GetComponent<Player>().Equip(index, GameManager.player.GetComponent<Player>().status.inventory[index].item, equip.index);
 
                     }
                 }
@@ -81,15 +81,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
 
                     if (targetSlot != null && targetSlot != this)
                     {
-                        // 두 슬롯의 아이템 교환 로직
-                        Item itm1 = GameManager.player.GetComponent<Player>().status.inventory[index].item;
-                        Item itm2 = GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].item;
-
-                        GameManager.player.GetComponent<Player>().status.inventory[index].RemoveItem();
-                        GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].RemoveItem();
-
-                        GameManager.player.GetComponent<Player>().status.inventory[index].AddItem(itm2);
-                        GameManager.player.GetComponent<Player>().status.inventory[targetSlot.index].AddItem(itm1);
+                        GameManager.player.GetComponent<Player>().ItemSwap(index, targetSlot.index);
                     }
                 }
 

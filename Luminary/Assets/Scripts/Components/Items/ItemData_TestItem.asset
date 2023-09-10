@@ -16,4 +16,5 @@ MonoBehaviour:
   type: 1
   itemName: TestItem0
   itemIndex: 0
-  spellnum: 0
+  spellnum: 1003001
+  funcName: TestItem

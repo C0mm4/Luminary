@@ -15,7 +15,9 @@ public class ItemData : ScriptableObject, Command
     public int spellnum;
 
     [SerializeField]
-    public Item itemfunc;
+    public string funcName;
+
+    public ItemFunc func;
 
     // Start is called before the first frame update
     public void execute()

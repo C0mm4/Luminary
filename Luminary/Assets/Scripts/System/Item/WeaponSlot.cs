@@ -1,17 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class Equip : ItemSlot
+public class WeaponSlot : ItemSlot
 {
-
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-
+        
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -21,13 +18,13 @@ public class Equip : ItemSlot
         {
             if (eventData.pointerEnter != null)
             {
-                Equip equip = eventData.pointerEnter.GetComponent<Equip>();
+                WeaponSlot equip = eventData.pointerEnter.GetComponent<WeaponSlot>();
                 if (equip != null)
                 {
                     if (equip != null && equip != this)
                     {
                         Debug.Log(equip.index);
-                        GameManager.player.GetComponent<Player>().EquipSwap(index, equip.index);
+                        GameManager.player.GetComponent<Player>().WeaponSwap(index, equip.index);
                     }
                 }
                 else
@@ -47,5 +44,4 @@ public class Equip : ItemSlot
         GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().clickIndex = -1;
         GameManager.inputManager.isDragging = false;
     }
-
 }
