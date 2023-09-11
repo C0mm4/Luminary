@@ -14,6 +14,6 @@ public class TestItem : ItemFunc
     public override void UnEquipEffect()
     {
         base.UnEquipEffect();
-        Debug.Log("UnEquip Item");
+        Debug.Log("TestItem UnEquip");
     }
 }

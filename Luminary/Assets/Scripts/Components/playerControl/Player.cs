@@ -62,6 +62,8 @@ public class Player : Charactor
 
     public override void FixedUpdate()
     {
+        playerSpeed = Vector2.zero;
+
         if (getState() == null)
         {
             changeState(new PlayerIdleState());
@@ -79,7 +81,6 @@ public class Player : Charactor
             }
         }
 
-        playerSpeed = Vector2.zero;
         if (Input.GetKey(KeyCode.W))
         {
             playerSpeed.y = status.speed;
@@ -107,7 +108,6 @@ public class Player : Charactor
                 interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
                 interactionTrriger.isInteraction();
             }
-
         }
 
         if (!ismove && playerSpeed != Vector2.zero)
@@ -183,7 +183,6 @@ public class Player : Charactor
                     {
                         status.equips[i].AddItem(item);
                         status.inventory[index].RemoveItem();
-                        status.equips[i].item.data.func.EquipEffect();
                         break;
                     }
                 }
@@ -194,16 +193,15 @@ public class Player : Charactor
                 {
                     Item tmp = status.equips[targetslotindex].item;
                     status.equips[targetslotindex].RemoveItem();
-                    status.equips[index].AddItem(status.inventory[index].item);
+                    status.equips[targetslotindex].AddItem(status.inventory[index].item);
                     status.inventory[index].RemoveItem();
-                    ItemAdd(tmp);
+                    ItemAdd(tmp, index);
                 }
                 else
                 {
                     status.equips[targetslotindex].AddItem(item);
                     status.inventory[index].RemoveItem();
                 }
-                status.equips[targetslotindex].item.data.func.EquipEffect();
             }
             GameManager.Instance.uiManager.invenFrest();
             
@@ -218,14 +216,35 @@ public class Player : Charactor
     {
         if (currentweaponSize < 2)
         {
-            for (int i = 0; i < 2; i++)
+            if(targetslotindex == -1)
             {
-                if (status.weapons[i].item == null)
+                for (int i = 0; i < 2; i++)
                 {
-                    status.weapons[i].AddItem(item);
-                    skillslots[i + 1].setCommand(GameManager.Spells.spells[item.data.spellnum]);
-                    break;
+                    if (status.weapons[i].item == null)
+                    {
+                        status.weapons[i].AddItem(item);
+                        skillslots[i + 1].setCommand(GameManager.Spells.spells[item.data.spellnum]);
+                        break;
+                    }
                 }
+            }
+            else
+            {
+                if (status.weapons[targetslotindex].item == null)
+                {
+                    status.weapons[targetslotindex].AddItem(item);
+                    status.inventory[index].RemoveItem();
+
+                }
+                else
+                {
+                    Item tmp = status.weapons[targetslotindex].item;
+                    status.weapons[targetslotindex].RemoveItem();
+                    status.weapons[targetslotindex].AddItem(status.inventory[index].item);
+                    status.inventory[index].RemoveItem();
+                    ItemAdd(tmp, index);
+                }
+
             }
             status.inventory[index].RemoveItem();
             GameManager.Instance.uiManager.invenFrest();
@@ -236,9 +255,9 @@ public class Player : Charactor
         }
     }
 
-    public void ItemUnequip(int n)
+    public void ItemUnequip(int n, int targetslotindex)
     {
-        if (ItemAdd(status.equips[n].item))
+/*        if (ItemAdd(status.equips[n].item))
         {
             status.equips[n].item.data.func.UnEquipEffect();
             status.equips[n].RemoveItem();
@@ -247,15 +266,75 @@ public class Player : Charactor
         else
         {
             Debug.Log("Inventory is Full");
+        }*/
+
+
+        if (targetslotindex == -1)
+        {
+            if (ItemAdd(status.equips[n].item))
+            {
+                status.equips[n].RemoveItem();
+                GameManager.Instance.uiManager.invenFrest();
+            }
+            else
+            {
+                Debug.Log("Inventory is Full");
+            }
+
+        }
+        else
+        {
+            if (status.inventory[targetslotindex].item == null)
+            {
+                ItemAdd(status.equips[n].item, targetslotindex);
+                status.equips[n].RemoveItem();
+            }
+            else
+            {
+                Item tmp = status.inventory[targetslotindex].item;
+                if(tmp.data.type != 0)
+                {
+                    ItemAdd(status.equips[n].item, targetslotindex);
+                    status.equips[n].RemoveItem();
+                    status.equips[n].AddItem(tmp);
+                }
+            }
         }
     }
 
-    public void WeaponUnequip(int n)
+    public void WeaponUnequip(int n, int targetslotindex)
     {
-        if (ItemAdd(status.weapons[n].item))
+        if(targetslotindex == -1)
         {
-            status.weapons[n].RemoveItem();
-            GameManager.Instance.uiManager.invenFrest();
+            if (ItemAdd(status.weapons[n].item))
+            {
+                status.weapons[n].RemoveItem();
+                GameManager.Instance.uiManager.invenFrest();
+            }
+            else
+            {
+                Debug.Log("Inventory is Full");
+            }
+
+        }
+        else
+        {
+            if (status.inventory[targetslotindex].item == null)
+            {
+                ItemAdd(status.weapons[n].item, targetslotindex);
+                status.weapons[n].RemoveItem();
+            }
+            else
+            {
+                Item tmp = status.inventory[targetslotindex].item;
+                if(tmp.data.type == 0)
+                {
+                    ItemAdd(status.weapons[n].item, targetslotindex);
+                    status.weapons[n].RemoveItem();
+                    status.weapons[n].AddItem(tmp);
+                }
+                
+            }
         }
     }
 
@@ -274,15 +353,15 @@ public class Player : Charactor
         GameManager.Instance.uiManager.invenFrest();
     }
 
-    public void Unequip(int index, Item item)
+    public void Unequip(int index, Item item, int targetslotindex = -1)
     {
         if (item.data.type == 0)
         {
-            WeaponUnequip(index);
+            WeaponUnequip(index, targetslotindex);
         }
         else
         {
-            ItemUnequip(index);
+            ItemUnequip(index, targetslotindex);
         }
         GameManager.Instance.uiManager.invenFrest();
     }

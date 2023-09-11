@@ -69,9 +69,12 @@ MonoBehaviour:
   - {fileID: 8183251624320400367}
   - {fileID: 2122210001096146738}
   - {fileID: 3162815035309443580}
+  equipWeapons: []
   bag: {fileID: 5547126292967203423}
   equip: {fileID: 8089243624878456077}
   target: {fileID: 0}
+  tmpitem: {fileID: 0}
+  clickIndex: -1
 --- !u!1 &105369210379869387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1714,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9fce53e56f2af6244b5a33d488baccca, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1719,6 +1722,6 @@ SpriteRenderer:
   m_Size: {x: 1920, y: 1080}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

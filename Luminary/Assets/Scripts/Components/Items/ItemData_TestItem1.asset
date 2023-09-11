@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: ItemData_TestItem1
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 677440358c956ae4485f2e1f96851bf7, type: 3}
+  type: 1
   itemName: TestItem1
   itemIndex: 1
+  spellnum: 0
+  funcName: TestItem1

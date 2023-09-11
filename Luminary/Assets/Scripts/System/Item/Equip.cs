@@ -36,7 +36,7 @@ public class Equip : ItemSlot
 
                     if (targetSlot != null && targetSlot != this)
                     {
-                        GameManager.player.GetComponent<Player>().Unequip(index, item);
+                        GameManager.player.GetComponent<Player>().Unequip(index, item, targetSlot.index);
                     }
                 }
 

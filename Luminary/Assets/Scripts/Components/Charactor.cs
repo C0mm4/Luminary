@@ -163,27 +163,35 @@ public class Charactor : MonoBehaviour
         GameManager.Resource.Destroy(this.gameObject);
     }
 
-    public bool ItemAdd(Item item)
+    public bool ItemAdd(Item item, int index = -1)
     {
-        if (currentInvenSize < 8)
+        if(index == -1)
         {
-            for(int i = 0; i < 8; i++)
+            if (currentInvenSize < 8)
             {
-                if(status.inventory[i].item == null)
+                for (int i = 0; i < 8; i++)
                 {
-                    status.inventory[i].AddItem(item);
-                    break;
+                    if (status.inventory[i].item == null)
+                    {
+                        status.inventory[i].AddItem(item);
+                        break;
+                    }
                 }
+                GameManager.Instance.uiManager.invenFrest();
+                Debug.Log(item.data.type);
+                return true;
             }
-            GameManager.Instance.uiManager.invenFrest();
-            Debug.Log(item.data.type);
-            return true;
+            else
+            {
+                Debug.Log("Inventory is Full");
+                GameManager.Instance.uiManager.textUI("Inventory is Full");
+                return false;
+            }
         }
         else
         {
-            Debug.Log("Inventory is Full");
-            GameManager.Instance.uiManager.textUI("Inventory is Full");
-            return false;
+            status.inventory[index].AddItem(item);
+            return true;
         }
     }
 
