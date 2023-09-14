@@ -19,6 +19,15 @@ public class ItemData : ScriptableObject, Command
 
     public ItemFunc func;
 
+    [SerializeField]
+    public SerializeItemStatus status;
+    public SerializeItemStatus increaseStatus;
+
+    public void StatusUpgrade()
+    {
+        status += increaseStatus;
+    }
+
     // Start is called before the first frame update
     public void execute()
     {

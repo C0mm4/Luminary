@@ -17,8 +17,9 @@ public class DropItem : InteractionTrriger
     public void Start()
     {
         item = new Item();
+
+        // For Test. After, when Item Generate called it
         setItemData(data);
-        spriteRenderer.sprite = data.itemImage;
     }
 
     public void setItemData(ItemData data)
@@ -28,6 +29,8 @@ public class DropItem : InteractionTrriger
         ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
         data.func = func;
         Debug.Log(data.func.GetType().ToString());
+
+        spriteRenderer.sprite = data.itemImage;
     }
 
     public override void isInteraction()
@@ -37,6 +40,5 @@ public class DropItem : InteractionTrriger
             PlayerDataManager.interactionObject = null;
             GameManager.Resource.Destroy(this.gameObject);
         }
-        
     }
 }

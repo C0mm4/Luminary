@@ -2,22 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemFunc
+public abstract class ItemFunc
 {
+    public abstract void EquipEffect();
+    public abstract void UnEquipEffect();
 
+    public abstract void OnFrameEffect();
+    public abstract void OnHitEffect();
 
-    public virtual void EquipEffect()
-    {
-
-    }
-
-    public virtual void UnEquipEffect()
-    {
-
-    }
-
-    public virtual void OnFrameEffect()
-    {
-
-    }
+    public abstract void OnDamagedEffect();
+    
 }

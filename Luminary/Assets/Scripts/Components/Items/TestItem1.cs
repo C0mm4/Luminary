@@ -7,13 +7,26 @@ public class TestItem1 : ItemFunc
 
     public override void EquipEffect()
     {
-        base.EquipEffect();
         Debug.Log("TestItem1 Equiped");
+    }
+
+    public override void OnDamagedEffect()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnFrameEffect()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnHitEffect()
+    {
+        throw new System.NotImplementedException();
     }
 
     public override void UnEquipEffect()
     {
-        base.UnEquipEffect();
         Debug.Log("TestItem1 UnEquip");
     }
 }

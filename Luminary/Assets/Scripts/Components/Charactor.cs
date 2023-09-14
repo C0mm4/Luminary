@@ -22,14 +22,15 @@ public class Charactor : MonoBehaviour
     public bool isHit = false;
     public float hitTime = 0;
 
-    public int invensize = 12;
     public int currentInvenSize = 0;
 
-    public int equipsize = 4;
     public int currentequipSize = 0;
 
-    public int weaponsize = 2;
     public int currentweaponSize = 0;
+
+    public Event attackEffect = null;
+    public Event hitEffect = null;
+    
 
     // Start is called before the first frame update
     public virtual void Awake()
