@@ -1025,14 +1025,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5880657285583131123, guid: 4750728aa6c5b614f8913d569c30a4e8, type: 3}
-      propertyPath: fadeInTime
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5880657285583131123, guid: 4750728aa6c5b614f8913d569c30a4e8, type: 3}
-      propertyPath: fadeOutTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8555632739789745024, guid: 4750728aa6c5b614f8913d569c30a4e8, type: 3}
       propertyPath: m_RootOrder
       value: 3

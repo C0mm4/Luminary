@@ -82,7 +82,8 @@ public class GameManager : MonoBehaviour
     public Canvas canvas;
     [SerializeField]
     public UIManager uiManager;
-
+    [SerializeField]
+    public static ItemDataManager itemDataManager;
 
 
     private void Awake()
@@ -124,6 +125,12 @@ public class GameManager : MonoBehaviour
 
         Application.targetFrameRate = 30;
         SceneChangeAction += GameObjectReSet;
+
+        if(itemDataManager == null)
+        {
+            itemDataManager = gameObject.GetComponent<ItemDataManager>();
+            itemDataManager.Init();
+        }
         init();
     }
 
@@ -148,7 +155,6 @@ public class GameManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
         }
-        Debug.Log(Random.getGeneralNext(0, 4));
     }
 
     public void GameObjectReSet()
@@ -392,5 +398,13 @@ public class GameManager : MonoBehaviour
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
         StageC.closeDoor();
+    }
+
+    public void ItemDrop(int index, Transform position)
+    {
+        ItemData data = itemDataManager.getItemData(index);
+        GameObject go = Resource.Instantiate("Obj/DropItem");
+        go.GetComponent<DropItem>().setItemData(data);
+        go.transform.position = position.position;
     }
 }

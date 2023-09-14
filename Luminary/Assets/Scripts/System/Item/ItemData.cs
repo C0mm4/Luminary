@@ -20,6 +20,25 @@ public class ItemData : ScriptableObject, Command
     public ItemFunc func;
 
     [SerializeField]
+    public int baseDex;
+    public int baseInt;
+    public int baseStr;
+
+    public int baseIncDMG;
+    public int basepIncDMG;
+
+    public int baseIncHP;
+    public float basepIncHP;
+
+    public int baseIncMP;
+    public int basepIncMP;
+
+    public float baseIncSpd;
+    public float basepIncSpd;
+
+    public float basepGetDMG;
+
+    [SerializeField]
     public SerializeItemStatus status;
     public SerializeItemStatus increaseStatus;
 
