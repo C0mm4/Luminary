@@ -56,7 +56,7 @@ public class SpellObj : MonoBehaviour
         {
             for(int i = 0; i < data.hits; i++) 
             {
-                other.GetComponent<Mob>().HPDecrease(data.damage);
+                other.GetComponent<Mob>().HPDecrease(data.damage * player.GetComponent<Player>().status.finalDMG);
             }
             OnDestroy();
         }

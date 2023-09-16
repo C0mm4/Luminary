@@ -10,5 +10,4 @@ public class Test : InteractionTrriger
         GameManager.Instance.ItemDrop(0, transform);
         GameManager.Resource.Destroy(gameObject);
     }
-
 }

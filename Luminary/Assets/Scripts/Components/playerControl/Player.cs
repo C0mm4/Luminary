@@ -80,25 +80,28 @@ public class Player : Charactor
                 }
             }
         }
-
-        if (Input.GetKey(KeyCode.W))
+        if(getState().GetType().Name == "PlayerIdleState" || getState().GetType().Name == "PlayerMoveState")
         {
-            playerSpeed.y = status.speed;
-        }
+            if (Input.GetKey(KeyCode.W))
+            {
+                playerSpeed.y = status.speed;
+            }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            playerSpeed.y = -status.speed;
-        }
+            if (Input.GetKey(KeyCode.S))
+            {
+                playerSpeed.y = -status.speed;
+            }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            playerSpeed.x = -status.speed;
-        }
+            if (Input.GetKey(KeyCode.A))
+            {
+                playerSpeed.x = -status.speed;
+            }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            playerSpeed.x = status.speed;
+            if (Input.GetKey(KeyCode.D))
+            {
+                playerSpeed.x = status.speed;
+            }
+
         }
 
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
@@ -110,7 +113,7 @@ public class Player : Charactor
             }
         }
 
-        if (!ismove && playerSpeed != Vector2.zero)
+        if (playerSpeed != Vector2.zero)
         {
             ismove = true;
             changeState(new PlayerMoveState());
@@ -204,7 +207,7 @@ public class Player : Charactor
                 }
             }
             GameManager.Instance.uiManager.invenFrest();
-            
+            calcStatus();
         }
         else
         {
@@ -248,6 +251,7 @@ public class Player : Charactor
             }
             status.inventory[index].RemoveItem();
             GameManager.Instance.uiManager.invenFrest();
+            calcStatus();
         }
         else
         {
@@ -257,16 +261,6 @@ public class Player : Charactor
 
     public void ItemUnequip(int n, int targetslotindex)
     {
-/*        if (ItemAdd(status.equips[n].item))
-        {
-            status.equips[n].item.data.func.UnEquipEffect();
-            status.equips[n].RemoveItem();
-            GameManager.Instance.uiManager.invenFrest();
-        }
-        else
-        {
-            Debug.Log("Inventory is Full");
-        }*/
 
 
         if (targetslotindex == -1)
@@ -300,6 +294,7 @@ public class Player : Charactor
                 }
             }
         }
+        calcStatus();
     }
 
     public void WeaponUnequip(int n, int targetslotindex)
@@ -336,6 +331,7 @@ public class Player : Charactor
                 
             }
         }
+        calcStatus();
     }
 
     public void Equip(int targetindex, Item item, int targetslotindex = -1)

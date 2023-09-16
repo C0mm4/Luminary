@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
@@ -90,7 +91,7 @@ public class Charactor : MonoBehaviour
         status.maxHP = (int)Math.Round((status.baseHP + status.increseMaxHP) * (status.pIncreaseMaxHP+1));
 
         // damage Calculate
-        status.finalDMG = (int)Math.Round((status.baseDMG + status.increaseDMG) * (status.pIncreaseDMG+1));
+        status.finalDMG = (int)Math.Round((status.baseDMG * ((1 + (0.1 * status.Intellect))) + (0.02 * status.strength) + (0.03 * status.dexterity) + status.increaseDMG));
 
         // speed Calculate
         status.speed = (int)Math.Round((status.basespeed + status.increaseSpeed) * (status.pIncreaseSpeed+1));
@@ -140,17 +141,25 @@ public class Charactor : MonoBehaviour
 
     public void HPDecrease(int pts)
     {
-        if (!isHit)
+        if(gameObject.tag == "Player")
         {
-            Debug.Log("Hit");
-            isHit = true;
-            status.currentHP -= pts;
-
-            if (status.currentHP <= 0)
+            if (!isHit)
             {
-                DieObject();
+                Debug.Log("Hit");
+                isHit = true;
+                status.currentHP -= pts;
+
+                if (status.currentHP <= 0)
+                {
+                    DieObject();
+                }
+                    Invoke("reclusiveHitbox", 1f);
             }
-            Invoke("reclusiveHitbox", 1f);
+        }
+        else
+        {
+            double dmg = pts * (100 - status.def) / 100;
+            status.currentHP -= (int)Math.Floor(dmg);
         }
     }
 

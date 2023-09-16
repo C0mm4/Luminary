@@ -9,6 +9,9 @@ public class PlayerDataManager : MonoBehaviour
 
     public static GameObject interactionObject = null;
     public static float interactionDistance;
+    public static bool isInteractObjDetect = false;
+    public static GameObject interactUI;
+
 
     public struct SerializedKeySetting
     {

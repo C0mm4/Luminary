@@ -71,17 +71,31 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
                 {
                     if(equip != null && equip != this)
                     {
+                        if(item.data.type == 1)
                         GameManager.player.GetComponent<Player>().Equip(index, GameManager.player.GetComponent<Player>().status.inventory[index].item, equip.index);
 
                     }
                 }
                 else
                 {
-                    ItemSlot targetSlot = eventData.pointerEnter.GetComponent<ItemSlot>();
-
-                    if (targetSlot != null && targetSlot != this)
+                    WeaponSlot weaponslot = eventData.pointerEnter.GetComponent<WeaponSlot>();
+                    if(weaponslot != null)
                     {
-                        GameManager.player.GetComponent<Player>().ItemSwap(index, targetSlot.index);
+                        if(weaponslot != this)
+                        {
+                            if(item.data.type == 0)
+                            GameManager.player.GetComponent<Player>().Equip(index, GameManager.player.GetComponent<Player>().status.inventory[index].item, weaponslot.index);
+                        }
+                    }
+                    else
+                    {
+                        ItemSlot targetSlot = eventData.pointerEnter.GetComponent<ItemSlot>();
+
+                        if (targetSlot != null && targetSlot != this)
+                        {
+                            GameManager.player.GetComponent<Player>().ItemSwap(index, targetSlot.index);
+                        }
+
                     }
                 }
 
@@ -96,9 +110,14 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if(item != null)
         {
-            GameManager.player.GetComponent<Player>().Equip(index, item);
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                GameManager.player.GetComponent<Player>().Equip(index, item);
+                GameManager.Instance.uiManager.invenFrest();
+            }
+
         }
 
     }

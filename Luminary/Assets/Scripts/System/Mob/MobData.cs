@@ -6,6 +6,8 @@ using UnityEngine;
 public class MobData : ScriptableObject
 {
     [SerializeField]
+    public int index;
+
     public int baseHP; // base HP
 
     public int baseDMG; // base DMG

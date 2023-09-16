@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     [SerializeField]
     public static ItemDataManager itemDataManager;
-
+    public static MobSpawnner mobSpawnner;
 
     private void Awake()
     {
@@ -123,13 +123,19 @@ public class GameManager : MonoBehaviour
             canvas.planeDistance = 10;
         }
 
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
         SceneChangeAction += GameObjectReSet;
 
         if(itemDataManager == null)
         {
             itemDataManager = gameObject.GetComponent<ItemDataManager>();
             itemDataManager.Init();
+        }
+
+        if(mobSpawnner == null)
+        {
+            mobSpawnner = gameObject.GetComponent<MobSpawnner>();
+            mobSpawnner.init();
         }
         init();
     }

@@ -14,6 +14,8 @@ public struct SerializedPlayerStatus
     public float pIncreaseDMG; // percent increase DMG
     public int finalDMG;  // player damage by status (Excluding buffs and property damage effect increases)
 
+    public int def; // deffensive point def % damage decrease
+
     public int baseHP; // base HP
     public int increseMaxHP; // const HP increase
     public float pIncreaseMaxHP; // HP increase percent

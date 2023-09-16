@@ -38,28 +38,38 @@ public class SkillSlot
     // Use Spell in triggered
     public void useSkill()
     {
-        switch (skillCommand.data.type)
+        if(Time.time - skillCommand.st >= skillCommand.getCD())
         {
-            case 0:
-            case 1:
-            case 3:
-                Vector3 pos = GameManager.inputManager.mouseWorldPos;
-
-                GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), GameManager.inputManager.mouseWorldPos));
-                skillCommand.isCool = true;
-                skillCommand.st = Time.time;
-                break;
-            case 2:
-                GameObject tar = GetClosestObjectToMouse();
-                Debug.Log(tar);
-                if (tar != null)
+            if (GameManager.player.GetComponent<Player>().status.currentMana >= skillCommand.data.circle)
+            {
+                switch (skillCommand.data.type)
                 {
-                    Debug.Log("Target isn't null");
-                    GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), tar));
-                    skillCommand.isCool = true;
-                    skillCommand.st = Time.time;
+                    case 0:
+                    case 1:
+                    case 3:
+                        Vector3 pos = GameManager.inputManager.mouseWorldPos;
+
+                        GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), GameManager.inputManager.mouseWorldPos));
+                        skillCommand.isCool = true;
+                        skillCommand.st = Time.time;
+                        break;
+                    case 2:
+                        GameObject tar = GetClosestObjectToMouse();
+                        Debug.Log(tar);
+                        if (tar != null)
+                        {
+                            Debug.Log("Target isn't null");
+                            GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), tar));
+                            skillCommand.isCool = true;
+                            skillCommand.st = Time.time;
+                        }
+                        break;
                 }
-                break;
+            }
+            else
+            {
+                GameManager.Instance.uiManager.textUI("Not Enough Mana");
+            }
         }
 
     }

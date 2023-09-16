@@ -16,7 +16,7 @@ public abstract class InteractionTrriger : MonoBehaviour
             if(distanceToPlayer <= 5.0f && distanceToPlayer < PlayerDataManager.interactionDistance)
             {
                 PlayerDataManager.interactionObject = gameObject;
-                distanceToPlayer = PlayerDataManager.interactionDistance;
+                PlayerDataManager.interactionDistance = distanceToPlayer;
                 Debug.Log("Now interactionObject is " + gameObject.name);
                 // ac
             }
