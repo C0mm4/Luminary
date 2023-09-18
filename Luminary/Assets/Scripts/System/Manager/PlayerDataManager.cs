@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,16 +22,33 @@ public class PlayerDataManager : MonoBehaviour
 
     public void playerDataInit()
     {
-        playerStatus.baseHP = 10;
-        playerStatus.baseMana = 100;
+        playerStatus.dexterity = 0;
+        playerStatus.strength = 0;
+        playerStatus.Intellect = 0;
+
         playerStatus.baseDMG = 1;
-        playerStatus.basespeed = 5;
         playerStatus.increaseDMG = 0;
-        playerStatus.increaseSpeed = 0;
-        playerStatus.increseMaxHP = 0;
         playerStatus.pIncreaseDMG = 0;
+        
+        playerStatus.def = 0;
+
+        playerStatus.baseHP = 10;
+        playerStatus.increseMaxHP = 0;
         playerStatus.pIncreaseMaxHP = 0;
+        playerStatus.maxHP = (int)Mathf.Floor((playerStatus.baseHP + playerStatus.increseMaxHP) * playerStatus.pIncreaseMaxHP);
+        playerStatus.currentHP = playerStatus.maxHP;
+
+        playerStatus.baseMana = 10;
+        playerStatus.increaseMaxMana = 0;
+        playerStatus.pIncreaseMaxMana = 0;
+        playerStatus.maxMana = (int)Mathf.Floor((playerStatus.baseMana + playerStatus.increaseMaxMana) * playerStatus.pIncreaseMaxMana);
+        playerStatus.currentMana = playerStatus.maxMana;
+
+        playerStatus.basespeed = 5;
+        playerStatus.increaseSpeed = 0;
         playerStatus.pIncreaseSpeed = 0;
+
+
         playerStatus.pGetDMG = 1;
         playerStatus.level = 1;
         playerStatus.element = new ElementData();
@@ -52,6 +70,7 @@ public class PlayerDataManager : MonoBehaviour
         {
             playerStatus.weapons.Add(new WeaponSlotChara());
         }
+
     }
 
     public void loadKeySetting()
