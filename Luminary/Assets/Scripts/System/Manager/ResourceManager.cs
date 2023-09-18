@@ -40,13 +40,13 @@ public class ResourceManager
         {
             return null;
         }
-        GameObject prefab = Instantiate(obj, parent);
+        GameObject prefab = Object.Instantiate(obj, parent);
         if (prefab == null)
         {
             Debug.Log($"Failed to laod prefab : {obj.name}");
             return null;
         }
-        return Object.Instantiate(prefab, parent);
+        return prefab;
     }
 
     public XmlDocument LoadXML(string path)

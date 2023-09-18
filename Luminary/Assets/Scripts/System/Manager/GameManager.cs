@@ -118,6 +118,9 @@ public class GameManager : MonoBehaviour
                 canvas.gameObject.AddComponent<UIManager>();
             }
 
+            uiManager = canvas.GetComponent<UIManager>();
+
+
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             canvas.planeDistance = 10;
@@ -143,7 +146,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        MapGen.DungeonGen();
     }
 
     // Update is called once per frame
@@ -412,5 +415,15 @@ public class GameManager : MonoBehaviour
         GameObject go = Resource.Instantiate("Obj/DropItem");
         go.GetComponent<DropItem>().setItemData(data);
         go.transform.position = position.position;
+    }
+
+    public void sleep(int n)
+    {
+        StartCoroutine(Sleep(n));
+    }
+
+   IEnumerator Sleep(int n)
+    {
+        yield return new WaitForSeconds(n);
     }
 }

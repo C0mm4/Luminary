@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
 
     Stack<UIState> uistack = new Stack<UIState>();
 
-    private void Start()
+    public void Awake()
     {
         if (GameManager.Instance.uiManager != null)
         {
@@ -122,6 +122,7 @@ public class UIManager : MonoBehaviour
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             
         }
+
 
         invUI = GameManager.Resource.Instantiate("UI/Inventory2");
         invUI.GetComponent<Inventory>().init();
@@ -235,6 +236,7 @@ public class UIManager : MonoBehaviour
 
         if(invUI == null)
         {
+            
             invUI = canvas.transform.Find("Inventory2(Clone)").gameObject;
         }
         if (skillSlotUI == null)

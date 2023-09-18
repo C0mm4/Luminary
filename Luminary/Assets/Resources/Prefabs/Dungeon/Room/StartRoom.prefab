@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3242397176404864494}
   - component: {fileID: 5619882630591899974}
   m_Layer: 0
-  m_Name: Room_5X5_1
+  m_Name: StartRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,9 @@ MonoBehaviour:
   roomID: 0
   x: 0
   y: 0
+  centerX: 1
+  centerY: 1
+  Tiles: {fileID: 5364200127355672660}
   tiles:
   - {fileID: 3567423695772938980}
   - {fileID: 571082337756920656}
@@ -60,10 +63,10 @@ MonoBehaviour:
   - {fileID: 5034366964463989823}
   - {fileID: 8484886159628152529}
   doorTiles:
-  - {fileID: -3699333346990872469, guid: ee51b525e5a02fb4faf2e8794744b591, type: 3}
-  - {fileID: -3699333346990872469, guid: 92ec073ac4a773b46ab212e8ae5fe120, type: 3}
-  - {fileID: -3699333346990872469, guid: e54de78f0a87c3647a15bc069573ec8c, type: 3}
-  - {fileID: -3699333346990872469, guid: f014279ffb2b7104783cef72efeb662f, type: 3}
+  - {fileID: 308878930973576687, guid: ee51b525e5a02fb4faf2e8794744b591, type: 3}
+  - {fileID: 308878930973576687, guid: 92ec073ac4a773b46ab212e8ae5fe120, type: 3}
+  - {fileID: 308878930973576687, guid: e54de78f0a87c3647a15bc069573ec8c, type: 3}
+  - {fileID: 308878930973576687, guid: f014279ffb2b7104783cef72efeb662f, type: 3}
   leftDoor: {fileID: 1077373926948621326}
   rightDoor: {fileID: 1045184914991404886}
   upperDoor: {fileID: 571082337756920656}
@@ -203,7 +206,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

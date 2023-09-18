@@ -49,7 +49,7 @@ public class SkillSlotUI : MonoBehaviour
     {
         if (slots != null)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (slots[i].isSet())
                 {
@@ -66,7 +66,7 @@ public class SkillSlotUI : MonoBehaviour
 
     public void imgInit()
     {
-        for (int i = 0; i < 5; i++) 
+        for (int i = 0; i < 3; i++) 
         {
             img[i].color = new Color(1f, 1f, 1f, 0f);
             fillImg[i].color = new Color(0f, 0f, 0f, 0f);
@@ -79,7 +79,7 @@ public class SkillSlotUI : MonoBehaviour
     {
         if (slots != null)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (slots[i].isSet())
                 {

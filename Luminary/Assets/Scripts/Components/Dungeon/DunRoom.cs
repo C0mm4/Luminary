@@ -6,6 +6,8 @@ public class DunRoom : MonoBehaviour
 {
     public int roomID;
     public int x, y;
+    public int centerX, centerY;
+    public GameObject Tiles;
     public List<Tile> tiles = new List<Tile>();
     public List<GameObject> doorTiles = new List<GameObject>();
     public Tile leftDoor;
