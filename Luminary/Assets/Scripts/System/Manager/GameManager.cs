@@ -152,6 +152,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            MapGen.test();
+        }
         if (canvas == null)
         {
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();

@@ -7,7 +7,9 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class MapGen
@@ -44,22 +46,23 @@ public class MapGen
         DunRoom room = new DunRoom();
         StartRoomGen();
 
-        for (int i = 1; i < 10; i++)
+        for (int i = 1; i < 20; i++)
         {
             room = DungeonRoomGen();
             room.roomID = i;
 
         }
-        GameObject go = new GameObject();
-        go.name = "a";
 
-        foreach (Vector2 position in ablepos.Keys)
-        {
-            GameObject a = GameManager.Resource.Instantiate("Dungeon/Tiles/Null", go.transform);
-            a.transform.position = new Vector3(position.x * 2.56f, position.y * 2.56f, 3);
-
-        }
         GameManager.Instance.playerGen();
+    }
+
+    public void test()
+    {
+        DungeonRoomGen();
+        GameObject go = GameObject.Find("a");
+        GameManager.Resource.Destroy(go);
+
+
     }
 
     public DunRoom StartRoomGen()
@@ -98,8 +101,8 @@ public class MapGen
             int randIndex = GameManager.Random.getMapNext(0, keys.Count);
             pos = keys[randIndex];
             targetRoom = ablepos[pos];
-            po = Func.GetPointPosition(targetRoom.Key.transform.position, pos);
-
+            Vector2 targetPos = new Vector2(targetRoom.Key.x, targetRoom.Key.y);
+            po = Func.GetPointPosition(targetPos, pos);
             switch (po)
             {
                 case PointPosition.Up:
@@ -123,10 +126,23 @@ public class MapGen
         }
         while (CheckAblePos(room));
 
+        var deltarget = ablepos.Where(pair => pair.Value.Key == targetRoom.Key && pair.Value.Value == po);
+        
+
+
+        foreach(var pair in deltarget.ToList())
+        {
+            Debug.Log(pair.Key);
+            ablepos.Remove(pair.Key);
+        }
+
         room.transform.position = new Vector3(room.x * 2.56f, room.y * 2.56f, 2);
         SetTilePos(room);
         SetDoorTile(targetRoom.Key, room, pos, po);
-        SetPosData(room);
+        SetPosData(room, po);
+
+
+
         return room;
     }
 
@@ -186,6 +202,10 @@ public class MapGen
             Debug.Log(troom.roomID);
             Debug.Log(pos.x + " " + pos.y);
         }
+
+        SetCorridor(new Vector2(target.x, target.y), new Vector2(troomTile.x, troomTile.y), po);
+
+
     }
 
     public void SetTilePos(DunRoom room)
@@ -201,16 +221,16 @@ public class MapGen
         }
     }
 
-    public void SetPosData(DunRoom room)
+    public void SetPosData(DunRoom room, PointPosition dir = PointPosition.Null)
     {
-        for (int i = room.x - room.centerX - 3; i < room.x + room.sizeX - room.centerX + 3; i++)
+        for (int i = room.x - room.centerX - 4; i < room.x + room.sizeX - room.centerX + 4; i++)
         {
-            for(int j = room.y - room.centerY - 3; j <  room.y + room.sizeY - room.centerY + 3; j++)
+            for(int j = room.y - room.centerY - 4; j <  room.y + room.sizeY - room.centerY + 4; j++)
             {
                 Vector2 pos;
                 pos = new Vector2(i, j);
 
-                if ((i == room.x - room.centerX - 3 || i == room.x + room.sizeX - room.centerX + 2) || (j == room.y - room.centerY - 3 || j == room.y + room.sizeY - room.centerY + 2))
+                if ((i == room.x - room.centerX - 4 || i == room.x + room.sizeX - room.centerX + 3) || (j == room.y - room.centerY - 4 || j == room.y + room.sizeY - room.centerY + 3))
                 {
                     if (ablepos.ContainsKey(pos))
                     {
@@ -221,14 +241,46 @@ public class MapGen
                     {
                         if (disablePos.FindIndex(vector => vector == pos) == -1)
                         {
-                            PointPosition po = Func.GetPointPosition(room.transform.position, pos);
+                            PointPosition po = Func.GetPointPosition(new Vector2(room.x, room.y), pos);
                             KeyValuePair<DunRoom, PointPosition> keyValuePair = new KeyValuePair<DunRoom, PointPosition>(room, po);
+                            if(dir == PointPosition.Null)
+                            {
+                                ablepos[pos] = keyValuePair;
+                            }
+                            else
+                            {
+                                switch (dir)
+                                {
+                                    case PointPosition.Left:
+                                        if(po != PointPosition.Right)
+                                        {
 
-                            ablepos[pos] = keyValuePair;
-                        }
-                        else
-                        {
-                            disablePos.Add(pos);
+                                            ablepos[pos] = keyValuePair;
+                                        }
+                                        break;
+                                    case PointPosition.Right:
+                                        if(po != PointPosition.Left)
+                                        {
+
+                                            ablepos[pos] = keyValuePair;
+                                        }
+                                        break;
+                                    case PointPosition.Up:
+                                        if(po != PointPosition.Down)
+                                        {
+
+                                            ablepos[pos] = keyValuePair;
+                                        }
+                                        break;
+                                    case PointPosition.Down:
+                                        if(po != PointPosition.Up)
+                                        {
+
+                                            ablepos[pos] = keyValuePair;
+                                        }
+                                        break;
+                                }
+                            }
                         }
                     }
                 }
@@ -261,9 +313,250 @@ public class MapGen
         return false;
     }
 
-    public void SetCorridor(Vector2 startPos, PointPosition dir, Vector2 targetPos)
+    public void SetCorridor(Vector2 startPos, Vector2 targetPos, PointPosition dir)
     {
+        List<KeyValuePair<Vector2, int>> corridor = new List<KeyValuePair<Vector2, int>>();
+        Vector2 pos = new Vector2();
+        pos.x = startPos.x;
+        pos.y = startPos.y;
+        if(dir == PointPosition.Up || dir == PointPosition.Down)
+        {
+            int centerY = ((int)targetPos.y - (int)startPos.y)/2 + (int)startPos.y;
+            if (dir == PointPosition.Up)
+            {
+                for(pos.y = startPos.y + 1; pos.y < centerY; pos.y++)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 6);
+                    corridor.Add(tile);
+                }
+                
+                if(startPos.x > targetPos.x)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 2);
+                    corridor.Add(tile);
 
+                    for(pos.x--; pos.x > targetPos.x; pos.x--)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 1);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 5);
+                    corridor.Add(tile);
+                }
+                else if(startPos.x < targetPos.x)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 4);
+                    corridor.Add(tile);
+
+                    for (pos.x++; pos.x < targetPos.x; pos.x++)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 1);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 3);
+                    corridor.Add(tile);
+                }
+                else
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 6);
+                    corridor.Add(tile);
+                }
+                
+                for(pos.y++; pos.y < targetPos.y; pos.y++)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 6);
+                    corridor.Add(tile);
+                }
+                
+            }
+            else
+            {
+                for (pos.y = startPos.y - 1; pos.y > centerY; pos.y--)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 6);
+                    corridor.Add(tile);
+                }
+
+                if (startPos.x > targetPos.x)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 3);
+                    corridor.Add(tile);
+
+                    for (pos.x--; pos.x > targetPos.x; pos.x--)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 1);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 4);
+                    corridor.Add(tile);
+                }
+                else if (startPos.x < targetPos.x)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 5);
+                    corridor.Add(tile);
+
+                    for (pos.x++; pos.x < targetPos.x; pos.x++)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 1);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 2);
+                    corridor.Add(tile);
+                }
+                else
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 6);
+                    corridor.Add(tile);
+                }
+
+                for (pos.y--; pos.y > targetPos.y; pos.y--)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 6);
+                    corridor.Add(tile);
+                }
+            }
+        }
+        else
+        {
+            int centerX = ((int)targetPos.x - (int)startPos.x)/2 + (int)startPos.x;
+            if(dir == PointPosition.Right)
+            {
+                for (pos.x = startPos.x + 1; pos.x < centerX; pos.x++)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 1);
+                    corridor.Add(tile);
+                }
+
+                if (startPos.y > targetPos.y)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 2);
+                    corridor.Add(tile);
+
+                    for (pos.y--; pos.y > targetPos.y; pos.y--)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 6);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 5);
+                    corridor.Add(tile);
+                }
+                else if (startPos.y < targetPos.y)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 3);
+                    corridor.Add(tile);
+
+                    for (pos.y++; pos.y < targetPos.y; pos.y++)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 6);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 4);
+                    corridor.Add(tile);
+                }
+                else
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 1);
+                    corridor.Add(tile);
+                }
+
+                for (pos.x++; pos.x < targetPos.x; pos.x++)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 1);
+                    corridor.Add(tile);
+                }
+            }
+            else
+            {
+                for (pos.x = startPos.x - 1; pos.x > centerX; pos.x--)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 1);
+                    corridor.Add(tile);
+                }
+
+                if (startPos.y > targetPos.y)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 4);
+                    corridor.Add(tile);
+
+                    for (pos.y--; pos.y > targetPos.y; pos.y--)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 6);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 3);
+                    corridor.Add(tile);
+                }
+                else if (startPos.y < targetPos.y)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 5);
+                    corridor.Add(tile);
+
+                    for (pos.y++; pos.y < targetPos.y; pos.y++)
+                    {
+                        tile = new KeyValuePair<Vector2, int>(pos, 6);
+                        corridor.Add(tile);
+                    }
+
+                    tile = new KeyValuePair<Vector2, int>(pos, 2);
+                    corridor.Add(tile);
+                }
+                else
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 1);
+                    corridor.Add(tile);
+                }
+
+                for (pos.x--; pos.x > targetPos.x; pos.x--)
+                {
+                    KeyValuePair<Vector2, int> tile = new KeyValuePair<Vector2, int>(pos, 1);
+                    corridor.Add(tile);
+                }
+            }
+        }
+
+        GameObject go = new GameObject();
+        foreach (KeyValuePair<Vector2, int> tile in corridor)
+        {
+            switch (tile.Value)
+            {
+                case 1:
+                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_Column", dungeon.transform);
+                    break;
+                case 2:
+                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_LeftDown", dungeon.transform);
+                    break;
+                case 3:
+                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_LeftUp", dungeon.transform);
+                    break;
+                case 4:
+                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_RightDown", dungeon.transform);
+                    break;
+                case 5:
+                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_RightUp", dungeon.transform);
+                    break;
+                case 6:
+                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_Vertical", dungeon.transform);
+                    break;
+
+            }
+
+            go.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
+            go.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
+            go.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
+            if (ablepos.ContainsKey(pos))
+            {
+                ablepos.Remove(pos);
+            }
+            disablePos.Add(pos);
+
+        }
     }
 /*
     public Tuple<List<GameObject>, List<GameObject>> mapGen(int roomNo, int stageNo)

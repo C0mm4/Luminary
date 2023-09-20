@@ -8,7 +8,8 @@ public class Func
     {
         float horizonDist = targetP.x - baseP.x;
         float verticalDist = targetP.y - baseP.y;
-        if (Mathf.Abs(horizonDist) > Mathf.Abs(verticalDist))
+
+        if (Mathf.Abs(horizonDist) >= Mathf.Abs(verticalDist))
         {
             if (horizonDist > 0)
             {

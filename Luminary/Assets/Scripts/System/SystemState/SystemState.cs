@@ -14,5 +14,5 @@ public enum UIState
 
 public enum PointPosition
 {
-    Up, Down, Left, Right
+    Up, Down, Left, Right, Null
 }

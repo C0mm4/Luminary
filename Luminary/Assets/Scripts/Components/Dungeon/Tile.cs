@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
 
     [SerializeField]
     public DunRoom targetRoom;
+    public PointPosition position;
 
     public int tildID;
 
