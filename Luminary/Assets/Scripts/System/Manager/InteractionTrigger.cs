@@ -10,17 +10,17 @@ public abstract class InteractionTrriger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.gameState == GameState.InPlay)
+        if (GameObject.FindWithTag("Player")) 
         {
             distanceToPlayer = Vector3.Distance(transform.position, GameManager.player.transform.position);
-            if(distanceToPlayer <= 5.0f && distanceToPlayer < PlayerDataManager.interactionDistance)
+            if (distanceToPlayer <= 5.0f && distanceToPlayer < PlayerDataManager.interactionDistance)
             {
                 PlayerDataManager.interactionObject = gameObject;
                 PlayerDataManager.interactionDistance = distanceToPlayer;
                 Debug.Log("Now interactionObject is " + gameObject.name);
                 // ac
             }
-            else if(PlayerDataManager.interactionObject == gameObject)
+            else if (PlayerDataManager.interactionObject == gameObject)
             {
                 PlayerDataManager.interactionObject = null;
                 PlayerDataManager.interactionDistance = 5.5f;

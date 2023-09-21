@@ -40,7 +40,7 @@ public class WeaponSlot : ItemSlot
             }
         }
         GameManager.Resource.Destroy(GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem);
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
         GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().clickIndex = -1;
         GameManager.inputManager.isDragging = false;
     }

@@ -82,7 +82,7 @@ public class Room : MonoBehaviour
 
     public void clearRoom()
     {
-        GameManager.StageC.openDoor();
+        GameManager.StageC.ClearRoom();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

@@ -102,7 +102,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
             }
         }
         GameManager.Resource.Destroy(GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem);
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
         GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().clickIndex = -1;
         GameManager.inputManager.isDragging = false;
     }
@@ -115,7 +115,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
             if (eventData.button == PointerEventData.InputButton.Right)
             {
                 GameManager.player.GetComponent<Player>().Equip(index, item);
-                GameManager.Instance.uiManager.invenFrest();
+                GameManager.Instance.uiManager.invenFresh();
             }
 
         }

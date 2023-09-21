@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
@@ -16,44 +17,118 @@ public class MapGen
 {
     private int[] xpos;
     private int[] ypos;
-    private List<KeyValuePair<int, int>> roomspos;
-    private Dictionary<Vector2, KeyValuePair<DunRoom, PointPosition>> ablepos;
+
     GameObject dungeon;
-    GameObject dungeonRoom;
-    GameObject dungeonGate;
+    GameObject roomObj;
+    GameObject corridorObj;
+    public GameObject bg;
+    public GameObject Doors;
 
     private List<Vector2> disablePos = new List<Vector2>();
-    private List<Tuple<Vector2, GameObject, PointPosition>> ableDoorPos = new List<Tuple<Vector2, GameObject, PointPosition>>();
+    private Dictionary<Vector2, KeyValuePair<DunRoom, PointPosition>> ablepos;
 
-    private List<KeyValuePair<Vector2, int>> positionData = new List<KeyValuePair<Vector2, int>>();
+    public List<DunRoom> Rooms = new List<DunRoom>(); 
+
 
     public void init()
     {
-        roomspos = new List<KeyValuePair<int, int>>();
+
+
+        dungeon = new GameObject();
+
+        
         ablepos = new Dictionary<Vector2, KeyValuePair<DunRoom, PointPosition>>();
         disablePos = new List<Vector2>();
+
+        Rooms = new List<DunRoom>();
+
+        if (GameObject.Find("dungeon"))
+        {
+            GameObject go = GameObject.Find("dungeon");
+            GameManager.Resource.Destroy(go);
+        }
+        dungeon = new GameObject();
+        dungeon.name = "dungeon";
+
+        if (GameObject.Find("room"))
+        {
+            GameObject go = GameObject.Find("room");
+            GameManager.Resource.Destroy(go);
+        }
+
+        roomObj = new GameObject();
+        roomObj.name = "room";
+        roomObj.transform.SetParent(dungeon.transform);
+
+        if (GameObject.Find("corridor"))
+        {
+            GameObject go = GameObject.Find("corridor");
+            GameManager.Resource.Destroy(go);
+        }
+
+        corridorObj = new GameObject();
+        corridorObj.name = "corridor";
+        corridorObj.transform.SetParent(dungeon.transform);
+
+        Doors = new GameObject();
+        Doors.name = "doors";
+        Doors.transform.SetParent(dungeon.transform);
+
         //                  U, R, L, D
         xpos = new int[4] { 0, 1, -1, 0 };      
         ypos = new int[4] { 1, 0, 0, -1 };
     }
 
-    public void DungeonGen()
+    public List<DunRoom> DungeonGen(int roomN)
     {
-        positionData.Clear();
+        init();
 
-        dungeon = new GameObject();
 
         DunRoom room = new DunRoom();
-        StartRoomGen();
+        Rooms.Add(StartRoomGen());
 
-        for (int i = 1; i < 20; i++)
+        for (int i = 1; i < roomN; i++)
         {
             room = DungeonRoomGen();
             room.roomID = i;
-
+            Rooms.Add(room);
         }
 
+        bg = new GameObject();
+        bg.AddComponent<SpriteRenderer>();
+        bg.GetComponent<SpriteRenderer>().sprite = GameManager.Resource.LoadSprite("System/Square");
+        bg.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+        bg.name = "bg";
+        bg.transform.SetParent(dungeon.transform);
+
+        int minx = 10, miny = 10, maxX = 0, maxY = 0;
+
+        foreach(DunRoom rm in Rooms)
+        {
+            if(minx >= rm.x)
+            {
+                minx = rm.x;
+            }
+            if(miny >= rm.y)
+            {
+                miny = rm.y;
+            }
+            if(maxX <= rm.x)
+            {
+                maxX = rm.x;
+            }
+            if(maxY <= rm.y)
+            {
+                maxY = rm.y;
+            }
+        }
+
+        bg.transform.position = new Vector3((minx + maxX) / 2, (miny + maxY) / 2, 5);
+        bg.transform.localScale = new Vector3(((maxX - minx) + 30)* 2.56f, ((maxY - miny) + 30) * 2.56f, 1);
+
         GameManager.Instance.playerGen();
+
+        return Rooms;
     }
 
     public void test()
@@ -67,7 +142,8 @@ public class MapGen
 
     public DunRoom StartRoomGen()
     {
-        DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/StartRoom", dungeon.transform).GetComponent<DunRoom>();
+        DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/StartRoom", roomObj.transform).GetComponent<DunRoom>();
+        room.gameObject.transform.SetParent(room.transform);
         room.transform.position = new Vector3(0, 0, 2);
         room.roomID = 0;
         room.x = 0;
@@ -90,7 +166,8 @@ public class MapGen
     */
     public DunRoom DungeonRoomGen()
     {
-        DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/StartRoom", dungeon.transform).GetComponent<DunRoom>();
+        DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/StartRoom", roomObj.transform).GetComponent<DunRoom>();
+        room.gameObject.transform.SetParent(room.transform);
         Vector2 pos = new Vector2();
 
         List<Vector2> keys = ablepos.Keys.ToList();
@@ -132,7 +209,6 @@ public class MapGen
 
         foreach(var pair in deltarget.ToList())
         {
-            Debug.Log(pair.Key);
             ablepos.Remove(pair.Key);
         }
 
@@ -184,6 +260,7 @@ public class MapGen
         int index = sroom.tiles.FindIndex(tile => tile == target);
 
         sroom.tiles[index] = go.GetComponent<Tile>();
+        sroom.Doors.Add(go);
 
         GameManager.Resource.Destroy(target.gameObject);
         type = 10 - type;
@@ -195,6 +272,7 @@ public class MapGen
             go.transform.position = troomTile.transform.position;
             go.GetComponent<Tile>().x = (int)pos.x;
             go.GetComponent<Tile>().y = (int)pos.y;
+            troom.Doors.Add(go);
             GameManager.Resource.Destroy(troomTile.gameObject);
         }
         else
@@ -522,34 +600,59 @@ public class MapGen
         }
 
         GameObject go = new GameObject();
+        go.name = "corridor";
+        go.transform.SetParent(corridorObj.transform);
+        GameObject obj;
         foreach (KeyValuePair<Vector2, int> tile in corridor)
         {
             switch (tile.Value)
             {
                 case 1:
-                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_Column", dungeon.transform);
+                    obj = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_Column", dungeon.transform);
+                    obj.transform.SetParent(go.transform);
+                    obj.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
+                    obj.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
+                    obj.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
                     break;
                 case 2:
-                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_LeftDown", dungeon.transform);
+                    obj = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_LeftDown", dungeon.transform);
+                    obj.transform.SetParent(go.transform);
+                    obj.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
+                    obj.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
+                    obj.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
                     break;
                 case 3:
-                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_LeftUp", dungeon.transform);
+                    obj = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_LeftUp", dungeon.transform);
+                    obj.transform.SetParent(go.transform);
+                    obj.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
+                    obj.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
+                    obj.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
                     break;
                 case 4:
-                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_RightDown", dungeon.transform);
+                    obj = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_RightDown", dungeon.transform);
+                    obj.transform.SetParent(go.transform);
+                    obj.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
+                    obj.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
+                    obj.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
                     break;
                 case 5:
-                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_RightUp", dungeon.transform);
+                    obj = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_RightUp", dungeon.transform);
+                    obj.transform.SetParent(go.transform);
+                    obj.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
+                    obj.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
+                    obj.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
                     break;
                 case 6:
-                    go = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_Vertical", dungeon.transform);
+                    obj = GameManager.Resource.Instantiate("Dungeon/Corridor/Corridor_Vertical", dungeon.transform);
+                    obj.transform.SetParent(go.transform);
+                    obj.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
+                    obj.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
+                    obj.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
                     break;
 
             }
 
-            go.transform.position = new Vector3(tile.Key.x * 2.56f, tile.Key.y * 2.56f, 2);
-            go.GetComponent<Tile>().x = (int)Math.Round(tile.Key.x);
-            go.GetComponent<Tile>().y = (int)Math.Round(tile.Key.y);
+
             if (ablepos.ContainsKey(pos))
             {
                 ablepos.Remove(pos);
@@ -558,221 +661,12 @@ public class MapGen
 
         }
     }
-/*
-    public Tuple<List<GameObject>, List<GameObject>> mapGen(int roomNo, int stageNo)
-    {
-        List<GameObject> ret1 = new List<GameObject>();
-        List<GameObject> ret2 = new List<GameObject>();
-        KeyValuePair<int, int> target;
-        GameObject room = null;
-        GameObject tmp = GameObject.Find("Dungeon");
-        if (tmp != null)
-        {
-            GameManager.Resource.Destroy(tmp);
-        }
 
-        setParents();
-
-        room = startRoomGen();
-        room.GetComponent<Room>().index = 0;
-        addroom(room);
-        ret1.Add(room);
-
-        for(int i = 1; i <= roomNo; i++)
-        {
-            room = normalRoomGen();
-            room.GetComponent<Room>().index = i;
-            addroom(room);
-            ret1.Add(room);
-        }
-        Gate[] gts = dungeonGate.gameObject.GetComponentsInChildren<Gate>();
-        for(int i = 0; i < gts.Length; i++)
-        {
-            ret2.Add(gts[i].gameObject);
-        }
-
-        return new Tuple<List<GameObject>, List<GameObject>>(ret1, ret2);
-
-    }
-
-    private void addroom(GameObject room)
-    {
-        PointPosition newPos = new PointPosition();
-        bool isStart = false;
-        // startRoom Generate
-        if (ableDoorPos.Count == 0)
-        {
-            room.GetComponent<Room>().x = 0;
-            room.GetComponent<Room>().y = 0;
-            isStart = true;
-        }
-        else
-        {
-            Vector2 rpos = getRndpos(room);
-        }
-        
-        for(int i = 0; i < 4; i++)
-        {
-            PointPosition door = 0;
-            switch (i)
-            {
-                case 0:
-                    if(!isStart)
-                    {
-                        if(newPos == PointPosition.Up)
-                        {
-                            continue;
-                        }
-                    }
-                    door = PointPosition.Up;
-                    break;
-                case 1:
-                    if (!isStart)
-                    { 
-                        if(newPos == PointPosition.Down)
-                        {
-                            continue;
-                        }
-                    }
-                    door = PointPosition.Down;
-                    break;
-                case 2:
-                    if (!isStart)
-                    {
-                        if (newPos == PointPosition.Left)
-                        {
-                            continue;
-                        }
-                    }
-                    door = PointPosition.Left;
-                    break;
-                case 3:
-                    if (!isStart)
-                    {
-                        if (newPos == PointPosition.Right)
-                        {
-                            continue;
-                        }
-                    }
-                    door = PointPosition.Right;
-                    break;
-            }
-            Vector2 pos = new Vector2(room.GetComponent<Room>().doorPos[i].x + room.GetComponent<Room>().x, room.GetComponent<Room>().doorPos[i].y + room.GetComponent<Room>().y);
-            ableDoorPos.Add(new Tuple<Vector2, GameObject, PointPosition>(pos, room, door));
-        }
-        int roomleft = room.GetComponent<Room>().doorPos[2].x;
-        int roomright = room.GetComponent<Room>().doorPos[3].x;
-        int roomup = room.GetComponent<Room>().doorPos[0].y;
-        int roomdown = room.GetComponent<Room>().doorPos[1].y;
-        for (int i = room.GetComponent<Room>().x + roomleft + 1; i < room.GetComponent<Room>().x + roomright; i++)
-        {
-            for (int j = room.GetComponent<Room>().y + roomdown + 2; j < room.GetComponent<Room>().y + roomup; j++)
-            {
-                disablePos.Add(new Vector2(i, j));
-            }
-        }
-    }
-
-    private Vector2 getRndpos(GameObject room)
-    {
-        int roomleft = room.GetComponent<Room>().doorPos[2].x;
-        int roomright = room.GetComponent<Room>().doorPos[3].x;
-        int roomup = room.GetComponent<Room>().doorPos[0].y;
-        int roomdown = room.GetComponent<Room>().doorPos[1].y;
-
-        Tuple<Vector2, GameObject, PointPosition> tpl;
-        int x, y;
-        while (true)
-        {
-            tpl = ableDoorPos[GameManager.Random.getMapNext(0, ableDoorPos.Count)];
-            x = (int)tpl.Item1.x;
-            y = (int)tpl.Item1.y;
-            switch (tpl.Item3)
-            {
-                case PointPosition.Up:
-                    x -= room.GetComponent<Room>().doorPos[1].x;
-                    y -= room.GetComponent<Room>().doorPos[1].y;
-                    room.GetComponent<Room>().gateU = true;
-                    tpl.Item2.GetComponent<Room>().gateD = true;
-                    break;
-                case PointPosition.Down:
-                    x -= room.GetComponent<Room>().doorPos[0].x;
-                    y -= room.GetComponent<Room>().doorPos[0].y;
-                    room.GetComponent<Room>().gateD = true;
-                    tpl.Item2.GetComponent<Room>().gateU = true;
-                    break;
-                case PointPosition.Left:
-                    x -= room.GetComponent<Room>().doorPos[3].x;
-                    y -= room.GetComponent<Room>().doorPos[3].y;
-                    room.GetComponent<Room>().gateL = true;
-                    tpl.Item2.GetComponent<Room>().gateR = true;
-                    break;
-                case PointPosition.Right:
-                    x -= room.GetComponent<Room>().doorPos[2].x;
-                    y -= room.GetComponent<Room>().doorPos[2].y;
-                    room.GetComponent<Room>().gateR = true;
-                    tpl.Item2.GetComponent<Room>().gateL = true;
-                    break;
-            }
-            if (!disablePos.Contains(new Vector2(x, y)) && !disablePos.Contains(new Vector2(x + roomleft, y + roomup))
-    && !disablePos.Contains(new Vector2(x + roomright, y + roomup)) && !disablePos.Contains(new Vector2(x + roomleft, y + roomdown))
-    && !disablePos.Contains(new Vector2(x + roomright, y + roomdown)))
-                break;
-        }
-
-        GameObject go = GameManager.Resource.Instantiate("Dungeon/Gate", dungeonGate.transform);
-        go.transform.position = new Vector3(tpl.Item1.x + 0.5f, tpl.Item1.y + 0.5f, 2);
-        go.GetComponent<Gate>().room1 = tpl.Item2.GetComponent<Room>().index;
-        go.GetComponent<Gate>().room2 = room.GetComponent<Room>().index;
-
-        room.GetComponent<Room>().x = x;
-        room.GetComponent<Room>().y = y;
-
-        Vector2 ret = new Vector2(x, y);
-        ableDoorPos.Remove(tpl);
-        return ret;
-    }
-
-    private void setParents()
-    {
-        dungeon = new GameObject("Dungeon");
-        dungeonRoom = new GameObject("rooms");
-        dungeonGate = new GameObject("gates");
-        dungeonRoom.transform.parent = dungeon.transform;
-        dungeonGate.transform.parent = dungeon.transform;
-    }
-
-    // Return created room prefab
-    private GameObject startRoomGen()
-    {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room0", dungeonRoom.transform);
-        return room;
-    }
-    private GameObject normalRoomGen()
-    {
-        int rnd = GameManager.Random.getMapNext(0, 4);
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/Room"+rnd, dungeonRoom.transform);
-        return room;
-    }
-    private GameObject shopRoomGen()
-    {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/ShopRoom", dungeonRoom.transform);
-        return room;
-    }
-    private GameObject bossRoomGen()
-    {
-        GameObject room = GameManager.Resource.Instantiate("Dungeon/BossRoom", dungeonRoom.transform);
-        return room;
-    }
-
-*/
     // When New Dungeon Create or Next Dungeon Create buffer Clear
     public void clear()
     {
-        roomspos.Clear();
         ablepos.Clear();
         disablePos.Clear();
-        ableDoorPos.Clear();
     }
 
 }

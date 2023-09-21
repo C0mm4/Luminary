@@ -34,13 +34,6 @@ public class UIManager : MonoBehaviour
 
     Stack<UIState> uistack = new Stack<UIState>();
 
-    public void Awake()
-    {
-        if (GameManager.Instance.uiManager != null)
-        {
-            init();
-        }
-    }
 
     public void addMenu(Menu menu)
     {
@@ -149,7 +142,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void invenFrest()
+    public void invenFresh()
     {
         invUI.GetComponent<Inventory>().freshSlot();
     }
@@ -180,10 +173,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void MenuInput()
-    {
-
-    }
 
     public void InventoryToggleInput()
     {
@@ -203,15 +192,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void InventoryInInput()
-    {
-
-    }
-
-    public void PauseInput()
-    {
-
-    }
 
 
     // Update is called once per frame

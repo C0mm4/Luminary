@@ -11,7 +11,7 @@ public class WeaponSlotChara
         this.item = item;
         item.data.func.EquipEffect();
         GameManager.player.GetComponent<Player>().currentweaponSize++;
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
     }
 
     public void RemoveItem()

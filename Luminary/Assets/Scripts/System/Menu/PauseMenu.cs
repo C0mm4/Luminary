@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class PauseMenu : Menu
 {
-    public void Start()
-    {
-        GameManager.Instance.uiManager.addMenu(this);
-        GameManager.inputManager.KeyAction += moveMenu;
-        menusize = 3;
-    }
-
-    public override void moveMenu()
+    int menuSize = 3;
+    public override void InputAction()
     {
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -46,10 +40,5 @@ public class PauseMenu : Menu
 
             }
         }
-    }
-    public void OnDestroy()
-    {
-        GameManager.inputManager.KeyAction -= moveMenu;
-        GameManager.Instance.uiManager.endMenu();
     }
 }

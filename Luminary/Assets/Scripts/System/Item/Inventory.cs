@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : Menu
 {
     [SerializeField]
     private ItemSlot[] slots;
@@ -75,5 +75,10 @@ public class Inventory : MonoBehaviour
                 equipWeapons[i].item = target.GetComponent<Charactor>().status.weapons[i].item;
             }
         }
+    }
+
+    public override void InputAction()
+    {
+        throw new System.NotImplementedException();
     }
 }

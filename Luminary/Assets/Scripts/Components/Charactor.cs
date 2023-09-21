@@ -187,7 +187,7 @@ public class Charactor : MonoBehaviour
                         break;
                     }
                 }
-                GameManager.Instance.uiManager.invenFrest();
+                GameManager.Instance.uiManager.invenFresh();
                 Debug.Log(item.data.type);
                 return true;
             }

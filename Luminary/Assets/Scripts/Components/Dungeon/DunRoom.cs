@@ -9,11 +9,10 @@ public class DunRoom : MonoBehaviour
     public int centerX, centerY;
     public GameObject Tiles;
     public List<Tile> tiles = new List<Tile>();
+
     public List<GameObject> doorTiles = new List<GameObject>();
-    public Tile leftDoor;
-    public Tile rightDoor;
-    public Tile upperDoor;
-    public Tile downDoor;
+    public List<GameObject> Doors = new List<GameObject>();
+    public List<GameObject> DoorObjs = new List<GameObject>();
 
     public int sizeX, sizeY;
 
@@ -22,56 +21,73 @@ public class DunRoom : MonoBehaviour
     public bool isClear = false;
     public bool isActivate = false;
 
+    public int mobCount = 0;
+
     public List<Transform> spawnTrans = new List<Transform>();
 
-    // Start is called before the first frame update
-    void Start()
+    public void ActivateRoom()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void changeDoor(int x, int y)
-    {
-        Tile tile = new Tile();
-        for(int i = 0; i < tiles.Count; i++)
+        CloseDoor();
+        if(!isActivate)
         {
-            if (tiles[i].x == x && tiles[i].y == y)
+            isActivate = true;
+            if(spawnTrans.Count > 0 )
             {
-                tile = tiles[i];
-                break;
+                CloseDoor();
+                StartCoroutine(MobSpawn());
+
+            }
+            else
+            {
+//                GameManager.StageC.ClearRoom();
             }
         }
 
-        switch (tile.types)
-        {
-            case 1:
-                break; 
-            case 2:
-                GameObject go = GameManager.Resource.Instantiate(doorTiles[0], transform);
-                go.transform.position = tile.transform.position;
-                GameManager.Resource.Destroy(tile.gameObject);
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
+    }
 
+    IEnumerator MobSpawn()
+    {
+        yield return new WaitForSeconds(1);
+        // Spawn Mobs
+
+        //
+        yield return new WaitForSeconds(1);
+        // Mob Activates
+
+        //
+        yield return 0;
+    }
+
+    public void CloseDoor()
+    {
+        foreach(GameObject go in Doors) 
+        {
+            GameObject door = GameManager.Resource.Instantiate("Dungeon/Door/Door", GameManager.MapGen.Doors.transform);
+            switch (go.GetComponent<Tile>().types)
+            {
+                case 2:
+                    door.transform.position = go.transform.position + new Vector3(0, 2, -1);
+                    break;
+                case 4:
+                    door.transform.position = go.transform.position + new Vector3(-2, 0, -1);
+                    break;
+                case 6:
+                    door.transform.position = go.transform.position + new Vector3(2, 0, -1);
+                    break;
+                case 8:
+                    door.transform.position = go.transform.position + new Vector3(0, -2, -1);
+                    break;
+            }
+            door.GetComponent<Gate>().Activate();
+            DoorObjs.Add(door);
         }
+    }
+    public void OpenDoor()
+    {
+        foreach(GameObject gate in DoorObjs)
+        {
+            gate.GetComponent<Gate>().DeActivate();
+        }
+        DoorObjs.Clear();
     }
 }

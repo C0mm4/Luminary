@@ -11,7 +11,7 @@ public class StageController
 {
 
 
-    public List<GameObject> rooms;
+    public List<DunRoom> rooms;
     public List<GameObject> gates;
     public bool[] isClear;
     public bool[] isVIsit;
@@ -33,12 +33,12 @@ public class StageController
     }
 
     public void tutorial()
-    {
+    {/*
         GameObject objs = GameObject.Find("TutorialManager");
-        rooms = new List<GameObject>();
+        rooms = new List<DunRoom>();
         foreach(GameObject obj in objs.GetComponent<TutorialManager>().rooms) 
         { 
-            rooms.Add(obj);
+            rooms.Add(obj.GetComponent<DunRoom>());
             Room room = obj.GetComponent<Room>();
             Transform[] enemies = room.enemies.transform.GetComponentsInChildren<Transform>().Where(child => child.CompareTag("Mob")).ToArray();
             foreach(Transform enemy in enemies)
@@ -49,7 +49,7 @@ public class StageController
 
         isVIsit = new bool[rooms.Count];
         isClear = new bool[rooms.Count];
-        isTutorial = true;
+        isTutorial = true;*/
     }
 
     public void gameStart()
@@ -69,49 +69,23 @@ public class StageController
     // Dungeon Create
     private void startStage()
     {
-        setRoom();
-        if (GameObject.Find("PlayerbleChara"))
-        {
-            GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
-        }
 
-    }
-
-    // Create Rooms
-    public void setRoom()
-    {
-        Debug.Log("Starting generating Room");
         int roomNom = 6;
         int roomNoM = 7;
 
         roomNom += stageNo;
         roomNoM += stageNo * 2;
+        int roomN = GameManager.Random.getMapNext(roomNom, roomNoM);
 
-        roomNo = GameManager.Random.getGeneralNext(roomNom, roomNoM);
-//        (rooms, gates) = GameManager.MapGen.mapGen(roomNo, stageNo);
+        rooms = GameManager.MapGen.DungeonGen(roomN);
 
-        foreach(GameObject go in rooms)
+        if (GameObject.Find("PlayerbleChara"))
         {
-            go.GetComponent<Room>().set();
+            GameManager.Resource.Destroy(GameObject.Find("PlayerbleChara"));
         }
-
-        foreach(GameObject go in gates)
-        {
-            int r1 = go.GetComponent<Gate>().room1;
-            int r2 = go.GetComponent<Gate>().room2;
-            rooms[r1].GetComponent<Room>().wallTileMap.SetTile(rooms[r1].GetComponent<Room>().wallTileMap.WorldToCell(go.transform.position), null);
-            rooms[r2].GetComponent<Room>().wallTileMap.SetTile(rooms[r2].GetComponent<Room>().wallTileMap.WorldToCell(go.transform.position), null);
-        }
-
-        if (stageNo == 7)
-            roomNo += 2;
-        else
-            roomNo += 3;
-
-        isClear = new bool[roomNo];
-        isVIsit = new bool[roomNo];
-
+        
     }
+
 
 
     // Clear Buffer
@@ -119,9 +93,9 @@ public class StageController
     {
         if (rooms != null)
         {
-            foreach (GameObject go in rooms)
+            foreach (DunRoom go in rooms)
             {
-                GameManager.Resource.Destroy(go);
+                GameManager.Resource.Destroy(go.gameObject);
             }
             rooms.Clear();
             foreach (GameObject go in gates)
@@ -137,49 +111,23 @@ public class StageController
     public void moveRoom(int n)
     {
         currentRoom = n;
-        GameManager.cameraManager.background = rooms[currentRoom].GetComponent<Room>().bg;
         if (isTutorial)
         {
             Debug.Log("ISTUTORIAL");
 
             rooms[currentRoom].GetComponent<Room>().ActiveEnemies();
         }
-        else if (!isVIsit[currentRoom])
+        else if (!rooms[n].isActivate)
         {
-            rooms[currentRoom].GetComponent<Room>().ActiveEnemies();
+            rooms[currentRoom].GetComponent<DunRoom>().ActivateRoom();
         }
-        if (rooms[currentRoom].GetComponent<Room>().mobCount == 0)
-        {
-            isClear[currentRoom] = true;
-            rooms[currentRoom].GetComponent<Room>().clearRoom();
-        }
-        isVIsit[currentRoom] = true;
+        rooms[currentRoom].isActivate = true;
     }
 
-    public void closeDoor()
+    public void ClearRoom()
     {
-        if (!isClear[currentRoom])
-        {
-            foreach (GameObject gate in gates)
-            {
-                if (gate != null)
-                {
-                    gate.GetComponent<Gate>().closeGate();
-                    //gate.SetActive(true);
-                }
-            }
-        }
+        rooms[currentRoom].GetComponent <DunRoom>().isClear = true;
+        rooms[currentRoom].GetComponent<DunRoom>().OpenDoor();
     }
 
-    public void openDoor()
-    {
-        foreach(GameObject gate in gates)
-        {
-            if (gate != null)
-            {
-                gate.GetComponent<Gate>().openGate();
-                //gate.SetActive(false);
-            }
-        }
-    }
 }

@@ -146,16 +146,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MapGen.DungeonGen();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            MapGen.test();
-        }
         if (canvas == null)
         {
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -281,7 +277,9 @@ public class GameManager : MonoBehaviour
     {
         mapgen();
         playerGen();
+        cameraManager.background = MapGen.bg.GetComponent<SpriteRenderer>();
         StageC.moveRoom(0);
+       
     }
 
     public void gameOver()
@@ -393,6 +391,7 @@ public class GameManager : MonoBehaviour
             canvas.gameObject.AddComponent<UIManager>();
         }
         uiManager = canvas.GetComponent<UIManager>();
+        uiManager.init();
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
         canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas.planeDistance = 10;
@@ -401,17 +400,8 @@ public class GameManager : MonoBehaviour
     public void moveRoom(int targetRoomindex)
     {
         StageC.moveRoom(targetRoomindex);
-        gameState = GameState.Loading;
-        uiManager.ChangeState(UIState.Loading);
-        Invoke("callbackmoveRoom", 0.5f);
     }
 
-    public void callbackmoveRoom()
-    {
-        gameState = GameState.InPlay;
-        uiManager.ChangeState(UIState.InPlay);
-        StageC.closeDoor();
-    }
 
     public void ItemDrop(int index, Transform position)
     {

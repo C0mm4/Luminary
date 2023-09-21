@@ -68,40 +68,42 @@ public class Player : Charactor
         {
             changeState(new PlayerIdleState());
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
-            if (skillslots[0].isSet())
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (!skillslots[0].getSpell().isCool)
+                if (skillslots[0].isSet())
                 {
-                    if (ismove)
-                        StartCoroutine("roll");
+                    if (!skillslots[0].getSpell().isCool)
+                    {
+                        if (ismove)
+                            StartCoroutine("roll");
+                    }
                 }
             }
-        }
-        if(getState().GetType().Name == "PlayerIdleState" || getState().GetType().Name == "PlayerMoveState")
-        {
-            if (Input.GetKey(KeyCode.W))
+            if (getState().GetType().Name == "PlayerIdleState" || getState().GetType().Name == "PlayerMoveState")
             {
-                playerSpeed.y = status.speed;
-            }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    playerSpeed.y = status.speed;
+                }
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                playerSpeed.y = -status.speed;
-            }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    playerSpeed.y = -status.speed;
+                }
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                playerSpeed.x = -status.speed;
-            }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    playerSpeed.x = -status.speed;
+                }
 
-            if (Input.GetKey(KeyCode.D))
-            {
-                playerSpeed.x = status.speed;
-            }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    playerSpeed.x = status.speed;
+                }
 
+            }
         }
 
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
@@ -206,7 +208,7 @@ public class Player : Charactor
                     status.inventory[index].RemoveItem();
                 }
             }
-            GameManager.Instance.uiManager.invenFrest();
+            GameManager.Instance.uiManager.invenFresh();
             calcStatus();
         }
         else
@@ -250,7 +252,7 @@ public class Player : Charactor
 
             }
             status.inventory[index].RemoveItem();
-            GameManager.Instance.uiManager.invenFrest();
+            GameManager.Instance.uiManager.invenFresh();
             calcStatus();
         }
         else
@@ -268,7 +270,7 @@ public class Player : Charactor
             if (ItemAdd(status.equips[n].item))
             {
                 status.equips[n].RemoveItem();
-                GameManager.Instance.uiManager.invenFrest();
+                GameManager.Instance.uiManager.invenFresh();
             }
             else
             {
@@ -304,7 +306,7 @@ public class Player : Charactor
             if (ItemAdd(status.weapons[n].item))
             {
                 status.weapons[n].RemoveItem();
-                GameManager.Instance.uiManager.invenFrest();
+                GameManager.Instance.uiManager.invenFresh();
             }
             else
             {
@@ -346,7 +348,7 @@ public class Player : Charactor
         }
 
 
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
     }
 
     public void Unequip(int index, Item item, int targetslotindex = -1)
@@ -359,7 +361,7 @@ public class Player : Charactor
         {
             ItemUnequip(index, targetslotindex);
         }
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
     }
 
 
@@ -369,7 +371,7 @@ public class Player : Charactor
         status.inventory[sindex].item = status.inventory[tindex].item;
         status.inventory[tindex].item = tmp;
 
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
     }
 
     public void EquipSwap(int sindex, int tindex)
@@ -378,7 +380,7 @@ public class Player : Charactor
         status.equips[sindex].item = status.equips[tindex].item;
         status.equips[tindex].item = tmp;
 
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
     }
 
     public void WeaponSwap(int sindex, int tindex)
@@ -387,6 +389,6 @@ public class Player : Charactor
         status.weapons[sindex].item = status.weapons[tindex].item;
         status.weapons[tindex].item= tmp;
 
-        GameManager.Instance.uiManager.invenFrest();
+        GameManager.Instance.uiManager.invenFresh();
     }
 }

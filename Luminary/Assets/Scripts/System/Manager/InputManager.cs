@@ -63,7 +63,6 @@ public class InputManager : MonoBehaviour
                 InGameInput(); 
                 break;
             case UIState.Inventory:
-                InventoryInput();
                 break;
             case UIState.Menu:
 
@@ -75,7 +74,6 @@ public class InputManager : MonoBehaviour
                 
                 break;
             case UIState.Pause:
-                PauseInput();
                 break;
         }
     }
@@ -100,19 +98,6 @@ public class InputManager : MonoBehaviour
         KeyAction += GameManager.Instance.uiManager.InPlayInput;
     }
 
-    public void MenuInput()
-    {
-        KeyAction += GameManager.Instance.uiManager.MenuInput;
-    }
 
-    public void PauseInput()
-    {
-        KeyAction += GameManager.Instance.uiManager.PauseInput;
-    }
 
-    public void InventoryInput()
-    {
-        KeyAction += GameManager.Instance.uiManager.InventoryToggleInput;
-        KeyAction += GameManager.Instance.uiManager.InventoryInInput;
-    }
 }
