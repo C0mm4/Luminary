@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Player : Charactor
 {
-    // Start is called before the first frame update
+    public float lastCastTime;
+    public float lastManaGenTime;
 
     public SkillSlot[] skillslots;
     public List<SkillSlot> spells;
@@ -53,7 +54,6 @@ public class Player : Charactor
 
     public override void DieObject()
     {
-        GameManager.inputManager.KeyAction -= moveKey;
         GameManager.inputManager.KeyAction -= spellKey;
         GameManager.Instance.SceneChangeAction -= DieObject;
         PlayerDataManager.playerStatus = status;
@@ -63,12 +63,54 @@ public class Player : Charactor
     public override void FixedUpdate()
     {
         playerSpeed = Vector2.zero;
-
+        ManaGen();
+        moveKey();
         if (getState() == null)
         {
             changeState(new PlayerIdleState());
         }
-        if(GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
+
+
+        if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
+        {
+            if (PlayerDataManager.interactionObject != null)
+            {
+                interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
+                interactionTrriger.isInteraction();
+            }
+        }
+
+        if (playerSpeed != Vector2.zero)
+        {
+            ismove = true;
+            changeState(new PlayerMoveState());
+        }
+        base.FixedUpdate();
+    }
+
+    public void ManaGen()
+    {
+        if(Time.time - lastCastTime >= 3f)
+        {
+            if(Time.time - lastManaGenTime >= 0.2f)
+            {
+                status.currentMana++;
+                if(status.currentMana >= status.maxMana)
+                {
+                    status.currentMana = status.maxMana;
+                }
+            }
+        }
+    }
+
+    public void moveKey()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            status.level++;
+            Debug.Log(status.level);
+        }
+        if (GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -104,31 +146,6 @@ public class Player : Charactor
                 }
 
             }
-        }
-
-        if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
-        {
-            if (PlayerDataManager.interactionObject != null)
-            {
-                interactionTrriger = PlayerDataManager.interactionObject.GetComponent<InteractionTrriger>();
-                interactionTrriger.isInteraction();
-            }
-        }
-
-        if (playerSpeed != Vector2.zero)
-        {
-            ismove = true;
-            changeState(new PlayerMoveState());
-        }
-        base.FixedUpdate();
-    }
-
-    public void moveKey()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            status.level++;
-            Debug.Log(status.level);
         }
     }
 

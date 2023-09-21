@@ -27,6 +27,7 @@ public class PlayerCastingState : State
     public override void EnterState(Charactor chr)
     {
         charactor = chr;
+        GameManager.player.GetComponent<Player>().lastCastTime = Time.time;
         startT = Time.time;
         charactor.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }

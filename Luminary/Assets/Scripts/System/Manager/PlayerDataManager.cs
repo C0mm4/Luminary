@@ -22,9 +22,9 @@ public class PlayerDataManager : MonoBehaviour
 
     public void playerDataInit()
     {
-        playerStatus.dexterity = 0;
-        playerStatus.strength = 0;
-        playerStatus.Intellect = 0;
+        playerStatus.dexterity = 1;
+        playerStatus.strength = 1;
+        playerStatus.Intellect = 1;
 
         playerStatus.baseDMG = 1;
         playerStatus.increaseDMG = 0;
@@ -32,7 +32,7 @@ public class PlayerDataManager : MonoBehaviour
         
         playerStatus.def = 0;
 
-        playerStatus.baseHP = 10;
+        playerStatus.baseHP = 3;
         playerStatus.increseMaxHP = 0;
         playerStatus.pIncreaseMaxHP = 0;
         playerStatus.maxHP = (int)Mathf.Floor((playerStatus.baseHP + playerStatus.increseMaxHP) * playerStatus.pIncreaseMaxHP);
