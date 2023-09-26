@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     public GameObject invUI;
     public GameObject skillSlotUI;
+    public GameObject stableUI;
     public GameObject menuUI;
     public GameObject pauseUI;
     public GameObject loadUI;
@@ -127,6 +128,10 @@ public class UIManager : MonoBehaviour
         skillSlotUI.SetActive(false);
         textUItime = -3f;
         isInit = true;
+
+
+        stableUI = GameManager.Resource.Instantiate("UI/StableUI");
+        skillSlotUI.SetActive(false);
     }
 
 

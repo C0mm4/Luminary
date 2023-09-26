@@ -42,6 +42,7 @@ public class SkillSlot
         {
             if (GameManager.player.GetComponent<Player>().status.currentMana >= skillCommand.data.circle)
             {
+                GameManager.player.GetComponent<Player>().status.currentMana -= skillCommand.data.circle;
                 switch (skillCommand.data.type)
                 {
                     case 0:

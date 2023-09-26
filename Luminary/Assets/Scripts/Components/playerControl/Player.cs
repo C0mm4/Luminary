@@ -85,6 +85,7 @@ public class Player : Charactor
             ismove = true;
             changeState(new PlayerMoveState());
         }
+//        Debug.Log(playerSpeed.x);
         base.FixedUpdate();
     }
 
@@ -178,6 +179,7 @@ public class Player : Charactor
         {
             if (skillslots[0].isSet())
             {
+                Debug.Log(playerSpeed);
                 changeState(new PlayerCastingState(skillslots[0].getSpell(), playerSpeed));
                 skillslots[0].getSpell().isCool = true;
                 skillslots[0].useSkill();

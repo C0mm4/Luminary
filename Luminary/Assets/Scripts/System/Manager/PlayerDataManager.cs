@@ -35,14 +35,15 @@ public class PlayerDataManager : MonoBehaviour
         playerStatus.baseHP = 3;
         playerStatus.increseMaxHP = 0;
         playerStatus.pIncreaseMaxHP = 0;
-        playerStatus.maxHP = (int)Mathf.Floor((playerStatus.baseHP + playerStatus.increseMaxHP) * playerStatus.pIncreaseMaxHP);
+        playerStatus.maxHP = (int)Mathf.Floor((playerStatus.baseHP + playerStatus.increseMaxHP) * (1+playerStatus.pIncreaseMaxHP));
         playerStatus.currentHP = playerStatus.maxHP;
 
         playerStatus.baseMana = 10;
         playerStatus.increaseMaxMana = 0;
         playerStatus.pIncreaseMaxMana = 0;
-        playerStatus.maxMana = (int)Mathf.Floor((playerStatus.baseMana + playerStatus.increaseMaxMana) * playerStatus.pIncreaseMaxMana);
+        playerStatus.maxMana = (int)Mathf.Floor((playerStatus.baseMana + playerStatus.increaseMaxMana) * (1+playerStatus.pIncreaseMaxMana));
         playerStatus.currentMana = playerStatus.maxMana;
+        Debug.Log(playerStatus.currentMana);
 
         playerStatus.basespeed = 5;
         playerStatus.increaseSpeed = 0;

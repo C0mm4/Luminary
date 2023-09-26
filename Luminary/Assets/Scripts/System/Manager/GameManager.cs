@@ -379,6 +379,7 @@ public class GameManager : MonoBehaviour
         uiManager.skillSlotUI.SetActive(true);
 
         uiManager.invUI.GetComponent<Inventory>().targetSet();
+        uiManager.stableUI.GetComponent<StableUI>().init();
     }
 
 

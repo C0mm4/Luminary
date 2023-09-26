@@ -22,7 +22,7 @@
 	<Spell>
 		<id>1003000</id>
 		<name>Fire</name>
-		<cd>2</cd>
+		<cd>0.2</cd>
 		<circle>1</circle>
 		<type>1</type>
 		<xRange>6</xRange>

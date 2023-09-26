@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 37611619}
   - component: {fileID: 37611618}
   - component: {fileID: 37611622}
+  - component: {fileID: 37611623}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -243,11 +244,36 @@ MonoBehaviour:
   camera: {fileID: 1855561243}
   invUI: {fileID: 0}
   skillSlotUI: {fileID: 0}
+  stableUI: {fileID: 0}
   menuUI: {fileID: 0}
   pauseUI: {fileID: 0}
   loadUI: {fileID: 0}
   isInit: 0
   currentMenu: {fileID: 0}
+--- !u!114 &37611623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37611617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acae56aa5e6e584baae2511cf8ad0b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlankHP_L: {fileID: 0}
+  BlankHP_C: {fileID: 0}
+  BlankHP_R: {fileID: 0}
+  BlankMP_L: {fileID: 0}
+  BlankMana_C: {fileID: 0}
+  BlankMana_R: {fileID: 0}
+  BlankHPBar: {fileID: 0}
+  BlankManaBar: {fileID: 0}
+  FillHP: {fileID: 0}
+  FillMana: {fileID: 0}
+  FillHPBar: {fileID: 0}
+  FillManaBar: {fileID: 0}
 --- !u!1 &345728778
 GameObject:
   m_ObjectHideFlags: 0

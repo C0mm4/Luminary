@@ -8,17 +8,29 @@ public class PlayerRollState : State
 
     Vector2 dir = Vector2.one;
     Vector2 pdir = new Vector2();
+
+    Vector2 spellDir = new Vector2();
+    public PlayerRollState()
+    {
+
+    }
+
+    public PlayerRollState(Vector2 dir)
+    {
+        spellDir = dir;
+    }
+
     public override void EnterState(Charactor chr)
     {
         charactor = chr;
 
 
-        Debug.Log(charactor.GetComponent<Player>().playerSpeed.x);
-        dir = dir * charactor.GetComponent<Player>().playerSpeed;
+        Debug.Log(spellDir.x);
+        dir = dir * spellDir;
         dir = dir.normalized;
-        pdir = charactor.GetComponent<Player>().playerSpeed;
+        pdir = spellDir;
         pdir = pdir.normalized * pdir;
-        charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().playerSpeed + dir * 5;
+        charactor.GetComponent<Rigidbody2D>().velocity = spellDir + dir * 5;
 
     }
     
