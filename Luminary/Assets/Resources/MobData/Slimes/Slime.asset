@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea23a18de1ae614a9d8cb715df8fe31, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
+  index: 0
   baseHP: 10
   baseDMG: 2
   basespeed: 2
-  items: []
+  detectDistance: 10
+  AI: Slime

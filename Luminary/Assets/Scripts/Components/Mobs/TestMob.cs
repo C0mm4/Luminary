@@ -15,7 +15,6 @@ public class TestMob : Mob
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        Debug.Log(getState().GetType().Name);
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("C");

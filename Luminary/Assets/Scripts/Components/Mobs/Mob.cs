@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,11 +10,13 @@ public class Mob : Charactor
     [SerializeField]
     public GameObject[] attackPrefab;
     public MobData data;
+    AIModel model;
 
     // Start is called before the first frame update
     public override void Awake()
     {
         base.Awake();
+        
         sMachine.changeState(new MobIdleState());
         try
         {
@@ -21,10 +24,17 @@ public class Mob : Charactor
         }
         catch
         {
-
             sMachine.changeState(new MobIdleState());
         }
-        
+        AIGen();
+    }
+
+    public void AIGen()
+    {
+        Type T = Type.GetType(data.AI);
+        model = Activator.CreateInstance(T) as AIModel;
+        model.target = this;
+        Debug.Log(model.GetType().Name);
     }
 
     public override void statusInit()
@@ -47,11 +57,14 @@ public class Mob : Charactor
             }
             catch
             {
-
-                sMachine.changeState(new MobIdleState());
+                if(getState().GetType().Name != "MobStunState")
+                {
+                    sMachine.changeState(new MobIdleState());
+                }
             }
 
         }
+        model.Update();
     }
 
     public override void DieObject()
@@ -71,5 +84,12 @@ public class Mob : Charactor
             Debug.Log("Player Collision");
             other.GetComponent<Charactor>().HPDecrease(1);
         }
+    }
+
+    public Vector2 playerDistance()
+    {
+
+        Vector2 ret = new Vector2(Math.Abs(player.transform.position.x - transform.position.x), Math.Abs(player.transform.position.y - transform.position.y));
+        return ret;
     }
 }

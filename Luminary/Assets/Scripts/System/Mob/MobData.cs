@@ -12,9 +12,13 @@ public class MobData : ScriptableObject
 
     public int baseDMG; // base DMG
 
-    public int basespeed; // base Speed
+    public float basespeed; // base Speed
+
+    public float detectDistance;
 
     public List<Item> items;
 
     Sprite spr;
+
+    public string AI;
 }

@@ -20,15 +20,15 @@ public class StateMachine
     {
 
         if (currentState != null) {
+            if(newState.GetType().Name == "PlayerStunState" || newState.GetType().Name == "MobStunState")
+            {
+                Debug.Log("Stun Detect");
+                setIdle();
+            }
             if (GameManager.FSM.getList(currentState.GetType().Name).Contains(newState.GetType().Name))
             {
                 if(newState.GetType().Name == "PlayerStunState" || newState.GetType().Name == "MobStunState")
                 {
-                    if(currentState.GetType().Name != "PlayerIdleState" || currentState.GetType().Name != "MobIdleState")
-                    {
-                        Debug.Log("Doesn't Idle");
-                        exitState();
-                    }
                     stateStack.Push(currentState);
                     Debug.Log("Stun");
                     currentState = newState;
@@ -63,7 +63,8 @@ public class StateMachine
 
             currentState.EnterState(target);
         }
-
+        Debug.Log(target + " state is " + currentState.GetType().Name);
+        Debug.Log(target + " state stack count is " + stateStack.Count);
     }
 
     public void updateState()
@@ -93,5 +94,13 @@ public class StateMachine
     public State getState()
     {
         return currentState;
+    }
+
+    public void setIdle()
+    {
+        while(stateStack.Count > 0)
+        {
+            exitState();
+        }
     }
 }

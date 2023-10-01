@@ -29,6 +29,7 @@ public class Freeze : Buff
             }
             else
             {
+                Debug.Log("Stun");
                 target.changeState(new MobStunState(2f));
             }
             target.HPDecrease(dmg);

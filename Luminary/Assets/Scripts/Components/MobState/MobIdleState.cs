@@ -7,6 +7,7 @@ public class MobIdleState : State
     public override void EnterState(Charactor chr)
     {
         charactor = chr;
+        charactor.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 
     public override void UpdateState()
