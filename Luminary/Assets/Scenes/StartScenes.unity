@@ -195,8 +195,8 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1855561243}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PlaneDistance: 10
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -266,14 +266,22 @@ MonoBehaviour:
   BlankHP_C: {fileID: 0}
   BlankHP_R: {fileID: 0}
   BlankMP_L: {fileID: 0}
-  BlankMana_C: {fileID: 0}
-  BlankMana_R: {fileID: 0}
-  BlankHPBar: {fileID: 0}
-  BlankManaBar: {fileID: 0}
-  FillHP: {fileID: 0}
-  FillMana: {fileID: 0}
+  BlankMP_C: {fileID: 0}
+  BlankMP_R: {fileID: 0}
+  HP: {fileID: 0}
+  Mana: {fileID: 0}
+  FillHP_L: {fileID: 0}
+  FillHP_C: {fileID: 0}
+  FillHP_R: {fileID: 0}
+  FillMana_L: {fileID: 0}
+  FillMana_C: {fileID: 0}
+  FillMana_R: {fileID: 0}
   FillHPBar: {fileID: 0}
   FillManaBar: {fileID: 0}
+  HPBar: []
+  currentHPBar: []
+  MPBar: []
+  currentMPBar: []
 --- !u!1 &345728778
 GameObject:
   m_ObjectHideFlags: 0

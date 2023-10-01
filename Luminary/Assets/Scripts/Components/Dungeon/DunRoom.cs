@@ -23,7 +23,7 @@ public class DunRoom : MonoBehaviour
 
     public int mobCount = 0;
 
-    public List<Transform> spawnTrans = new List<Transform>();
+    public List<Transform> spawnTrans;
 
     public void ActivateRoom()
     {

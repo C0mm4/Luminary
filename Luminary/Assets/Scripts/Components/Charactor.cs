@@ -20,6 +20,10 @@ public class Charactor : MonoBehaviour
 
     public SerializedPlayerStatus status;
 
+    public bool isboss;
+
+    public bool canMove = true;
+
     public bool isHit = false;
     public float hitTime = 0;
 
@@ -31,7 +35,9 @@ public class Charactor : MonoBehaviour
 
     public Event attackEffect = null;
     public Event hitEffect = null;
-    
+
+    [SerializeField]
+    public bool godmode;
 
     // Start is called before the first frame update
     public virtual void Awake()
@@ -48,7 +54,6 @@ public class Charactor : MonoBehaviour
         sMachine = new StateMachine(this);
 
         statusInit();
-
     }
 
     public virtual void statusInit()
@@ -71,7 +76,7 @@ public class Charactor : MonoBehaviour
         status.level = 1;
         calcStatus();
         status.currentHP = status.maxHP;
-        for(int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++)
         {
             status.inventory.Add(new ItemSlotChara());
         }
@@ -88,13 +93,13 @@ public class Charactor : MonoBehaviour
     public virtual void calcStatus()
     {
         // HP status Calculate
-        status.maxHP = (int)Math.Round((status.baseHP + status.increseMaxHP) * (status.pIncreaseMaxHP+1));
+        status.maxHP = (int)((status.baseHP + status.strength / 2) * (status.pIncreaseMaxHP + 1));
 
         // damage Calculate
-        status.finalDMG = (int)Math.Round((status.baseDMG * ((1 + (0.1 * status.Intellect))) + (0.02 * status.strength) + (0.03 * status.dexterity) + status.increaseDMG));
+        status.finalDMG = (int)Math.Round((status.baseDMG * ((1 + (0.1 * status.Intellect))) + (0.02 * status.strength) + (0.03 * status.dexterity) + (1 + status.increaseDMG) / 100));
 
         // speed Calculate
-        status.speed = (int)Math.Round((status.basespeed + status.increaseSpeed) * (status.pIncreaseSpeed+1));
+        status.speed = (int)Math.Round((status.basespeed + status.increaseSpeed) * ((status.dexterity * 0.05) + 0.95) * (status.pIncreaseSpeed + 1));
     }
 
     // Update is called once per frame
@@ -115,6 +120,78 @@ public class Charactor : MonoBehaviour
         }
 
         desetBuffs();
+    }
+
+    public void setBuff(Buff buff)
+    {
+        if (!isbuffCool(buff.id))
+        {
+            buff.target = this;
+            status.buffs.Add(buff);
+            buff.startEffect();
+            Debug.Log("Set Buffs");
+            Debug.Log(status.buffs.Count);
+        }
+    }
+
+    public bool isbuffCool(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                return status.element.ignite;
+            case 1:
+                return status.element.freeze;
+            case 2:
+                return status.element.flow;
+            case 3:
+                return status.element.shock;
+            case 4:
+                return status.element.electric;
+            case 5:
+                return status.element.seed;
+            case 6:
+                return status.element.sentence;
+            case 7:
+                return status.element.judgement;
+            case 8:
+                return status.element.darkness;
+            case 9:
+                return status.element.clean;
+            case 10:
+                return status.element.melting;
+            case 11:
+                return status.element.burning;
+            case 12:
+                return status.element.extinguish;
+            case 13:
+                return status.element.electfire;
+            case 14:
+                return status.element.fire;
+            case 15:
+                return status.element.expand;
+            case 16:
+                return status.element.cracked;
+            case 17:
+                return status.element.electshock;      
+            case 18:    
+                return status.element.rooted;
+            case 19:
+                return status.element.weathering;
+            case 20:
+                return status.element.overloading;
+            case 21:
+                return status.element.diffusion;
+            case 22:
+                return status.element.discharge;
+            case 23:
+                return status.element.sprout;
+            case 24:
+                return status.element.boost;
+            case 25:
+                return status.element.execution;
+        }
+        return true;
     }
 
     public void desetBuffs()
@@ -141,25 +218,42 @@ public class Charactor : MonoBehaviour
 
     public void HPDecrease(int pts)
     {
-        if(gameObject.tag == "Player")
+        Debug.Log(gameObject.name + " Get Dmg " + pts);
+        if (!godmode)
         {
-            if (!isHit)
+            if (gameObject.tag == "Player")
             {
-                Debug.Log("Hit");
-                isHit = true;
-                status.currentHP -= pts;
-
-                if (status.currentHP <= 0)
+                if (!isHit)
                 {
-                    DieObject();
-                }
+                    Debug.Log("Hit");
+                    isHit = true;
+                    status.currentHP -= pts;
+
                     Invoke("reclusiveHitbox", 1f);
+                }
+            }
+            else
+            {
+                double dmg = pts * (100 - status.def) / 100;
+                status.currentHP -= (int)Math.Floor(dmg);
+            }
+            if (status.currentHP <= 0)
+            {
+                DieObject();
             }
         }
-        else
+    }
+
+    public void TrueDMG(int pts)
+    {
+        Debug.Log(gameObject.name + " Get True Dmg " + pts);
+        if (!godmode)
         {
-            double dmg = pts * (100 - status.def) / 100;
-            status.currentHP -= (int)Math.Floor(dmg);
+            status.currentHP -= pts;
+            if (status.currentHP <= 0)
+            {
+                DieObject();
+            }
         }
     }
 
@@ -231,5 +325,96 @@ public class Charactor : MonoBehaviour
     public State getState()
     {
         return sMachine.getState();
+    }
+
+    public void buffCool(float cd, int id)
+    {
+        StartCoroutine(buffcooltime(cd, id));
+    }
+
+    public IEnumerator buffcooltime(float cd, int id)
+    {
+        yield return new WaitForSeconds(cd);
+        switch (id)
+        {
+            case 0:
+                status.element.ignite = false;
+                break;
+            case 1:
+                status.element.freeze = false;
+                break;
+            case 2:
+                status.element.flow = false;
+                break;
+            case 3:
+                status.element.shock = false;
+                break;
+            case 4:
+                status.element.electric = false;
+                break;
+            case 5:
+                status.element.seed = false;
+                break;
+            case 6:
+                status.element.sentence = false;
+                break;
+            case 7:
+                status.element.judgement = false;
+                break;
+            case 8:
+                status.element.darkness = false;
+                break;
+            case 9:
+                status.element.clean = false;
+                break;
+            case 10:
+                status.element.melting = false;
+                break;
+            case 11:
+                status.element.burning = false;
+                break;
+            case 12:
+                status.element.extinguish = false;
+                break;
+            case 13:
+                status.element.electfire = false;
+                break;
+            case 14:
+                status.element.fire = false;
+                break;
+            case 15:
+                status.element.expand = false;
+                break;
+            case 16:
+                status.element.cracked = false;
+                break;
+            case 17:
+                status.element.electshock = false;
+                break;
+            case 18:
+                status.element.rooted = false;
+                break;
+            case 19:
+                status.element.weathering = false;
+                break;
+            case 20:
+                status.element.overloading = false;
+                break;
+            case 21:
+                status.element.diffusion = false;
+                break;
+            case 22:
+                status.element.discharge = false;
+                break;
+            case 23:
+                status.element.sprout = false;
+                break;
+            case 24:
+                status.element.boost = false;
+                break;
+            case 25:
+                status.element.execution = false;
+                break;
+        }
     }
 }

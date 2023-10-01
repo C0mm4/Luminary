@@ -41,22 +41,41 @@ public class Field : SpellObj
         {
             foreach(GameObject obj in trig)
             {
-                obj.GetComponent<Charactor>().HPDecrease(data.damage);
+                setDMG();
+                obj.GetComponent<Charactor>().HPDecrease(dmg);
+                onTick = false;
+
             }
+            trig.Clear();
         }
     }
-    
 
 
-    public override void OnTriggerEnter2D(Collider2D other)
+
+    public void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.tag == "Mob")
+        GameObject obj = trig.Find(go => go.GetHashCode() == collision.GetHashCode());
+        if(obj != null)
         {
-            if (onTick)
+            trig.Remove(obj);
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.tag == "Mob")
+        {
+            GameObject obj = trig.Find(go => go.GetHashCode().Equals(other.gameObject.GetHashCode()));
+            if(obj == null)
             {
                 trig.Add(other.gameObject);
             }
         }
+    }
+
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+
     }
 
 }

@@ -166,7 +166,7 @@ public class MapGen
     */
     public DunRoom DungeonRoomGen()
     {
-        DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/StartRoom", roomObj.transform).GetComponent<DunRoom>();
+        DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/Room1", roomObj.transform).GetComponent<DunRoom>();
         room.gameObject.transform.SetParent(room.transform);
         Vector2 pos = new Vector2();
 

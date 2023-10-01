@@ -46,7 +46,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
             {
 
                 GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().clickIndex = index;
-                GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem = GameManager.Resource.Instantiate("UI/TmpItem");
+                GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem = GameManager.Resource.Instantiate("UI/TmpItem", GameManager.Instance.uiManager.gameObject.transform);
                 GameObject tmpobj = GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem;
                 tmpobj.GetComponent<SpriteRenderer>().sprite = image.sprite;
                 tmpobj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.7f);

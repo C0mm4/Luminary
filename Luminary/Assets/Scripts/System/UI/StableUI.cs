@@ -166,7 +166,6 @@ public class StableUI : MonoBehaviour
                 if (i == 0)
                 {
                     go.GetComponent<SpriteRenderer>().sprite = BlankHP_L;
-                    Debug.Log("Left");
                 }
                 else if (i == maxHP - 1)
                 {

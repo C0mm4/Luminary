@@ -24,7 +24,7 @@ public class SpellMagicMissile : Projectile
         {
             if (GameManager.Random.getGeneralNext(0, 100) <= data.debufP * 100)
             {
-                Buff newbuff = new IceBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+//                Buff newbuff = new IceBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
             }
             other.GetComponent<Charactor>().changeState(new MobHitState(other.transform.position - this.transform.position));
         }

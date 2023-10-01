@@ -12,19 +12,9 @@ public class InputManager : MonoBehaviour
 
     public void OnUpdate()
     {
-        if (Input.anyKey)
-        {
-            hasInput = true;
-            if (KeyAction != null)
-            {
-                KeyAction();
-            }
-
-        }
-        else
-        {
-            hasInput = false;
-        }
+        if(KeyAction != null)
+            KeyAction();
+           
     }
 
     public void Update()
@@ -34,7 +24,7 @@ public class InputManager : MonoBehaviour
         mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
         mouseWorldPos.z = 0;
 
-        if(GameManager.gameState != GameState.Loading)
+        if(GameManager.gameState != GameState.Loading && GameManager.uiState == UIState.InPlay)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -96,6 +86,7 @@ public class InputManager : MonoBehaviour
     public void InGameInput()
     {
         KeyAction += GameManager.Instance.uiManager.InPlayInput;
+        KeyAction += GameManager.player.GetComponent<Player>().spellKey;
     }
 
 

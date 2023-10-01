@@ -24,7 +24,7 @@ public class SpellWind : Projectile
         {
             if (GameManager.Random.getGeneralNext(0, 100) <= data.debufP * 100)
             {
-                Buff newbuff = new WindBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
+//                Buff newbuff = new WindBuff(other.gameObject.GetComponent<Charactor>(), player.GetComponent<Charactor>());
             }
             other.GetComponent<Charactor>().changeState(new MobHitState(other.transform.position - this.transform.position));
         }

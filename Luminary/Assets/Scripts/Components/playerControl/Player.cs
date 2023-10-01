@@ -32,7 +32,7 @@ public class Player : Charactor
 
         skillslots[0].setCommand(GameManager.Spells.spells[1]);
         skillslots[1].setCommand(GameManager.Spells.spells[1003000]);
-        skillslots[2].setCommand(GameManager.Spells.spells[1003001]);
+        Debug.Log(skillslots[1].getSpell().data.name);
 
         status = PlayerDataManager.playerStatus;
 
@@ -43,6 +43,7 @@ public class Player : Charactor
         currentSpell = skillslots[1];
 
         Debug.Log(status.inventory.Count);
+
     }
     private void setSkillSlots()
     {
@@ -106,11 +107,6 @@ public class Player : Charactor
 
     public void moveKey()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            status.level++;
-            Debug.Log(status.level);
-        }
         if (GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
             if (Input.GetKeyDown(KeyCode.Space))

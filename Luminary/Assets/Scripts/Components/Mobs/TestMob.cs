@@ -15,12 +15,18 @@ public class TestMob : Mob
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        if (player != null)
+        Debug.Log(getState().GetType().Name);
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            sMachine.changeState(new MobChaseState());
-
+            Debug.Log("C");
+            Buff newbuff = new Freeze(this, this, 1);
+            
         }
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log(status.buffs.Count);
+        }
     }
 
 }

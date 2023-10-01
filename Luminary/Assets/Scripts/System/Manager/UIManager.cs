@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
@@ -38,23 +39,16 @@ public class UIManager : MonoBehaviour
 
     public void addMenu(Menu menu)
     {
+        Debug.Log("addMenu");
         if(currentMenu != null)
         {
             currentMenu.hide();
             menuStack.Push(currentMenu);
         }
         currentMenu = menu;
-        switch (menu.GetType().Name)
-        {
-            case "PauseMenu":
-                ChangeState(UIState.Pause);
-                break;
-            case "SettingMenu":
-                ChangeState(UIState.Setting);
-                break;
-            case "":
-                break;
-        }
+        ChangeStateOnStack(UIState.Menu);
+        currentMenu.show();
+        Debug.Log(uistack.Peek().ToString());
     }
 
     public void endMenu()
@@ -64,30 +58,8 @@ public class UIManager : MonoBehaviour
         {
             currentMenu = menuStack.Pop();
             currentMenu.show();
-            switch (currentMenu.GetType().Name)
-            {
-                case "PauseMenu":
-                    ChangeState(UIState.Pause);
-                    break;
-                case "SettingMenu":
-                    ChangeState(UIState.Setting);
-                    break;
-                case "":
-                    break;
-            }
         }
-        else
-        {
-            Debug.Log("In Play State");
-            if(SceneManager.GetActiveScene().name == "LobbyScene")
-            {
-                ChangeState(UIState.Lobby);
-            }
-            else
-            {
-                ChangeState(UIState.InPlay);
-            }
-        }
+        PopStateStack();
     }
 
     // Manager ��ü�� ������ �ޱ⿡ Manager ��ü���� Initializion ���� ȣ���ؾ� ��.
@@ -117,10 +89,13 @@ public class UIManager : MonoBehaviour
             
         }
 
-
+        if (GameManager.uiState != UIState.Title)
+        {
+            UIClear();
+        }
         invUI = GameManager.Resource.Instantiate("UI/Inventory2");
         invUI.GetComponent<Inventory>().init();
-        invUI.SetActive(false);
+        
 
         skillSlotUI = GameManager.Resource.Instantiate("UI/SkillSlots");
         skillSlotUI.GetComponent<SkillSlotUI>().init();
@@ -135,15 +110,11 @@ public class UIManager : MonoBehaviour
     }
 
 
-    private void UIClear()
+    public void UIClear()
     {
-        Transform[] trm = GetComponentsInChildren<Transform>();
-        if(trm != null)
+        foreach(Transform child in transform)
         {
-            for(int i = 0; i < trm.Length; i++)
-            {
-                GameManager.Resource.Destroy(trm[i].gameObject);
-            }
+            GameManager.Resource.Destroy(child.gameObject);
         }
     }
 
@@ -176,6 +147,13 @@ public class UIManager : MonoBehaviour
         {
             // Tap Interaction
         }
+        if(Input.GetKeyDown(PlayerDataManager.keySetting.inventoryKey))
+        {
+            if(GameManager.uiState != UIState.Menu)
+            {
+                addMenu(invUI.GetComponent<Menu>());
+            }
+        }
     }
 
 
@@ -183,21 +161,12 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(PlayerDataManager.keySetting.inventoryKey))
         {
-            if (GameManager.uiState != UIState.Inventory) 
+            if (GameManager.uiState != UIState.Menu) 
             {
-                ChangeStateOnStack(UIState.Inventory);
-                invUI.SetActive(true);
+                addMenu(invUI.GetComponent<Menu>());
             }
-            else
-            {
-                PopStateStack();
-                invUI.SetActive(false);
-            }
-
         }
     }
-
-
 
     // Update is called once per frame
     void Update()
@@ -239,34 +208,18 @@ public class UIManager : MonoBehaviour
 
         GameManager.inputManager.changeInputState();
 
-        switch (state)
-        {
-            case UIState.Inventory:
-                skillSlotUI.SetActive(false);
-                break;
-            case UIState.InPlay:
-                skillSlotUI.SetActive(true);
-                break;
-            case UIState.Loading:
-                break;
-            case UIState.Lobby:
-                skillSlotUI.SetActive(false);
-                break;
-            case UIState.CutScene:
-                break;
-            case UIState.Title:
-                break;
-        }
     }
     
     public void ChangeStateOnStack(UIState state)
     {
         uistack.Push(GameManager.uiState);
+        Debug.Log("UIStack Push");
         ChangeState(state);
     }
 
     public void PopStateStack()
     {
+        Debug.Log(uistack.Count);
         ChangeState(uistack.Pop());
     }
 }

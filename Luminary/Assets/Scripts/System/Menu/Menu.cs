@@ -7,24 +7,40 @@ public abstract class Menu : MonoBehaviour
     public int index = 0;
     public int menusize;
 
-    public void Start()
+    public virtual void Start()
     {
         GameManager.Instance.uiManager.addMenu(this);
-        show();
+        Debug.Log("Menu Generate");
     }
 
     public void hide()
     {
         GameManager.inputManager.KeyAction -= InputAction;
+        GameManager.inputManager.KeyAction -= ESCInput;
         GameManager.Instance.uiManager.endMenu();
         gameObject.SetActive(false);
     }
-    public void show()
+    public virtual void show()
     {
         gameObject.SetActive(true);
-        GameManager.Instance.uiManager.ChangeState(UIState.Menu);
+
+        StartCoroutine(inputSet());
+    }
+
+    public IEnumerator inputSet()
+    {
+        yield return new WaitForSeconds(1f);
         GameManager.inputManager.KeyAction += InputAction;
+        GameManager.inputManager.KeyAction += ESCInput;
     }
 
     public abstract void InputAction();
+
+    public void ESCInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            hide();
+        }
+    }
 }

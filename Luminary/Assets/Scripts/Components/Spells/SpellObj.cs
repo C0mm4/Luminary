@@ -16,6 +16,8 @@ public class SpellObj : MonoBehaviour
     public Vector3 mos;
     public Vector3 pos;
 
+    public int dmg;
+
     public virtual void Start()
     {
         player = GameManager.player;
@@ -49,15 +51,17 @@ public class SpellObj : MonoBehaviour
         Debug.Log("target : " + target.GetHashCode());
     }
 
+    public void setDMG()
+    {
+        dmg = (data.damage * player.GetComponent<Player>().status.finalDMG);
+    }
 
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Mob")
         {
-            for(int i = 0; i < data.hits; i++) 
-            {
-                other.GetComponent<Mob>().HPDecrease(data.damage * player.GetComponent<Player>().status.finalDMG);
-            }
+            setDMG();
+            other.GetComponent<Mob>().HPDecrease(dmg);
             OnDestroy();
         }
         else if (other.tag == "Wall")

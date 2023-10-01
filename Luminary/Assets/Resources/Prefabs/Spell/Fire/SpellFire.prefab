@@ -43,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5944328252796013934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee3692f39b15fe4dab310cb1a7acddc, type: 3}
+  m_Script: {fileID: 11500000, guid: efbaab7618af88a43ab2c98e956f31af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTime: 0
@@ -54,7 +54,8 @@ MonoBehaviour:
   target: {fileID: 0}
   mos: {x: 0, y: 0, z: 0}
   pos: {x: 0, y: 0, z: 0}
-  speed: 7
+  dmg: 0
+  speed: 5
   dir: {x: 0, y: 0, z: 0}
 --- !u!212 &7543481563577147170
 SpriteRenderer:

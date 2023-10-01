@@ -2,40 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff
+public abstract class Buff
 {
     public Charactor target;
     public Charactor attacker;
 
     public float startTime;
     public float currentTime;
-    public float leftTime;
 
     public float tickTime;
     public float lastTickTime;
 
-    public float dmg;
+    public int dmg;
     public float durate;
 
     public Buff instance;
 
+    public float cooltime;
+
     Sprite img;
 
     public int id;
-    public Buff()
-    {
+    public int stack = 0;
 
-    }
     public Buff(Charactor tar, Charactor atk)
     {
         // base.Buff(tar, atk)
         // 
         // Extention Contents
-        
         target = tar;
         attacker = atk;
         instance = this;
-        startEffect();
     }
 
     public void setDurate(float d)
@@ -48,20 +45,24 @@ public class Buff
         tickTime = t;
     }
 
-    public void startEffect()
+    public virtual void startEffect()
     {
-        // Extention Classes Doesn't Call
-        int index = target.status.endbuffs.FindIndex(buff => buff.id == id);
-        if (index == -1)
-        {
-            target.status.buffs.Add(instance);
-        }
-        else
-        {
-            resetEffect(index);
-        }
-        startTime = Time.time;
-        lastTickTime = startTime;
+
+            // Extention Classes Doesn't Call
+            int index = target.status.endbuffs.FindIndex(buff => buff.ToString() == ToString());
+            if (index == -1)
+            {
+                target.status.buffs.Add(instance);
+                Debug.Log(target.status.buffs.Count);
+
+            }
+            else
+            {
+                resetEffect(index);
+            }
+            startTime = Time.time;
+            lastTickTime = startTime;
+        
     }
 
     public virtual void durateEffect()
@@ -102,4 +103,6 @@ public class Buff
         int targetid = target.status.buffs.FindIndex(item => item.instance.Equals(instance));
         target.status.buffs.RemoveAt(targetid);
     }
+
+    public abstract bool checkCombinate();
 }

@@ -36,7 +36,36 @@ public class ItemData : ScriptableObject, Command
     public float baseIncSpd;
     public float basepIncSpd;
 
+
+    // base element debuff dmg increase     value(%)
+    public int igniteDMG;
+    public int freezeDMG;
+    public int flowDMG;
+    public int shockDMG;
+    public int electDMG;
+    public int seedDMG;
+
+    // combionate element debuff dmg increase    value(%)
+    public int meltingDMG;
+    public int extinguishDMG;
+    public int fireDMG;
+    public int electFireDMG;
+    public int burnningDMG;
+    public int crackedDMG;
+    public int rootedDMG;
+    public int electShockDMG;
+    public int expandDMG;
+    public int sproutDMG;
+    public int dischargeDMG;
+    public int weatheringDMG;
+    public int boostDMG;
+    public int diffusionDMG;
+    public int overloadDMG;
+    public int executionDMG;
+
     public float basepGetDMG;
+
+
 
     [SerializeField]
     public SerializeItemStatus status;

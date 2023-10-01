@@ -29,11 +29,23 @@ public class Inventory : Menu
 
     public int clickIndex = -1;
 
+    public override void Start()
+    {
+        base.Start();
+        hide();
+    }
+
     private void OnValidate()
     {
         slots = bag.GetComponentsInChildren<ItemSlot>();
         equips = equip.GetComponentsInChildren<ItemSlot>();
         GetComponent<RectTransform>().localScale = Vector3.one;
+    }
+
+    public override void show()
+    {
+        freshSlot();
+        base.show();
     }
 
     public void init()
@@ -79,6 +91,9 @@ public class Inventory : Menu
 
     public override void InputAction()
     {
-        throw new System.NotImplementedException();
+        if(Input.GetKeyUp(KeyCode.I))
+        {
+            GameManager.Instance.uiManager.endMenu();
+        }
     }
 }

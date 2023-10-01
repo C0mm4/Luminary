@@ -35,6 +35,7 @@ public class SpellManager
             spells.Add(int.Parse(node["id"].InnerText), spl);
 
         }
+        Debug.Log(spells[1003000].data.name);
     }
     
     public SpellData setSpellData(XmlNode node)

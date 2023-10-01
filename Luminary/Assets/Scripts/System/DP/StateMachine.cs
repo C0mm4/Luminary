@@ -12,7 +12,7 @@ public class StateMachine
     public StateMachine(Charactor chr)
     {
         target = chr;
-        
+        Debug.Log(target);
     }
 
 
@@ -22,8 +22,20 @@ public class StateMachine
         if (currentState != null) {
             if (GameManager.FSM.getList(currentState.GetType().Name).Contains(newState.GetType().Name))
             {
-                
-                if (currentState.GetType().Name != newState.GetType().Name)
+                if(newState.GetType().Name == "PlayerStunState" || newState.GetType().Name == "MobStunState")
+                {
+                    if(currentState.GetType().Name != "PlayerIdleState" || currentState.GetType().Name != "MobIdleState")
+                    {
+                        Debug.Log("Doesn't Idle");
+                        exitState();
+                    }
+                    stateStack.Push(currentState);
+                    Debug.Log("Stun");
+                    currentState = newState;
+
+                    currentState.EnterState(target);
+                }
+                else if (currentState.GetType().Name != newState.GetType().Name)
                 {
                     // Save Previous State
                     stateStack.Push(currentState);

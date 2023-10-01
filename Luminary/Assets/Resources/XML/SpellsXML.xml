@@ -21,7 +21,7 @@
 	
 	<Spell>
 		<id>1003000</id>
-		<name>Fire</name>
+		<name>SpellFire1</name>
 		<cd>0.2</cd>
 		<circle>1</circle>
 		<type>1</type>

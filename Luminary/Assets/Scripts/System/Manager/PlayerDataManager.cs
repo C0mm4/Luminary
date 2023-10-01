@@ -29,6 +29,30 @@ public class PlayerDataManager : MonoBehaviour
         playerStatus.baseDMG = 1;
         playerStatus.increaseDMG = 0;
         playerStatus.pIncreaseDMG = 0;
+
+        playerStatus.igniteDMG = 0;
+        playerStatus.freezeDMG = 0;
+        playerStatus.flowDMG = 0;
+        playerStatus.shockDMG = 0;
+        playerStatus.electDMG = 0;
+        playerStatus.seedDMG = 0;
+
+        playerStatus.meltingDMG = 0;
+        playerStatus.extinguishDMG = 0;
+        playerStatus.fireDMG = 0;
+        playerStatus.electFireDMG = 0;
+        playerStatus.burnningDMG = 0;
+        playerStatus.crackedDMG = 0;
+        playerStatus.rootedDMG = 0;
+        playerStatus.electShockDMG = 0;
+        playerStatus.expandDMG = 0;
+        playerStatus.sproutDMG = 0;
+        playerStatus.dischargeDMG = 0;
+        playerStatus.weatheringDMG = 0;
+        playerStatus.boostDMG = 0;
+        playerStatus.diffusionDMG = 0;
+        playerStatus.overloadDMG = 0;
+        playerStatus.executionDMG = 0;
         
         playerStatus.def = 0;
 
