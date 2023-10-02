@@ -9,13 +9,13 @@ public struct SerializeItemStatus
     public int intellect;
 
     public int increaseDMG;
-    public float pincreaseDMG;
+    public int pincreaseDMG;
 
     public int increaseHP;
-    public float pincreaseHP;
+    public int pincreaseHP;
 
     public int increaseMP;
-    public float pincreaseMP;
+    public int pincreaseMP;
 
     public float increaseSpeed;
     public float pincreaseSpeed;
@@ -46,7 +46,7 @@ public struct SerializeItemStatus
     public int overloadDMG;
     public int executionDMG;
 
-    public float pGetDMG;
+    public int pGetDMG;
 
     public static SerializeItemStatus operator + (SerializeItemStatus left, SerializeItemStatus right)
     {

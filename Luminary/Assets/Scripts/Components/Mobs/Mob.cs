@@ -69,11 +69,13 @@ public class Mob : Charactor
 
     public override void DieObject()
     {
-        GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount -= 1;
-        if(GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount == 0)
-        {
-            GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().clearRoom();
-        }
+        /*        GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount -= 1;
+                if(GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount == 0)
+                {
+                    GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().clearRoom();
+                }*/
+        Debug.Log("Die");
+        GameManager.Instance.ItemDrop(10002001, transform);
         base.DieObject();
     }
 

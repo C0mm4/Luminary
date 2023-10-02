@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efff0eee95b8c064db8eb5141fe08d58, type: 3}
-  m_Name: ItemData_TestItem
+  m_Name: 10002001
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 21300000, guid: 987643685bc40a64190e80f6a2645306, type: 3}
-  type: 0
-  itemName: TestItem0
-  itemIndex: 55
-  spellnum: 1003001
-  funcName: TestItem
+  itemImage: {fileID: 0}
+  type: 1
+  itemName: STR Ring 1
+  itemIndex: 10002001
+  spellnum: 0
+  funcName: StatusEquip
   baseDex: 0
   baseInt: 0
-  baseStr: 0
+  baseStr: 1
   baseIncDMG: 0
   basepIncDMG: 0
   baseIncHP: 0

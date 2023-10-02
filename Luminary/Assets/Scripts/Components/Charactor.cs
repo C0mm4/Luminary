@@ -1,4 +1,5 @@
 using System;
+using System.Buffers.Text;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -416,5 +417,102 @@ public class Charactor : MonoBehaviour
                 status.element.execution = false;
                 break;
         }
+    }
+
+    public void ItemStatusSum(SerializeItemStatus itemdata)
+    {
+
+        status.dexterity += itemdata.dex;
+        status.strength += itemdata.strength;
+        status.Intellect += itemdata.intellect;
+
+
+        status.increaseDMG += itemdata.increaseDMG;
+        status.pIncreaseDMG += itemdata.pincreaseDMG;
+
+        status.igniteDMG += itemdata.igniteDMG;
+        status.freezeDMG += itemdata.freezeDMG;
+        status.flowDMG += itemdata.flowDMG;
+        status.shockDMG += itemdata.shockDMG;
+        status.electDMG += itemdata.electDMG;
+        status.seedDMG += itemdata.seedDMG;
+
+        status.meltingDMG += itemdata.meltingDMG;
+        status.extinguishDMG += itemdata.extinguishDMG;
+        status.fireDMG += itemdata.fireDMG;
+        status.electFireDMG += itemdata.electFireDMG;
+        status.burnningDMG += itemdata.burnningDMG;
+        status.crackedDMG += itemdata.crackedDMG;
+        status.rootedDMG += itemdata.rootedDMG;
+        status.electShockDMG += itemdata.electShockDMG;
+        status.expandDMG += itemdata.expandDMG;
+        status.sproutDMG += itemdata.sproutDMG;
+        status.dischargeDMG += itemdata.dischargeDMG;
+        status.weatheringDMG += itemdata.weatheringDMG;
+        status.boostDMG += itemdata.boostDMG;
+        status.diffusionDMG += itemdata.diffusionDMG;
+        status.overloadDMG += itemdata.overloadDMG;
+        status.executionDMG += itemdata.executionDMG;
+
+        status.pGetDMG += itemdata.pGetDMG;
+
+
+        status.increseMaxHP += itemdata.increaseHP;
+        status.pIncreaseMaxHP += itemdata.pincreaseHP;
+            
+        status.increaseMaxMana += itemdata.increaseMP;
+        status.pIncreaseMaxMana += itemdata.pincreaseMP;
+
+        status.increaseSpeed += itemdata.increaseSpeed;
+        status.pIncreaseSpeed += itemdata.pincreaseSpeed;
+    }
+
+
+    public void ItemStatusminus(SerializeItemStatus itemdata)
+    {
+
+        status.dexterity -= itemdata.dex;
+        status.strength -= itemdata.strength;
+        status.Intellect -= itemdata.intellect;
+
+
+        status.increaseDMG -= itemdata.increaseDMG;
+        status.pIncreaseDMG -= itemdata.pincreaseDMG;
+
+        status.igniteDMG -= itemdata.igniteDMG;
+        status.freezeDMG -= itemdata.freezeDMG;
+        status.flowDMG -= itemdata.flowDMG;
+        status.shockDMG -= itemdata.shockDMG;
+        status.electDMG -= itemdata.electDMG;
+        status.seedDMG -= itemdata.seedDMG;
+
+        status.meltingDMG -= itemdata.meltingDMG;
+        status.extinguishDMG -= itemdata.extinguishDMG;
+        status.fireDMG -= itemdata.fireDMG;
+        status.electFireDMG -= itemdata.electFireDMG;
+        status.burnningDMG -= itemdata.burnningDMG;
+        status.crackedDMG -= itemdata.crackedDMG;
+        status.rootedDMG -= itemdata.rootedDMG;
+        status.electShockDMG -= itemdata.electShockDMG;
+        status.expandDMG -= itemdata.expandDMG;
+        status.sproutDMG -= itemdata.sproutDMG;
+        status.dischargeDMG -= itemdata.dischargeDMG;
+        status.weatheringDMG -= itemdata.weatheringDMG;
+        status.boostDMG -= itemdata.boostDMG;
+        status.diffusionDMG -= itemdata.diffusionDMG;
+        status.overloadDMG -= itemdata.overloadDMG;
+        status.executionDMG -= itemdata.executionDMG;
+
+        status.pGetDMG -= itemdata.pGetDMG;
+
+
+        status.increseMaxHP -= itemdata.increaseHP;
+        status.pIncreaseMaxHP -= itemdata.pincreaseHP;
+
+        status.increaseMaxMana -= itemdata.increaseMP;
+        status.pIncreaseMaxMana -= itemdata.pincreaseMP;
+
+        status.increaseSpeed -= itemdata.increaseSpeed;
+        status.pIncreaseSpeed -= itemdata.pincreaseSpeed;
     }
 }

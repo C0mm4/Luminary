@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ItemDataManager : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class ItemDataManager : MonoBehaviour
     {
         foreach(ItemData item in data)
         {
-            itemDictionary[item.itemIndex] = item;
+            if(item != null)
+            {
+                itemDictionary[item.itemIndex] = item;
+            }
         }
     }
 

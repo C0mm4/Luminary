@@ -1462,7 +1462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2214432242523975605, guid: f6f14a5066d3e2d4d8fee9adacb596dc, type: 3}
       propertyPath: godmode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1828922195368599024, guid: f6f14a5066d3e2d4d8fee9adacb596dc, type: 3}
       propertyPath: m_Name

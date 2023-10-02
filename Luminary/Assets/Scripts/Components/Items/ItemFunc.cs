@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class ItemFunc
 {
+    public ItemData data;
     public abstract void EquipEffect();
     public abstract void UnEquipEffect();
 

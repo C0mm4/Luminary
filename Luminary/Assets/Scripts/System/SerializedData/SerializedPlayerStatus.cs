@@ -75,4 +75,7 @@ public struct SerializedPlayerStatus
     public List<Buff> endbuffs;
 
     public int level;
+
+
+
 }

@@ -8,8 +8,6 @@ public class DropItem : InteractionTrriger
 {
     Item item;
 
-    [SerializeField]
-    ItemData data;
 
     [SerializeField]
     SpriteRenderer spriteRenderer;
@@ -20,10 +18,11 @@ public class DropItem : InteractionTrriger
         item.data = data;
         Type T = Type.GetType(data.funcName);
         ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
-        data.func = func;
-        Debug.Log(data.func.GetType().ToString());
+        item.data.func = func;
 
         spriteRenderer.sprite = data.itemImage;
+
+        Debug.Log(data.itemName);
     }
 
     public override void isInteraction()

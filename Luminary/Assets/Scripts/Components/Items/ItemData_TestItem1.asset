@@ -15,6 +15,40 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 677440358c956ae4485f2e1f96851bf7, type: 3}
   type: 1
   itemName: TestItem1
-  itemIndex: 1
+  itemIndex: 44
   spellnum: 0
-  funcName: TestItem1
+  funcName: StatusEquip
+  baseDex: 0
+  baseInt: 0
+  baseStr: 0
+  baseIncDMG: 0
+  basepIncDMG: 0
+  baseIncHP: 0
+  basepIncHP: 0
+  baseIncMP: 0
+  basepIncMP: 0
+  baseIncSpd: 0
+  basepIncSpd: 0
+  igniteDMG: 0
+  freezeDMG: 0
+  flowDMG: 0
+  shockDMG: 0
+  electDMG: 0
+  seedDMG: 0
+  meltingDMG: 0
+  extinguishDMG: 0
+  fireDMG: 0
+  electFireDMG: 0
+  burnningDMG: 0
+  crackedDMG: 0
+  rootedDMG: 0
+  electShockDMG: 0
+  expandDMG: 0
+  sproutDMG: 0
+  dischargeDMG: 0
+  weatheringDMG: 0
+  boostDMG: 0
+  diffusionDMG: 0
+  overloadDMG: 0
+  executionDMG: 0
+  basepGetDMG: 0

@@ -10,6 +10,7 @@ public class EquipSlotChara
     {
         this.item = item;
         item.data.func.EquipEffect();
+        GameManager.player.GetComponent<Player>().calcStatus();
         GameManager.player.GetComponent<Player>().currentequipSize++;
     }
 
@@ -17,6 +18,7 @@ public class EquipSlotChara
     {
         item.data.func.UnEquipEffect();
         this.item = null;
+        GameManager.player.GetComponent<Player>().calcStatus();
         GameManager.player.GetComponent<Player>().currentequipSize--;
     }
 }

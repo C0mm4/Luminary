@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestItem1 : ItemFunc
+public class StatusEquip : ItemFunc
 {
 
     public override void EquipEffect()
     {
-        Debug.Log("TestItem1 Equiped");
+//        GameManager.player.GetComponent<Player>().ItemStatusSum(data.status);
+        Debug.Log("TEST");      
     }
 
     public override void OnDamagedEffect()
@@ -28,5 +29,6 @@ public class TestItem1 : ItemFunc
     public override void UnEquipEffect()
     {
         Debug.Log("TestItem1 UnEquip");
+//        GameManager.player.GetComponent<Player>().ItemStatusminus(data.status);
     }
 }
