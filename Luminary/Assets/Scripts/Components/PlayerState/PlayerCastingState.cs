@@ -34,6 +34,7 @@ public class PlayerCastingState : State
 
     public override void UpdateState()
     {
+        charactor.animator.Play("CastAnimation");
         if(Time.time - startT >= castingT)
         {
             charactor.GetComponent<Charactor>().endCurrentState();

@@ -40,6 +40,9 @@ public class Charactor : MonoBehaviour
     [SerializeField]
     public bool godmode;
 
+
+    public Animator animator;
+
     // Start is called before the first frame update
     public virtual void Awake()
     {

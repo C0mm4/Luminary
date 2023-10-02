@@ -16,7 +16,7 @@ public class PlayerMoveState : State
     }
     public override void UpdateState()
     {
-        
+        charactor.animator.Play("MoveAnimation");
         if (charactor.GetComponent<Player>().ismove)
         {
             if(charactor.GetComponent<Player>().playerSpeed == Vector2.zero) 

@@ -19,6 +19,7 @@ public class Player : Charactor
     public bool ismove = false;
     public Vector2 playerSpeed = new Vector2();
 
+
     public override void Awake()
     {
         base.Awake();
