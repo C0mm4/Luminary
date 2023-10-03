@@ -6,7 +6,7 @@ using static UnityEditor.Progress;
 
 public class DropItem : InteractionTrriger
 {
-    Item item;
+    public Item item;
 
 
     [SerializeField]
@@ -23,6 +23,11 @@ public class DropItem : InteractionTrriger
         spriteRenderer.sprite = data.itemImage;
 
         Debug.Log(data.itemName);
+    }
+
+    public void setSpr()
+    {
+        spriteRenderer.sprite = item.data.itemImage;
     }
 
     public override void isInteraction()

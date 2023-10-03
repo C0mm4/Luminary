@@ -15,8 +15,8 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 987643685bc40a64190e80f6a2645306, type: 3}
   type: 0
   itemName: TestItem0
-  itemIndex: 55
-  spellnum: 1003001
+  itemIndex: 10003001
+  spellnum: 1003000
   funcName: TestItem
   baseDex: 0
   baseInt: 0

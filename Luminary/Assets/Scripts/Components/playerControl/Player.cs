@@ -26,14 +26,12 @@ public class Player : Charactor
         player = this;
         GameManager.player = player.gameObject;
 
-        skillslots = new SkillSlot[5];
+        skillslots = new SkillSlot[3];
         spells = new List<SkillSlot>();
         setSkillSlots();
 
 
         skillslots[0].setCommand(GameManager.Spells.spells[1]);
-        skillslots[1].setCommand(GameManager.Spells.spells[1003000]);
-        Debug.Log(skillslots[1].getSpell().data.name);
 
         status = PlayerDataManager.playerStatus;
 
@@ -159,11 +157,13 @@ public class Player : Charactor
             {
                 Debug.Log("SpellSlot Change 2");
                 currentSpell = skillslots[2];
+                GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(1);
             }
             else
             {
                 Debug.Log("SpellSlot Change 1");
                 currentSpell = skillslots[1];
+                GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(0);
             }
         }
     }
@@ -244,8 +244,10 @@ public class Player : Charactor
                 {
                     if (status.weapons[i].item == null)
                     {
+                        Debug.Log(i + " slot equip");
                         status.weapons[i].AddItem(item);
                         skillslots[i + 1].setCommand(GameManager.Spells.spells[item.data.spellnum]);
+                        GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().weaponSlot[i].GetComponent<WeaponSlotUI>().setWeapon(item);
                         break;
                     }
                 }
@@ -255,6 +257,8 @@ public class Player : Charactor
                 if (status.weapons[targetslotindex].item == null)
                 {
                     status.weapons[targetslotindex].AddItem(item);
+                    skillslots[targetslotindex + 1].setCommand(GameManager.Spells.spells[item.data.spellnum]);
+                    GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().weaponSlot[targetslotindex].GetComponent<WeaponSlotUI>().setWeapon(item);
                     status.inventory[index].RemoveItem();
 
                 }
@@ -263,6 +267,8 @@ public class Player : Charactor
                     Item tmp = status.weapons[targetslotindex].item;
                     status.weapons[targetslotindex].RemoveItem();
                     status.weapons[targetslotindex].AddItem(status.inventory[index].item);
+                    skillslots[targetslotindex + 1].setCommand(GameManager.Spells.spells[item.data.spellnum]);
+                    GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().weaponSlot[targetslotindex].GetComponent<WeaponSlotUI>().setWeapon(item);
                     status.inventory[index].RemoveItem();
                     ItemAdd(tmp, index);
                 }
@@ -327,6 +333,7 @@ public class Player : Charactor
             if (ItemAdd(status.weapons[n].item))
             {
                 status.weapons[n].RemoveItem();
+                spells[n+1].deSetCommand();
                 ItemStatusminus(item.data.status);
                 GameManager.Instance.uiManager.invenFresh();
             }
@@ -343,6 +350,7 @@ public class Player : Charactor
                 ItemAdd(status.weapons[n].item, targetslotindex);
                 ItemStatusminus(item.data.status);
                 status.weapons[n].RemoveItem();
+                spells[n + 1].deSetCommand();
             }
             else
             {
@@ -353,6 +361,7 @@ public class Player : Charactor
                     ItemStatusminus(item.data.status);
                     status.weapons[n].RemoveItem();
                     status.weapons[n].AddItem(tmp);
+                    spells[n + 1].deSetCommand();
                 }
                 
             }

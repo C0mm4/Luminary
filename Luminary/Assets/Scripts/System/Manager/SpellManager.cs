@@ -57,4 +57,9 @@ public class SpellManager
 
         return spellData;
     }
+
+    public SpellData getSpellData(int index)
+    {
+        return spells[index].data;
+    }
 }

@@ -9,6 +9,7 @@ public class WeaponSlotChara
     public void AddItem(Item item)
     {
         this.item = item;
+        Debug.Log(item.data.itemName);
         item.data.func.EquipEffect();
         GameManager.player.GetComponent<Player>().currentweaponSize++;
         GameManager.Instance.uiManager.invenFresh();

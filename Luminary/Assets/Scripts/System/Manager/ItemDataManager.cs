@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,5 +27,16 @@ public class ItemDataManager : MonoBehaviour
     public ItemData getItemData(int itemIndex)
     {
         return itemDictionary[itemIndex];
+    }
+
+    public Item ItemGen(int itemindex)
+    {
+        Item item = new Item();
+        item.data = getItemData(itemindex);
+        Type T = Type.GetType(item.data.funcName);
+        ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
+        item.data.func = func;
+
+        return item;
     }
 }

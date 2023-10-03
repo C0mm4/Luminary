@@ -277,6 +277,8 @@ public class GameManager : MonoBehaviour
     {
         mapgen();
         playerGen();
+        Item item = itemDataManager.ItemGen(10003001);
+        player.GetComponent<Player>().Equip(0, item);
         cameraManager.background = MapGen.bg.GetComponent<SpriteRenderer>();
         StageC.moveRoom(0);
        
@@ -406,9 +408,9 @@ public class GameManager : MonoBehaviour
 
     public void ItemDrop(int index, Transform position)
     {
-        ItemData data = itemDataManager.getItemData(index);
         GameObject go = Resource.Instantiate("Obj/DropItem");
-        go.GetComponent<DropItem>().setItemData(data);
+        go.GetComponent<DropItem>().item = itemDataManager.ItemGen(index);
+        go.GetComponent<DropItem>().setSpr();
         go.transform.position = position.position;
     }
 
