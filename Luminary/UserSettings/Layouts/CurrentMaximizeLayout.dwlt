@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 46965
+  controlID: 60910
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -91,7 +91,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 46966
+  controlID: 60911
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 46896
+  controlID: 60771
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 96c10000
-      m_LastClickedID: 49558
-      m_ExpandedIDs: aed6f3ff90c10000
+      m_SelectedIDs: d45af2ff
+      m_LastClickedID: -894252
+      m_ExpandedIDs: c45bf2ffbccd0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 46967
+  controlID: 60912
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1014,23 +1014,23 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs/Mobs/Goblin/Warrior/AttackPrefab
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Prefabs/Mobs/Goblin/Warrior/AttackPrefab
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\develop\luminary\Luminary
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c2b80000
-    m_LastClickedID: 47298
-    m_ExpandedIDs: 00000000827300008473000086730000887300008a7300008c7300008e7300009073000092730000947300008c8f0000948f0000a88f000010920000bab80000beb80000
+    scrollPos: {x: 0, y: 32}
+    m_SelectedIDs: c88f0000
+    m_LastClickedID: 36808
+    m_ExpandedIDs: 000000008273000084730000867300008a7300008c7300008e7300009073000092730000947300008c8f0000a88f000010920000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1083,9 +1083,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 96c10000
-    m_LastClickedInstanceID: 49558
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: d45af2ff
+    m_LastClickedInstanceID: -894252
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000407300002c9500003e9000007c6e0000167300009470000072720000b46f0000387a0000e06e00005a700000e272000098930000fc6f0000ca700000da6f00001c8d00005e7100008c520100f06f0000dc85000042700000d27000000070000000710000a8700000cc6e000076700000ce6e0000ec83000098710000d67700005871000000000000d67100002c92000028920000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1184,7 +1184,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -793052
+  m_LastSelectedObjectID: -894252
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
