@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: TestItem0
   itemIndex: 10003001
   spellnum: 1003000
-  funcName: TestItem
+  funcName: StatusEquip
   baseDex: 0
   baseInt: 0
   baseStr: 0

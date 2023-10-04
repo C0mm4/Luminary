@@ -8,26 +8,22 @@ public class SkillSlot
     // Get Spell in Command pattern
     private Spell skillCommand = null;
 
-    public SkillSlotUI ui;
 
 
 
     public SkillSlot()
     {
-        ui = GameManager.Instance.uiManager.skillSlotUI.GetComponent<SkillSlotUI>();
     }
 
     // Set Spell command target
     public void setCommand(Spell command)
     {
         skillCommand = command;
-        ui.setImg();
     }
     // Set Command to Null
     public void deSetCommand()
     {
         skillCommand = null;
-        ui.setImg();
     }
 
     public Spell getSpell()

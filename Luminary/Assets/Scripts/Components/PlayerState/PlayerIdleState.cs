@@ -14,6 +14,7 @@ public class PlayerIdleState : State
     public override void UpdateState()
     {
         charactor.animator.Play("IdleAnimation");
+//        charactor.AnimationPlay("IdleAnimation");
     }
 
     public override void ExitState()

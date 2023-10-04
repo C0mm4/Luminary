@@ -6,7 +6,6 @@ public class Slime : AIModel
 {
     public override void Update()
     {
-        Debug.Log("Slime Update");
         if (GameManager.player != null)
         {
             if (target.playerDistance().magnitude <= target.data.detectDistance)
@@ -29,5 +28,4 @@ public class Slime : AIModel
             }
         }
     }
-
 }

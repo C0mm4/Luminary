@@ -16,9 +16,15 @@ public class MobData : ScriptableObject
 
     public float detectDistance;
 
+    public float attackRange;
+
+    public float castSpeed;
+
     public List<Item> items;
 
     Sprite spr;
 
     public string AI;
+
+    public string Atk;
 }

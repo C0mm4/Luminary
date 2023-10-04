@@ -12,7 +12,7 @@ public class MobIdleState : State
 
     public override void UpdateState()
     {
-
+        charactor.AnimationPlay("IdleAnimation");
     }
 
     public override void ReSetState()
@@ -22,7 +22,8 @@ public class MobIdleState : State
 
     public override void ExitState()
     {
-
+        Debug.Log("Mob End");
+        charactor = null;
     }
 
 }

@@ -45,7 +45,7 @@ public class PlayerRollState : State
 
     public override void ExitState()
     {
-        charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().playerSpeed;
+        charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().charactorSpeed;
         charactor = null;
         
     }

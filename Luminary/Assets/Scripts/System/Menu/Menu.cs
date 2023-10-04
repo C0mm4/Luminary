@@ -17,7 +17,6 @@ public abstract class Menu : MonoBehaviour
     {
         GameManager.inputManager.KeyAction -= InputAction;
         GameManager.inputManager.KeyAction -= ESCInput;
-        GameManager.Instance.uiManager.endMenu();
         gameObject.SetActive(false);
     }
     public virtual void show()
@@ -29,7 +28,7 @@ public abstract class Menu : MonoBehaviour
 
     public IEnumerator inputSet()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         GameManager.inputManager.KeyAction += InputAction;
         GameManager.inputManager.KeyAction += ESCInput;
     }

@@ -17,7 +17,6 @@ public class Player : Charactor
 
     public bool isInit = false;
     public bool ismove = false;
-    public Vector2 playerSpeed = new Vector2();
 
 
     public override void Awake()
@@ -62,7 +61,7 @@ public class Player : Charactor
 
     public override void FixedUpdate()
     {
-        playerSpeed = Vector2.zero;
+        charactorSpeed = Vector2.zero;
         ManaGen();
         moveKey();
         if (getState() == null)
@@ -80,7 +79,7 @@ public class Player : Charactor
             }
         }
 
-        if (playerSpeed != Vector2.zero)
+        if (charactorSpeed != Vector2.zero)
         {
             ismove = true;
             changeState(new PlayerMoveState());
@@ -123,22 +122,22 @@ public class Player : Charactor
             {
                 if (Input.GetKey(KeyCode.W))
                 {
-                    playerSpeed.y = status.speed;
+                    charactorSpeed.y = status.speed;
                 }
 
                 if (Input.GetKey(KeyCode.S))
                 {
-                    playerSpeed.y = -status.speed;
+                    charactorSpeed.y = -status.speed;
                 }
 
                 if (Input.GetKey(KeyCode.A))
                 {
-                    playerSpeed.x = -status.speed;
+                    charactorSpeed.x = -status.speed;
                 }
 
                 if (Input.GetKey(KeyCode.D))
                 {
-                    playerSpeed.x = status.speed;
+                    charactorSpeed.x = status.speed;
                 }
 
             }
@@ -176,8 +175,8 @@ public class Player : Charactor
         {
             if (skillslots[0].isSet())
             {
-                Debug.Log(playerSpeed);
-                changeState(new PlayerCastingState(skillslots[0].getSpell(), playerSpeed));
+                Debug.Log(charactorSpeed);
+                changeState(new PlayerCastingState(skillslots[0].getSpell(), charactorSpeed));
                 skillslots[0].getSpell().isCool = true;
                 skillslots[0].useSkill();
                 cd = skillslots[0].getCD();

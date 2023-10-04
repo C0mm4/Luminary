@@ -54,12 +54,14 @@ public class StableUI : MonoBehaviour
     Player player;
 
     RectTransform rt;
-    public void Start()
+    public void setCanvas()
     {
         rt = GetComponent<RectTransform>();
         rt.transform.SetParent(GameManager.Instance.canvas.transform, false);
         rt.transform.localScale = Vector3.one;
         rt.transform.localPosition = Vector3.zero;
+        Debug.Log("StableUI Gen");
+
     }
 
     public void init()
@@ -70,6 +72,7 @@ public class StableUI : MonoBehaviour
         FreshMaxHPMP();
         FreshHPMP();
     }
+
 
 
     public void Update()

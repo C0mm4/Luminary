@@ -23,7 +23,6 @@ public class HPUI : MonoBehaviour
                 currentHP.fillAmount = 1;
                 isInit = true;
             }
-            
         }
     }
 
@@ -50,7 +49,6 @@ public class HPUI : MonoBehaviour
         }
         else
         {
-            currentHP.fillAmount = player.status.currentHP/player.status.maxHP;
         }
     }
 }

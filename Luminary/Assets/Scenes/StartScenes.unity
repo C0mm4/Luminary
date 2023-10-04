@@ -195,7 +195,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1855561243}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 1
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -243,7 +243,6 @@ MonoBehaviour:
   canvas: {fileID: 37611620}
   camera: {fileID: 1855561243}
   invUI: {fileID: 0}
-  skillSlotUI: {fileID: 0}
   stableUI: {fileID: 0}
   menuUI: {fileID: 0}
   pauseUI: {fileID: 0}
@@ -282,6 +281,7 @@ MonoBehaviour:
   currentHPBar: []
   MPBar: []
   currentMPBar: []
+  weaponSlot: []
 --- !u!1 &345728778
 GameObject:
   m_ObjectHideFlags: 0

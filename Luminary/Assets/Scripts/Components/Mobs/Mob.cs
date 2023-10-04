@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ public class Mob : Charactor
     public GameObject[] attackPrefab;
     public MobData data;
     AIModel model;
+    public MobAttack atk;
+
+    GameObject AtkPrefab;
 
     // Start is called before the first frame update
     public override void Awake()
@@ -48,6 +52,7 @@ public class Mob : Charactor
 
     public override void FixedUpdate()
     {
+        
         base.FixedUpdate();
         if(player == null)
         {
@@ -62,7 +67,6 @@ public class Mob : Charactor
                     sMachine.changeState(new MobIdleState());
                 }
             }
-
         }
         model.Update();
     }
@@ -75,7 +79,6 @@ public class Mob : Charactor
                     GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().clearRoom();
                 }*/
         Debug.Log("Die");
-        GameManager.Instance.ItemDrop(10002001, transform);
         base.DieObject();
     }
 
@@ -93,5 +96,19 @@ public class Mob : Charactor
 
         Vector2 ret = new Vector2(Math.Abs(player.transform.position.x - transform.position.x), Math.Abs(player.transform.position.y - transform.position.y));
         return ret;
+    }
+
+    public void Attack(int index)
+    {
+        AtkPrefab = GameManager.Resource.Instantiate(attackPrefab[index], transform);
+    }
+
+    public void attakEnd()
+    {
+        if(getState().GetType().Name == "MobATKState")
+        {
+            endCurrentState();
+            GameManager.Resource.Destroy(AtkPrefab);
+        }
     }
 }

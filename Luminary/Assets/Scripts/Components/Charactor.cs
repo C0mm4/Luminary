@@ -40,8 +40,11 @@ public class Charactor : MonoBehaviour
     [SerializeField]
     public bool godmode;
 
+    public Vector2 charactorSpeed = Vector2.zero;
 
     public Animator animator;
+
+    public string currentAnimation;
 
     // Start is called before the first frame update
     public virtual void Awake()
@@ -109,6 +112,14 @@ public class Charactor : MonoBehaviour
     // Update is called once per frame
     public virtual void FixedUpdate()
     {
+        if(charactorSpeed.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        }
+        else if (charactorSpeed.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
         sMachine.updateState();
         runBufss();
     }
@@ -517,5 +528,14 @@ public class Charactor : MonoBehaviour
 
         status.increaseSpeed -= itemdata.increaseSpeed;
         status.pIncreaseSpeed -= itemdata.pincreaseSpeed;
+    }
+
+    public void AnimationPlay(string clip)
+    {
+        if(clip != currentAnimation)
+        {
+            currentAnimation = clip;
+            animator.Play(clip);
+        }
     }
 }

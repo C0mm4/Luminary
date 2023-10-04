@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     public GameObject invUI;
-    public GameObject skillSlotUI;
     public GameObject stableUI;
     public GameObject menuUI;
     public GameObject pauseUI;
@@ -53,6 +52,7 @@ public class UIManager : MonoBehaviour
 
     public void endMenu()
     {
+        currentMenu.hide();
         currentMenu = null;
         if (menuStack.Count > 0)
         {
@@ -97,16 +97,13 @@ public class UIManager : MonoBehaviour
         invUI.GetComponent<Inventory>().init();
         
 
-        skillSlotUI = GameManager.Resource.Instantiate("UI/SkillSlots");
-        skillSlotUI.GetComponent<SkillSlotUI>().init();
-        skillSlotUI.GetComponent<HPUI>().init();
-        skillSlotUI.SetActive(false);
         textUItime = -3f;
         isInit = true;
 
 
         stableUI = GameManager.Resource.Instantiate("UI/StableUI");
-        skillSlotUI.SetActive(false);
+        stableUI.GetComponent<StableUI>().setCanvas();
+        stableUI.SetActive(false);
     }
 
 
@@ -137,11 +134,6 @@ public class UIManager : MonoBehaviour
 
     public void InPlayInput()
     {
-        if (Input.GetKeyDown("k"))
-        {
-            bskillSlotUI = !bskillSlotUI;
-            skillSlotUI.gameObject.SetActive(bskillSlotUI);
-        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -193,12 +185,14 @@ public class UIManager : MonoBehaviour
             
             invUI = canvas.transform.Find("Inventory2(Clone)").gameObject;
         }
-        if (skillSlotUI == null)
+        if(GameManager.uiState == UIState.InPlay)
         {
-            skillSlotUI = canvas.transform.Find("SkillSlots(Clone)").gameObject;
+            stableUI.SetActive(true);
         }
-
-
+        else
+        {
+            stableUI.SetActive(false);
+        }
     }
 
     public void ChangeState(UIState state)

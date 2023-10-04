@@ -33,7 +33,7 @@
 		<debufP>0.1</debufP>
 		<durateT>0</durateT>
 		<prefabpath>Spell/Fire/SpellFire</prefabpath>
-		<spr>Spells/Icon/SpellFire</spr>
+		<spr>Spells/Icon/Fire/SpellFire</spr>
 	</Spell>
 	<Spell>
 		<id>1003001</id>

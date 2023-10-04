@@ -13,6 +13,6 @@ public class tmpObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(GameManager.inputManager.mouseWorldPos.x, GameManager.inputManager.mouseWorldPos.y, 0);
+        transform.position = new Vector3(GameManager.inputManager.mouseWorldPos.x, GameManager.inputManager.mouseWorldPos.y, GameManager.Instance.uiManager.invUI.transform.position.z-1);
     }
 }

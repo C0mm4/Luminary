@@ -12,12 +12,12 @@ public class WeaponSlotUI : MonoBehaviour
     SpriteRenderer SpellSpr;
     public void enable()
     {
-        
+        gameObject.SetActive(true);
     }
 
     public void disable()
     {
-
+        gameObject.SetActive(false);
     }
 
     public void setWeapon(Item item)

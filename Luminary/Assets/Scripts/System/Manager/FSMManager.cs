@@ -72,22 +72,44 @@ public class FSMManager
         fsm[mobState[0]] = mobFSM;
 
         // Mob Chase State FSM
-        mobFSM = new List<string>();
+        mobFSM = new List<string>()
+        {
+            mobState[3], mobState[4], mobState[5], mobState[6], mobState[8],
+        };
         fsm[mobState[1]] = mobFSM;
 
         // Mob Run State FSM
+        mobFSM = new List<string>()
+        {
+            mobState[3], mobState[4], mobState[5], mobState[6], mobState[8],
+        };
         fsm[mobState[2]] = mobFSM;
 
         // Mob Cast State FSM
+        mobFSM = new List<string>()
+        {
+            mobState[4], mobState[5], mobState[6], mobState[8],
+        };
         fsm[mobState[3]] = mobFSM;
 
         // Mob ATK State FSM
+        mobFSM = new List<string>()
+        {
+            mobState[3], mobState[5], mobState[6], mobState[8],
+        };
         fsm[mobState[4]] = mobFSM;
 
         // Mob Hit State FSM
+        mobFSM = new List<string>()
+        {
+            mobState[3], mobState[4], mobState[6], mobState[8],
+        };
         fsm[mobState[5]] = mobFSM;
 
         // Mob Die State FSM
+        mobFSM = new List<string>()
+        {
+        };
         fsm[mobState[6]] = mobFSM;
 
         // mob Move State FSM

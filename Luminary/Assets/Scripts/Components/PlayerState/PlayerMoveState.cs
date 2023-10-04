@@ -16,17 +16,17 @@ public class PlayerMoveState : State
     }
     public override void UpdateState()
     {
-        charactor.animator.Play("MoveAnimation");
+        charactor.AnimationPlay("MoveAnimation");
         if (charactor.GetComponent<Player>().ismove)
         {
-            if(charactor.GetComponent<Player>().playerSpeed == Vector2.zero) 
+            if(charactor.GetComponent<Player>().charactorSpeed == Vector2.zero) 
             {
                 charactor.GetComponent<Charactor>().endCurrentState();
             }
             else
             {
-                dir = charactor.GetComponent<Player>().playerSpeed.normalized * charactor.GetComponent<Player>().playerSpeed;
-                charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().playerSpeed;
+                dir = charactor.GetComponent<Player>().charactorSpeed.normalized * charactor.GetComponent<Player>().charactorSpeed;
+                charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().charactorSpeed;
             }
 
             

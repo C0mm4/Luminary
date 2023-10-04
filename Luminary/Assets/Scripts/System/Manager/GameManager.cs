@@ -378,7 +378,6 @@ public class GameManager : MonoBehaviour
         player.name = "PlayerbleChara";
         cameraManager.setCamera(player.transform);
         PlayerDataManager.interactionDistance = 1000.0f;
-        uiManager.skillSlotUI.SetActive(true);
 
         uiManager.invUI.GetComponent<Inventory>().targetSet();
         uiManager.stableUI.GetComponent<StableUI>().init();

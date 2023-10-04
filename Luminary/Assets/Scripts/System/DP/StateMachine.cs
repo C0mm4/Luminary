@@ -63,8 +63,6 @@ public class StateMachine
 
             currentState.EnterState(target);
         }
-        Debug.Log(target + " state is " + currentState.GetType().Name);
-        Debug.Log(target + " state stack count is " + stateStack.Count);
     }
 
     public void updateState()

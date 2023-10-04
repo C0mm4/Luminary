@@ -31,8 +31,7 @@ public class Inventory : Menu
 
     public override void Start()
     {
-        base.Start();
-        hide();
+
     }
 
     private void OnValidate()
@@ -48,6 +47,8 @@ public class Inventory : Menu
         base.show();
     }
 
+    
+
     public void init()
     {
         Debug.Log("Inventory Init");
@@ -56,6 +57,7 @@ public class Inventory : Menu
         rt.transform.localScale = Vector3.one;
         rt.transform.localPosition = Vector3.zero;
         target = GameManager.player;
+        gameObject.SetActive(false);
         // Test
     }
 
@@ -91,8 +93,11 @@ public class Inventory : Menu
 
     public override void InputAction()
     {
-        if(Input.GetKeyUp(KeyCode.I))
+        Debug.Log("inventoryInputAction");
+
+        if (Input.GetKeyUp(KeyCode.I))
         {
+            Debug.Log("I Key Input");
             GameManager.Instance.uiManager.endMenu();
         }
     }
