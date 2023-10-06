@@ -15,20 +15,9 @@ public class DropItem : InteractionTrriger
     public void Start()
     {
         interactDist = 2f;
+        text = "ащ╠Б";
     }
 
-    public void setItemData(ItemData data)
-    {
-        item = new Item();
-        item.data = data;
-        Type T = Type.GetType(data.funcName);
-        ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
-        item.data.func = func;
-
-        spriteRenderer.sprite = data.itemImage;
-
-        Debug.Log(data.itemName);
-    }
 
     public void setSpr()
     {

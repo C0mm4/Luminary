@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerEnterHandler
 {
     [SerializeField]
     private Image image;
@@ -121,5 +121,15 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
 
         }
 
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(item != null)
+        {
+            GameObject go = GameManager.Resource.Instantiate("UI/ItemHoveringUI");
+            go.GetComponent<ItemHoveringUI>().setData(item);
+
+        }
     }
 }

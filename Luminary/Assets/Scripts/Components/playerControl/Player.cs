@@ -56,6 +56,7 @@ public class Player : Charactor
         GameManager.inputManager.KeyAction -= spellKey;
         GameManager.Instance.SceneChangeAction -= DieObject;
         PlayerDataManager.playerStatus = status;
+        Debug.Log(PlayerDataManager.playerStatus.inventory[0].item.data.itemName);
         base.DieObject();
     }
 

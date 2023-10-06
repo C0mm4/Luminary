@@ -13,7 +13,7 @@ public abstract class Menu : MonoBehaviour
         Debug.Log("Menu Generate");
     }
 
-    public void hide()
+    public virtual void hide()
     {
         GameManager.inputManager.KeyAction -= InputAction;
         GameManager.inputManager.KeyAction -= ESCInput;
@@ -24,6 +24,12 @@ public abstract class Menu : MonoBehaviour
         gameObject.SetActive(true);
 
         StartCoroutine(inputSet());
+    }
+
+    public virtual void exit()
+    {
+        hide();
+        GameManager.Resource.Destroy(gameObject);
     }
 
     public IEnumerator inputSet()
@@ -39,7 +45,7 @@ public abstract class Menu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            hide();
+            GameManager.Instance.uiManager.endMenu();
         }
     }
 }

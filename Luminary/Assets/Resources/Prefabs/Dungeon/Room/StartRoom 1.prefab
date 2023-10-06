@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5094812856271524900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -67,15 +67,14 @@ MonoBehaviour:
   - {fileID: 308878930973576687, guid: 92ec073ac4a773b46ab212e8ae5fe120, type: 3}
   - {fileID: 308878930973576687, guid: e54de78f0a87c3647a15bc069573ec8c, type: 3}
   - {fileID: 308878930973576687, guid: f014279ffb2b7104783cef72efeb662f, type: 3}
-  leftDoor: {fileID: 1077373926948621326}
-  rightDoor: {fileID: 1045184914991404886}
-  upperDoor: {fileID: 571082337756920656}
-  downDoor: {fileID: 5034366964463989823}
+  Doors: []
+  DoorObjs: []
   sizeX: 3
   sizeY: 3
   enterTrigger: {fileID: 0}
   isClear: 0
   isActivate: 0
+  mobCount: 0
   spawnTrans: []
 --- !u!1 &5364200127355672660
 GameObject:

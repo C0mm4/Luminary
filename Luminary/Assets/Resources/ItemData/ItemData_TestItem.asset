@@ -18,9 +18,9 @@ MonoBehaviour:
   itemIndex: 10003001
   spellnum: 1003000
   funcName: StatusEquip
-  baseDex: 0
-  baseInt: 0
-  baseStr: 0
+  baseDex: 2
+  baseInt: 2
+  baseStr: 2
   baseIncDMG: 0
   basepIncDMG: 0
   baseIncHP: 0
@@ -52,3 +52,4 @@ MonoBehaviour:
   overloadDMG: 0
   executionDMG: 0
   basepGetDMG: 0
+  effectText: "\u3145\u3137\u314C\u3145"

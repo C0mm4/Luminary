@@ -36,6 +36,7 @@ public class ItemDataManager : MonoBehaviour
         Type T = Type.GetType(item.data.funcName);
         ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
         item.data.func = func;
+        item.initCalc();
 
         return item;
     }

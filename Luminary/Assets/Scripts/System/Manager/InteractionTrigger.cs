@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public abstract class InteractionTrriger : MonoBehaviour
@@ -9,49 +10,63 @@ public abstract class InteractionTrriger : MonoBehaviour
     public float interactDist;
 
     protected GameObject popupUI;
+    protected string text;
     float width;
 
+    
+
     // Update is called once per frame
-    void Update()
+    public virtual void  Update()
     {
-        width = GetComponent<SpriteRenderer>().bounds.size.x;
-        if (GameObject.FindWithTag("Player")) 
+        if(GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
-            distanceToPlayer = Vector3.Distance(transform.position, GameManager.player.transform.position);
-            if(PlayerDataManager.interactionObject != gameObject)
+            width = GetComponent<SpriteRenderer>().bounds.size.x;
+            if (GameObject.FindWithTag("Player"))
             {
-                if (distanceToPlayer <= interactDist && distanceToPlayer <= PlayerDataManager.interactionDistance)
+                distanceToPlayer = Vector3.Distance(transform.position, GameManager.player.transform.position);
+                if (PlayerDataManager.interactionObject != gameObject)
                 {
-                    PlayerDataManager.interactionObject = gameObject;
-                    PlayerDataManager.interactionDistance = distanceToPlayer;
-                    Debug.Log("Now interactionObject is " + gameObject.name);
-                    // ac
+                    if (distanceToPlayer <= interactDist && distanceToPlayer <= PlayerDataManager.interactionDistance)
+                    {
+                        PlayerDataManager.interactionObject = gameObject;
+                        PlayerDataManager.interactionDistance = distanceToPlayer;
+                        Debug.Log("Now interactionObject is " + gameObject.name);
+                        // ac
+                    }
                 }
+                else
+                {
+                    if (distanceToPlayer > interactDist)
+                    {
+                        PlayerDataManager.interactionObject = null;
+                        PlayerDataManager.interactionDistance = interactDist + 1f;
+                        Debug.Log("Now interactionObject is not" + gameObject.name);
+                        //ac
+                    }
+                }
+            }
+            if (PlayerDataManager.interactionObject == gameObject)
+            {
+                if (popupUI == null)
+                {
+                    popupUI = GameManager.Resource.Instantiate("UI/InteractionUI", GameManager.Instance.canvas.transform);
+                    popupUI.GetComponent<InteractHover>().text.text = PlayerDataManager.keySetting.InteractionKey + " - " + text;
+
+                }
+                PopUpMenu();
             }
             else
             {
-                if(distanceToPlayer > interactDist)
-                {
-                    PlayerDataManager.interactionObject = null;
-                    PlayerDataManager.interactionDistance = interactDist + 1f;
-                    Debug.Log("Now interactionObject is not" + gameObject.name);
-                    //ac
-                }
+                GameManager.Resource.Destroy(popupUI);
+                popupUI = null;
             }
-        }
-        if (PlayerDataManager.interactionObject == gameObject)
-        {
-            if (popupUI == null)
-            {
-                popupUI = GameManager.Resource.Instantiate("UI/InteractionUI", GameManager.Instance.canvas.transform);
-
-            }
-            PopUpMenu();
         }
         else
         {
-            GameManager.Resource.Destroy(popupUI);
-            popupUI = null;
+            if(popupUI != null) 
+            {
+                GameManager.Resource.Destroy(popupUI.gameObject);
+            }
         }
     }
     public virtual void isInteraction()

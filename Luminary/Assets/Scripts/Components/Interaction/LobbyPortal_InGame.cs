@@ -7,6 +7,7 @@ public class LobbyPortal_InGame : InteractionTrriger
     public void Start()
     {
         interactDist = 5f;
+        text = "이동한다";
     }
     public override void isInteraction()
     {

@@ -264,6 +264,8 @@ public class GameManager : MonoBehaviour
         }
         gameState = GameState.InPlay;
         uiManager.ChangeState(UIState.InPlay);
+        uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(0);
+        Debug.Log(PlayerDataManager.playerStatus.inventory[0].item.data.itemName);
     }
     public void tutorialSceneInit() 
     {

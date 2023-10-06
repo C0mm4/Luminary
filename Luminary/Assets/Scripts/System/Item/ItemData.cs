@@ -28,7 +28,7 @@ public class ItemData : ScriptableObject, Command
     public int basepIncDMG;
 
     public int baseIncHP;
-    public float basepIncHP;
+    public int basepIncHP;
 
     public int baseIncMP;
     public int basepIncMP;
@@ -63,9 +63,9 @@ public class ItemData : ScriptableObject, Command
     public int overloadDMG;
     public int executionDMG;
 
-    public float basepGetDMG;
+    public int basepGetDMG;
 
-
+    public string effectText;
 
     [SerializeField]
     public SerializeItemStatus status;

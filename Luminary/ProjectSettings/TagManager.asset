@@ -9,6 +9,8 @@ TagManager:
   - Mob
   - SpellEffect
   - Room
+  - UI
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -17,10 +19,10 @@ TagManager:
   - Water
   - UI
   - Inventory
+  - Component
   - 
-  - 
-  - 
-  - 
+  - RoomBottom
+  - BackGround
   - 
   - 
   - 

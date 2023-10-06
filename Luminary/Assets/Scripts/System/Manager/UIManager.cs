@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
 
     public void endMenu()
     {
-        currentMenu.hide();
+        currentMenu.exit();
         currentMenu = null;
         if (menuStack.Count > 0)
         {

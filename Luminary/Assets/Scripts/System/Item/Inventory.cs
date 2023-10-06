@@ -47,7 +47,12 @@ public class Inventory : Menu
         base.show();
     }
 
-    
+    public override void exit()
+    {
+        hide();
+}
+
+
 
     public void init()
     {
@@ -89,8 +94,6 @@ public class Inventory : Menu
 
     public override void InputAction()
     {
-        Debug.Log("inventoryInputAction");
-
         if (Input.GetKeyUp(KeyCode.I))
         {
             Debug.Log("I Key Input");
