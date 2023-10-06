@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
 
 
         stableUI = GameManager.Resource.Instantiate("UI/StableUI");
-        stableUI.GetComponent<StableUI>().setCanvas();
+        Func.SetRectTransform(stableUI);
         stableUI.SetActive(false);
     }
 

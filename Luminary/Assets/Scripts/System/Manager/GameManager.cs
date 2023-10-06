@@ -251,6 +251,8 @@ public class GameManager : MonoBehaviour
         playerGen();
         uiManager.ChangeState(UIState.Lobby);
         gameState = GameState.InPlay;
+
+        ItemDrop(10003001, player.transform);
     }
     public void stageSceneInit()
     {

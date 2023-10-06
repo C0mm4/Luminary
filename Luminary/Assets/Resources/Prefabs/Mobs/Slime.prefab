@@ -192,6 +192,9 @@ MonoBehaviour:
   currentequipSize: 0
   currentweaponSize: 0
   godmode: 0
+  charactorSpeed: {x: 0, y: 0}
   animator: {fileID: 4828434631867619184}
+  currentAnimation: 
   attackPrefab: []
   data: {fileID: 11400000, guid: 9798beb1a6c7bc84086141adf5d6c6b4, type: 2}
+  atk: {fileID: 0}

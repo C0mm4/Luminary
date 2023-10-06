@@ -9,6 +9,7 @@ public class NPC : InteractionTrriger
     public override void isInteraction()
     {
         GameManager.Resource.Instantiate(menu);
+        base.isInteraction();
     }
 
 }

@@ -23,11 +23,7 @@ public class TextUI : MonoBehaviour
         starttime = Time.time;
         currenttime = Time.time;
         setTxt();
-
-        rt = gameObject.GetComponent<RectTransform>();
-        rt.transform.SetParent(GameManager.Instance.canvas.transform);
-        rt.transform.localScale = Vector3.one;
-        rt.transform.localPosition = new Vector3(0, 300, 0);
+        Func.SetRectTransform(gameObject, new Vector3(0, 300, 0));
     }
 
     void setTxt()

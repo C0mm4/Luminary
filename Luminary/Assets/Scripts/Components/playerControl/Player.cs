@@ -332,7 +332,7 @@ public class Player : Charactor
             if (ItemAdd(status.weapons[n].item))
             {
                 status.weapons[n].RemoveItem();
-                spells[n+1].deSetCommand();
+//                spells[n+1].deSetCommand();
                 ItemStatusminus(item.data.status);
                 GameManager.Instance.uiManager.invenFresh();
             }

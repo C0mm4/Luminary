@@ -33,4 +33,11 @@ public class Func
             }
         }
     }
+    public static void SetRectTransform(GameObject go, Vector3 pos = default(Vector3))
+    {
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.transform.SetParent(GameManager.Instance.canvas.transform, false);
+        rt.transform.localScale = Vector3.one;
+        rt.transform.localPosition = pos;
+    }
 }

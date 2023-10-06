@@ -9,5 +9,7 @@ public class Test : InteractionTrriger
         Debug.Log("Test Code Running");
         GameManager.Instance.ItemDrop(0, transform);
         GameManager.Resource.Destroy(gameObject);
+
+        base.isInteraction();
     }
 }

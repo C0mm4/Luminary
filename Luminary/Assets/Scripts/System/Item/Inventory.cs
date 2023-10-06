@@ -51,11 +51,7 @@ public class Inventory : Menu
 
     public void init()
     {
-        Debug.Log("Inventory Init");
-        rt = GetComponent<RectTransform>();
-        rt.transform.SetParent(GameManager.Instance.canvas.transform);
-        rt.transform.localScale = Vector3.one;
-        rt.transform.localPosition = Vector3.zero;
+        Func.SetRectTransform(this.gameObject);
         target = GameManager.player;
         gameObject.SetActive(false);
         // Test

@@ -46,7 +46,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
             {
 
                 GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().clickIndex = index;
-                GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem = GameManager.Resource.Instantiate("UI/TmpItem", GameManager.Instance.uiManager.gameObject.transform);
+                GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem = GameManager.Resource.Instantiate("UI/TmpItem");
                 GameObject tmpobj = GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().tmpitem;
                 tmpobj.GetComponent<SpriteRenderer>().sprite = image.sprite;
                 tmpobj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.7f);
@@ -110,6 +110,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("Click Detected by index : " + index);
         if(item != null)
         {
             if (eventData.button == PointerEventData.InputButton.Right)

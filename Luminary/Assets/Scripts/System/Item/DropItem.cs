@@ -12,6 +12,11 @@ public class DropItem : InteractionTrriger
     [SerializeField]
     SpriteRenderer spriteRenderer;
 
+    public void Start()
+    {
+        interactDist = 2f;
+    }
+
     public void setItemData(ItemData data)
     {
         item = new Item();
@@ -35,6 +40,9 @@ public class DropItem : InteractionTrriger
         if (GameManager.player.GetComponent<Charactor>().ItemAdd(item))
         {
             PlayerDataManager.interactionObject = null;
+
+            base.isInteraction();
+            GameManager.Resource.Destroy(popupUI);
             GameManager.Resource.Destroy(this.gameObject);
         }
     }
