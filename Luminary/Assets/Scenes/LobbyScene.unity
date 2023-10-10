@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 1424766781}
   - component: {fileID: 1424766780}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Shopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1458,6 +1458,12 @@ MonoBehaviour:
   menu: {fileID: 6504958892051788430, guid: 84c963f773109d94f89427e511bea523, type: 3}
   isSelect: 0
   index: 50003001
+  selections:
+  - Buy
+  - Sell
+  - LevelUp
+  - Enchant
+  - Close
   scripts: []
 --- !u!212 &1424766781
 SpriteRenderer:

@@ -20,7 +20,6 @@ public class NPC : InteractionTrriger
 
     public void Awake()
     {
-        Debug.Log("Script Set");
         scripts = GameManager.Instance.getTextData(index);
         Debug.Log(scripts.Count);
     }

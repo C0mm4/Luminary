@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Choice : MonoBehaviour
+public abstract class Choice : MonoBehaviour
 {
     public int index;
+    [SerializeField]
+    public Sprite select;
+    public Sprite deSelect;
     // Start is called before the first frame update
-    public void Work()
-    {
-        
-    }
+    public abstract void Work();
 }

@@ -12,6 +12,7 @@ public class NPCUI : Menu
     public GameObject nameUI;
     public GameObject TextUI;
     public GameObject SelectUI;
+    public List<GameObject> selects;
 
     public string text;
     public int textCnt;
@@ -45,7 +46,7 @@ public class NPCUI : Menu
         }
         else
         {
-            if(npc.selections.Count > 0)
+            if(npc.selections.Count <= 0)
             {
                 if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
                 {
@@ -56,19 +57,25 @@ public class NPCUI : Menu
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
+                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().deSelect;
                     currentSelection--;
-                    if(currentSelection < 0)
+                    if (currentSelection < 0)
                     {
                         currentSelection = npc.selections.Count - 1;
                     }
+                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
                 }
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
+                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().deSelect;
+
                     currentSelection++;
-                    if(currentSelection >= npc.selections.Count)
+                    if (currentSelection >= npc.selections.Count)
                     {
                         currentSelection = 0;
                     }
+
+                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
                 }
 
                 if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
@@ -96,13 +103,14 @@ public class NPCUI : Menu
                 isActivate = true;
                 SelectUI.GetComponent<RectTransform>().sizeDelta = new Vector2(2.56f, 0.64f * npc.selections.Count);
                 SelectUI.SetActive(true);
+                selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
             }
         }
     }
 
     public virtual void SelectionWork()
     {
-
+        selects[currentSelection].GetComponent<Choice>().Work();
     }
 
     public IEnumerator TextFilling()
@@ -120,9 +128,7 @@ public class NPCUI : Menu
     public void setData()
     {
         int cnt = npc.scripts.Count;
-        Debug.Log(cnt);
         text = npc.scripts[GameManager.Random.getGeneralNext(0, cnt)];
-        Debug.Log(text);
         textCnt = text.Length;
         currentCnt = 0;
 
@@ -137,8 +143,10 @@ public class NPCUI : Menu
         {
             for(int i = 0; i < npc.selections.Count; i++) 
             { 
-                GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/Selection" + npc.selections[i], SelectUI.transform);
+                GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/Selection/" + npc.selections[i], SelectUI.transform);
                 go.GetComponent<Choice>().index = i;
+                go.GetComponent<RectTransform>().localPosition = new Vector3(0, npc.selections.Count * 0.64f - 0.32f - i * 0.64f, 0);
+                selects.Add(go);
             }
         }
     }
