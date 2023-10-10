@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
     FSMManager _fsmManager = new FSMManager();
     public static FSMManager FSM { get { return gm_Instance._fsmManager; } }
 
+    ScriptManager _scriptManager = new ScriptManager();
+    public static ScriptManager Script { get { return gm_Instance._scriptManager; } }
+
     public struct SerializedGameData
     {
         public List<Resolution> resolutionList;
@@ -123,7 +126,7 @@ public class GameManager : MonoBehaviour
 
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-            canvas.planeDistance = 10;
+            canvas.planeDistance = 5;
         }
 
         Application.targetFrameRate = 60;
@@ -161,7 +164,7 @@ public class GameManager : MonoBehaviour
             uiManager = canvas.GetComponent<UIManager>();
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-            canvas.planeDistance = 10;
+            canvas.planeDistance = 5;
         }
 
     }
@@ -183,6 +186,7 @@ public class GameManager : MonoBehaviour
         Random.init("");
         MapGen.init();
         StageC.init();
+        Script.init();
         playerDataManager.playerDataInit();
     }
 
@@ -400,7 +404,7 @@ public class GameManager : MonoBehaviour
         uiManager.init();
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
         canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        canvas.planeDistance = 10;
+        canvas.planeDistance = 5;
     }
 
     public void moveRoom(int targetRoomindex)
@@ -420,6 +424,11 @@ public class GameManager : MonoBehaviour
     public void sleep(int n)
     {
         StartCoroutine(Sleep(n));
+    }
+
+    public List<string> getTextData(int index)
+    {
+        return Script.getTxtData(index);
     }
 
    IEnumerator Sleep(int n)

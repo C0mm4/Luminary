@@ -95,5 +95,4 @@ public struct SerializeItemStatus
             pGetDMG = left.pGetDMG + right.pGetDMG
         };
     }
-
 }

@@ -67,7 +67,6 @@ public class PlayerDataManager : MonoBehaviour
         playerStatus.pIncreaseMaxMana = 0;
         playerStatus.maxMana = (int)Mathf.Floor((playerStatus.baseMana + playerStatus.increaseMaxMana) * (1+playerStatus.pIncreaseMaxMana));
         playerStatus.currentMana = playerStatus.maxMana;
-        Debug.Log(playerStatus.currentMana);
 
         playerStatus.basespeed = 5;
         playerStatus.increaseSpeed = 0;

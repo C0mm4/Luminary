@@ -6,6 +6,7 @@ public abstract class Menu : MonoBehaviour
 {
     public int index = 0;
     public int menusize;
+    public int currentMenu;
 
     public virtual void Start()
     {

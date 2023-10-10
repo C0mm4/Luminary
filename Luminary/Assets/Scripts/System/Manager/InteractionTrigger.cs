@@ -10,6 +10,8 @@ public abstract class InteractionTrriger : MonoBehaviour
     public float interactDist;
 
     protected GameObject popupUI;
+
+    [SerializeField]
     protected string text;
     float width;
 
@@ -73,6 +75,7 @@ public abstract class InteractionTrriger : MonoBehaviour
     {
         PlayerDataManager.interactionObject = null;
         PlayerDataManager.interactionDistance = 5.5f;
+        GameManager.Resource.Destroy(popupUI.gameObject);
     }
 
     public void PopUpMenu()

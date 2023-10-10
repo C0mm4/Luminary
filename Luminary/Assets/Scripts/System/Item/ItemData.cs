@@ -10,6 +10,8 @@ public class ItemData : ScriptableObject, Command
     [SerializeField]
     public Sprite itemImage;
     public int type;    // 0 == weapon 1 == passive
+    public int enchantType;
+    public int level = 0;
     public string itemName;
     public int itemIndex;
     public int spellnum;
@@ -74,6 +76,7 @@ public class ItemData : ScriptableObject, Command
     public void StatusUpgrade()
     {
         status += increaseStatus;
+        level++;
     }
 
     // Start is called before the first frame update

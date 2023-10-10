@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Type : 0 = None   1 = projectile    2 = targeting   3 = field-->
+<ScriptData>
+	<Script>
+		<id>50003001</id>
+		<Text>힘세고 강한 아침 만일 내게 묻는다면 나는 왈도</Text>
+		<Text>강인한 하루 만일 너가 필요하면 나는 제공</Text>
+		<Text>불필요한 물건 나는 매입</Text>
+	</Script>
+	<Script>
+		<id>50003002</id>
+		<Text>Text4</Text>
+		<Text>Text5</Text>
+		<Text>Text6</Text>
+	</Script>
+</ScriptData>

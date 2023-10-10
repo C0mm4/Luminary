@@ -216,6 +216,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enchantData:
+  - {fileID: 11400000, guid: c8d08ecfc99d2fd479610b94ff58f1d2, type: 2}
 --- !u!114 &6969091774091618434
 MonoBehaviour:
   m_ObjectHideFlags: 0
