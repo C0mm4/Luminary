@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnchantTable : Menu
 {
     public Item targetItem;
+    public int originSlotindex;
 
     [SerializeField]
     public TMP_Text level;

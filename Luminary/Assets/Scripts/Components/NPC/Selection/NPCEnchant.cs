@@ -6,7 +6,8 @@ public class NPCEnchant : Choice
 {
     public override void Work()
     {
-        throw new System.NotImplementedException();
+        GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/Shop_Enchant_Inventory");
+        Func.SetRectTransform(go);
     }
 
 }

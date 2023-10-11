@@ -257,6 +257,8 @@ public class GameManager : MonoBehaviour
         gameState = GameState.InPlay;
 
         ItemDrop(10003001, player.transform);
+
+        ItemDrop(10003001, player.transform);
     }
     public void stageSceneInit()
     {
