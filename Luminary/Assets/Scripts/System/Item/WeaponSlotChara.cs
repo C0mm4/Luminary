@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class WeaponSlotChara 
 {
-    public Item item = null;
+    public Item item;
+
+    public WeaponSlotChara()
+    {
+        item = null;
+    }
 
     public void AddItem(Item item)
     {

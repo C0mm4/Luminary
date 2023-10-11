@@ -156,4 +156,8 @@ public class NPCUI : Menu
         npc.isActivate = false;
         base.hide();
     }
+
+    public override void ConfirmAction()
+    {
+    }
 }

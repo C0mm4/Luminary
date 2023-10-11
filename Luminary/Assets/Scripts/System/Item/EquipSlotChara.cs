@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class EquipSlotChara
 {
-    public Item item = null;
+    public Item item;
+
+    public EquipSlotChara()
+    {
+        item = null;
+    }
 
     public void AddItem(Item item)
     {

@@ -13,7 +13,7 @@ public class ItemDataManager : MonoBehaviour
 
     public Dictionary<int, ItemData> itemDictionary = new Dictionary<int, ItemData>();
 
-    public List<SerializeItemStatus> enchantDictionary = new List<SerializeItemStatus>();
+    public List<SerializeEnchantData> enchantDictionary = new List<SerializeEnchantData>();
 
 
     public void Init()
@@ -27,7 +27,7 @@ public class ItemDataManager : MonoBehaviour
         }
         foreach(ItemData item in enchantData)
         {
-            SerializeItemStatus data = new SerializeItemStatus();
+            SerializeEnchantData data = new SerializeEnchantData();
             setEnchantData(item, data);
             enchantDictionary.Add(data);
         }
@@ -35,7 +35,9 @@ public class ItemDataManager : MonoBehaviour
 
     public ItemData getItemData(int itemIndex)
     {
-        return itemDictionary[itemIndex];
+        ItemData data = ScriptableObject.CreateInstance<ItemData>();
+        data.Initialize(itemDictionary[itemIndex]);
+        return data;
     }
 
     public Item ItemGen(int itemindex)
@@ -46,11 +48,11 @@ public class ItemDataManager : MonoBehaviour
         ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
         item.data.func = func;
         item.initCalc();
-        SetEnchantTable(item);
+//        SetEnchantTable(item);
         return item;
     }
 
-    public void setEnchantData(ItemData item, SerializeItemStatus status)
+    public void setEnchantData(ItemData item, SerializeEnchantData status)
     {
         status.dex = item.baseDex;
         status.strength = item.baseStr;

@@ -5,6 +5,11 @@ using UnityEngine;
 public class PauseMenu : Menu
 {
     int menuSize = 3;
+
+    public override void ConfirmAction()
+    {
+    }
+
     public override void InputAction()
     {
         if(Input.GetKeyDown(KeyCode.DownArrow))
