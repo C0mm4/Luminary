@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1424753412834959494
 MonoBehaviour:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - {fileID: 11400000, guid: b36287ce154c97649bb5f4d187392f0e, type: 2}
+  - {fileID: 11400000, guid: 039ebda3c0da95a48abc03c7c4b23d9f, type: 2}
   - {fileID: 11400000, guid: 0cb0db179966ecb4288b0279937456a0, type: 2}
   - {fileID: 11400000, guid: 93fc379239501c5428c3fba5049d02f6, type: 2}
   - {fileID: 11400000, guid: 1ec8383dba1899f488e9ec10b8cf88bd, type: 2}
@@ -218,6 +218,7 @@ MonoBehaviour:
   - {fileID: 0}
   enchantData:
   - {fileID: 11400000, guid: c8d08ecfc99d2fd479610b94ff58f1d2, type: 2}
+  enchantDictionary: []
 --- !u!114 &6969091774091618434
 MonoBehaviour:
   m_ObjectHideFlags: 0

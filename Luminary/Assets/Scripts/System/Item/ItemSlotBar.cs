@@ -39,14 +39,14 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
     public TMP_Text gold;
     public int index;
     [SerializeField]
-    public EnchantInven inven;
+    public BarInven inven;
 
     public int originSlot = -1;
 
     // Input Mouse Actions
     public void OnPointerEnter(PointerEventData eventData)
     {
-        onCursor();
+        inven.hoverHandler(index);
     }
 
 
@@ -60,7 +60,7 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        outCursor();
+        inven.outHoverHandler(index);
     }
 
     // set Image Colors Mouse Hovering
