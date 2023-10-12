@@ -9,34 +9,50 @@ public class ItemDataManager : MonoBehaviour
 
     [SerializeField]
     public List<ItemData> data = new List<ItemData>();
-    public List<ItemData> enchantData = new List<ItemData>();  
+    public List<ItemData> enchantData = new List<ItemData>();
 
     public Dictionary<int, ItemData> itemDictionary = new Dictionary<int, ItemData>();
 
     public List<SerializeEnchantData> enchantDictionary = new List<SerializeEnchantData>();
 
+    public int commonN, rareN, uniqueN, epicN;
+
 
     public void Init()
     {
+        commonN = rareN = uniqueN = epicN = 0;
         foreach(ItemData item in data)
         {
             if(item != null)
             {
                 itemDictionary[item.itemIndex] = item;
+                int rarity = item.itemIndex / 100;
+                Debug.Log(rarity);
+                switch (rarity)
+                {
+                    case 100020:
+                        commonN++;
+                        break;
+                    case 100021:
+                        rareN++;
+                        break;
+                    case 100022:
+                        uniqueN++;
+                        break;
+                    case 100023:
+                        epicN++;
+                        break;
+                }
             }
         }
-        foreach(ItemData item in enchantData)
-        {
-            SerializeEnchantData data = new SerializeEnchantData();
-            setEnchantData(item, data);
-            enchantDictionary.Add(data);
-        }
+        Debug.Log(commonN); Debug.Log(rareN); Debug.Log(uniqueN); Debug.Log(epicN);
     }
 
     public ItemData getItemData(int itemIndex)
     {
         ItemData data = ScriptableObject.CreateInstance<ItemData>();
         data.Initialize(itemDictionary[itemIndex]);
+        Debug.Log(data.sellGold);
         return data;
     }
 
@@ -48,52 +64,60 @@ public class ItemDataManager : MonoBehaviour
         ItemFunc func = Activator.CreateInstance(T) as ItemFunc;
         item.data.func = func;
         item.initCalc();
-//        SetEnchantTable(item);
+
+        Debug.Log(item.data.sellGold);
         return item;
     }
 
-    public void setEnchantData(ItemData item, SerializeEnchantData status)
+    public Item RandomItemGen()
     {
-        status.dex = item.baseDex;
-        status.strength = item.baseStr;
-        status.intellect = item.baseInt;
-        status.increaseDMG = item.baseIncDMG;
-        status.pincreaseDMG = item.basepIncDMG;
-        status.increaseHP = item.baseIncHP;
-        status.pincreaseHP = item.basepIncHP;
-        status.increaseMP = item.baseIncMP;
-        status.pincreaseMP = item.basepIncMP;
-        status.increaseSpeed = item.baseIncSpd;
-        status.pincreaseSpeed = item.basepIncSpd;
+        int index = 100020;
+        int rnd = GameManager.Random.getShopNext();
+        int rarity = 0;
+        if (rnd < 40)
+        {
+            rarity = 0;
+        }
+        else if(rnd < 70)
+        {
+            rarity = 1;
+        }
+        else if(rnd < 90)
+        {
+            rarity = 2;
+        }
+        else
+        {
+            rarity = 3;
+        }
+        index += rarity;
+        index *= 100;
+        int specificIndex;
+        switch (rarity)
+        {
+            case 0:
+                specificIndex = GameManager.Random.getShopNext(1, commonN + 1);
+                index += specificIndex;
+                break;
+            case 1:
+                specificIndex = GameManager.Random.getShopNext(1, rareN + 1);
+                index += specificIndex;
+                break;
+            case 2:
+                specificIndex = GameManager.Random.getShopNext(1, uniqueN + 1);
+                index += specificIndex;
+                break;
+            case 3:
+                specificIndex = GameManager.Random.getShopNext(1, epicN + 1);
+                index += specificIndex;
+                break;
+        }
 
-        status.igniteDMG = item.igniteDMG;
-        status.freezeDMG = item.freezeDMG;
-        status.flowDMG = item.flowDMG;
-        status.shockDMG = item.shockDMG;
-        status.electDMG = item.electDMG;
-        status.seedDMG = item.seedDMG;
-        status.meltingDMG = item.meltingDMG;
-        status.extinguishDMG = item.extinguishDMG;
-        status.fireDMG = item.fireDMG;
-        status.electFireDMG = item.electFireDMG;
-        status.burnningDMG = item.burnningDMG;
-        status.crackedDMG = item.crackedDMG;
-        status.rootedDMG = item.rootedDMG;
-        status.electShockDMG = item.electShockDMG;
-        status.expandDMG = item.expandDMG;
-        status.sproutDMG = item.sproutDMG;
-        status.dischargeDMG = item.dischargeDMG;
-        status.weatheringDMG = item.weatheringDMG;
-        status.boostDMG = item.boostDMG;
-        status.diffusionDMG = item.diffusionDMG;
-        status.overloadDMG = item.overloadDMG;
-        status.executionDMG = item.executionDMG;
+        Item item = ItemGen(index);
 
-        status.pGetDMG = item.basepGetDMG;
+
+        return item;
     }
 
-    public void SetEnchantTable(Item item)
-    {
-        item.data.increaseStatus = enchantDictionary[item.data.enchantType];
-    }
+
 }

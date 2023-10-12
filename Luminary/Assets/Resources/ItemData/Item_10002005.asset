@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efff0eee95b8c064db8eb5141fe08d58, type: 3}
-  m_Name: 10002004
+  m_Name: Item_10002005
   m_EditorClassIdentifier: 
   itemImage: {fileID: 0}
   type: 1
-  itemName: STR Ring 4
-  itemIndex: 10002004
+  enchantType: 0
+  level: 0
+  itemName: Fire Stone
+  itemIndex: 10002005
   spellnum: 0
   funcName: StatusEquip
   baseDex: 0
   baseInt: 0
-  baseStr: 4
+  baseStr: 0
   baseIncDMG: 0
   basepIncDMG: 0
   baseIncHP: 0
@@ -29,7 +31,7 @@ MonoBehaviour:
   basepIncMP: 0
   baseIncSpd: 0
   basepIncSpd: 0
-  igniteDMG: 0
+  igniteDMG: 10
   freezeDMG: 0
   flowDMG: 0
   shockDMG: 0
@@ -52,3 +54,8 @@ MonoBehaviour:
   overloadDMG: 0
   executionDMG: 0
   basepGetDMG: 0
+  effectText: Ignite Damage + 10%
+  flavorText: 
+  purchaseGold: 1200
+  sellGold: 600
+  increaseStatus: {fileID: 0}

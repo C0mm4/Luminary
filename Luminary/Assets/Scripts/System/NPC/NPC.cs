@@ -18,6 +18,9 @@ public class NPC : InteractionTrriger
 
     public List<string> scripts = new List<string>();
 
+    public List<Item> items = new List<Item>();
+    public List<bool> takeALook = new List<bool>();
+
     public void Awake()
     {
         scripts = GameManager.Instance.getTextData(index);

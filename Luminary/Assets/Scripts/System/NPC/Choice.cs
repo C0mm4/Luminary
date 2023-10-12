@@ -8,6 +8,7 @@ public abstract class Choice : MonoBehaviour
     [SerializeField]
     public Sprite select;
     public Sprite deSelect;
+    public NPC npc;
     // Start is called before the first frame update
     public abstract void Work();
 }

@@ -316,7 +316,7 @@ public class Charactor : MonoBehaviour
 
     public void ItemDelete(int n)
     {
-
+        status.inventory[n].RemoveItem();
     }
 
     public void changeState(State state)

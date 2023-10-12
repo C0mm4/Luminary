@@ -8,5 +8,12 @@ public class Shopper : NPC
     {
         interactDist = 2f;
         text = "대화한다";
+        for(int i = 0; i < 6; i++)
+        {
+            Item itm = GameManager.itemDataManager.RandomItemGen();
+            Debug.Log(itm.data.itemName);
+            items.Add(itm);
+            takeALook.Add(true);
+        }
     }
 }

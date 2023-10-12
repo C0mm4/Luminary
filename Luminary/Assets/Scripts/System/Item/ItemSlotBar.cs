@@ -21,6 +21,15 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
                 img.sprite = Item.data.itemImage;
                 txt.text = Item.data.itemName;
                 img.color = new Color(1, 1, 1, 1);
+                if(index < 18)
+                {
+                    gold.text = Item.data.sellGold + " G";
+                    Debug.Log(Item.data.sellGold);
+                }
+                else
+                {
+                    gold.text = Item.data.purchaseGold.ToString() + " G";
+                }
             }
             else
             {
@@ -46,7 +55,19 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
     // Input Mouse Actions
     public void OnPointerEnter(PointerEventData eventData)
     {
-        inven.hoverHandler(index);
+        if(inven.currentMenu < inven.slots.Count && inven.currentMenu > 0)
+        {
+            inven.outHoverHandler(inven.currentMenu);
+        }
+        else if(inven.currentMenu == 99)
+        {
+            inven.confirmButton.GetComponent<ConfirmButton>().outHandler();
+        }
+        if (Item != null)
+        {
+            inven.hoverHandler(index);
+
+        }
     }
 
 
@@ -75,8 +96,21 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
             inven.currentMenu = index;
             if (inven.selectIndex != index)
             {
-
-                selfImg.color = new Color(164f / 255f, 133f / 255f, 133f / 255f, 1);
+                if(index >= 18)
+                {
+                    if (!inven.npc.takeALook[index - 18])
+                    {
+                        selfImg.color = new Color(75f / 255f, 75f / 255f, 75f / 255f);
+                    }
+                    else
+                    {
+                        selfImg.color = new Color(164f / 255f, 133f / 255f, 133f / 255f, 1);
+                    }
+                }
+                else
+                {
+                    selfImg.color = new Color(164f / 255f, 133f / 255f, 133f / 255f, 1);
+                }
             }
 
         }
@@ -85,7 +119,21 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
     // set Image Colors Mouse Hovering end
     public void outCursor()
     {
-        if(inven.selectIndex != index)
+        if(index >= 18)
+        {
+            if (!inven.npc.takeALook[index - 18])
+            {
+                selfImg.color = new Color(75f / 255f, 75f / 255f, 75f / 255f);
+            }
+            else
+            {
+                if(inven.selectIndex != index)
+                {
+                    selfImg.color = Color.white;
+                }
+            }
+        }
+        else if(inven.selectIndex != index)
         {
             selfImg.color = Color.white;
         }
@@ -93,8 +141,23 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
     // Set Image Colors Selected Slot
     public void Select()
     {
-        selfImg.color = new Color(204f / 255f, 183f / 255f, 183f / 255f);
-        inven.selectIndex = index;
+        if(index >= 18)
+        {
+            if (!inven.npc.takeALook[index - 18])
+            {
+                selfImg.color = new Color(75f / 255f, 75f / 255f, 75f / 255f);
+            }
+            else
+            {
+                selfImg.color = new Color(204f / 255f, 183f / 255f, 183f / 255f);
+                inven.selectIndex = index;
+            }
+        }
+        else
+        {
+            selfImg.color = new Color(204f / 255f, 183f / 255f, 183f / 255f);
+            inven.selectIndex = index;
+        }
     }
 
 }

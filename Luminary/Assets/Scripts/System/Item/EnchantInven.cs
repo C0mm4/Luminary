@@ -9,7 +9,6 @@ public class EnchantInven : BarInven
     [SerializeField]
     public GameObject targetName;
     public List<GameObject> statusText;
-    public GameObject hoveringUI;
     public List<KeyValuePair<string, int>> status = new List<KeyValuePair<string, int>>();
     public string effectText;
 
@@ -20,6 +19,10 @@ public class EnchantInven : BarInven
         {
             if(currentMenu == -1 || currentMenu == 99)
             {
+                if (currentMenu == 99)
+                {
+                    confirmButton.GetComponent<ConfirmButton>().outHandler();
+                }
                 currentMenu = tmpIndex;
                 slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
@@ -38,6 +41,10 @@ public class EnchantInven : BarInven
         {
             if(currentMenu == -1 || currentMenu == 99)
             {
+                if(currentMenu == 99)
+                {
+                    confirmButton.GetComponent<ConfirmButton>().outHandler();
+                }
                 currentMenu = tmpIndex;
                 slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
@@ -65,7 +72,8 @@ public class EnchantInven : BarInven
                 {
                     slots[currentMenu].GetComponent<ItemSlotBar>().outCursor();
                     tmpIndex = currentMenu;
-                    currentMenu = 99;
+                    confirmButton.GetComponent<ConfirmButton>().inHandler();
+                    
                 }
             }
         }
@@ -119,7 +127,6 @@ public class EnchantInven : BarInven
     public override void hide()
     {
         base.hide();
-        GameManager.Resource.Destroy(hoveringUI);
     }
 
     // When clicked Item Slots, past select slot run outCursor, new Slot set
@@ -145,15 +152,12 @@ public class EnchantInven : BarInven
     public override void hoverHandler(int index)
     {
         slots[index].GetComponent<ItemSlotBar>().onCursor();
-        hoveringUI = GameManager.Resource.Instantiate("UI/ItemHoveringUI");
-        hoveringUI.GetComponent<ItemHoveringUI>().setData(slots[index].GetComponent<ItemSlotBar>().Item);
-        hoveringUI.GetComponent<RectTransform>().localPosition = GameManager.cameraManager.camera.WorldToScreenPoint(GameManager.inputManager.mouseWorldPos) - new Vector3(Screen.width / 2, Screen.height / 2, 0) + new Vector3(260, 0, 0);
+        
     }
 
     public override void outHoverHandler(int index)
     {
         slots[index].GetComponent<ItemSlotBar>().outCursor();
-        GameManager.Resource.Destroy(hoveringUI);
     }
 
     public void StatusUISet()

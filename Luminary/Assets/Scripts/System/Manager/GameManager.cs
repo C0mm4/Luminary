@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
 
         ItemDrop(10003001, player.transform);
 
-        ItemDrop(10003001, player.transform);
+        ItemDrop(10002001, player.transform);
     }
     public void stageSceneInit()
     {

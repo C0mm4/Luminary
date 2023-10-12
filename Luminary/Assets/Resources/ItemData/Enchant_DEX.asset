@@ -9,26 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efff0eee95b8c064db8eb5141fe08d58, type: 3}
-  m_Name: 10002005
+  m_Script: {fileID: 11500000, guid: d1d7d00ee5c29f544b1363070f65cd23, type: 3}
+  m_Name: Enchant_DEX
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 0}
-  type: 1
-  itemName: STR Ring 5
-  itemIndex: 10002005
-  spellnum: 0
-  funcName: StatusEquip
-  baseDex: 0
-  baseInt: 0
-  baseStr: 1
-  baseIncDMG: 0
-  basepIncDMG: 0
-  baseIncHP: 0
-  basepIncHP: 0
-  baseIncMP: 0
-  basepIncMP: 0
-  baseIncSpd: 0
-  basepIncSpd: 0
+  baseGold: 1500
+  increaseGold: 1000
+  dex: 0
+  strength: 1
+  intellect: 0
+  increaseDMG: 0
+  pincreaseDMG: 0
+  increaseHP: 0
+  pincreaseHP: 0
+  increaseMP: 0
+  pincreaseMP: 0
+  increaseSpeed: 0
+  pincreaseSpeed: 0
   igniteDMG: 0
   freezeDMG: 0
   flowDMG: 0
@@ -51,4 +47,4 @@ MonoBehaviour:
   diffusionDMG: 0
   overloadDMG: 0
   executionDMG: 0
-  basepGetDMG: 0
+  pGetDMG: 0

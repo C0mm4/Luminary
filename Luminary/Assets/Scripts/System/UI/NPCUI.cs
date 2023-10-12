@@ -146,6 +146,7 @@ public class NPCUI : Menu
                 GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/Selection/" + npc.selections[i], SelectUI.transform);
                 go.GetComponent<Choice>().index = i;
                 go.GetComponent<RectTransform>().localPosition = new Vector3(0, npc.selections.Count * 0.64f - 0.32f - i * 0.64f, 0);
+                go.GetComponent<Choice>().npc = npc;
                 selects.Add(go);
             }
         }

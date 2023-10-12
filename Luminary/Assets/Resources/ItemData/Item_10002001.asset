@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efff0eee95b8c064db8eb5141fe08d58, type: 3}
-  m_Name: 10002008
+  m_Name: Item_10002001
   m_EditorClassIdentifier: 
   itemImage: {fileID: 0}
-  type: 0
-  itemName: DEX Ring 2
-  itemIndex: 0
+  type: 1
+  enchantType: 0
+  level: 0
+  itemName: STR Ring
+  itemIndex: 10002001
   spellnum: 0
   funcName: StatusEquip
-  baseDex: 2
+  baseDex: 0
   baseInt: 0
-  baseStr: 0
+  baseStr: 1
   baseIncDMG: 0
   basepIncDMG: 0
   baseIncHP: 0
@@ -52,3 +54,8 @@ MonoBehaviour:
   overloadDMG: 0
   executionDMG: 0
   basepGetDMG: 0
+  effectText: 
+  flavorText: 
+  purchaseGold: 1200
+  sellGold: 600
+  increaseStatus: {fileID: 0}

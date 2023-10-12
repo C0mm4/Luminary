@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efff0eee95b8c064db8eb5141fe08d58, type: 3}
-  m_Name: 10003001
+  m_Name: Dummy
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 21300000, guid: 987643685bc40a64190e80f6a2645306, type: 3}
+  itemImage: {fileID: 0}
   type: 0
   enchantType: 0
   level: 0
-  itemName: TestItem0
-  itemIndex: 10003001
-  spellnum: 1003000
-  funcName: StatusEquip
+  itemName: Dummy
+  itemIndex: 1
+  spellnum: 0
+  funcName: 
   baseDex: 0
   baseInt: 0
   baseStr: 0
@@ -54,5 +54,7 @@ MonoBehaviour:
   overloadDMG: 0
   executionDMG: 0
   basepGetDMG: 0
-  effectText: "\uC2DC\uC791\uC758 \uBB34\uAE30"
-  increaseStatus: {fileID: 11400000, guid: 1cf51c2590485bc49902409e6f2ac69e, type: 2}
+  effectText: 
+  purchaseGold: 0
+  sellGold: 0
+  increaseStatus: {fileID: 0}

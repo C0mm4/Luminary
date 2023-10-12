@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efff0eee95b8c064db8eb5141fe08d58, type: 3}
-  m_Name: 10002001
+  m_Name: Item_10002004
   m_EditorClassIdentifier: 
   itemImage: {fileID: 0}
   type: 1
-  itemName: STR Ring 1
-  itemIndex: 10002001
+  enchantType: 0
+  level: 0
+  itemName: Magic Stone
+  itemIndex: 10002004
   spellnum: 0
   funcName: StatusEquip
   baseDex: 0
   baseInt: 0
-  baseStr: 1
+  baseStr: 0
   baseIncDMG: 0
-  basepIncDMG: 0
+  basepIncDMG: 10
   baseIncHP: 0
   basepIncHP: 0
   baseIncMP: 0
@@ -52,3 +54,8 @@ MonoBehaviour:
   overloadDMG: 0
   executionDMG: 0
   basepGetDMG: 0
+  effectText: Magic Damage + 10%
+  flavorText: 
+  purchaseGold: 1200
+  sellGold: 600
+  increaseStatus: {fileID: 11400000, guid: 8e4cb8ea36a8e114b8bc1f75177df84f, type: 2}

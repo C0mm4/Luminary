@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,7 @@ public class BarInven : Menu
     [SerializeField]
     public List<GameObject> slots;
 
+    public NPC npc;
 
     public Item item;
 
@@ -21,6 +23,8 @@ public class BarInven : Menu
     public Player player;
 
     public GameObject confirmButton;
+
+    public GameObject curGold;
 
     public int tmpIndex = 0;
     public int selectIndex = 0;
@@ -34,12 +38,12 @@ public class BarInven : Menu
         selectIndex = -1;
         base.Start();
         player = GameManager.player.GetComponent<Player>();
-        invenFresh();
         for (int i = 0; i < slots.Count; i++)
         {
             slots[i].GetComponent<ItemSlotBar>().index = i;
             slots[i].GetComponent<ItemSlotBar>().inven = this;
         }
+        invenFresh();
 
     }
 
@@ -47,7 +51,7 @@ public class BarInven : Menu
     {
         // Set Inventory Size
         menusize = player.currentweaponSize + player.currentequipSize + player.currentInvenSize;
-
+        curGold.GetComponent<TMP_Text>().text = player.status.gold.ToString() + " G";
         int i = 0;
         for (int j = 0; j < player.status.weapons.Count; j++)
         {
@@ -64,7 +68,7 @@ public class BarInven : Menu
             if (player.status.equips[j].item != null)
             {
                 slots[i].GetComponent<ItemSlotBar>().Item = player.status.equips[j].item;
-                slots[i].GetComponent<ItemSlotBar>().originSlot = j + 3;
+                slots[i].GetComponent<ItemSlotBar>().originSlot = j + 2;
                 i++;
             }
         }
@@ -73,13 +77,29 @@ public class BarInven : Menu
             if (player.status.inventory[j].item != null)
             {
                 slots[i].GetComponent<ItemSlotBar>().Item = player.status.inventory[j].item;
-                slots[i].GetComponent<ItemSlotBar>().originSlot = j + 7;
+                slots[i].GetComponent<ItemSlotBar>().originSlot = j + 6;
                 i++;
             }
         }
         for (; i < slots.Count; i++)
         {
-            slots[i].GetComponent<ItemSlotBar>().Item = null;
+            if(i >= 18)
+            {
+                int k = 0;
+                for(; i < slots.Count; i++)
+                {
+                    if (!npc.takeALook[k])
+                    {
+                        slots[i].GetComponent<ItemSlotBar>().selfImg.color = new Color(75f / 255f, 75f / 255f, 75f / 255f);
+                    }
+                    slots[i].GetComponent<ItemSlotBar>().Item = npc.items[k];
+                    slots[i].GetComponent<ItemSlotBar>().originSlot = k++;
+                }
+            }
+            else
+            {
+                slots[i].GetComponent<ItemSlotBar>().Item = null;
+            }
         }
     }
     public virtual void clickHandler(int index)

@@ -20,11 +20,29 @@ public class ConfirmButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        inHandler();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        outHandler();
+    }
+
+    public void Confirm()
+    {
+        if (menu != null)
+        {
+            menu.ConfirmAction();
+        }
+    }
+
+    public void inHandler()
+    {
         menu.currentMenu = 99;
         img.sprite = sprites[2];
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void outHandler()
     {
         if (isAble)
         {
@@ -33,14 +51,6 @@ public class ConfirmButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         else
         {
             img.sprite = sprites[0];
-        }
-    }
-
-    public void Confirm()
-    {
-        if (menu != null)
-        {
-            menu.ConfirmAction();
         }
     }
 

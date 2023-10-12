@@ -68,6 +68,10 @@ public class ItemData : ScriptableObject, Command
     public int basepGetDMG;
 
     public string effectText;
+    public string flavorText;
+
+    public int purchaseGold;
+    public int sellGold;
 
     [SerializeField]
     public SerializeItemStatus status;
@@ -176,6 +180,9 @@ public class ItemData : ScriptableObject, Command
 
         };
         increaseStatus = data.increaseStatus;
+
+        purchaseGold = data.purchaseGold;
+        sellGold = data.sellGold;
     }
 
     public void StatusUpgrade()
