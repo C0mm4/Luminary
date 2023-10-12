@@ -64,6 +64,8 @@ public struct SerializedPlayerStatus
 
     public bool godMode; // hitbox doesn't work
 
+    public int gold;
+
     public ElementData element; // element debuf status
 
     public List<WeaponSlotChara> weapons;

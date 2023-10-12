@@ -1,158 +1,130 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class EnchantInven : Menu
+public class EnchantInven : BarInven
 {
-    [SerializeField]
-    public List<GameObject> slots;
 
     [SerializeField]
-    public GameObject statusUI;
+    public GameObject targetName;
+    public List<GameObject> statusText;
+    public GameObject hoveringUI;
+    public List<KeyValuePair<string, int>> status = new List<KeyValuePair<string, int>>();
+    public string effectText;
 
-    public Item item;
-
-    public Player player;
-
-    public int currentIndex = 0;
-    public int tmpIndex = 0;
-    public int selectIndex = -1;
     public override void InputAction()
     {
+        // Move Current Menu with Arrow Key and wasd
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if(currentIndex == -1 || currentIndex == 99)
+            if(currentMenu == -1 || currentMenu == 99)
             {
-                currentIndex = tmpIndex;
-                slots[currentIndex].GetComponent<ItemSlotBar>().onCursor();
+                currentMenu = tmpIndex;
+                slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
             else
             {
-                slots[currentIndex].GetComponent<ItemSlotBar>().outCursor();
-                currentIndex++;
-                if (currentIndex >= menusize)
+                slots[currentMenu].GetComponent<ItemSlotBar>().outCursor();
+                currentMenu++;
+                if (currentMenu >= menusize)
                 {
-                    currentIndex = 0;
+                    currentMenu = 0;
                 }
-                slots[currentIndex].GetComponent<ItemSlotBar>().onCursor();
+                slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if(currentIndex == -1 || currentIndex == 99)
+            if(currentMenu == -1 || currentMenu == 99)
             {
-                currentIndex = tmpIndex;
-                slots[currentIndex].GetComponent<ItemSlotBar>().onCursor();
+                currentMenu = tmpIndex;
+                slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
             else
             {
-                slots[currentIndex].GetComponent<ItemSlotBar>().outCursor();
-                currentIndex--;
-                if (currentIndex < 0)
+                slots[currentMenu].GetComponent<ItemSlotBar>().outCursor();
+                currentMenu--;
+                if (currentMenu < 0)
                 {
-                    currentIndex = menusize - 1;
+                    currentMenu = menusize - 1;
                 }
-                slots[currentIndex].GetComponent<ItemSlotBar>().onCursor();
+                slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if(currentIndex != 99)
+            if(currentMenu != 99)
             {
-                if(currentIndex == -1)
+                if(currentMenu == -1)
                 {
-                    currentIndex = tmpIndex;
-                    slots[currentIndex].GetComponent<ItemSlotBar>().onCursor();
+                    currentMenu = tmpIndex;
+                    slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
                 }
                 else
                 {
-                    slots[currentIndex].GetComponent<ItemSlotBar>().outCursor();
-                    tmpIndex = currentIndex;
-                    currentIndex = 99;
+                    slots[currentMenu].GetComponent<ItemSlotBar>().outCursor();
+                    tmpIndex = currentMenu;
+                    currentMenu = 99;
                 }
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if(currentIndex != -1)
+            if(currentMenu != -1)
             {
-                if(currentIndex == 99)
+                if(currentMenu == 99)
                 {
-                    currentIndex = tmpIndex;
-                    slots[currentIndex].GetComponent<ItemSlotBar>().onCursor();
+                    currentMenu = tmpIndex;
+                    slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
                 }
                 else
                 {
-                    slots[currentIndex].GetComponent<ItemSlotBar>().outCursor();
-                    tmpIndex = currentIndex;
-                    currentIndex = -1;
+                    slots[currentMenu].GetComponent<ItemSlotBar>().outCursor();
+                    tmpIndex = currentMenu;
+                    currentMenu = -1;
                 }
             }
         }
+        // If current Index is ItemSlot, ItemSlot Select
         if(Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
-            if (currentIndex < menusize && currentIndex != -1)
+            if (currentMenu < menusize && currentMenu != -1)
             {
-                clickHandler(currentIndex);
+                clickHandler(currentMenu);
             }
-            else if (currentIndex == -1)
+            // if current Index is close, close menu
+            else if (currentMenu == -1)
             {
                 GameManager.Instance.uiManager.endMenu();
             }
-            else if (currentIndex == 99)
+            // if current slot is Enchant Item, Enchant Table Menu Create
+            else if (currentMenu == 99)
             {
-                MoveEnchantTable();
+                ConfirmAction();
             }
         }
-        Debug.Log(currentIndex);
+        Debug.Log(currentMenu);
     }
 
-    // Start is called before the first frame update
-    public override void Start()
+    public override void show()
     {
-        base.Start();
-        player = GameManager.player.GetComponent<Player>();
-        selectIndex = -1;
-        invenFresh();
-        for(int i = 0; i < slots.Count; i++)
+        base.show();
+        if(selectIndex != -1)
         {
-            slots[i].GetComponent<ItemSlotBar>().index = i;
-            slots[i].GetComponent<ItemSlotBar>().inven = this;
+            StatusUISet();
         }
-        slots[currentIndex].GetComponent<ItemSlotBar>().onCursor();
     }
 
-    public void invenFresh()
+    public override void hide()
     {
-        menusize = player.currentweaponSize + player.currentequipSize + player.currentInvenSize;
-        for (int i = 0; i < slots.Count; i++)
-        {
-            for (int j = 0; j < player.currentweaponSize; j++)
-            {
-                slots[i].GetComponent<ItemSlotBar>().Item = player.status.weapons[j].item;
-                slots[i].GetComponent<ItemSlotBar>().originSlot = j;
-                i++;
-            }
-            for(int j = 0; j < player.currentequipSize; j++)
-            {
-                slots[i].GetComponent<ItemSlotBar>().Item = player.status.equips[j].item;
-                slots[i].GetComponent<ItemSlotBar>().originSlot = j + 3;
-                i++;
-            }
-            for(int j = 0; j < player.currentInvenSize; j++)
-            {
-                slots[i].GetComponent<ItemSlotBar>().Item = player.status.inventory[j].item;
-                slots[i].GetComponent<ItemSlotBar>().originSlot = j + 7;
-                i++;
-            }
-            for(;i < slots.Count; i++)
-            {
-                slots[i].GetComponent<ItemSlotBar>().Item = null;
-            }
-        }
+        base.hide();
+        GameManager.Resource.Destroy(hoveringUI);
     }
 
-    public void clickHandler(int index)
+    // When clicked Item Slots, past select slot run outCursor, new Slot set
+
+    public override void clickHandler(int index)
     {
         int tmp = selectIndex;
         selectIndex = index;
@@ -162,23 +134,111 @@ public class EnchantInven : Menu
 
         }
         slots[selectIndex].GetComponent<ItemSlotBar>().Select();
+
+        // Set ConfirmButton Able
+        confirmButton.GetComponent<ConfirmButton>().setAble();
+
+        StatusUISet();
+
     }
 
-    public void MoveEnchantTable()
+    public override void hoverHandler(int index)
     {
-        if (slots[selectIndex].GetComponent<ItemSlotBar>().Item.data.type == 0)
+        slots[index].GetComponent<ItemSlotBar>().onCursor();
+        hoveringUI = GameManager.Resource.Instantiate("UI/ItemHoveringUI");
+        hoveringUI.GetComponent<ItemHoveringUI>().setData(slots[index].GetComponent<ItemSlotBar>().Item);
+        hoveringUI.GetComponent<RectTransform>().localPosition = GameManager.cameraManager.camera.WorldToScreenPoint(GameManager.inputManager.mouseWorldPos) - new Vector3(Screen.width / 2, Screen.height / 2, 0) + new Vector3(260, 0, 0);
+    }
+
+    public override void outHoverHandler(int index)
+    {
+        slots[index].GetComponent<ItemSlotBar>().outCursor();
+        GameManager.Resource.Destroy(hoveringUI);
+    }
+
+    public void StatusUISet()
+    {
+        // Item Status UI Data Set
+        item = slots[selectIndex].GetComponent<ItemSlotBar>().Item;
+        targetName.GetComponent<TMP_Text>().text = item.data.itemName;
+        status = FindStatus(slots[selectIndex].GetComponent<ItemSlotBar>().Item);
+        int i = 0;
+        int last = -1;
+        for (; i < statusText.Count; i++)
         {
-            GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/WeaponEnchant");
-            go.GetComponent<EnchantTable>().targetItem = slots[selectIndex].GetComponent<ItemSlotBar>().Item;
-            go.GetComponent<EnchantTable>().originSlotindex = slots[selectIndex].GetComponent<ItemSlotBar>().originSlot;
-            Debug.Log(slots[selectIndex].GetComponent<ItemSlotBar>().Item.data.itemName);
-            Debug.Log(slots[selectIndex].GetComponent<ItemSlotBar>().originSlot);
+            try
+            {
+                statusText[i].GetComponent<TMP_Text>().text = status[i].Key + " +" + status[i].Value;
+
+            }
+            catch
+            {
+                statusText[i].GetComponent<TMP_Text>().text = "";
+                if (last == -1)
+                {
+                    last = i;
+                }
+            }
         }
-        else
+        statusText[last].GetComponent<TMP_Text>().text = effectText;
+    }
+
+    public List<KeyValuePair<string, int>> FindStatus(Item itm)
+    {
+        // Find Item base Status - str, dex, int, hp, mp - and return
+        List<KeyValuePair<string, int>> keyValuePairs = new List<KeyValuePair<string, int>>();
+        if (itm.data.status.strength != 0)
         {
-            GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/ItemEnchant");
-            go.GetComponent<EnchantTable>().targetItem = slots[selectIndex].GetComponent<ItemSlotBar>().Item;
-            go.GetComponent<EnchantTable>().originSlotindex = slots[selectIndex].GetComponent<ItemSlotBar>().originSlot;
+            KeyValuePair<string, int> data = new KeyValuePair<string, int>("STR", item.data.status.strength);
+            keyValuePairs.Add(data);
+        }
+        if (itm.data.status.dex != 0)
+        {
+            KeyValuePair<string, int> data = new KeyValuePair<string, int>("DEX", item.data.status.dex);
+            keyValuePairs.Add(data);
+        }
+        if (itm.data.status.intellect != 0)
+        {
+            KeyValuePair<string, int> data = new KeyValuePair<string, int>("INT", item.data.status.intellect);
+            keyValuePairs.Add(data);
+        }
+        if (itm.data.status.increaseHP != 0)
+        {
+            KeyValuePair<string, int> data = new KeyValuePair<string, int>("MAX HP", item.data.status.increaseHP);
+            keyValuePairs.Add(data);
+        }
+        if (itm.data.status.increaseMP != 0)
+        {
+            KeyValuePair<string, int> data = new KeyValuePair<string, int>("MAX MP", item.data.status.increaseMP);
+            keyValuePairs.Add(data);
+        }
+        if (itm.data.effectText != "")
+        {
+            effectText = itm.data.effectText;
+        }
+        return keyValuePairs;
+    }
+
+    public override void ConfirmAction()
+    {
+        // if Item is Weapon > Weapon Enchant Table
+        if(selectIndex != -1 && selectIndex != 99)
+        {
+            if (slots[selectIndex].GetComponent<ItemSlotBar>().Item.data.type == 0)
+            {
+                GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/WeaponEnchant");
+                go.GetComponent<EnchantTable>().targetItem = slots[selectIndex].GetComponent<ItemSlotBar>().Item;
+                go.GetComponent<EnchantTable>().originSlotindex = slots[selectIndex].GetComponent<ItemSlotBar>().originSlot;
+                go.GetComponent<EnchantTable>().setData();
+            }
+            // if Item is not Weapon >> Item Enchant Table
+            else
+            {
+                GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/ItemEnchant");
+                go.GetComponent<EnchantTable>().targetItem = slots[selectIndex].GetComponent<ItemSlotBar>().Item;
+                go.GetComponent<EnchantTable>().originSlotindex = slots[selectIndex].GetComponent<ItemSlotBar>().originSlot;
+                go.GetComponent<EnchantTable>().setData();
+            }
         }
     }
 }

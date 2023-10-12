@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public GameObject hoveringUI;
 
     [SerializeField]
     private Image image;
@@ -129,14 +128,14 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
     {
         if(item != null)
         {
-            hoveringUI = GameManager.Resource.Instantiate("UI/ItemHoveringUI");
-            hoveringUI.GetComponent<ItemHoveringUI>().setData(item);
-            hoveringUI.GetComponent<RectTransform>().localPosition = GameManager.cameraManager.camera.WorldToScreenPoint(GameManager.inputManager.mouseWorldPos) - new Vector3(Screen.width / 2, Screen.height / 2, 0) + new Vector3(260, 0, 0);
+            GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().hoveringUI = GameManager.Resource.Instantiate("UI/ItemHoveringUI");
+            GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().hoveringUI.GetComponent<ItemHoveringUI>().setData(item);
+            GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().hoveringUI.GetComponent<RectTransform>().localPosition = GameManager.cameraManager.camera.WorldToScreenPoint(GameManager.inputManager.mouseWorldPos) - new Vector3(Screen.width / 2, Screen.height / 2, 0) + new Vector3(260, 0, 0);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.Resource.Destroy(hoveringUI);
+        GameManager.Resource.Destroy(GameManager.Instance.uiManager.invUI.GetComponent<Inventory>().hoveringUI);
     }
 }

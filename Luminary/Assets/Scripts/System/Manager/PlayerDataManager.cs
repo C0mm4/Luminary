@@ -75,6 +75,7 @@ public class PlayerDataManager : MonoBehaviour
 
         playerStatus.pGetDMG = 1;
         playerStatus.level = 1;
+        playerStatus.gold = 0;
         playerStatus.element = new ElementData();
         playerStatus.inventory = new List<ItemSlotChara>();
         playerStatus.equips = new List<EquipSlotChara>();

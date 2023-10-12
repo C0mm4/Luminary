@@ -27,12 +27,15 @@ public class Inventory : Menu
 
     public GameObject tmpitem;
 
+    public GameObject hoveringUI;
+
     public int clickIndex = -1;
 
     public override void Start()
     {
 
     }
+
 
     private void OnValidate()
     {
@@ -49,8 +52,14 @@ public class Inventory : Menu
 
     public override void exit()
     {
+        try
+        {
+            GameManager.Resource.Destroy(hoveringUI);
+
+        }
+        catch { }
         hide();
-}
+    }
 
 
 
@@ -99,5 +108,9 @@ public class Inventory : Menu
             Debug.Log("I Key Input");
             GameManager.Instance.uiManager.endMenu();
         }
+    }
+
+    public override void ConfirmAction()
+    {
     }
 }

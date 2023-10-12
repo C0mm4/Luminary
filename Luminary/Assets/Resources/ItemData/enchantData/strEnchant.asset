@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d7d00ee5c29f544b1363070f65cd23, type: 3}
+  m_Name: strEnchant
+  m_EditorClassIdentifier: 
+  baseGold: 1500
+  increaseGold: 1000
+  dex: 0
+  strength: 1
+  intellect: 0
+  increaseDMG: 0
+  pincreaseDMG: 0
+  increaseHP: 0
+  pincreaseHP: 0
+  increaseMP: 0
+  pincreaseMP: 0
+  increaseSpeed: 0
+  pincreaseSpeed: 0
+  igniteDMG: 0
+  freezeDMG: 0
+  flowDMG: 0
+  shockDMG: 0
+  electDMG: 0
+  seedDMG: 0
+  meltingDMG: 0
+  extinguishDMG: 0
+  fireDMG: 0
+  electFireDMG: 0
+  burnningDMG: 0
+  crackedDMG: 0
+  rootedDMG: 0
+  electShockDMG: 0
+  expandDMG: 0
+  sproutDMG: 0
+  dischargeDMG: 0
+  weatheringDMG: 0
+  boostDMG: 0
+  diffusionDMG: 0
+  overloadDMG: 0
+  executionDMG: 0
+  pGetDMG: 0

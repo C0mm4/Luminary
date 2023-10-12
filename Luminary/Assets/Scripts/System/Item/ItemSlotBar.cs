@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHandler, IPointerExitHandler
 {
     private Item _item;
+
+    // set Item's Name, selling Gold text
     public Item Item 
     {
         get { return _item; }
@@ -24,6 +26,7 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
             {
                 img.color = new Color(1, 1, 1, 0);
                 txt.text = "";
+                gold.text = "";
             }
         }
     }
@@ -36,48 +39,62 @@ public class ItemSlotBar : MonoBehaviour, IPointerEnterHandler,  IPointerClickHa
     public TMP_Text gold;
     public int index;
     [SerializeField]
-    public EnchantInven inven;
+    public BarInven inven;
 
     public int originSlot = -1;
 
+    // Input Mouse Actions
     public void OnPointerEnter(PointerEventData eventData)
     {
-        onCursor();
+        inven.hoverHandler(index);
     }
 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        inven.clickHandler(index);
-    }
-
-    public void onCursor()
-    {
-        inven.currentIndex = index;
-        if(inven.selectIndex != index)
+        if (Item != null)
         {
-
-            selfImg.color = new Color(164f / 255f, 133f / 255f, 133f / 255f, 1);
+            inven.clickHandler(index);
         }
     }
 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        inven.outHoverHandler(index);
+    }
+
+    // set Image Colors Mouse Hovering
+    public void onCursor()
+    {
+        if(Item != null)
+        {
+            if (inven.currentMenu != -1 && inven.currentMenu != 99)
+            {
+                inven.slots[inven.currentMenu].GetComponent<ItemSlotBar>().outCursor();
+            }
+            inven.currentMenu = index;
+            if (inven.selectIndex != index)
+            {
+
+                selfImg.color = new Color(164f / 255f, 133f / 255f, 133f / 255f, 1);
+            }
+
+        }
+    }
+
+    // set Image Colors Mouse Hovering end
     public void outCursor()
     {
         if(inven.selectIndex != index)
         {
             selfImg.color = Color.white;
-
         }
     }
-
+    // Set Image Colors Selected Slot
     public void Select()
     {
         selfImg.color = new Color(204f / 255f, 183f / 255f, 183f / 255f);
         inven.selectIndex = index;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        outCursor();
-    }
 }
