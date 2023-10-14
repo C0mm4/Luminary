@@ -224,7 +224,6 @@ public class Player : Charactor
                 }
             }
             GameManager.Instance.uiManager.invenFresh();
-            ItemStatusSum(item.data.status);
             calcStatus();
         }
         else
@@ -275,7 +274,6 @@ public class Player : Charactor
             }
             status.inventory[index].RemoveItem();
             GameManager.Instance.uiManager.invenFresh();
-            ItemStatusSum(item.data.status);
             calcStatus();
         }
         else
@@ -292,7 +290,6 @@ public class Player : Charactor
             if (ItemAdd(status.equips[n].item))
             {
                 status.equips[n].RemoveItem();
-                ItemStatusminus(item.data.status);
                 GameManager.Instance.uiManager.invenFresh();
             }
             else
@@ -306,7 +303,6 @@ public class Player : Charactor
             if (status.inventory[targetslotindex].item == null)
             {
                 ItemAdd(status.equips[n].item, targetslotindex);
-                ItemStatusminus(item.data.status);
                 status.equips[n].RemoveItem();
             }
             else
@@ -333,7 +329,6 @@ public class Player : Charactor
             {
                 status.weapons[n].RemoveItem();
 //                spells[n+1].deSetCommand();
-                ItemStatusminus(item.data.status);
                 GameManager.Instance.uiManager.invenFresh();
             }
             else
@@ -347,7 +342,6 @@ public class Player : Charactor
             if (status.inventory[targetslotindex].item == null)
             {
                 ItemAdd(status.weapons[n].item, targetslotindex);
-                ItemStatusminus(item.data.status);
                 status.weapons[n].RemoveItem();
                 spells[n + 1].deSetCommand();
             }
@@ -357,7 +351,6 @@ public class Player : Charactor
                 if(tmp.data.type == 0)
                 {
                     ItemAdd(status.weapons[n].item, targetslotindex);
-                    ItemStatusminus(item.data.status);
                     status.weapons[n].RemoveItem();
                     status.weapons[n].AddItem(tmp);
                     spells[n + 1].deSetCommand();

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.Playables;
 
 public class Inventory : Menu
 {
@@ -28,6 +30,12 @@ public class Inventory : Menu
     public GameObject tmpitem;
 
     public GameObject hoveringUI;
+
+    public TMP_Text hp;
+    public TMP_Text mp;
+    public TMP_Text str;
+    public TMP_Text dex;
+    public TMP_Text intellect;
 
     public int clickIndex = -1;
 
@@ -98,6 +106,11 @@ public class Inventory : Menu
             {
                 equipWeapons[i].item = target.GetComponent<Charactor>().status.weapons[i].item;
             }
+            hp.text = target.GetComponent<Player>().status.currentHP + " / " + target.GetComponent<Player>().status.maxHP;
+            mp.text = target.GetComponent<Player>().status.currentMana + " / " + target.GetComponent<Player>().status.maxMana;
+            str.text = target.GetComponent<Player>().status.strength.ToString();
+            dex.text = target.GetComponent<Player>().status.dexterity.ToString();
+            intellect.text = target.GetComponent<Player>().status.Intellect.ToString();
         }
     }
 

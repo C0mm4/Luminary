@@ -8,6 +8,7 @@ public class EnchantTable : Menu
 {
     public Item targetItem;
     public int originSlotindex;
+    public bool isEquip;
 
     [SerializeField]
     public Image itemImg;
@@ -73,7 +74,25 @@ public class EnchantTable : Menu
 
     public void LevelUp()
     {
+        if (isEquip)
+        {
+            if (targetItem.data.type == 0)
+            {
+                GameManager.player.GetComponent<Player>().status.weapons[originSlotindex].RemoveItem();
+            }
+        }
+        GameManager.player.GetComponent<Player>().calcStatus();
+        Debug.Log(GameManager.player.GetComponent<Player>().status.Intellect);
         targetItem.data.StatusUpgrade();
+        if (isEquip)
+        {
+            if (targetItem.data.type == 0)
+            {
+                GameManager.player.GetComponent<Player>().status.weapons[originSlotindex].AddItem(targetItem);
+            }
+        }
+
+        GameManager.player.GetComponent<Player>().calcStatus();
         GameManager.player.GetComponent<Player>().status.gold -= targetItem.data.increaseStatus.baseGold + targetItem.data.level * targetItem.data.increaseStatus.increaseGold;
         setData();
     }

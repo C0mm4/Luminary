@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: asdfg
+  m_text: "\uAC70\uB798\uD55C\uB2E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6db47208764bc8e45845b443b6964153, type: 2}
   m_sharedMaterial: {fileID: 7074184151781694765, guid: 6db47208764bc8e45845b443b6964153, type: 2}
@@ -190,6 +190,7 @@ MonoBehaviour:
   index: 0
   select: {fileID: 21300000, guid: 2c68c3ed241b2d144b127818a80f3715, type: 3}
   deSelect: {fileID: 21300000, guid: 60de057464e3028409d9ba24edbe1a22, type: 3}
+  npc: {fileID: 0}
 --- !u!212 &2474346043886290332
 SpriteRenderer:
   m_ObjectHideFlags: 0

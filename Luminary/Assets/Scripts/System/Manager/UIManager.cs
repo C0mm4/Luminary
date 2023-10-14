@@ -35,10 +35,9 @@ public class UIManager : MonoBehaviour
 
     Stack<UIState> uistack = new Stack<UIState>();
 
-
+    // Generate Menu Object, add stacks and hide before menu and showing new menu
     public void addMenu(Menu menu)
     {
-        Debug.Log("addMenu");
         if(currentMenu != null)
         {
             currentMenu.hide();
@@ -47,9 +46,9 @@ public class UIManager : MonoBehaviour
         currentMenu = menu;
         ChangeStateOnStack(UIState.Menu);
         currentMenu.show();
-        Debug.Log(uistack.Peek().ToString());
     }
 
+    // Menu object closed, reset before menu
     public void endMenu()
     {
         currentMenu.exit();
@@ -106,7 +105,7 @@ public class UIManager : MonoBehaviour
         stableUI.SetActive(false);
     }
 
-
+    // Destroy all UI Object
     public void UIClear()
     {
         foreach(Transform child in transform)
@@ -115,16 +114,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // Inventory item slots refreshing
     public void invenFresh()
     {
         invUI.GetComponent<Inventory>().freshSlot();
     }
 
-
+    // Added Text Queue showing text
     public void textUI(string txt)
     {
         textUIqueue.Enqueue(txt);
     }
+
 
     private void GenTextUI()
     {

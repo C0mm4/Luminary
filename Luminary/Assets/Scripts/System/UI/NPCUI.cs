@@ -57,25 +57,26 @@ public class NPCUI : Menu
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().deSelect;
+                    DeSelectHandler(currentSelection);
                     currentSelection--;
                     if (currentSelection < 0)
                     {
                         currentSelection = npc.selections.Count - 1;
                     }
-                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
+                    SelectHandler(currentSelection);
+                    
                 }
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().deSelect;
+                    DeSelectHandler(currentSelection);
 
                     currentSelection++;
                     if (currentSelection >= npc.selections.Count)
                     {
                         currentSelection = 0;
                     }
+                    SelectHandler(currentSelection);
 
-                    selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
                 }
 
                 if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
@@ -150,6 +151,16 @@ public class NPCUI : Menu
                 selects.Add(go);
             }
         }
+    }
+
+    public void SelectHandler(int index)
+    {
+        selects[index].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
+    }
+
+    public void DeSelectHandler(int index)
+    {
+        selects[index].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().deSelect;
     }
 
     public override void hide()
