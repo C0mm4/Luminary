@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUp : Menu
 {
@@ -22,6 +23,14 @@ public class LevelUp : Menu
     public TMP_Text mp;
     public TMP_Text spd;
     public TMP_Text dmg;
+    public TMP_Text strUp;
+    public TMP_Text strDown;
+    public TMP_Text dexUp;
+    public TMP_Text dexDown;
+    public TMP_Text intUp;
+    public TMP_Text intDown;
+
+    public List<Image> statusBg;
 
     public int requireGold;
 
@@ -34,19 +43,23 @@ public class LevelUp : Menu
     {
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
+            statusBg[currentMenu].color = new Color(1, 1, 1, 100f / 256f);
             currentMenu++;
             if(currentMenu >= menusize)
             {
                 currentMenu = 0;
             }
+            statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
+            statusBg[currentMenu].color = new Color(1, 1, 1, 100f / 256f);
             currentMenu--;
             if (currentMenu < 0)
             {
                 currentMenu = menusize - 1;
             }
+            statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
@@ -69,7 +82,9 @@ public class LevelUp : Menu
         Func.SetRectTransform(gameObject);
         tmpStatus = new SerializedPlayerStatus();
         playerStatus = GameManager.player.GetComponent<Player>().status;
+        tmpStatus = playerStatus;
         menusize = 3;
+        requireGold = playerStatus.level * 1000;
         DataSet();
     }
 
@@ -79,24 +94,34 @@ public class LevelUp : Menu
         playerStatus.strength += strSelect;
         playerStatus.dexterity += dexSelect;
         playerStatus.Intellect += intSelect;
+        totalSelect = 0;
+        strSelect = 0;
+        dexSelect = 0;
+        intSelect = 0;
         GameManager.player.GetComponent<Player>().status = playerStatus;
         GameManager.player.GetComponent<Player>().calcStatus();
+        DataSet();
     }
 
     public void UpHandler()
     {
         totalSelect++;
-        requireGold += totalSelect * 1000;
+        tmpStatus.gold -= requireGold;
+        requireGold += (playerStatus.level + totalSelect) * 1000;
+        tmpStatus.level++;
         switch (currentMenu)
         {
             case 0:
                 strSelect++;
+                tmpStatus.strength++;
                 break;
             case 1:
                 dexSelect++;
+                tmpStatus.dexterity++;
                 break;
             case 2:
                 intSelect++;
+                tmpStatus.Intellect++;
                 break;
         }
         DataSet();
@@ -109,25 +134,34 @@ public class LevelUp : Menu
             case 0:
                 if(strSelect > 0)
                 {
+                    tmpStatus.level--;
+                    requireGold -= (playerStatus.level + totalSelect) * 1000;
+                    tmpStatus.gold += requireGold;
                     totalSelect--;
-                    requireGold -= totalSelect * 1000;
                     strSelect--;
+                    tmpStatus.strength--;
                 }
                 break;
             case 1:
                 if (dexSelect > 0)
                 {
+                    tmpStatus.level--;
+                    requireGold -= (playerStatus.level + totalSelect) * 1000;
+                    tmpStatus.gold += requireGold;
                     totalSelect--;
-                    requireGold -= totalSelect * 1000;
                     dexSelect--;
+                    tmpStatus.dexterity--;
                 }
                 break;
             case 2:
                 if (intSelect > 0)
                 {
+                    tmpStatus.level--;
+                    requireGold -= (playerStatus.level + totalSelect) * 1000;
+                    tmpStatus.gold += requireGold;
                     totalSelect--;
-                    requireGold -= totalSelect * 1000;
                     intSelect--;
+                    tmpStatus.Intellect--;
                 }
                 break;
         }
@@ -136,15 +170,18 @@ public class LevelUp : Menu
 
     public void DataSet()
     {
-        level.text = playerStatus.level.ToString() + " -> " + (playerStatus.level + totalSelect).ToString();
+        tmpStatus = Func.calcStatus(tmpStatus);
+        playerStatus = GameManager.player.GetComponent<Player>().status;
+        level.text = playerStatus.level.ToString() + " -> " + (tmpStatus.level).ToString();
         reqGold.text = requireGold.ToString();
-        currGold.text = playerStatus.gold.ToString() + " -> " + (playerStatus.gold - requireGold).ToString();
-        str.text = playerStatus.gold.ToString() + " -> " + (playerStatus.strength + strSelect).ToString();
-        dex.text = playerStatus.gold.ToString() + " -> " + (playerStatus.dexterity + dexSelect).ToString();
-        intellect.text = playerStatus.gold.ToString() + " -> " + (playerStatus.Intellect + intSelect).ToString();
-        hp.text = playerStatus.gold.ToString() + " -> " + (playerStatus.strength + strSelect).ToString();
-        mp.text = playerStatus.gold.ToString() + " -> " + (playerStatus.strength + strSelect).ToString();
-        spd.text = playerStatus.gold.ToString();
-        dmg.text = playerStatus.gold.ToString();
+        currGold.text = playerStatus.gold.ToString() + " -> " + (tmpStatus.gold).ToString();
+        str.text = playerStatus.strength.ToString() + " -> " + (tmpStatus.strength).ToString();
+        dex.text = playerStatus.dexterity.ToString() + " -> " + (tmpStatus.dexterity).ToString();
+        intellect.text = playerStatus.Intellect.ToString() + " -> " + (tmpStatus.Intellect).ToString();
+        hp.text = playerStatus.maxHP.ToString() + " -> " + (tmpStatus.maxHP).ToString();
+        mp.text = playerStatus.maxMana.ToString() + " -> " + (tmpStatus.maxMana).ToString();
+        spd.text = playerStatus.speed.ToString() + " -> " + (tmpStatus.speed).ToString();
+        dmg.text = playerStatus.finalDMG.ToString() + " -> " + (tmpStatus.finalDMG).ToString();
     }
 }
+ 

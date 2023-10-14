@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,5 +40,19 @@ public class Func
         rt.transform.SetParent(GameManager.Instance.canvas.transform, false);
         rt.transform.localScale = Vector3.one;
         rt.transform.localPosition = pos;
+    }
+
+    public static SerializedPlayerStatus calcStatus(SerializedPlayerStatus status)
+    {
+
+        // HP status Calculate
+        status.maxHP = (int)((status.baseHP + status.strength / 2) * (status.pIncreaseMaxHP + 1));
+        Debug.Log(status.maxHP);
+        // damage Calculate
+        status.finalDMG = (int)Math.Round((status.baseDMG * ((1 + (0.1 * status.Intellect))) + (0.02 * status.strength) + (0.03 * status.dexterity) + (1 + status.increaseDMG) / 100));
+
+        // speed Calculate
+        status.speed = (int)Math.Round((status.basespeed + status.increaseSpeed) * ((status.dexterity * 0.05) + 0.95) * (status.pIncreaseSpeed + 1));
+        return status;
     }
 }
