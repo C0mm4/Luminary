@@ -18,7 +18,6 @@ public class MobCastState : State
 
     public override void EnterState(Charactor chr)
     {
-        Debug.Log("Enter Cast");
         charactor = chr;
         charactor.charactorSpeed = new Vector2 (0, 0);
         charactor.GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);
@@ -36,7 +35,7 @@ public class MobCastState : State
 
     public override void UpdateState()
     {
-        charactor.AnimationPlay("CastAnimation " + index);
+        charactor.AnimationPlay("CastAnimation " + index, 1 / castTime);
         float currentT = Time.time;
         if(currentT - castStartT >= castTime)
         {

@@ -30,7 +30,6 @@ public class Player : Charactor
         setSkillSlots();
 
 
-        skillslots[0].setCommand(GameManager.Spells.spells[1]);
 
         status = PlayerDataManager.playerStatus;
 
@@ -111,11 +110,8 @@ public class Player : Charactor
             {
                 if (skillslots[0].isSet())
                 {
-                    if (!skillslots[0].getSpell().isCool)
-                    {
-                        if (ismove)
-                            StartCoroutine("roll");
-                    }
+                    if (ismove)
+                        StartCoroutine("roll");
                 }
             }
             if (getState().GetType().Name == "PlayerIdleState" || getState().GetType().Name == "PlayerMoveState")
@@ -148,7 +144,10 @@ public class Player : Charactor
     {
         if (Input.GetMouseButtonDown(0))
         {
-            currentSpell.useSkill();
+            if (currentSpell.isSet())
+            {
+                currentSpell.useSkill();
+            }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -170,23 +169,16 @@ public class Player : Charactor
 
     public IEnumerator roll()
     {
-        float cd = 0f;
         if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
         {
             if (skillslots[0].isSet())
             {
                 Debug.Log(charactorSpeed);
                 changeState(new PlayerCastingState(skillslots[0].getSpell(), charactorSpeed));
-                skillslots[0].getSpell().isCool = true;
                 skillslots[0].useSkill();
-                cd = skillslots[0].getCD();
             }
 
-            yield return new WaitForSeconds(cd);
-            if (skillslots[0].isSet())
-            {
-                skillslots[0].getSpell().isCool = false;
-            }
+            yield return new WaitForSeconds(0);
         }
 
     }

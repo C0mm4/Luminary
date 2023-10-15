@@ -32,7 +32,6 @@ public abstract class InteractionTrriger : MonoBehaviour
                     {
                         PlayerDataManager.interactionObject = gameObject;
                         PlayerDataManager.interactionDistance = distanceToPlayer;
-                        Debug.Log("Now interactionObject is " + gameObject.name);
                         // ac
                     }
                 }
@@ -42,7 +41,6 @@ public abstract class InteractionTrriger : MonoBehaviour
                     {
                         PlayerDataManager.interactionObject = null;
                         PlayerDataManager.interactionDistance = interactDist + 1f;
-                        Debug.Log("Now interactionObject is not" + gameObject.name);
                         //ac
                     }
                 }

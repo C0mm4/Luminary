@@ -19,7 +19,7 @@ public class SpellManager
         XmlDocument doc = GameManager.Resource.LoadXML(spellXMLFile);
         spells = new Dictionary<int, Spell>();  
 
-        text = doc.GetElementsByTagName("Spell");
+        text = doc.GetElementsByTagName("spell");
 
         createSpellObj();
     }
@@ -32,27 +32,34 @@ public class SpellManager
 
             Spell spl = new Spell();
             spl.setData(setSpellData(node));
-            spells.Add(int.Parse(node["id"].InnerText), spl);
+            spells.Add(int.Parse(node["Index"].InnerText), spl);
 
         }
-        Debug.Log(spells[1003000].data.name);
+        Debug.Log(spells[10003000].data.name);
     }
     
     public SpellData setSpellData(XmlNode node)
     {
         SpellData spellData = new SpellData();
         spellData.name = node["name"].InnerText;
-        spellData.cd = float.Parse(node["cd"].InnerText);
         spellData.circle = int.Parse(node["circle"].InnerText);
-        spellData.type = int.Parse(node["type"].InnerText);
         spellData.xRange = float.Parse(node["xRange"].InnerText);
         spellData.yRange = float.Parse(node["yRange"].InnerText);
+        if (node["type"].InnerText == "Projectile")
+        {
+            spellData.type = 1;
+        }
+        else
+        {
+            spellData.type = 2;
+        }
         spellData.damage = int.Parse(node["damage"].InnerText);
         spellData.hits = int.Parse(node["hits"].InnerText);
-        spellData.castTime = float.Parse(node["castT"].InnerText);
-        spellData.debufP = float.Parse(node["debufP"].InnerText);
+        spellData.projectileN = int.Parse(node["projectileN"].InnerText);
+        spellData.castTime = float.Parse(node["castTime"].InnerText);
         spellData.durateT = float.Parse(node["durateT"].InnerText);
-        spellData.path = node["prefabpath"].InnerText;
+        spellData.spd = float.Parse(node["spd"].InnerText);
+        spellData.path = node["path"].InnerText;
         spellData.spr = GameManager.Resource.LoadSprite(node["spr"].InnerText);
 
         return spellData;

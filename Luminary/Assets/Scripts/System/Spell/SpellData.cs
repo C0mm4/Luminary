@@ -4,15 +4,26 @@ using UnityEngine;
 
 public struct SpellData
 {
+    // Spell Name
     public string name;
-    public float cd;
+    // Spell Circle
     public int circle;
-    public int type;
+    // Projectile Range
     public float xRange, yRange;
+    // isProjectile or FIeld
+    public int type;
+    // DMG, HIts
     public int damage, hits;
+    // Projectile Numbers
+    public int projectileN;
+    // castingTime
     public float castTime;
-    public float debufP;
+    // Field Type Durate Time
     public float durateT;
+    // Projectile speed
+    public float spd;
+    // Prefab Path
     public string path;
+    // Sprite Data
     public Sprite spr;
 }

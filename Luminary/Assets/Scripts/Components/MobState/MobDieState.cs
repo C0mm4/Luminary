@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobDieState : MonoBehaviour
+public class DieState : State
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void EnterState(Charactor chr)
     {
-        
+        chr.AnimationPlay("DeadAnimation");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void ExitState()
     {
-        
+        GameManager.Resource.Destroy(charactor.gameObject);
     }
+
+    public override void ReSetState()
+    {
+
+    }
+
+    public override void UpdateState()
+    {
+
+    }
+
 }

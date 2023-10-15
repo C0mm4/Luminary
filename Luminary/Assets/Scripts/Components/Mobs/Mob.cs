@@ -12,7 +12,6 @@ public class Mob : Charactor
     public GameObject[] attackPrefab;
     public MobData data;
     AIModel model;
-    public MobAttack atk;
 
     GameObject AtkPrefab;
 
@@ -33,6 +32,7 @@ public class Mob : Charactor
             sMachine.changeState(new MobIdleState());
         }
         AIGen();
+        Debug.Log(sMachine.getStateStr());
     }
 
     public void AIGen()

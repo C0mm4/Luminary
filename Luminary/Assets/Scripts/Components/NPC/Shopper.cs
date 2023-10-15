@@ -11,7 +11,6 @@ public class Shopper : NPC
         for(int i = 0; i < 6; i++)
         {
             Item itm = GameManager.itemDataManager.RandomItemGen();
-            Debug.Log(itm.data.itemName);
             items.Add(itm);
             takeALook.Add(true);
         }

@@ -6,11 +6,6 @@ public class Spell
 {
     public SpellData data;
 
-
-    public bool isCool = false;
-    public float ct, st;
-
-
     public virtual void execute(Vector3 mos) 
     {
         GameObject obj = GameManager.Resource.Instantiate(data.path);
@@ -25,10 +20,6 @@ public class Spell
 
     }
 
-    public virtual float getCD()
-    {
-        return data.cd;
-    }
     public Sprite getSpr()
     {
         return data.spr;

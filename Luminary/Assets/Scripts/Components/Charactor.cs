@@ -2,6 +2,7 @@ using System;
 using System.Buffers.Text;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -261,6 +262,7 @@ public class Charactor : MonoBehaviour
             }
             if (status.currentHP <= 0)
             {
+                changeState(new DieState()); ;
                 DieObject();
             }
         }
@@ -338,10 +340,7 @@ public class Charactor : MonoBehaviour
 
     public void setIdleState()
     {
-        while(sMachine.getStateStr() != "MobIdleState" || sMachine.getStateStr() != "PlayerIdleState")
-        {
-            endCurrentState();
-        }
+        sMachine.setIdle();
     }
 
     public State getState()
@@ -537,11 +536,12 @@ public class Charactor : MonoBehaviour
         status.pIncreaseSpeed -= itemdata.pincreaseSpeed;
     }
 
-    public void AnimationPlay(string clip)
+    public void AnimationPlay(string clip, float spd = 1)
     {
         if(clip != currentAnimation)
         {
             currentAnimation = clip;
+            animator.speed = spd;
             animator.Play(clip);
         }
     }

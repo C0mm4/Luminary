@@ -14,17 +14,20 @@ public class MobData : ScriptableObject
 
     public float basespeed; // base Speed
 
-    public float detectDistance;
+    public float runRange; // some AI models player too close run away
 
-    public float attackRange;
+    public float runDistance; // RunRange < RunDistance < DetectDistance
 
-    public float castSpeed;
+    public float detectDistance; // Mob AI Detect Player Distance
 
-    public List<Item> items;
+    public float attackRange; // Player in attack Range, then casting attack
 
-    Sprite spr;
+    public float castSpeed; 
 
-    public string AI;
+    public List<Item> items; // For Boss Mob, Drop Item Generate
 
-    public string Atk;
+    public string AI; // AI Model's name
+
+    public int dropGold; // Drop Golds
+
 }

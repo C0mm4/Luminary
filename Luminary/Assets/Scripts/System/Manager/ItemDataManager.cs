@@ -66,7 +66,6 @@ public class ItemDataManager : MonoBehaviour
         item.data.func.data = item.data;
         item.initCalc();
 
-        Debug.Log(item.data.sellGold);
         return item;
     }
 

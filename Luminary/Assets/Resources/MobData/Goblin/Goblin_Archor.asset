@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Goblin_Archor
   m_EditorClassIdentifier: 
   index: 0
-  baseHP: 0
-  baseDMG: 2
+  baseHP: 10
+  baseDMG: 1
   basespeed: 6
+  runRange: 4
+  runDistance: 10
   detectDistance: 15
-  attackRange: 3
-  castSpeed: 0.4
+  attackRange: 13
+  castSpeed: 2
   AI: Archor
-  Atk: 

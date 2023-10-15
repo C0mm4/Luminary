@@ -30,7 +30,7 @@ public class SpellObj : MonoBehaviour
         spawnTime = Time.time;
         currentTime = spawnTime;
         spawnPos = player.transform.position;
-        if(data.type == 3)
+        if(data.type == 2)
         {
             pos = GetEllipseIntersectionPoint(mos);
             transform.position = pos;
