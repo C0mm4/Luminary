@@ -8,7 +8,8 @@ public class Ignite : Buff
     public Ignite(Charactor tar, Charactor atk, int dmg) : base(tar, atk)
     {
         id = 0;
-        setDurate(3.2f);
+        setDurate(999f);
+//        setDurate(3.2f);
         setTickTime(1f);
 
         cooltime = 5f;

@@ -27,6 +27,7 @@ public class MobChaseState : State
             dir.Normalize();
             charactor.charactorSpeed = dir;
             charactor.GetComponent<Rigidbody2D>().velocity = dir * charactor.status.speed;
+            charactor.GetComponent<Charactor>().sawDir.x = Vector2.Dot(charactor.GetComponent<Charactor>().charactorSpeed, new Vector2(1, 0));
         }
 
     }

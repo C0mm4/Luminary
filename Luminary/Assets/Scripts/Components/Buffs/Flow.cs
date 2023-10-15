@@ -7,7 +7,8 @@ public class Flow : Buff
     public Flow(Charactor tar, Charactor atk, int dmg) : base(tar, atk)
     {
         id = 2;
-        setDurate(5f);
+        setDurate(999f);
+//        setDurate(5f);
         setTickTime(0f);
 
         cooltime = 5f;

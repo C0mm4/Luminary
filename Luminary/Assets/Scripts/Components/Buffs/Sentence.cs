@@ -9,7 +9,8 @@ public class Sentence : Buff
     {
         id = 6;
         this.dmg = 1;
-        setDurate(5f);
+        setDurate(999f);
+//        setDurate(5f);
         setTickTime(0);
 
         cooltime = 0;

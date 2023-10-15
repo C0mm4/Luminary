@@ -8,7 +8,7 @@ public class Fire : Buff
     public Fire(Charactor tar, Charactor atk, int dmg) : base(tar, atk) 
     {
         id = 14;
-        setDurate(0f);
+        setDurate(0.1f);
         setTickTime(0f);
 
         cooltime = 10f;

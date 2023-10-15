@@ -7,7 +7,8 @@ public class Shock : Buff
     public Shock(Charactor tar, Charactor atk, int dmg) : base(tar, atk)
     {
         id = 3;
-        setDurate(3f);
+        setDurate(999f);
+//        setDurate(3f);
         setTickTime(0f);
 
         cooltime = 5f;
@@ -37,7 +38,7 @@ public class Shock : Buff
         if (buff != null)
         {
             buff.endEffect();
-            Buff newbuff = new Melting(target, attacker, dmg);
+            Buff newbuff = new Extinguish(target, attacker, dmg);
             return true;
         }
         // Find Shock Buff

@@ -16,7 +16,11 @@ public class Warrior : AIModel
 
                     if (target.playerDistance().magnitude <= target.data.attackRange)
                     {
-                        target.changeState(new MobCastState(target.data.castSpeed, 0));
+                        Vector2 dir = target.playerDir();
+                        if(Vector2.Dot(dir, target.sawDir) > 0)
+                        {
+                            target.changeState(new MobCastState(target.data.castSpeed, 0));
+                        }
                     }
                     else
                     {

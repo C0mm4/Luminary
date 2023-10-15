@@ -46,6 +46,8 @@ public class Charactor : MonoBehaviour
 
     public string currentAnimation;
 
+    public Vector2 sawDir = Vector2.zero;
+
     // Start is called before the first frame update
     public virtual void Awake()
     {
@@ -112,11 +114,11 @@ public class Charactor : MonoBehaviour
     // Update is called once per frame
     public virtual void FixedUpdate()
     {
-        if(charactorSpeed.x > 0)
+        if(sawDir.x > 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
-        else if (charactorSpeed.x < 0)
+        else if (sawDir.x < 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
@@ -251,6 +253,11 @@ public class Charactor : MonoBehaviour
             {
                 double dmg = pts * (100 - status.def) / 100;
                 status.currentHP -= (int)Math.Floor(dmg);
+                GameObject go = GameManager.Resource.Instantiate("UI/DMG/DMGUI");
+                go.GetComponent<DMGUI>().text.text = dmg.ToString();
+                go.GetComponent<DMGUI>().pos.x = transform.position.x;
+                go.GetComponent<DMGUI>().pos.y = transform.position.y;
+                go.GetComponent<DMGUI>().Set();
             }
             if (status.currentHP <= 0)
             {

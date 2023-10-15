@@ -8,7 +8,8 @@ public class Clean : Buff
     public Clean(Charactor tar, Charactor atk, int dmg) : base(tar, atk)
     {
         id = 9;
-        setDurate(1f);
+        setDurate(999f);
+//        setDurate(1f);
         setTickTime(0);
 
         cooltime = 10f;

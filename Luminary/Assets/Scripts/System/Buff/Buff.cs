@@ -33,6 +33,7 @@ public abstract class Buff
         target = tar;
         attacker = atk;
         instance = this;
+        Debug.Log(this.GetType().Name);
     }
 
     public void setDurate(float d)
@@ -47,21 +48,19 @@ public abstract class Buff
 
     public virtual void startEffect()
     {
-
-            // Extention Classes Doesn't Call
-            int index = target.status.endbuffs.FindIndex(buff => buff.ToString() == ToString());
-            if (index == -1)
-            {
-                target.status.buffs.Add(instance);
-                Debug.Log(target.status.buffs.Count);
-
-            }
-            else
-            {
-                resetEffect(index);
-            }
-            startTime = Time.time;
-            lastTickTime = startTime;
+        // Extention Classes Doesn't Call
+        int index = target.status.buffs.FindIndex(buff => buff.id == id);
+        if (index == -1)
+        {
+            target.status.buffs.Add(instance);
+            Debug.Log(target.status.buffs.Count);
+        }
+        else
+        {
+            resetEffect(index);
+        }
+        startTime = Time.time;
+        lastTickTime = startTime;
         
     }
 
@@ -89,7 +88,6 @@ public abstract class Buff
         // Extention Contents
         //
         // base.resetEffect();
-
         target.status.buffs.RemoveAt(i);
         target.status.buffs.Add(instance);
     }

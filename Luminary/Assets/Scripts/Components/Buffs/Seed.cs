@@ -7,7 +7,8 @@ public class Seed : Buff
     public Seed(Charactor tar, Charactor atk, int dmg) : base(tar, atk)
     {
         id = 5;
-        setDurate(10f);
+        setDurate(999f);
+//        setDurate(10f);
         setTickTime(0);
 
         cooltime = 20;

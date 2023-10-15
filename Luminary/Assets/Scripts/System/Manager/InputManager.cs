@@ -80,6 +80,7 @@ public class InputManager : MonoBehaviour
     public void LobbyInput()
     {
         KeyAction += GameManager.Instance.uiManager.InventoryToggleInput;
+        KeyAction += GameManager.player.GetComponent<Player>().spellKey;
     }
 
     public void InGameInput()

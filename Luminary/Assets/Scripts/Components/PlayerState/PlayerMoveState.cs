@@ -27,8 +27,9 @@ public class PlayerMoveState : State
             {
                 dir = charactor.GetComponent<Player>().charactorSpeed.normalized * charactor.GetComponent<Player>().charactorSpeed;
                 charactor.GetComponent<Rigidbody2D>().velocity = charactor.GetComponent<Player>().charactorSpeed;
+                charactor.GetComponent<Charactor>().sawDir.x = Vector2.Dot(charactor.GetComponent<Player>().charactorSpeed, new Vector2(1, 0));
+                Debug.Log(charactor.GetComponent<Charactor>().sawDir.x);
             }
-
             
         }
 

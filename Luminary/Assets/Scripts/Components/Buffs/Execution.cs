@@ -13,7 +13,7 @@ public class Execution : Buff
         cooltime = 5f;
 
         this.dmg = (int)Mathf.Floor(0.1f * stackCnt * dmg);
-
+        Debug.Log(stackCnt);
         startEffect();
     }
 

@@ -16,6 +16,8 @@ public class Mob : Charactor
 
     GameObject AtkPrefab;
 
+    public Vector2 sawDirect;
+
     // Start is called before the first frame update
     public override void Awake()
     {
@@ -69,6 +71,41 @@ public class Mob : Charactor
             }
         }
         model.Update();
+
+
+        // For Test
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Buff buff = new Ignite(this, this, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Buff buff = new Freeze(this, this, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Buff buff = new Flow(this, this, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Buff buff = new Shock(this, this, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Buff buff = new Electric(this, this, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Buff buff = new Seed(this, this, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Buff buff = new Sentence(this, this, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Buff buff = new Judgement(this, this, 1);
+        }
     }
 
     public override void DieObject()
@@ -95,6 +132,12 @@ public class Mob : Charactor
     {
 
         Vector2 ret = new Vector2(Math.Abs(player.transform.position.x - transform.position.x), Math.Abs(player.transform.position.y - transform.position.y));
+        return ret;
+    }
+
+    public Vector2 playerDir()
+    {
+        Vector2 ret = new Vector2((player.transform.position.x - transform.position.x), (player.transform.position.y - transform.position.y));
         return ret;
     }
 
