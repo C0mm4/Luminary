@@ -16,8 +16,8 @@ MonoBehaviour:
   type: 1
   enchantType: 0
   level: 0
-  itemName: Hammer
-  itemIndex: 10002103
+  itemName: Vane
+  itemIndex: 10002104
   spellnum: 0
   funcName: StatusEquip
   baseDex: 0
