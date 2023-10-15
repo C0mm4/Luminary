@@ -15,13 +15,17 @@ public class EnchantInven : BarInven
     public override void InputAction()
     {
         // Move Current Menu with Arrow Key and wasd
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             if(currentMenu == -1 || currentMenu == 99)
             {
                 if (currentMenu == 99)
                 {
                     confirmButton.GetComponent<ConfirmButton>().outHandler();
+                }
+                if(currentMenu == -1)
+                {
+                    closeButton.GetComponent<UICloseButton>().outHandler();
                 }
                 currentMenu = tmpIndex;
                 slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
@@ -37,13 +41,17 @@ public class EnchantInven : BarInven
                 slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             if(currentMenu == -1 || currentMenu == 99)
             {
                 if(currentMenu == 99)
                 {
                     confirmButton.GetComponent<ConfirmButton>().outHandler();
+                }
+                if(currentMenu == -1)
+                {
+                    closeButton.GetComponent<UICloseButton>().outHandler();
                 }
                 currentMenu = tmpIndex;
                 slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
@@ -59,12 +67,13 @@ public class EnchantInven : BarInven
                 slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
             }
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             if(currentMenu != 99)
             {
                 if(currentMenu == -1)
                 {
+                    closeButton.GetComponent<UICloseButton>().outHandler();
                     currentMenu = tmpIndex;
                     slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
                 }
@@ -77,12 +86,13 @@ public class EnchantInven : BarInven
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             if(currentMenu != -1)
             {
                 if(currentMenu == 99)
                 {
+                    closeButton.GetComponent<UICloseButton>().outHandler();
                     currentMenu = tmpIndex;
                     slots[currentMenu].GetComponent<ItemSlotBar>().onCursor();
                 }
@@ -90,7 +100,7 @@ public class EnchantInven : BarInven
                 {
                     slots[currentMenu].GetComponent<ItemSlotBar>().outCursor();
                     tmpIndex = currentMenu;
-                    currentMenu = -1;
+                    closeButton.GetComponent<UICloseButton>().inHandler();
                 }
             }
         }
@@ -238,7 +248,7 @@ public class EnchantInven : BarInven
             // if Item is not Weapon >> Item Enchant Table
             else
             {
-                GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/ItemEnchant");
+                GameObject go = GameManager.Resource.Instantiate("UI/NPCUI/WeaponEnchant");
                 go.GetComponent<EnchantTable>().targetItem = slots[selectIndex].GetComponent<ItemSlotBar>().Item;
                 go.GetComponent<EnchantTable>().originSlotindex = slots[selectIndex].GetComponent<ItemSlotBar>().originSlot;
                 go.GetComponent<EnchantTable>().setData();

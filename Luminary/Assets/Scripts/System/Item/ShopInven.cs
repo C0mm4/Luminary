@@ -17,7 +17,7 @@ public class ShopInven : BarInven
         {
             if(npc.takeALook.All(b => b == false))
             {
-                currentMenu = -1;
+                closeButton.GetComponent<UICloseButton>().inHandler();
             }
             else
             {
@@ -29,12 +29,13 @@ public class ShopInven : BarInven
     }
     public override void InputAction()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             if(currentMenu == -1 || currentMenu == 99)
             {
                 if(currentMenu == -1)
                 {
+                    closeButton.GetComponent<UICloseButton>().outHandler();
                     currentMenu = tmpIndex;
                 }
                 else
@@ -70,12 +71,13 @@ public class ShopInven : BarInven
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             if(currentMenu == -1 || currentMenu == 99)
             {
                 if (currentMenu == -1)
                 {
+                    closeButton.GetComponent<UICloseButton>().outHandler();
                     currentMenu = tmpIndex;
                 }
                 else
@@ -110,7 +112,7 @@ public class ShopInven : BarInven
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             if(currentMenu == 99)
             {
@@ -124,7 +126,7 @@ public class ShopInven : BarInven
                     }
                     else
                     {
-                        currentMenu = -1;
+                        closeButton.GetComponent<UICloseButton>().inHandler();
                     }
                 }
                 else
@@ -144,24 +146,25 @@ public class ShopInven : BarInven
                 }
                 else
                 {
-                    currentMenu = -1;
+                    closeButton.GetComponent<UICloseButton>().inHandler();
                 }
             }
             else if(currentMenu != -1)
             {
                 outHoverHandler(currentMenu);
                 tmpIndex = currentMenu;
-                currentMenu = -1;
+                closeButton.GetComponent<UICloseButton>().inHandler();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             if(currentMenu == -1)
             {
-                if(menusize != 0)
+                closeButton.GetComponent<UICloseButton>().outHandler();
+                if (menusize != 0)
                 {
-                    currentMenu = tmp2index;
+                    currentMenu = tmpIndex;
                     hoverHandler(currentMenu);
                 }
                 else

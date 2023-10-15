@@ -36,42 +36,85 @@ public class LevelUp : Menu
 
     public override void ConfirmAction()
     {
-        throw new System.NotImplementedException();
+        if(totalSelect != 0)
+        {
+            levelup();
+        }
     }
 
     public override void InputAction()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
-            statusBg[currentMenu].color = new Color(1, 1, 1, 100f / 256f);
-            currentMenu++;
-            if(currentMenu >= menusize)
+            if(currentMenu == -1)
             {
+                closeButton.GetComponent<UICloseButton>().outHandler();
                 currentMenu = 0;
+                statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
             }
-            statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
+            else
+            {
+                statusBg[currentMenu].color = new Color(1, 1, 1, 100f / 256f);
+                currentMenu++;
+                if (currentMenu >= menusize)
+                {
+                    currentMenu = 0;
+                }
+                statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
+            }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
-            statusBg[currentMenu].color = new Color(1, 1, 1, 100f / 256f);
-            currentMenu--;
-            if (currentMenu < 0)
+            if(currentMenu == -1)
             {
-                currentMenu = menusize - 1;
+                closeButton.GetComponent<UICloseButton>().outHandler();
+                currentMenu = 0;
+                statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
             }
-            statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
+            else
+            {
+                statusBg[currentMenu].color = new Color(1, 1, 1, 100f / 256f);
+                currentMenu--;
+                if (currentMenu < 0)
+                {
+                    currentMenu = menusize - 1;
+                }
+                statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
+
+            }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            UpHandler();
+            if(currentMenu == -1)
+            {
+                closeButton.GetComponent<UICloseButton>().outHandler();
+                currentMenu = 0;
+                statusBg[currentMenu].color = new Color(0, 0, 0, 100f / 256f);
+            }
+            else
+            {
+                UpHandler();
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
+            if(totalSelect == 0)
+            {
+                statusBg[currentMenu].color = new Color(1, 1, 1, 100f / 256f);
+                closeButton.GetComponent<UICloseButton>().inHandler();
+            }
             DownHandler();
         }
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
-            levelup();
+            if(currentMenu == -1)
+            {
+                GameManager.Instance.uiManager.endMenu();
+            }
+            else
+            {
+                levelup();
+            }
         }
     }
 

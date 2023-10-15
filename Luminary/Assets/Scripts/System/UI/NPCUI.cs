@@ -55,7 +55,7 @@ public class NPCUI : Menu
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
                 {
                     DeSelectHandler(currentSelection);
                     currentSelection--;
@@ -66,7 +66,7 @@ public class NPCUI : Menu
                     SelectHandler(currentSelection);
                     
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
                 {
                     DeSelectHandler(currentSelection);
 
