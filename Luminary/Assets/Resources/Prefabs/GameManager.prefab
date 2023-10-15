@@ -141,8 +141,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 798861bde8444e043ab99e880a2b1e32, type: 2}
   - {fileID: 11400000, guid: 5fdd32444b28dfe4e9961af19a0d9139, type: 2}
   - {fileID: 11400000, guid: 2c3652f27d8765948a176ce4eaa21fb9, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 35c262468291a3946863eedff36e5723, type: 2}
+  - {fileID: 11400000, guid: acd73e29e6d5eaa4b85186bd85b2ca4a, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -219,6 +219,10 @@ MonoBehaviour:
   enchantData:
   - {fileID: 11400000, guid: c8d08ecfc99d2fd479610b94ff58f1d2, type: 2}
   enchantDictionary: []
+  commonN: 0
+  rareN: 0
+  uniqueN: 0
+  epicN: 0
 --- !u!114 &6969091774091618434
 MonoBehaviour:
   m_ObjectHideFlags: 0

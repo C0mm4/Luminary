@@ -13,8 +13,7 @@ public class PlayerIdleState : State
 
     public override void UpdateState()
     {
-        charactor.animator.Play("IdleAnimation");
-//        charactor.AnimationPlay("IdleAnimation");
+        charactor.AnimationPlay("IdleAnimation");
     }
 
     public override void ExitState()
@@ -22,8 +21,8 @@ public class PlayerIdleState : State
         charactor = null;
     }
 
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
-        EnterState(charactor);
+        EnterState(chr);
     }
 }

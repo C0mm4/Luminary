@@ -74,7 +74,7 @@ public class FSMManager
         // Mob Chase State FSM
         mobFSM = new List<string>()
         {
-            mobState[3], mobState[4], mobState[5], mobState[6], mobState[8],
+            mobState[2], mobState[3], mobState[4], mobState[5], mobState[6], mobState[8],
         };
         fsm[mobState[1]] = mobFSM;
 
@@ -88,7 +88,7 @@ public class FSMManager
         // Mob Cast State FSM
         mobFSM = new List<string>()
         {
-            mobState[4], mobState[5], mobState[6], mobState[8],
+            mobState[2], mobState[4], mobState[5], mobState[6], mobState[8],
         };
         fsm[mobState[3]] = mobFSM;
 

@@ -80,7 +80,7 @@ public class StateMachine
         {
             currentState = stateStack.Pop();
 
-            currentState.ReSetState();
+            currentState.ReSetState(target);
         }
     }
 
@@ -99,6 +99,19 @@ public class StateMachine
         while(stateStack.Count > 0)
         {
             exitState();
+        }
+        if(getStateStr() != "MobIdleState" || getStateStr() != "PlayerIdleState")
+        {
+            if(target.tag == "Player")
+            {
+                currentState = new PlayerIdleState();
+                currentState.EnterState(target);
+            }
+            else
+            {
+                currentState = new MobIdleState();
+                currentState.EnterState(target);
+            }
         }
     }
 }

@@ -32,9 +32,9 @@ public class MobChaseState : State
 
     }
 
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
-        EnterState(charactor);
+        EnterState(chr);
     }
 
     public override void ExitState()

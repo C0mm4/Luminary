@@ -14,7 +14,7 @@ public class DieState : State
         GameManager.Resource.Destroy(charactor.gameObject);
     }
 
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
 
     }

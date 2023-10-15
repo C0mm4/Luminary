@@ -38,25 +38,13 @@ public class PlayerCastingState : State
         if(Time.time - startT >= castingT)
         {
             charactor.GetComponent<Charactor>().endCurrentState();
-            switch (spell.data.type)
-            {
-                case 0:
-                case 1:
-                    spell.execute(mos);
-                    break;
-                case 2:
-                    spell.execute(target);
-                    break;
-                case 3:
-                    spell.execute(mos);
-                    break;
-            }
+            spell.execute(mos);
         }
     }
 
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
-        EnterState(charactor);
+        EnterState(chr);
     }
 
     public override void ExitState()

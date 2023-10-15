@@ -14,5 +14,5 @@ public abstract class State
 
     public abstract void UpdateState();
 
-    public abstract void ReSetState(); 
+    public abstract void ReSetState(Charactor chr); 
 }

@@ -20,9 +20,9 @@ public class MobATKState : State
         charactor = null;
     }
 
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
-        EnterState(charactor);
+        EnterState(chr);
     }
 
     public override void UpdateState()

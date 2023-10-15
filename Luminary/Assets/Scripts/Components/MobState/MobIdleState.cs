@@ -15,9 +15,9 @@ public class MobIdleState : State
         charactor.AnimationPlay("IdleAnimation");
     }
 
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
-        EnterState(charactor);
+        EnterState(chr);
     }
 
     public override void ExitState()

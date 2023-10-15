@@ -32,10 +32,14 @@ public class PlayerMoveState : State
             }
             
         }
+        else
+        {
+            charactor.GetComponent<Charactor>().endCurrentState();
+        }
 
 
     }
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
 
     }

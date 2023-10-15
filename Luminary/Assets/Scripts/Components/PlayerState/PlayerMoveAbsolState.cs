@@ -26,7 +26,7 @@ public class PlayerMoveAbsolState : State
         charactor = null;
     }
 
-    public override void ReSetState()
+    public override void ReSetState(Charactor chr)
     {
         if (Vector3.Dot(targetPos - charactor.transform.position, dir) <= 0)
         {

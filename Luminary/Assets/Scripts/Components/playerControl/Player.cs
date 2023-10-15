@@ -85,6 +85,7 @@ public class Player : Charactor
         }
 //        Debug.Log(playerSpeed.x);
         base.FixedUpdate();
+
     }
 
     public void ManaGen()
