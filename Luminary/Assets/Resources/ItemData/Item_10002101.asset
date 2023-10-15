@@ -56,6 +56,6 @@ MonoBehaviour:
   basepGetDMG: 0
   effectText: 
   flavorText: 
-  purchaseGold: 1200
-  sellGold: 600
+  purchaseGold: 1800
+  sellGold: 900
   increaseStatus: {fileID: 0}

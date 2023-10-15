@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efff0eee95b8c064db8eb5141fe08d58, type: 3}
-  m_Name: Item_10002102
+  m_Name: Item_10002103
   m_EditorClassIdentifier: 
   itemImage: {fileID: 0}
   type: 1
   enchantType: 0
   level: 0
-  itemName: Fridge
-  itemIndex: 10002102
+  itemName: Hammer
+  itemIndex: 10002103
   spellnum: 0
   funcName: StatusEquip
   baseDex: 0
