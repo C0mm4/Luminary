@@ -31,7 +31,7 @@ MonoBehaviour:
   basepIncMP: 0
   baseIncSpd: 0
   basepIncSpd: 0
-  igniteDMG: 0
+  igniteDMG: 10
   freezeDMG: 0
   flowDMG: 0
   shockDMG: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
   overloadDMG: 0
   executionDMG: 0
   basepGetDMG: 0
-  effectText: 
+  effectText: Weathering Damage + 30%
   flavorText: 
   purchaseGold: 1800
   sellGold: 900
-  increaseStatus: {fileID: 0}
+  increaseStatus: {fileID: 11400000, guid: 8e4cb8ea36a8e114b8bc1f75177df84f, type: 2}

@@ -41,7 +41,7 @@ MonoBehaviour:
   extinguishDMG: 0
   fireDMG: 0
   electFireDMG: 0
-  burnningDMG: 0
+  burnningDMG: 30
   crackedDMG: 0
   rootedDMG: 0
   electShockDMG: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
   overloadDMG: 0
   executionDMG: 0
   basepGetDMG: 0
-  effectText: 
+  effectText: Burnning Damage + 30%
   flavorText: 
   purchaseGold: 1800
   sellGold: 900
-  increaseStatus: {fileID: 0}
+  increaseStatus: {fileID: 11400000, guid: 8e4cb8ea36a8e114b8bc1f75177df84f, type: 2}
