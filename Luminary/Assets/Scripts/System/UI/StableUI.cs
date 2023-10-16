@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StableUI : MonoBehaviour
 {
@@ -48,6 +49,12 @@ public class StableUI : MonoBehaviour
 
     public List<GameObject> weaponSlot;
 
+    public bool isCast = false;
+    public GameObject castBar;
+    public Image castFillin;
+    public float castT;
+    public float castStartT;
+
     int maxHP, maxMana;
     int currentHP, currentMana;
 
@@ -62,6 +69,7 @@ public class StableUI : MonoBehaviour
         player = GameManager.player.GetComponent<Player>();
         FreshMaxHPMP();
         FreshHPMP();
+        castBar.SetActive(false);
     }
 
 
@@ -72,7 +80,22 @@ public class StableUI : MonoBehaviour
         {
             FreshHPMP();
             FreshMaxHPMP();
+            if (isCast)
+            {
+                castBar.SetActive(true);
+                castFillin.fillAmount = (Time.time - castStartT) / castT;
+            }
+            else
+            {
+                castBar.SetActive(false);
+            }
         }
+    }
+
+    public void setCast(float castT, float startT)
+    {
+        this.castT = castT;
+        this.castStartT = startT;
     }
 
     public void WeaponSlotChange(int n)

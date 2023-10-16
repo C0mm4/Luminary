@@ -21,5 +21,6 @@ MonoBehaviour:
   detectDistance: 15
   attackRange: 13
   castSpeed: 2
+  castCool: 0.2
   AI: Archor
   dropGold: 0

@@ -22,7 +22,9 @@ public class MobData : ScriptableObject
 
     public float attackRange; // Player in attack Range, then casting attack
 
-    public float castSpeed; 
+    public float castSpeed; // Casting Speed
+
+    public float castCool; // Casting Cooltime (Attack end to next Attack Cast Start Time)
 
     public List<Item> items; // For Boss Mob, Drop Item Generate
 

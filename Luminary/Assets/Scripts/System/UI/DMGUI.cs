@@ -22,11 +22,9 @@ public class DMGUI : MonoBehaviour
 
     public void Set()
     {
-        Debug.Log(GameManager.inputManager.mousePos);
-        Debug.Log(GameManager.cameraManager.camera.WorldToScreenPoint(transform.position));
         Func.SetRectTransform(gameObject);
         GetComponent<RectTransform>().localPosition = GameManager.cameraManager.camera.WorldToScreenPoint(pos) - new Vector3(GameManager.cameraManager.camera.pixelWidth/2, GameManager.cameraManager.camera.pixelHeight/2);
-        Debug.Log(GetComponent<RectTransform>().localPosition);
+        
         
     }
 

@@ -30,6 +30,8 @@ public class PlayerCastingState : State
         GameManager.player.GetComponent<Player>().lastCastTime = Time.time;
         startT = Time.time;
         charactor.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().isCast = true;
+        GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().setCast(castingT, startT);
     }
 
     public override void UpdateState()
@@ -49,6 +51,7 @@ public class PlayerCastingState : State
 
     public override void ExitState()
     {
-
+        GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().isCast = false;
+        charactor = null;
     }
 }

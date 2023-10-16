@@ -16,7 +16,6 @@ public class Archor : AIModel
             {
                 if(target.playerDistance().magnitude <= target.data.detectDistance)
                 {
-                    Debug.Log(target.playerDistance().magnitude <= target.data.runRange);
                     if(target.playerDistance().magnitude <= target.data.runRange)
                     {
                         target.changeState(new MobRunState());
@@ -36,7 +35,14 @@ public class Archor : AIModel
                             {
                                 if(Vector2.Dot(target.playerDir(), target.sawDir) > 0)
                                 {
-                                    target.changeState(new MobCastState(target.data.castSpeed, 0));
+                                    if(Time.time - target.lastAttackT >= target.data.castCool)
+                                    {
+                                        target.changeState(new MobCastState(target.data.castSpeed, 0));
+                                    }
+                                    else
+                                    {
+                                        target.setIdleState();
+                                    }
                                 }
                                 else
                                 {

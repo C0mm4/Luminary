@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Goblin_Magition
   m_EditorClassIdentifier: 
   index: 0
-  baseHP: 0
-  baseDMG: 0
-  basespeed: 0
-  detectDistance: 0
-  attackRange: 0
-  castSpeed: 0
+  baseHP: 10
+  baseDMG: 1
+  basespeed: 6
+  runRange: 4
+  runDistance: 10
+  detectDistance: 15
+  attackRange: 14
+  castSpeed: 2
+  castCool: 0.3
   AI: Archor
-  Atk: 
+  dropGold: 0

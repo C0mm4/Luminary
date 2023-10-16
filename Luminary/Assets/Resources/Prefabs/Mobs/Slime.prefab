@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828922195368599024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -195,6 +195,9 @@ MonoBehaviour:
   charactorSpeed: {x: 0, y: 0}
   animator: {fileID: 4828434631867619184}
   currentAnimation: 
+  sawDir: {x: 0, y: 0}
   attackPrefab: []
+  isHitbox: 
   data: {fileID: 11400000, guid: 9798beb1a6c7bc84086141adf5d6c6b4, type: 2}
-  atk: {fileID: 0}
+  lastAttackT: 0
+  sawDirect: {x: 0, y: 0}

@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828922195368599024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,7 +163,9 @@ MonoBehaviour:
   sawDir: {x: 0, y: 0}
   attackPrefab:
   - {fileID: 1465138621670016082, guid: 2d33b8cc174cc164897a123f61b9e2c7, type: 3}
+  isHitbox: 
   data: {fileID: 11400000, guid: d08e1298584b2ee439a48e45ce97018e, type: 2}
+  lastAttackT: 0
   sawDirect: {x: 0, y: 0}
 --- !u!70 &7299276300589977055
 CapsuleCollider2D:

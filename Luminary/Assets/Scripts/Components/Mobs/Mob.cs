@@ -10,10 +10,12 @@ public class Mob : Charactor
     // Mob Attack Prefab
     [SerializeField]
     public GameObject[] attackPrefab;
+    public bool[] isHitbox;
     public MobData data;
     AIModel model;
+    public float lastAttackT;
 
-    GameObject AtkPrefab;
+    public GameObject AtkObj;
 
     public Vector2 sawDirect;
 
@@ -21,8 +23,10 @@ public class Mob : Charactor
     public override void Awake()
     {
         base.Awake();
-        
+        // Set Idle State
         sMachine.changeState(new MobIdleState());
+
+        // Find Player
         try
         {
             player = GameObject.Find("PlayerbleChara").GetComponent<Charactor>();
@@ -32,9 +36,10 @@ public class Mob : Charactor
             sMachine.changeState(new MobIdleState());
         }
         AIGen();
-        Debug.Log(sMachine.getStateStr());
+        
     }
 
+    // AI Generate by string name
     public void AIGen()
     {
         Type T = Type.GetType(data.AI);
@@ -43,6 +48,7 @@ public class Mob : Charactor
         Debug.Log(model.GetType().Name);
     }
 
+    // status initialize based on data
     public override void statusInit()
     {
         status.baseHP = data.baseHP;
@@ -52,10 +58,12 @@ public class Mob : Charactor
         base.statusInit();
     }
 
+
     public override void FixedUpdate()
     {
         
         base.FixedUpdate();
+        // if Player didn't find, research player object
         if(player == null)
         {
             try
@@ -70,57 +78,28 @@ public class Mob : Charactor
                 }
             }
         }
+
+        // AI model update
         model.Update();
 
 
-        // For Test
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Buff buff = new Ignite(this, this, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Buff buff = new Freeze(this, this, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Buff buff = new Flow(this, this, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Buff buff = new Shock(this, this, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Buff buff = new Electric(this, this, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Buff buff = new Seed(this, this, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Buff buff = new Sentence(this, this, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Buff buff = new Judgement(this, this, 1);
-        }
     }
 
     public override void DieObject()
     {
+        // Current Room's mob count decrease
         /*        GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount -= 1;
                 if(GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount == 0)
                 {
                     GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().clearRoom();
                 }*/
-        Debug.Log("Die");
+        GameManager.Resource.Destroy(AtkObj);
         base.DieObject();
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        
         if(other.tag == "Player")
         {
             Debug.Log("Player Collision");
@@ -128,6 +107,7 @@ public class Mob : Charactor
         }
     }
 
+    // return player Distance on Vector2
     public Vector2 playerDistance()
     {
 
@@ -135,23 +115,91 @@ public class Mob : Charactor
         return ret;
     }
 
+    // return player Direction on Vector2
     public Vector2 playerDir()
     {
         Vector2 ret = new Vector2((player.transform.position.x - transform.position.x), (player.transform.position.y - transform.position.y));
         return ret;
     }
 
-    public void Attack(int index)
+    public void ProjectileGen(int index)
     {
-        AtkPrefab = GameManager.Resource.Instantiate(attackPrefab[index], transform);
+        AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
+        AtkObj.GetComponent<MobProjectile>().setData(this);
     }
 
+    public void FieldGen(int index)
+    {
+        AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
+        AtkObj.GetComponent<MobField>().setData(this);
+    }
+
+    // Generate Attack HitBox Prefab
+    public void Attack(int index)
+    {
+        if (isHitbox[index])
+        {
+            AtkObj = GameManager.Resource.Instantiate(attackPrefab[index], transform);
+        }
+        else
+        {
+            if(AtkObj == null)
+            {
+                AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
+            }
+        }
+    }
+
+    public void FieldProjectileActive()
+    {
+        try
+        {
+            // if obj is projectile Throw projectile object
+            AtkObj.GetComponent<MobProjectile>().Throw();
+        }
+        catch
+        {
+            try
+            {
+                // if obj is Fild, Activate Field attack
+                AtkObj.GetComponent<MobField>().setActive();
+            }
+            catch
+            {
+                // hitbox is destroy
+                GameManager.Resource.Destroy(AtkObj);
+
+            }
+        }
+    }
+
+    // Attack State End handler Control in Animation Event
     public void attakEnd()
     {
+        lastAttackT = Time.time;
         if(getState().GetType().Name == "MobATKState")
         {
+            GameManager.Resource.Destroy(AtkObj);
             endCurrentState();
-            GameManager.Resource.Destroy(AtkPrefab);
+/*            try
+            {
+                // if obj is projectile Throw projectile object
+                AtkObj.GetComponent<MobProjectile>().Throw();
+            }
+            catch
+            {
+                try
+                {
+                    // if obj is Fild, Activate Field attack
+                    AtkObj.GetComponent<MobField>().setActive();
+                }
+                catch
+                {
+                    // hitbox is destroy
+                    GameManager.Resource.Destroy(AtkObj);
+
+                }
+            }*/
         }
     }
 }
