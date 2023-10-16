@@ -21,5 +21,6 @@ MonoBehaviour:
   detectDistance: 10
   attackRange: 1
   castSpeed: 0.1
+  castCool: 0
   AI: Warrior
-  dropGold: 0
+  dropGold: 200

@@ -21,7 +21,7 @@ MonoBehaviour:
   spellnum: 0
   funcName: StatusEquip
   baseDex: 0
-  baseInt: 2
+  baseInt: 3
   baseStr: 0
   baseIncDMG: 0
   basepIncDMG: 0
@@ -56,6 +56,6 @@ MonoBehaviour:
   basepGetDMG: 0
   effectText: 
   flavorText: 
-  purchaseGold: 1200
-  sellGold: 600
+  purchaseGold: 2500
+  sellGold: 1500
   increaseStatus: {fileID: 0}
