@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1399910058, guid: 2035e4735a70451439fa26629f762dae, type: 3}
+  m_Sprite: {fileID: 1052114053, guid: 2035e4735a70451439fa26629f762dae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,7 +164,6 @@ MonoBehaviour:
   attackPrefab:
   - {fileID: 1465138621670016082, guid: 2d33b8cc174cc164897a123f61b9e2c7, type: 3}
   data: {fileID: 11400000, guid: d08e1298584b2ee439a48e45ce97018e, type: 2}
-  atk: {fileID: 0}
   sawDirect: {x: 0, y: 0}
 --- !u!70 &7299276300589977055
 CapsuleCollider2D:
