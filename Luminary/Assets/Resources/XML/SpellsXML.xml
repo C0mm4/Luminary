@@ -13,7 +13,7 @@
 		<castTime>0.5</castTime>
 		<spd>7</spd>
                 <elements>1</elements>
-                <path>Spell/Fire/SpellFire</path>
+                <path>Spell/TestSpell</path>
 		<spr>Spells/Icon/TestSpell</spr>
                 <type>projectile</type>
 	</spell>
@@ -31,7 +31,7 @@
 		<spd>14</spd>
                 <elements>1</elements>
                 <path>Spell/Fire/SpellFireBall</path>
-		<spr>Spells/Icon/SpellFireBall</spr>
+		<spr>Spells/Icon/Fire/SpellFireBall</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -48,7 +48,7 @@
 		<spd>14</spd>
                 <elements>1</elements>
                 <path>Spell/Fire/SpellFireWall</path>
-		<spr>Spells/Icon/SpellFireWall</spr>
+		<spr>Spells/Icon/Fire/SpellFireWall</spr>
                 <type>field</type>                
 	</spell>
 	<spell>
@@ -65,7 +65,7 @@
 		<spd>15.75</spd>
                 <elements>1</elements>
                 <path>Spell/Fire/SpellFireBolt</path>
-		<spr>Spells/Icon/SpellFireBolt</spr>
+		<spr>Spells/Icon/Fire/SpellFireBolt</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -82,7 +82,7 @@
 		<spd>12</spd>
                 <elements>1</elements>
 		<path>Spell/Fire/SpellMagmaField</path>
-		<spr>Spells/Icon/SpellMagmaField</spr>
+		<spr>Spells/Icon/Fire/SpellMagmaField</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -99,7 +99,7 @@
 		<spd>31.5</spd>
                 <elements>1</elements>
 		<path>Spell/Fire/SpellFlameStrike</path>
-		<spr>Spells/Icon/SpellFlameStrike</spr>
+		<spr>Spells/Icon/Fire/SpellFlameStrike</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -116,7 +116,7 @@
 		<spd>15</spd>
                 <elements>1</elements>
 		<path>Spell/Fire/SpellMeteorSwarm</path>
-		<spr>Spells/Icon/SpellMeteorSwarm</spr>
+		<spr>Spells/Icon/Fire/SpellMeteorSwarm</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -133,7 +133,7 @@
 		<spd>20</spd>
                 <elements>1</elements>
 		<path>Spell/Fire/SpellMeteor</path>
-		<spr>Spells/Icon/SpellMeteor</spr>
+		<spr>Spells/Icon/Fire/SpellMeteor</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -150,7 +150,7 @@
 		<spd>7</spd>
                 <elements>2</elements>
 		<path>Spell/Ice/SpellIce</path>
-		<spr>Spells/Icon/SpellIce</spr>
+		<spr>Spells/Icon/Ice/SpellIce</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -167,7 +167,7 @@
 		<spd>14</spd>
                 <elements>2</elements>
                 <path>Spell/Ice/SpellIceSpear</path>
-		<spr>Spells/Icon/SpellIceSpear</spr>
+		<spr>Spells/Icon/Ice/SpellIceSpear</spr>
                 <type>projectile</type>		
 	</spell>
 	<spell>
@@ -184,7 +184,7 @@
 		<spd>14</spd>
                 <elements>2</elements>
 		<path>Spell/Ice/SpellFrostNova</path>
-		<spr>Spells/Icon/SpellFrostNova</spr>
+		<spr>Spells/Icon/Ice/SpellFrostNova</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -201,7 +201,7 @@
 		<spd>15.75</spd>
                 <elements>2</elements>
 		<path>Spell/Ice/SpellFrozenOrb</path>
-		<spr>Spells/Icon/SpellFrozenOrb</spr>
+		<spr>Spells/Icon/Ice/SpellFrozenOrb</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -218,7 +218,7 @@
 		<spd>12</spd>
                 <elements>2</elements>
 		<path>Spell/Ice/SpellIceAge</path>
-		<spr>Spells/Icon/SpellIceAge</spr>
+		<spr>Spells/Icon/Ice/SpellIceAge</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -235,7 +235,7 @@
 		<spd>31.5</spd>
                 <elements>2</elements>
 		<path>Spell/Ice/SpellIceCrystal</path>
-		<spr>Spells/Icon/SpellIceCrystal</spr>
+		<spr>Spells/Icon/Ice/SpellIceCrystal</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -252,7 +252,7 @@
 		<spd>15</spd>
                 <elements>2</elements>
 		<path>Spell/Ice/SpellBlizzard</path>
-		<spr>Spells/Icon/SpellBlizzard</spr>
+		<spr>Spells/Icon/Ice/SpellBlizzard</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -269,7 +269,7 @@
 		<spd>20</spd>
                 <elements>2</elements>
 		<path>Spell/Ice/SpellGlacial</path>
-		<spr>Spells/Icon/SpellGlacial</spr>
+		<spr>Spells/Icon/Ice/SpellGlacial</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -286,7 +286,7 @@
 		<spd>7</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellWind</path>
-		<spr>Spells/Icon/SpellWind</spr>
+		<spr>Spells/Icon/Wind/SpellWind</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -303,7 +303,7 @@
 		<spd>14</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellWindArrow</path>
-		<spr>Spells/Icon/SpellWindArrow</spr>
+		<spr>Spells/Icon/Wind/SpellWindArrow</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -320,7 +320,7 @@
 		<spd>14</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellWindCutter</path>
-		<spr>Spells/Icon/SpellWindCutter</spr>
+		<spr>Spells/Icon/Wind/SpellWindCutter</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -337,7 +337,7 @@
 		<spd>15.75</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellWindScrew</path>
-		<spr>Spells/Icon/SpellWindScrew</spr>
+		<spr>Spells/Icon/Wind/SpellWindScrew</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -354,7 +354,7 @@
 		<spd>12</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellWindHawk</path>
-		<spr>Spells/Icon/SpellWindHawk</spr>
+		<spr>Spells/Icon/Wind/SpellWindHawk</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -371,7 +371,7 @@
 		<spd>31.5</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellWindField</path>
-		<spr>Spells/Icon/SpellWindField</spr>
+		<spr>Spells/Icon/Wind/SpellWindField</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -388,7 +388,7 @@
 		<spd>15</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellTornado</path>
-		<spr>Spells/Icon/SpellTornado</spr>
+		<spr>Spells/Icon/Wind/SpellTornado</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -405,7 +405,7 @@
 		<spd>20</spd>
                 <elements>3</elements>
 		<path>Spell/Wind/SpellHurricane</path>
-		<spr>Spells/Icon/SpellHurricane</spr>
+		<spr>Spells/Icon/Wind/SpellHurricane</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -422,7 +422,7 @@
 		<spd>7</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellRock</path>
-		<spr>Spells/Icon/SpellRock</spr>
+		<spr>Spells/Icon/Rock/SpellRock</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -439,7 +439,7 @@
 		<spd>14</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellStoneShower</path>
-		<spr>Spells/Icon/SpellStoneShower</spr>
+		<spr>Spells/Icon/Rock/SpellStoneShower</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -456,7 +456,7 @@
 		<spd>14</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellStoneHand</path>
-		<spr>Spells/Icon/SpellStoneHand</spr>
+		<spr>Spells/Icon/Rock/SpellStoneHand</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -473,7 +473,7 @@
 		<spd>15.75</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellRockBullet</path>
-		<spr>Spells/Icon/SpellRockBullet</spr>
+		<spr>Spells/Icon/Rock/SpellRockBullet</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -490,7 +490,7 @@
 		<spd>12</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellShockWave</path>
-		<spr>Spells/Icon/SpellShockWave</spr>
+		<spr>Spells/Icon/Rock/SpellShockWave</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -507,7 +507,7 @@
 		<spd>31.5</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellStoneFist</path>
-		<spr>Spells/Icon/SpellStoneFist</spr>
+		<spr>Spells/Icon/Rock/SpellStoneFist</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -524,7 +524,7 @@
 		<spd>15</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellEarthQuake</path>
-		<spr>Spells/Icon/SpellEarthQuake</spr>
+		<spr>Spells/Icon/Rock/SpellEarthQuake</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -541,7 +541,7 @@
 		<spd>20</spd>
                 <elements>4</elements>
 		<path>Spell/Rock/SpellTitanHand</path>
-		<spr>Spells/Icon/SpellTitanHand</spr>
+		<spr>Spells/Icon/Rock/SpellTitanHand</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -627,7 +627,7 @@
 		<spd>7</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellLightning</path>
-		<spr>Spells/Icon/SpellLightning</spr>
+		<spr>Spells/Icon/Lightning/SpellLightning</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -644,7 +644,7 @@
 		<spd>14</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellLightningBall</path>
-		<spr>Spells/Icon/SpellLightningBall</spr>
+		<spr>Spells/Icon/Lightning/SpellLightningBall</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -661,7 +661,7 @@
 		<spd>14</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellLightingSpear</path>
-		<spr>Spells/Icon/SpellLightingSpear</spr>
+		<spr>Spells/Icon/Lightning/SpellLightingSpear</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -678,7 +678,7 @@
 		<spd>15.75</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellLightningShock</path>
-		<spr>Spells/Icon/SpellLightningShock</spr>
+		<spr>Spells/Icon/Lightning/SpellLightningShock</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -695,7 +695,7 @@
 		<spd>12</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellLightingStrike</path>
-		<spr>Spells/Icon/SpellLightingStrike</spr>
+		<spr>Spells/Icon/Lightning/SpellLightingStrike</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -712,7 +712,7 @@
 		<spd>31.5</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellChainLightning</path>
-		<spr>Spells/Icon/SpellChainLightning</spr>
+		<spr>Spells/Icon/Lightning/SpellChainLightning</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -729,7 +729,7 @@
 		<spd>15</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellWrathOfGod</path>
-		<spr>Spells/Icon/SpellWrathOfGod</spr>
+		<spr>Spells/Icon/Lightning/SpellWrathOfGod</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -746,7 +746,7 @@
 		<spd>20</spd>
                 <elements>5</elements>
 		<path>Spell/Lightning/SpellThunderCloud</path>
-		<spr>Spells/Icon/SpellThunderCloud</spr>
+		<spr>Spells/Icon/Lightning/SpellThunderCloud</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -763,7 +763,7 @@
 		<spd>7</spd>
                 <elements>6</elements>
 		<path>Spell/Nature/SpellNature</path>
-		<spr>Spells/Icon/SpellNature</spr>
+		<spr>Spells/Icon/Nature/SpellNature</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -780,7 +780,7 @@
 		<spd>14</spd>
                 <elements>6</elements>
 		<path>Spell/Nature/SpellRoot</path>
-		<spr>Spells/Icon/SpellRoot</spr>
+		<spr>Spells/Icon/Nature/SpellRoot</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -797,7 +797,7 @@
 		<spd>14</spd>
                 <elements>6</elements>
 		<path>Spell/Nature/SpellTrunk</path>
-		<spr>Spells/Icon/SpellTrunk</spr>
+		<spr>Spells/Icon/Nature/SpellTrunk</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -814,7 +814,7 @@
 		<spd>15.75</spd>
                 <elements>6</elements>
 		<path>Spell/Nature/SpellGroot</path>
-		<spr>Spells/Icon/SpellGroot</spr>
+		<spr>Spells/Icon/Nature/SpellGroot</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -831,7 +831,7 @@
 		<spd>12</spd>
 		<elements>6</elements>
 		<path>Spell/Nature/SpellVine</path>
-		<spr>Spells/Icon/SpellVine</spr>
+		<spr>Spells/Icon/Nature/SpellVine</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -848,7 +848,7 @@
 		<spd>31.5</spd>
 		<elements>6</elements>
 		<path>Spell/Nature/SpellEntangle</path>
-		<spr>Spells/Icon/SpellEntangle</spr>
+		<spr>Spells/Icon/Nature/SpellEntangle</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -865,7 +865,7 @@
 		<spd>15</spd>
 		<elements>6</elements>
 		<path>Spell/Nature/SpellNaturalize</path>
-		<spr>Spells/Icon/SpellNaturalize</spr>
+		<spr>Spells/Icon/Nature/SpellNaturalize</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -882,7 +882,7 @@
 		<spd>20</spd>
 		<elements>6</elements>
 		<path>Spell/Nature/SpellGardenOfPain</path>
-		<spr>Spells/Icon/SpellGardenOfPain</spr>
+		<spr>Spells/Icon/Nature/SpellGardenOfPain</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -899,7 +899,7 @@
 		<spd>7</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellDeath</path>
-		<spr>Spells/Icon/SpellDeath</spr>
+		<spr>Spells/Icon/Death/SpellDeath</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -916,7 +916,7 @@
 		<spd>14</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellDeathball</path>
-		<spr>Spells/Icon/SpellDeathball</spr>
+		<spr>Spells/Icon/Death/SpellDeathball</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -933,7 +933,7 @@
 		<spd>14</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellFingerOfDeath</path>
-		<spr>Spells/Icon/SpellFingerOfDeath</spr>
+		<spr>Spells/Icon/Death/SpellFingerOfDeath</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -950,7 +950,7 @@
 		<spd>15.75</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellDeathCloud</path>
-		<spr>Spells/Icon/SpellDeathCloud</spr>
+		<spr>Spells/Icon/Death/SpellDeathCloud</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -967,7 +967,7 @@
 		<spd>12</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellDeathSentence</path>
-		<spr>Spells/Icon/SpellDeathSentence</spr>
+		<spr>Spells/Icon/Death/SpellDeathSentence</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -984,7 +984,7 @@
 		<spd>31.5</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellDeathField</path>
-		<spr>Spells/Icon/SpellDeathField</spr>
+		<spr>Spells/Icon/Death/SpellDeathField</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -1001,7 +1001,7 @@
 		<spd>15</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellReaper</path>
-		<spr>Spells/Icon/SpellReaper</spr>
+		<spr>Spells/Icon/Death/SpellReaper</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -1018,7 +1018,7 @@
 		<spd>20</spd>
 		<elements>7</elements>
 		<path>Spell/Death/SpellTheDeath</path>
-		<spr>Spells/Icon/SpellTheDeath</spr>
+		<spr>Spells/Icon/Death/SpellTheDeath</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -1034,8 +1034,8 @@
 		<castTime>0.5</castTime>
 		<spd>7</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellHoly</path>
-		<spr>Spells/Icon/SpellHoly</spr>
+		<path>Spell/Holy/SpellHoly</path>
+		<spr>Spells/Icon/Holy/SpellHoly</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -1051,8 +1051,8 @@
 		<castTime>1</castTime>
 		<spd>14</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellHolycross</path>
-		<spr>Spells/Icon/SpellHolycross</spr>
+		<path>Spell/Holy/SpellHolycross</path>
+		<spr>Spells/Icon/Holy/SpellHolycross</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -1068,8 +1068,8 @@
 		<castTime>1.5</castTime>
 		<spd>14</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellSaintHammer</path>
-		<spr>Spells/Icon/SpellSaintHammer</spr>
+		<path>Spell/Holy/SpellSaintHammer</path>
+		<spr>Spells/Icon/Holy/SpellSaintHammer</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -1085,8 +1085,8 @@
 		<castTime>1.5</castTime>
 		<spd>15.75</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellOstensorium</path>
-		<spr>Spells/Icon/SpellOstensorium</spr>
+		<path>Spell/Holy/SpellOstensorium</path>
+		<spr>Spells/Icon/Holy/SpellOstensorium</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -1102,8 +1102,8 @@
 		<castTime>2</castTime>
 		<spd>12</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellSanctuary</path>
-		<spr>Spells/Icon/SpellSanctuary</spr>
+		<path>Spell/Holy/SpellSanctuary</path>
+		<spr>Spells/Icon/Holy/SpellSanctuary</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -1120,8 +1120,8 @@
 		<castTime>2</castTime>
 		<spd>31.5</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellPunishment</path>
-		<spr>Spells/Icon/SpellPunishment</spr>
+		<path>Spell/Holy/SpellPunishment</path>
+		<spr>Spells/Icon/Holy/SpellPunishment</spr>
                 <type>projectile</type>
 	</spell>
 	<spell>
@@ -1137,8 +1137,8 @@
 		<castTime>2.5</castTime>
 		<spd>15</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellHeavensGate</path>
-		<spr>Spells/Icon/SpellHeavensGate</spr>
+		<path>Spell/Holy/SpellHeavensGate</path>
+		<spr>Spells/Icon/Holy/SpellHeavensGate</spr>
                 <type>field</type>
 	</spell>
 	<spell>
@@ -1154,8 +1154,8 @@
 		<castTime>2.5</castTime>
 		<spd>20</spd>
 		<elements>8</elements>
-		<path>Spell/Divine/SpellJudgement</path>
-		<spr>Spells/Icon/SpellJudgement</spr>
+		<path>Spell/Holy/SpellJudgement</path>
+		<spr>Spells/Icon/Holy/SpellJudgement</spr>
                 <type>projectile</type>
 	</spell>
 </Root>
