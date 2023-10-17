@@ -19,8 +19,6 @@ public class StageController
     public int roomNo;
     public int stageNo;
 
-    XmlDocument mapDatas;
-    XmlNodeList roomDatas;
 
     public bool isTutorial = false;
 
@@ -28,8 +26,7 @@ public class StageController
     // When Game Starts Create Stage 1 Dungeon
     public void init()
     {
-        mapDatas = GameManager.Resource.LoadXML("MapsXML");
-        roomDatas = mapDatas.GetElementsByTagName("Room");
+
     }
 
     public void tutorial()
@@ -107,7 +104,7 @@ public class StageController
             isVIsit = new bool[0];
         }
     }
-
+    // move n room and start room
     public void moveRoom(int n)
     {
         currentRoom = n;
@@ -115,7 +112,7 @@ public class StageController
         {
             Debug.Log("ISTUTORIAL");
 
-            rooms[currentRoom].GetComponent<Room>().ActiveEnemies();
+            rooms[currentRoom].GetComponent<DunRoom>().ActivateRoom();
         }
         else if (!rooms[n].isActivate)
         {

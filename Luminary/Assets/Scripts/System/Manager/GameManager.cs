@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // Find System Components
         DontDestroyOnLoad(persistentObject);
         gm_Instance = this;
         sceneTransition = GameObject.Find("GameManager").GetComponent<SceneTransition>();
@@ -112,7 +113,7 @@ public class GameManager : MonoBehaviour
         loadData();
         Screen.SetResolution(gameData.resolution.width, gameData.resolution.height, gameData.isFullscreen);
 
-
+        // Set Canvas
         if(canvas == null)
         {
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -132,6 +133,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         SceneChangeAction += GameObjectReSet;
 
+        // set Item data, mob Datas
         if(itemDataManager == null)
         {
             itemDataManager = gameObject.GetComponent<ItemDataManager>();
@@ -154,6 +156,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if canvas not initialize, init canvas
         if (canvas == null)
         {
             canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -168,7 +171,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+    // Game Object All Destroy
     public void GameObjectReSet()
     {
         Resource.Destroy(GameObject.FindGameObjectsWithTag("Player"));
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
         Resource.Destroy(GameObject.FindGameObjectsWithTag("Mob"));
         Resource.Destroy(GameObject.FindGameObjectsWithTag("SpellEffect"));
     }
-
+    // Initialize System Components
     public void init()
     {
         Debug.Log("GameManager Awake Init");
@@ -190,6 +193,7 @@ public class GameManager : MonoBehaviour
         playerDataManager.playerDataInit();
     }
 
+    // Loading Setting datas
     public void loadData()
     {
         playerDataManager.loadKeySetting();
@@ -210,6 +214,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    
     public void sceneControl(string targetScene)
     {
         gameState = GameState.Loading;
@@ -218,11 +223,11 @@ public class GameManager : MonoBehaviour
         sceneTransition.sceneLoad(targetScene);
     }
 
+
     public void transitionInit(string targetScene)
     {
         sceneSetClear();
         setCanvas();
-        Debug.Log("Scene Load in GameManager : " + targetScene);
         switch (targetScene)
         {
             case "LobbyScene":
@@ -239,13 +244,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Clear Interaction Object data
     public void sceneSetClear()
     {
         PlayerDataManager.interactionObject = null;
         PlayerDataManager.interactionDistance = 5.5f;
     }
 
-
+    // Lobby Scene Initialize
     public void lobbySceneInit()
     {
         Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -255,11 +261,9 @@ public class GameManager : MonoBehaviour
         playerGen();
         uiManager.ChangeState(UIState.Lobby);
         gameState = GameState.InPlay;
-
-        ItemDrop(10003001, player.transform);
-
-        ItemDrop(10002001, player.transform);
     }
+
+    // Stage Scene Initialize
     public void stageSceneInit()
     {
         Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -272,6 +276,8 @@ public class GameManager : MonoBehaviour
         uiManager.ChangeState(UIState.InPlay);
         uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(0);
     }
+
+    // Tutorial Scene Initialize
     public void tutorialSceneInit() 
     {
         Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -282,6 +288,7 @@ public class GameManager : MonoBehaviour
         uiManager.ChangeState(UIState.InPlay);
     }
 
+    // Stage Scene Game Start
     public void gameStart()
     {
         mapgen();
@@ -321,35 +328,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        /*if (!isPaused)
-        {
-            // Pause Game
-            Time.timeScale = 0f;
-            isPaused = true;
-
-            // Pause all audio sources except BGM
-            AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
-            foreach (AudioSource audioSource in allAudioSources)
-            {
-                if (audioSource != audioSourceBGM)
-                {
-                    audioSource.Pause();
-                }
-            }
-        }
-        else
-        {
-            // Resume Game
-            Time.timeScale = 1f;
-            isPaused = false;
-
-            // Resume all audio sources
-            AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
-            foreach (AudioSource audioSource in allAudioSources)
-            {
-                audioSource.UnPause();
-            }
-        }*/
     }
 
     public void playerDie()
@@ -372,6 +350,7 @@ public class GameManager : MonoBehaviour
     {
         clear();
         StageC.gameStart();
+        cameraManager.background = MapGen.bg.GetComponent<SpriteRenderer>();
     }
 
     public static void clear()
@@ -379,7 +358,7 @@ public class GameManager : MonoBehaviour
         StageC.clear();
         MapGen.clear();
     }
-
+    // Player Gen game Start
     public void playerGen()
     {
         player = Resource.Instantiate("PlayerbleChara");
@@ -408,12 +387,7 @@ public class GameManager : MonoBehaviour
         canvas.planeDistance = 7;
     }
 
-    public void moveRoom(int targetRoomindex)
-    {
-        StageC.moveRoom(targetRoomindex);
-    }
-
-
+    // Item Drop Object Generate
     public void ItemDrop(int index, Transform position)
     {
         GameObject go = Resource.Instantiate("Obj/DropItem");
@@ -422,18 +396,10 @@ public class GameManager : MonoBehaviour
         go.transform.position = position.position;
     }
 
-    public void sleep(int n)
-    {
-        StartCoroutine(Sleep(n));
-    }
-
+    // Get Text Datas
     public List<string> getTextData(int index)
     {
         return Script.getTxtData(index);
     }
 
-   IEnumerator Sleep(int n)
-    {
-        yield return new WaitForSeconds(n);
-    }
 }

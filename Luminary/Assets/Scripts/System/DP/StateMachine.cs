@@ -15,26 +15,28 @@ public class StateMachine
         Debug.Log(target);
     }
 
-
+    // change charator state
     public void changeState(State newState)
     {
-
+        // check this first regist state
         if (currentState != null) {
+            // if stun state setting idle state
             if(newState.GetType().Name == "PlayerStunState" || newState.GetType().Name == "MobStunState")
             {
                 Debug.Log("Stun Detect");
                 setIdle();
             }
+            // check FSM
             if (GameManager.FSM.getList(currentState.GetType().Name).Contains(newState.GetType().Name))
             {
                 if(newState.GetType().Name == "PlayerStunState" || newState.GetType().Name == "MobStunState")
                 {
                     stateStack.Push(currentState);
-                    Debug.Log("Stun");
                     currentState = newState;
 
                     currentState.EnterState(target);
                 }
+                // past state add to stack, new state regist on currentstate
                 else if (currentState.GetType().Name != newState.GetType().Name)
                 {
                     // Save Previous State
@@ -65,6 +67,7 @@ public class StateMachine
         }
     }
 
+    // state update on frame
     public void updateState()
     {
         if(currentState != null )
@@ -73,6 +76,7 @@ public class StateMachine
         }
     }
 
+    // exit currentstate
     public void exitState()
     {
         currentState.ExitState();
@@ -83,23 +87,26 @@ public class StateMachine
             currentState.ReSetState(target);
         }
     }
-
+    // return current state name to string
     public string getStateStr()
     {
         return currentState.GetType().Name;
     }
-
+    // return current state
     public State getState()
     {
         return currentState;
     }
 
+    // set current state on idle and state stack empty
     public void setIdle()
     {
         while(stateStack.Count > 0)
         {
+            // empty state stack
             exitState();
         }
+        // if last state is not idle, set idle state
         if(getStateStr() != "MobIdleState" || getStateStr() != "PlayerIdleState")
         {
             if(target.tag == "Player")

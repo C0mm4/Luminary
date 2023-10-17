@@ -8,6 +8,7 @@ public class MobSpawnner : MonoBehaviour
 
     public Dictionary<int, MobData> mobDict = new Dictionary<int, MobData>();
 
+    // Set Mob Dictionary
     public void init()
     {
         foreach(MobData mob in mobLists)
@@ -16,6 +17,7 @@ public class MobSpawnner : MonoBehaviour
         }
     }
 
+    // spawn mobs by index
     public GameObject spawnMob(int index, Transform transform, Transform parent = null)
     {
         GameObject go;

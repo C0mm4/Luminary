@@ -35,6 +35,7 @@ public class Charactor : MonoBehaviour
 
     public int currentweaponSize = 0;
 
+    // Attack Hit Handler
     public Event attackEffect = null;
     public Event hitEffect = null;
 
@@ -52,6 +53,7 @@ public class Charactor : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Awake()
     {
+        // Setting Charactor Status
         status = new SerializedPlayerStatus
         {
             buffs = new List<Buff>(),
@@ -70,11 +72,7 @@ public class Charactor : MonoBehaviour
     {
         // Charactor base Status
         // overriding this func and reset base status values
-        /*
-        status.baseHP = 10;
-        status.baseDMG = 1;
-        status.basespeed = 5;
-        */
+
 
         status.increaseDMG = 0;
         status.increaseSpeed = 0;
@@ -115,6 +113,7 @@ public class Charactor : MonoBehaviour
     // Update is called once per frame
     public virtual void FixedUpdate()
     {
+        // turn around by saw Dir
         if(sawDir.x > 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
@@ -123,7 +122,9 @@ public class Charactor : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
+        // state machine state running
         sMachine.updateState();
+        // buffs objects running
         runBufss();
     }
 
@@ -136,10 +137,10 @@ public class Charactor : MonoBehaviour
                 buff.durateEffect();
             }
         }
-
+        // if durate time end buffs exists, delete buffs in list
         desetBuffs();
     }
-
+/*
     public void setBuff(Buff buff)
     {
         if (!isbuffCool(buff.id))
@@ -211,7 +212,8 @@ public class Charactor : MonoBehaviour
         }
         return true;
     }
-
+*/
+    // delete durate time end buffs
     public void desetBuffs()
     {
         foreach (Buff buff in status.endbuffs)
@@ -224,7 +226,7 @@ public class Charactor : MonoBehaviour
         }
         status.endbuffs.Clear();
     }
-
+    // HP Increase
     public void HPIncrease(int pts)
     {
         status.currentHP += pts;
@@ -233,10 +235,9 @@ public class Charactor : MonoBehaviour
             status.currentHP = status.maxHP;
         }
     }
-
+    // HP Decrease
     public void HPDecrease(int pts)
     {
-        Debug.Log(gameObject.name + " Get Dmg " + pts);
         if (!godmode)
         {
             if (gameObject.tag == "Player")
@@ -252,6 +253,7 @@ public class Charactor : MonoBehaviour
             }
             else
             {
+                // generate Damage UI
                 double dmg = pts * (100 - status.def) / 100;
                 status.currentHP -= (int)Math.Floor(dmg);
                 GameObject go = GameManager.Resource.Instantiate("UI/DMG/DMGUI");
@@ -267,30 +269,34 @@ public class Charactor : MonoBehaviour
             }
         }
     }
-
+    // True Damage
     public void TrueDMG(int pts)
     {
-        Debug.Log(gameObject.name + " Get True Dmg " + pts);
         if (!godmode)
         {
-            status.currentHP -= pts;
+            status.currentHP -= pts; 
+            GameObject go = GameManager.Resource.Instantiate("UI/DMG/DMGUI");
+            go.GetComponent<DMGUI>().text.text = pts.ToString();
+            go.GetComponent<DMGUI>().pos.x = transform.position.x;
+            go.GetComponent<DMGUI>().pos.y = transform.position.y;
+            go.GetComponent<DMGUI>().Set();
             if (status.currentHP <= 0)
             {
                 DieObject();
             }
         }
     }
-
+    // Player Hitbox reclusive
     public void reclusiveHitbox()
     {
         isHit = false;
     }
-
+    // When object die function
     public virtual void DieObject()
     {
         GameManager.Resource.Destroy(this.gameObject);
     }
-
+    // Item Add in Inventory[index]
     public bool ItemAdd(Item item, int index = -1)
     {
         if(index == -1)
@@ -322,37 +328,37 @@ public class Charactor : MonoBehaviour
             return true;
         }
     }
-
+    // Item delete on inventory[n]
     public void ItemDelete(int n)
     {
         status.inventory[n].RemoveItem();
     }
-
+    // Charactor state change
     public void changeState(State state)
     {
         sMachine.changeState(state);
     }
-
+    // end current charactor state
     public void endCurrentState()
     {
         sMachine.exitState();
     }
-
+    // set charactor state idle satate
     public void setIdleState()
     {
         sMachine.setIdle();
     }
-
+    // get charactor current state
     public State getState()
     {
         return sMachine.getState();
     }
-
+    // start buffs, check buff's cooltime
     public void buffCool(float cd, int id)
     {
         StartCoroutine(buffcooltime(cd, id));
     }
-
+    // buffs cool check
     public IEnumerator buffcooltime(float cd, int id)
     {
         yield return new WaitForSeconds(cd);
@@ -438,7 +444,7 @@ public class Charactor : MonoBehaviour
                 break;
         }
     }
-
+    // Item Status increase charactor state
     public void ItemStatusSum(SerializeItemStatus itemdata)
     {
 
@@ -487,7 +493,7 @@ public class Charactor : MonoBehaviour
         status.pIncreaseSpeed += itemdata.pincreaseSpeed;
     }
 
-
+    // Item status decrease charactor status
     public void ItemStatusminus(SerializeItemStatus itemdata)
     {
 
@@ -535,7 +541,7 @@ public class Charactor : MonoBehaviour
         status.increaseSpeed -= itemdata.increaseSpeed;
         status.pIncreaseSpeed -= itemdata.pincreaseSpeed;
     }
-
+    // Animation Play controller
     public void AnimationPlay(string clip, float spd = 1)
     {
         if(clip != currentAnimation)

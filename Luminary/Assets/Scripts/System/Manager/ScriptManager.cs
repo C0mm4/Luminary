@@ -12,6 +12,7 @@ public class ScriptManager
 
     XmlDocument text;
 
+    // Road Text Script XML
     public void init()
     {
         text = GameManager.Resource.LoadXML(scriptXMLFile);
@@ -19,6 +20,7 @@ public class ScriptManager
         Debug.Log("ScriptManager Init");
     }
 
+    // Return Text Data by Index
     public List<string> getTxtData(int index)
     {
         List<string> ret = new List<string>();

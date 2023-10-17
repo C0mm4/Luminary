@@ -8,6 +8,7 @@ public class MobCastState : State
     float castStartT;
     int index;
 
+    // set casting time, attack prefab index
     public MobCastState(float t, int index)
     {
         castTime = t;
@@ -16,6 +17,7 @@ public class MobCastState : State
         
     }
 
+    // can't move when casting
     public override void EnterState(Charactor chr)
     {
         charactor = chr;
@@ -33,13 +35,14 @@ public class MobCastState : State
         charactor.endCurrentState();
     }
 
+    // matching animation speed and cast speed, animation play
     public override void UpdateState()
     {
         charactor.AnimationPlay("CastAnimation " + index, 1 / castTime);
         float currentT = Time.time;
+        // When casting time is enough, attack start
         if(currentT - castStartT >= castTime)
         {
-            
             charactor.changeState(new MobATKState(index));
         }
     }

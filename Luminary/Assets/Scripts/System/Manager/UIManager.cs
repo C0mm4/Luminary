@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
         PopStateStack();
     }
 
-    // Manager ��ü�� ������ �ޱ⿡ Manager ��ü���� Initializion ���� ȣ���ؾ� ��.
+    // In Game UI State, UI Objects initialize
     public void init()
     {
         if(GameManager.uiState == UIState.Title)
@@ -195,7 +195,7 @@ public class UIManager : MonoBehaviour
             stableUI.SetActive(false);
         }
     }
-
+    // Change UI State
     public void ChangeState(UIState state)
     {
         
@@ -204,7 +204,7 @@ public class UIManager : MonoBehaviour
         GameManager.inputManager.changeInputState();
 
     }
-    
+    // Change Ui State on Stack (Used Menus)
     public void ChangeStateOnStack(UIState state)
     {
         uistack.Push(GameManager.uiState);
@@ -212,6 +212,7 @@ public class UIManager : MonoBehaviour
         ChangeState(state);
     }
 
+    // When Menu Close Stack UI Change
     public void PopStateStack()
     {
         Debug.Log(uistack.Count);

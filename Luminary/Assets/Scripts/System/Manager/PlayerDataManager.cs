@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class PlayerDataManager : MonoBehaviour
 {
+    // Ingame Key Settings
     public static SerializedKeySetting keySetting = new SerializedKeySetting();
+    // Player Status Data
     public static SerializedPlayerStatus playerStatus = new SerializedPlayerStatus();
 
+    // Interaction Object
     public static GameObject interactionObject = null;
     public static float interactionDistance;
     public static bool isInteractObjDetect = false;
@@ -19,7 +22,7 @@ public class PlayerDataManager : MonoBehaviour
         public KeyCode inventoryKey;
         public KeyCode InteractionKey;
     }
-
+    // Set Player Initialize Data
     public void playerDataInit()
     {
         playerStatus.dexterity = 1;
@@ -97,12 +100,13 @@ public class PlayerDataManager : MonoBehaviour
         }
 
     }
-
+    // Loading key Settings
     public void loadKeySetting()
     {
         keySetting.inventoryKey = (KeyCode)PlayerPrefs.GetInt("inventoryKey", (int)KeyCode.I);
         keySetting.InteractionKey = (KeyCode)PlayerPrefs.GetInt("InteractionKey", (int)KeyCode.F);
     }
+    // Save Key Settings
     public void saveKeySetting()
     {
         PlayerPrefs.SetInt("inventoryKey", (int)keySetting.inventoryKey);

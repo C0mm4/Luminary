@@ -32,16 +32,19 @@ public class ConfirmButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (menu != null)
         {
+            // when click button or select this button and confirm button push, process confirm Action on target menu
             menu.ConfirmAction();
         }
     }
 
+    // select this button handler
     public void inHandler()
     {
         menu.currentMenu = 99;
         img.sprite = sprites[2];
     }
 
+    // deselect this button handler
     public void outHandler()
     {
         if (isAble)
@@ -54,6 +57,7 @@ public class ConfirmButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
+    // set sprite confirm is able
     public void setAble()
     {
         isAble = true;

@@ -14,6 +14,7 @@ public class MobChaseState : State
 
     public override void UpdateState()
     {
+        // Find Player and Chase
         charactor.AnimationPlay("MoveAnimation");
         if (GameManager.player == null)
         {

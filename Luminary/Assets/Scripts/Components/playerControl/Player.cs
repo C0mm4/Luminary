@@ -25,21 +25,23 @@ public class Player : Charactor
         player = this;
         GameManager.player = player.gameObject;
 
+        // Set Skill Slots
+
         skillslots = new SkillSlot[3];
         spells = new List<SkillSlot>();
         setSkillSlots();
 
 
-
+        // Get Status Data
         status = PlayerDataManager.playerStatus;
-
         calcStatus();
+        // Add Die Handler
         GameManager.Instance.SceneChangeAction += DieObject;
+
+
         sMachine.changeState(new PlayerIdleState());
         isInit = true;
         currentSpell = skillslots[1];
-
-        Debug.Log(status.inventory.Count);
 
     }
     private void setSkillSlots()
@@ -49,7 +51,7 @@ public class Player : Charactor
         skillslots[2] = new SkillSlot();
     }
 
-
+    
     public override void DieObject()
     {
         GameManager.inputManager.KeyAction -= spellKey;
@@ -68,7 +70,7 @@ public class Player : Charactor
             changeState(new PlayerIdleState());
         }
 
-
+        // Interact with Interaction Objects
         if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
         {
             if (PlayerDataManager.interactionObject != null)
@@ -78,16 +80,17 @@ public class Player : Charactor
             }
         }
 
+        // is charactor move set move state
         if (charactorSpeed != Vector2.zero)
         {
             ismove = true;
             changeState(new PlayerMoveState());
         }
-//        Debug.Log(playerSpeed.x);
         base.FixedUpdate();
 
     }
 
+    // didn't cast 3 seconds later mana refill
     public void ManaGen()
     {
         if(Time.time - lastCastTime >= 3f)
@@ -107,6 +110,7 @@ public class Player : Charactor
     {
         if (GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
+            // Teleport some Distance
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (skillslots[0].isSet())
@@ -115,6 +119,7 @@ public class Player : Charactor
                         StartCoroutine("roll");
                 }
             }
+            // charactor move vector set with WASD
             if (getState().GetType().Name == "PlayerIdleState" || getState().GetType().Name == "PlayerMoveState")
             {
                 if (Input.GetKey(KeyCode.W))
@@ -143,6 +148,7 @@ public class Player : Charactor
 
     public void spellKey()
     {
+        // Mouse left click casting spells
         if (Input.GetMouseButtonDown(0))
         {
             if (currentSpell.isSet())
@@ -150,6 +156,7 @@ public class Player : Charactor
                 currentSpell.useSkill();
             }
         }
+        // Q button is Weapon Slot Change
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (currentSpell == skillslots[1])
@@ -183,11 +190,12 @@ public class Player : Charactor
         }
 
     }
-
+    // Item Equip in inventory[index] to equip[targetslotIndex]
     public void ItemEquip(int index, Item item, int targetslotindex = -1)
     {
         if (currentequipSize < 4)
         {
+            // if targetslotIndex is -1, last slot equips
             if (targetslotindex == -1)
             {
                 for (int i = 0; i < 4; i++)
@@ -202,6 +210,7 @@ public class Player : Charactor
             }
             else
             {
+                // if target slot is already exists items, swap items
                 if (status.equips[targetslotindex].item != null)
                 {
                     Item tmp = status.equips[targetslotindex].item;
@@ -224,12 +233,13 @@ public class Player : Charactor
             Debug.Log("Full Equiped");
         }
     }
-
+    // Item Equip in inventory[index] to weapons[targetslotIndex]
     public void WeaponEquip(int index, Item item, int targetslotindex = -1)
     {
         if (currentweaponSize < 2)
         {
-            if(targetslotindex == -1)
+            // if targetslotIndex is -1, last slot equips
+            if (targetslotindex == -1)
             {
                 for (int i = 0; i < 2; i++)
                 {
@@ -254,7 +264,8 @@ public class Player : Charactor
 
                 }
                 else
-                {
+                {               
+                    // if target slot is already exists items, swap items
                     Item tmp = status.weapons[targetslotindex].item;
                     status.weapons[targetslotindex].RemoveItem();
                     status.weapons[targetslotindex].AddItem(status.inventory[index].item);
@@ -274,10 +285,11 @@ public class Player : Charactor
             Debug.Log("Full Equiped");
         }
     }
-
+    // Item unequip weapon[n] to inventory[targetslotindex]
     public void ItemUnequip(int n, int targetslotindex)
     {
         Item item = status.equips[n].item;
+        // targetslotindex is -1, Item Add last unfill index
         if (targetslotindex == -1)
         {
             if (ItemAdd(status.equips[n].item))
@@ -300,11 +312,11 @@ public class Player : Charactor
             }
             else
             {
+                // if invenrory[targetslotindex] has items, equip items and unequip itemss
                 Item tmp = status.inventory[targetslotindex].item;
                 if(tmp.data.type != 0)
                 {
                     ItemAdd(status.equips[n].item, targetslotindex);
-                    ItemStatusminus(item.data.status);
                     status.equips[n].RemoveItem();
                     status.equips[n].AddItem(tmp);
                 }
@@ -313,6 +325,7 @@ public class Player : Charactor
         calcStatus();
     }
 
+    // Same algorithm on ItemEquip
     public void WeaponUnequip(int n, int targetslotindex)
     {
         Item item = status.weapons[n].item;
@@ -355,6 +368,7 @@ public class Player : Charactor
         calcStatus();
     }
 
+    // Other class access this Equip Function. 
     public void Equip(int targetindex, Item item, int targetslotindex = -1)
     {
         if (item.data.type == 0)
@@ -369,7 +383,7 @@ public class Player : Charactor
 
         GameManager.Instance.uiManager.invenFresh();
     }
-
+    // Other class access this Unequip function.
     public void Unequip(int index, Item item, int targetslotindex = -1)
     {
         if (item.data.type == 0)
@@ -383,7 +397,7 @@ public class Player : Charactor
         GameManager.Instance.uiManager.invenFresh();
     }
 
-
+    // swap items in inventory
     public void ItemSwap(int sindex, int tindex)
     {
         Item tmp = status.inventory[sindex].item;
@@ -393,6 +407,7 @@ public class Player : Charactor
         GameManager.Instance.uiManager.invenFresh();
     }
 
+    // swap items in equip slots
     public void EquipSwap(int sindex, int tindex)
     {
         Item tmp = status.equips[sindex].item;
@@ -402,6 +417,7 @@ public class Player : Charactor
         GameManager.Instance.uiManager.invenFresh();
     }
 
+    // swap items in weapon equip slots
     public void WeaponSwap(int sindex, int tindex)
     {
         Item tmp = status.equips[sindex].item;

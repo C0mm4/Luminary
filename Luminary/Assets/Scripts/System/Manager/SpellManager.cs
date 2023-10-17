@@ -14,6 +14,7 @@ public class SpellManager
 
     XmlNodeList text;
 
+    // Load Spell Data by XML
     public void init()
     {
         XmlDocument doc = GameManager.Resource.LoadXML(spellXMLFile);
@@ -24,7 +25,7 @@ public class SpellManager
         createSpellObj();
     }
 
-
+    // Create Spell Object
     public void createSpellObj()
     {
         foreach (XmlNode node in text)
@@ -35,9 +36,9 @@ public class SpellManager
             spells.Add(int.Parse(node["Index"].InnerText), spl);
 
         }
-        Debug.Log(spells[10003000].data.name);
     }
     
+    // Set Spell Datas
     public SpellData setSpellData(XmlNode node)
     {
         SpellData spellData = new SpellData();
@@ -65,6 +66,7 @@ public class SpellManager
         return spellData;
     }
 
+    // return spell data
     public SpellData getSpellData(int index)
     {
         return spells[index].data;

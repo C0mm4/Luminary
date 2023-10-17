@@ -25,10 +25,14 @@ public class DunRoom : MonoBehaviour
 
     public List<Transform> spawnTrans;
 
+    // Start Room
     public void ActivateRoom()
     {
-        CloseDoor();
-        if(!isActivate)
+        if(spawnTrans.Count > 0)
+        {
+            CloseDoor();
+        }
+        if (!isActivate)
         {
             isActivate = true;
             if(spawnTrans.Count > 0 )
@@ -39,12 +43,14 @@ public class DunRoom : MonoBehaviour
             }
             else
             {
-//                GameManager.StageC.ClearRoom();
+                // If spawn Trans is 0 this room is clear
+                GameManager.StageC.ClearRoom();
             }
         }
 
     }
 
+    // When Start Room, Mob Spawns 1 seconds, and activate 1 seconds
     IEnumerator MobSpawn()
     {
         yield return new WaitForSeconds(1);
@@ -58,6 +64,9 @@ public class DunRoom : MonoBehaviour
         yield return 0;
     }
 
+
+    // When Start Room Closed Door
+    // Find Corridor linked tile and doors set
     public void CloseDoor()
     {
         foreach(GameObject go in Doors) 
@@ -82,6 +91,8 @@ public class DunRoom : MonoBehaviour
             DoorObjs.Add(door);
         }
     }
+
+    // When Clear Room Open Door
     public void OpenDoor()
     {
         foreach(GameObject gate in DoorObjs)
@@ -89,5 +100,14 @@ public class DunRoom : MonoBehaviour
             gate.GetComponent<Gate>().DeActivate();
         }
         DoorObjs.Clear();
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Collision");
+        if (other.gameObject.tag == "Player")
+        {
+            GameManager.StageC.moveRoom(roomID);
+        }
     }
 }
