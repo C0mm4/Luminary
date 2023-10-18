@@ -23,12 +23,13 @@ public class NPC : InteractionTrriger
 
     public void Awake()
     {
+        // Set Scripts
         scripts = GameManager.Instance.getTextData(index);
-        Debug.Log(scripts.Count);
     }
 
     public override void isInteraction()
     {
+        // interaction this object, NPC Dialog UI Generate
         openmenu = GameManager.Resource.Instantiate("UI/NPCUI/NPCDialog");
         openmenu.GetComponent<NPCUI>().npc = this;
         openmenu.GetComponent<NPCUI>().setData();

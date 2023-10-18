@@ -88,15 +88,17 @@ public class Mob : Charactor
     public override void DieObject()
     {
         // Current Room's mob count decrease
-        /*        GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount -= 1;
-                if(GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().mobCount == 0)
-                {
-                    GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<Room>().clearRoom();
-                }*/
+        GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<DunRoom>().mobCount -= 1;
+        if(GameManager.StageC.rooms[GameManager.StageC.currentRoom].GetComponent<DunRoom>().mobCount == 0)
+        {
+            GameManager.StageC.ClearRoom();
+        }
         GameManager.Resource.Destroy(AtkObj);
+        GameManager.player.GetComponent<Player>().status.gold += data.dropGold;
         base.DieObject();
     }
 
+    // on collide player, damaged player
     public void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -121,13 +123,13 @@ public class Mob : Charactor
         Vector2 ret = new Vector2((player.transform.position.x - transform.position.x), (player.transform.position.y - transform.position.y));
         return ret;
     }
-
+    // Projectile attack object generate
     public void ProjectileGen(int index)
     {
         AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
         AtkObj.GetComponent<MobProjectile>().setData(this);
     }
-
+    // field type attack object generate
     public void FieldGen(int index)
     {
         AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
@@ -149,7 +151,7 @@ public class Mob : Charactor
             }
         }
     }
-
+    // activate projectile and field type attack object
     public void FieldProjectileActive()
     {
         try
@@ -181,25 +183,7 @@ public class Mob : Charactor
         {
             GameManager.Resource.Destroy(AtkObj);
             endCurrentState();
-/*            try
-            {
-                // if obj is projectile Throw projectile object
-                AtkObj.GetComponent<MobProjectile>().Throw();
-            }
-            catch
-            {
-                try
-                {
-                    // if obj is Fild, Activate Field attack
-                    AtkObj.GetComponent<MobField>().setActive();
-                }
-                catch
-                {
-                    // hitbox is destroy
-                    GameManager.Resource.Destroy(AtkObj);
 
-                }
-            }*/
         }
     }
 }

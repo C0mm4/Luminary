@@ -6,10 +6,12 @@ public class MobATKState : State
 {
     int index;
 
+    // set attack prefab index
     public MobATKState(int index)
     {
         this.index = index;
     }
+
     public override void EnterState(Charactor chr)
     {
         charactor = chr;
@@ -20,11 +22,13 @@ public class MobATKState : State
         charactor = null;
     }
 
+
     public override void ReSetState(Charactor chr)
     {
         EnterState(chr);
     }
 
+    // Attack Animation Play
     public override void UpdateState()
     {
         charactor.AnimationPlay("AttackAnimation " + index);

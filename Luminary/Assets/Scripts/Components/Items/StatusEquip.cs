@@ -14,17 +14,14 @@ public class StatusEquip : ItemFunc
 
     public override void OnDamagedEffect()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnFrameEffect()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnHitEffect()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void UnEquipEffect()

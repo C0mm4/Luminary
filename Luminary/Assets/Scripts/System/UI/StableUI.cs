@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StableUI : MonoBehaviour
 {
-    // HP, Mana UI
+    // HP MP Bar Sprites
     [SerializeField]
     Sprite BlankHP_L;
     [SerializeField]
@@ -78,8 +78,11 @@ public class StableUI : MonoBehaviour
     {
         if(GameManager.gameState == GameState.InPlay)
         {
+            // Freshing HP, MP Bar
             FreshHPMP();
             FreshMaxHPMP();
+
+            // Casting Bar UI
             if (isCast)
             {
                 castBar.SetActive(true);
@@ -91,13 +94,14 @@ public class StableUI : MonoBehaviour
             }
         }
     }
-
+    // Set Casting Time
     public void setCast(float castT, float startT)
     {
         this.castT = castT;
         this.castStartT = startT;
     }
 
+    // Change showing weapon slot
     public void WeaponSlotChange(int n)
     {
         int disabletarget;
@@ -132,7 +136,7 @@ public class StableUI : MonoBehaviour
                 go.AddComponent<RectTransform>();
                 go.transform.SetParent(HP.transform, false);
                 go.GetComponent<RectTransform>().localScale = Vector3.one;
-                go.GetComponent<RectTransform>().localPosition = new Vector3(i * 0.64f, 0, 0);
+                go.GetComponent<RectTransform>().localPosition = new Vector3(i * 0.64f, 0, 2);
                 go.AddComponent<SpriteRenderer>();
                 if (i == 0)
                 {
@@ -165,7 +169,7 @@ public class StableUI : MonoBehaviour
                 go.AddComponent<RectTransform>();
                 go.transform.SetParent(Mana.transform, false);
                 go.GetComponent<RectTransform>().localScale = Vector3.one;
-                go.GetComponent<RectTransform>().localPosition = new Vector3(i * 0.64f, 0, 0);
+                go.GetComponent<RectTransform>().localPosition = new Vector3(i * 0.64f, 0, 2);
                 go.AddComponent<SpriteRenderer>();
                 if (i == 0)
                 {
@@ -204,15 +208,15 @@ public class StableUI : MonoBehaviour
                 go.AddComponent<SpriteRenderer>();
                 if (i == 0)
                 {
-                    go.GetComponent<SpriteRenderer>().sprite = BlankHP_L;
+                    go.GetComponent<SpriteRenderer>().sprite = FillHP_L;
                 }
                 else if (i == maxHP - 1)
                 {
-                    go.GetComponent<SpriteRenderer>().sprite = BlankHP_R;
+                    go.GetComponent<SpriteRenderer>().sprite = FillHP_R;
                 }
                 else
                 {
-                    go.GetComponent<SpriteRenderer>().sprite = BlankHP_C;
+                    go.GetComponent<SpriteRenderer>().sprite = FillHP_C;
                 }
                 currentHPBar.Add(go);
             }
@@ -240,11 +244,11 @@ public class StableUI : MonoBehaviour
                 }
                 else if (i == maxMana - 1)
                 {
-                    go.GetComponent<SpriteRenderer>().sprite = FillMana_C;
+                    go.GetComponent<SpriteRenderer>().sprite = FillMana_R;
                 }
                 else
                 {
-                    go.GetComponent<SpriteRenderer>().sprite = FillMana_R;
+                    go.GetComponent<SpriteRenderer>().sprite = FillMana_C;
                 }
                 currentMPBar.Add(go);
             }

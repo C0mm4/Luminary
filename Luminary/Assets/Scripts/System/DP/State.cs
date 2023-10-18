@@ -7,7 +7,7 @@ public abstract class State
 {
     protected Charactor charactor;
 
-
+    // State handers
     public abstract void EnterState(Charactor chr);
 
     public abstract void ExitState();

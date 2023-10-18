@@ -20,6 +20,7 @@ public class ItemHoveringUI : MonoBehaviour
     [SerializeField]
     public GameObject text;
 
+    // Set showing item datas
     public void setData(Item itm) 
     { 
         item = itm;
@@ -28,6 +29,7 @@ public class ItemHoveringUI : MonoBehaviour
         setSize();
     }
 
+    // Resizing by item data scrolls
     public void setSize()
     {
         RectTransform rect = img.GetComponent<RectTransform>();
@@ -124,7 +126,7 @@ public class ItemHoveringUI : MonoBehaviour
 
     }
 
-
+    // Find showing item status data
     public List<KeyValuePair<string, int>> FindStatus()
     {
         List<KeyValuePair<string, int>> keyValuePairs = new List<KeyValuePair<string, int>>();

@@ -21,6 +21,7 @@ public class MobField : MonoBehaviour
     {
         if (isActive)
         {
+            // Activate Hitbox Object
             if(ActiveObj == null)
             {
                 ActiveObj = GameManager.Resource.Instantiate(Prefab, gameObject.transform);
@@ -31,6 +32,7 @@ public class MobField : MonoBehaviour
 
     public virtual void setData(Mob mob, Vector3 pos = default(Vector3))
     {
+        // Set target, attackers and transform
         shooter = mob;
         player = shooter.player;
         if(pos != default(Vector3))

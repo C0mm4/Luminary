@@ -4,8 +4,10 @@ using UnityEngine;
 
 public abstract class AIModel
 {
+    // target Mob
     public Mob target;
 
+    
     public abstract void Update();
 
 }

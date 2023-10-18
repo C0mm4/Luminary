@@ -22,40 +22,40 @@ public class MapGen
     GameObject roomObj;
     GameObject corridorObj;
     public GameObject bg;
-    public GameObject Doors;
 
     private List<Vector2> disablePos = new List<Vector2>();
     private Dictionary<Vector2, KeyValuePair<DunRoom, PointPosition>> ablepos;
 
-    public List<DunRoom> Rooms = new List<DunRoom>(); 
-
+    public List<DunRoom> Rooms = new List<DunRoom>();
+    public GameObject Doors;
 
     public void init()
     {
-
-
-        dungeon = new GameObject();
-
-        
+        // clear able pos, disable pos
         ablepos = new Dictionary<Vector2, KeyValuePair<DunRoom, PointPosition>>();
         disablePos = new List<Vector2>();
 
+        // room list clear
         Rooms = new List<DunRoom>();
 
+        // if dungeon name object already exists, destroy it
         if (GameObject.Find("dungeon"))
         {
             GameObject go = GameObject.Find("dungeon");
             GameManager.Resource.Destroy(go);
         }
+        // create dungeon object
         dungeon = new GameObject();
         dungeon.name = "dungeon";
 
+        // Find room object destroy room
         if (GameObject.Find("room"))
         {
             GameObject go = GameObject.Find("room");
             GameManager.Resource.Destroy(go);
         }
 
+        // rooms parent object and corridor parent object create 
         roomObj = new GameObject();
         roomObj.name = "room";
         roomObj.transform.SetParent(dungeon.transform);
@@ -70,8 +70,8 @@ public class MapGen
         corridorObj.name = "corridor";
         corridorObj.transform.SetParent(dungeon.transform);
 
-        Doors = new GameObject();
-        Doors.name = "doors";
+        Doors = new GameObject(); 
+        Doors.name = "door";
         Doors.transform.SetParent(dungeon.transform);
 
         //                  U, R, L, D
@@ -79,14 +79,16 @@ public class MapGen
         ypos = new int[4] { 1, 0, 0, -1 };
     }
 
+    // start game, generate Dungeon
     public List<DunRoom> DungeonGen(int roomN)
     {
         init();
 
-
+        // Start Room Generate
         DunRoom room = new DunRoom();
         Rooms.Add(StartRoomGen());
 
+        // Play Room Generate
         for (int i = 1; i < roomN; i++)
         {
             room = DungeonRoomGen();
@@ -94,6 +96,12 @@ public class MapGen
             Rooms.Add(room);
         }
 
+        // Boss Room Generate
+        // Blank
+        // BossRoomGen();
+        //
+
+        // Dungeon BackGround sprite Object Create
         bg = new GameObject();
         bg.AddComponent<SpriteRenderer>();
         bg.GetComponent<SpriteRenderer>().sprite = GameManager.Resource.LoadSprite("System/Square");
@@ -103,6 +111,7 @@ public class MapGen
 
         int minx = 10, miny = 10, maxX = 0, maxY = 0;
 
+        // set background size
         foreach(DunRoom rm in Rooms)
         {
             if(minx >= rm.x)
@@ -126,22 +135,15 @@ public class MapGen
         bg.transform.position = new Vector3((minx + maxX) / 2, (miny + maxY) / 2, 5);
         bg.transform.localScale = new Vector3(((maxX - minx) + 30)* 2.56f, ((maxY - miny) + 30) * 2.56f, 1);
 
+        // Player Object Gen
         GameManager.Instance.playerGen();
 
         return Rooms;
     }
 
-    public void test()
-    {
-        DungeonRoomGen();
-        GameObject go = GameObject.Find("a");
-        GameManager.Resource.Destroy(go);
-
-
-    }
-
     public DunRoom StartRoomGen()
     {
+        // Start Room Generate and set position (0,0)
         DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/StartRoom", roomObj.transform).GetComponent<DunRoom>();
         room.gameObject.transform.SetParent(room.transform);
         room.transform.position = new Vector3(0, 0, 2);
@@ -166,13 +168,16 @@ public class MapGen
     */
     public DunRoom DungeonRoomGen()
     {
+        // Generate Room Prefab
         DunRoom room = GameManager.Resource.Instantiate("Dungeon/Room/Room1", roomObj.transform).GetComponent<DunRoom>();
         room.gameObject.transform.SetParent(room.transform);
         Vector2 pos = new Vector2();
 
+        // able position get list
         List<Vector2> keys = ablepos.Keys.ToList();
         PointPosition po;
         KeyValuePair<DunRoom, PointPosition> targetRoom;
+        // Find Able create room position
         do
         {
             int randIndex = GameManager.Random.getMapNext(0, keys.Count);
@@ -203,15 +208,15 @@ public class MapGen
         }
         while (CheckAblePos(room));
 
+        // Delete Create Position Data in Able pos same data
         var deltarget = ablepos.Where(pair => pair.Value.Key == targetRoom.Key && pair.Value.Value == po);
         
-
-
         foreach(var pair in deltarget.ToList())
         {
             ablepos.Remove(pair.Key);
         }
-
+        // set room transform, and data
+        // change connnect corridor tiles door tiles
         room.transform.position = new Vector3(room.x * 2.56f, room.y * 2.56f, 2);
         SetTilePos(room);
         SetDoorTile(targetRoom.Key, room, pos, po);
@@ -221,10 +226,11 @@ public class MapGen
 
         return room;
     }
-
+    // Change Tile Door tiles
     public void SetDoorTile(DunRoom sroom, DunRoom troom, Vector2 pos, PointPosition po)
     {
         int type = new int();
+        // Find Corridor direction
         switch (po)
         {
             case PointPosition.Left:
@@ -241,6 +247,7 @@ public class MapGen
                 break;
 
         }
+        // Find Start can connect Room's tile
         List<Tile> targetTiles = new List<Tile>();
         foreach(Tile tile in sroom.tiles)
         {
@@ -249,10 +256,11 @@ public class MapGen
                 targetTiles.Add(tile);
             }
         }
-
+        // Select Random Tiles find tiles
         Tile target = targetTiles[GameManager.Random.getMapNext(0, targetTiles.Count)];
         int t = type / 2 - 1;
 
+        // Create New Tiles and Destroy old tile
         GameObject go = GameManager.Resource.Instantiate(sroom.doorTiles[t], sroom.Tiles.transform);
         go.transform.position = target.transform.position;
         go.GetComponent<Tile>().x = target.x;
@@ -265,6 +273,7 @@ public class MapGen
         GameManager.Resource.Destroy(target.gameObject);
         type = 10 - type;
         
+        // Change old Tiles to new Door Tiles in new created Room
         Tile troomTile = troom.tiles.Find(tile => tile.x == pos.x && tile.y == pos.y);
         if (troomTile != null)
         {
@@ -275,17 +284,14 @@ public class MapGen
             troom.Doors.Add(go);
             GameManager.Resource.Destroy(troomTile.gameObject);
         }
-        else
-        {
-            Debug.Log(troom.roomID);
-            Debug.Log(pos.x + " " + pos.y);
-        }
 
+        // Set Corridor Tiles
         SetCorridor(new Vector2(target.x, target.y), new Vector2(troomTile.x, troomTile.y), po);
 
 
     }
 
+    // set rooms tiles position 
     public void SetTilePos(DunRoom room)
     {
         for (int i = 0; i < room.tiles.Count; i++)
@@ -299,6 +305,7 @@ public class MapGen
         }
     }
 
+    // Set Able pos function
     public void SetPosData(DunRoom room, PointPosition dir = PointPosition.Null)
     {
         for (int i = room.x - room.centerX - 4; i < room.x + room.sizeX - room.centerX + 4; i++)
@@ -374,7 +381,7 @@ public class MapGen
             }
         }
     }
-
+    // Check Room position is able
     public bool CheckAblePos(DunRoom room)
     {
         for (int i = room.x - room.centerX; i < room.x + room.sizeX - room.centerX - 1; i++)
@@ -390,7 +397,7 @@ public class MapGen
         }
         return false;
     }
-
+    // connect Doors
     public void SetCorridor(Vector2 startPos, Vector2 targetPos, PointPosition dir)
     {
         List<KeyValuePair<Vector2, int>> corridor = new List<KeyValuePair<Vector2, int>>();

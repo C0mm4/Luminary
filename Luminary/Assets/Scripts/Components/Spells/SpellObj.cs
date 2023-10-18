@@ -22,7 +22,7 @@ public class SpellObj : MonoBehaviour
     {
         player = GameManager.player;
     }
-
+    // Set spell objects datas
     public void setData(SpellData dts, Vector3 mos)
     {
         player = GameManager.player;
@@ -30,6 +30,7 @@ public class SpellObj : MonoBehaviour
         spawnTime = Time.time;
         currentTime = spawnTime;
         spawnPos = player.transform.position;
+        // if Spells field tyles set position eliipse inside
         if(data.type == 2)
         {
             pos = GetEllipseIntersectionPoint(mos);
@@ -39,23 +40,12 @@ public class SpellObj : MonoBehaviour
 
     }
 
-    public void setData(SpellData dts, GameObject obj)
-    {
-        player = GameManager.player;
-        data = dts;
-        spawnTime = Time.time;
-        currentTime = spawnTime;
-        spawnPos = player.transform.position;
-        target = obj;
-        Debug.Log(target);
-        Debug.Log("target : " + target.GetHashCode());
-    }
-
+    // damage set
     public void setDMG()
     {
         dmg = (data.damage * player.GetComponent<Player>().status.finalDMG);
     }
-
+    // trigger with mob, wall
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Mob")
@@ -69,7 +59,7 @@ public class SpellObj : MonoBehaviour
             OnDestroy();
         }
     }
-
+    // calculate Time
     public virtual void Update()
     {
         deltaTime = Time.time - currentTime;

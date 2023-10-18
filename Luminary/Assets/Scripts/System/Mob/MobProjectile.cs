@@ -21,6 +21,7 @@ public class MobProjectile : MobAttack
     {
         if (isThrow)
         {
+            // Throw objects
             GetComponent<Rigidbody2D>().velocity = dir;
             transform.rotation = Quaternion.Euler(dir);
             if (isGravity)
@@ -32,6 +33,7 @@ public class MobProjectile : MobAttack
 
     public virtual void setData(Mob mob)
     {
+        // Set Target, attackers, transforms
         shooter = mob;
         player = shooter.player;
         transform.position = shooter.transform.position;

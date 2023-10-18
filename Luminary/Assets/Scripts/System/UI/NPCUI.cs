@@ -25,7 +25,7 @@ public class NPCUI : Menu
 
     public int currentSelection = 0;
 
-
+    // Set Transform
     public override void Start()
     {
         base.Start();
@@ -38,14 +38,15 @@ public class NPCUI : Menu
     {
         if (!isActivate)
         {
+            // any input detected, all texts showing
             if (Input.anyKeyDown)
             {
                 currentCnt = textCnt;
             }
-
         }
         else
         {
+            // WS and up down arrows move selection menus
             if(npc.selections.Count <= 0)
             {
                 if (Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))
@@ -93,6 +94,7 @@ public class NPCUI : Menu
         {
             if (isDataSet && currentCnt <= textCnt)
             {
+                // Filling Texts in UI
                 if (!isCoroutineActivate)
                 {
                     isCoroutineActivate = true;
@@ -101,9 +103,8 @@ public class NPCUI : Menu
             }
             else
             {
+                // After Filling all texts, Selection UI sprite Set
                 isActivate = true;
-                SelectUI.GetComponent<RectTransform>().sizeDelta = new Vector2(2.56f, 0.64f * npc.selections.Count);
-                SelectUI.SetActive(true);
                 selects[currentSelection].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
             }
         }
@@ -137,7 +138,7 @@ public class NPCUI : Menu
 
         isDataSet = true;
     }
-
+    // Set Selection positions
     public void setSelection()
     {
         if(npc.selections.Count > 0)
@@ -152,12 +153,12 @@ public class NPCUI : Menu
             }
         }
     }
-
+    // Highlight select ui
     public void SelectHandler(int index)
     {
         selects[index].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().select;
     }
-
+    // Highlight off select ui
     public void DeSelectHandler(int index)
     {
         selects[index].GetComponent<SpriteRenderer>().sprite = selects[currentSelection].GetComponent<Choice>().deSelect;

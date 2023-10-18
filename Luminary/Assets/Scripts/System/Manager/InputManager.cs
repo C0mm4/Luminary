@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     private bool hasInput = false;
     public bool isDragging = false;
 
+    // Key Input Event Check
     public void OnUpdate()
     {
         if(KeyAction != null)
@@ -17,6 +18,7 @@ public class InputManager : MonoBehaviour
            
     }
 
+    // Check Mouse position and key inputs
     public void Update()
     {
         OnUpdate();
@@ -33,11 +35,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public bool HasInput()
-    {
-        return hasInput;
-    }
-
+    // Change Input Events by InGame UI States
     public void changeInputState()
     {
         KeyAction = null;
@@ -67,7 +65,8 @@ public class InputManager : MonoBehaviour
                 break;
         }
     }
-
+    
+    // States Input Set
     public void TitleInput()
     {
         if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(PlayerDataManager.keySetting.InteractionKey))

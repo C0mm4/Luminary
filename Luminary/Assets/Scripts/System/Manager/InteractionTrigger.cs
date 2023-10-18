@@ -23,6 +23,7 @@ public abstract class InteractionTrriger : MonoBehaviour
         if(GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
             width = GetComponent<SpriteRenderer>().bounds.size.x;
+            // Find Nearby Objects to Player Object
             if (GameObject.FindWithTag("Player"))
             {
                 distanceToPlayer = Vector3.Distance(transform.position, GameManager.player.transform.position);
@@ -45,6 +46,7 @@ public abstract class InteractionTrriger : MonoBehaviour
                     }
                 }
             }
+            // if This Object is nearby objects to player, Interaction Hovering UI generate
             if (PlayerDataManager.interactionObject == gameObject)
             {
                 if (popupUI == null)
@@ -69,6 +71,8 @@ public abstract class InteractionTrriger : MonoBehaviour
             }
         }
     }
+
+    // Interaction Trigger function
     public virtual void isInteraction()
     {
         PlayerDataManager.interactionObject = null;
@@ -76,6 +80,7 @@ public abstract class InteractionTrriger : MonoBehaviour
         GameManager.Resource.Destroy(popupUI.gameObject);
     }
 
+    // Set Interaction Hovering UI Position
     public void PopUpMenu()
     {
         Func.SetRectTransform(popupUI, GameManager.cameraManager.camera.WorldToScreenPoint(transform.position) - new Vector3(Screen.width / 2, Screen.height / 2, 0) + new Vector3(width + 250, 50, 0));

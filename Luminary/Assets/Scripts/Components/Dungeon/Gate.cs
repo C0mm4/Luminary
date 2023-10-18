@@ -6,17 +6,19 @@ public class Gate : MonoBehaviour
 {
     SpriteRenderer sprite;
 
+    // Door Activate Handler
     public void Activate()
     {
         Debug.Log("Door Activate");
     }
 
+    // Door DeActivate Handler
     public void DeActivate()
     {
         StartCoroutine(DeActivateCallBack());
     }
 
-
+    // Door Deactivate, destroy door object 1 sec later
     public IEnumerator DeActivateCallBack()
     {
         yield return new WaitForSeconds(1);

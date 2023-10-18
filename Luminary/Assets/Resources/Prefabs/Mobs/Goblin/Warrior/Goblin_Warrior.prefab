@@ -163,9 +163,10 @@ MonoBehaviour:
   sawDir: {x: 0, y: 0}
   attackPrefab:
   - {fileID: 1465138621670016082, guid: 2d33b8cc174cc164897a123f61b9e2c7, type: 3}
-  isHitbox: 
+  isHitbox: 01
   data: {fileID: 11400000, guid: d08e1298584b2ee439a48e45ce97018e, type: 2}
   lastAttackT: 0
+  AtkObj: {fileID: 0}
   sawDirect: {x: 0, y: 0}
 --- !u!70 &7299276300589977055
 CapsuleCollider2D:

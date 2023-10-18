@@ -19,8 +19,7 @@ public class ResourceManager
     }
 
 
-    // 생성 
-    // parent는 프리팹을 생성해서 붙일 곳 
+    // Game Object Loading with prefab paths
     public GameObject Instantiate(string path, Transform parent = null)
     {
         GameObject prefab = Load<GameObject>($"Prefabs/{path}");
@@ -34,6 +33,7 @@ public class ResourceManager
         return Object.Instantiate(prefab, parent);
     }
 
+    // Game Object Loading with GameObject Prefabs
     public GameObject Instantiate(GameObject obj, Transform parent = null)
     {
         if(obj == null)
@@ -49,6 +49,7 @@ public class ResourceManager
         return prefab;
     }
 
+    // Loading XML Datas in path
     public XmlDocument LoadXML(string path)
     {
         XmlDocument xml = new XmlDocument();
@@ -64,6 +65,7 @@ public class ResourceManager
         return xml;
     }
 
+    // Loading Sprites in path
     public Sprite LoadSprite(string path)
     {
         Sprite spr;
@@ -76,12 +78,14 @@ public class ResourceManager
         return spr;
     }
 
+    // Destroy GameObject
     public void Destroy(GameObject go)
     {
         if (go == null) return;
         Object.Destroy(go);
     }
 
+    // Destroy GameObjects
     public void Destroy(GameObject[] go)
     {
         foreach(GameObject g in go)

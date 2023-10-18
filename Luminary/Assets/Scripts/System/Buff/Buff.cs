@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public abstract class Buff
@@ -24,7 +25,7 @@ public abstract class Buff
 
     public int id;
     public int stack = 0;
-
+    // Generate Buff objects setting on target, and attacker
     public Buff(Charactor tar, Charactor atk)
     {
         // base.Buff(tar, atk)
@@ -33,32 +34,34 @@ public abstract class Buff
         target = tar;
         attacker = atk;
         instance = this;
-        Debug.Log(this.GetType().Name);
     }
-
+    // Set Buffs Durae Time
     public void setDurate(float d)
     {
         durate = d;
     }
-
+    // Set Buffs Tick time
     public void setTickTime(float t)
     {
         tickTime = t;
     }
-
+    // Buffs Start Effect
     public virtual void startEffect()
     {
-        // Extention Classes Doesn't Call
         int index = target.status.buffs.FindIndex(buff => buff.id == id);
         if (index == -1)
         {
+            // if same buffs doesn't exist on same target
+            // Add buffs
             target.status.buffs.Add(instance);
-            Debug.Log(target.status.buffs.Count);
         }
         else
         {
+            // if same buffs already exist on same target
+            // buffs reset
             resetEffect(index);
         }
+        // Set Start Time, Tick Time
         startTime = Time.time;
         lastTickTime = startTime;
         
@@ -71,6 +74,7 @@ public abstract class Buff
         //
         // base.durateEffect();
 
+        // if durate time is over, end buffs
         currentTime = Time.time;
         if(currentTime - startTime >= durate)
         {
@@ -78,6 +82,7 @@ public abstract class Buff
         }
     }
 
+    // tick buffs handler
     public virtual void onTick()
     {
     }
@@ -88,6 +93,8 @@ public abstract class Buff
         // Extention Contents
         //
         // base.resetEffect();
+
+        // delete already exists same buffs, and register new buffs
         target.status.buffs.RemoveAt(i);
         target.status.buffs.Add(instance);
     }
@@ -98,6 +105,8 @@ public abstract class Buff
         // Extention Contents
         //
         // base.endEffect();
+
+        // if buffs finish, remove buff objects
         int targetid = target.status.buffs.FindIndex(item => item.instance.Equals(instance));
         target.status.buffs.RemoveAt(targetid);
     }

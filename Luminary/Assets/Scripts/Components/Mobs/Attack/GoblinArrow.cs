@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+// Mob Attack Objects
 public class GoblinArrow : MobProjectile
 {
     public override void setData(Mob mob)

@@ -63,6 +63,7 @@ public class SkillSlot
         }
     }
 
+    // It Doesn't work well
     public GameObject GetClosestObjectToMouse()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
