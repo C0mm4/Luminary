@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4242228221639388190}
   - component: {fileID: 206892365057160699}
   - component: {fileID: 4828434631867619184}
-  - component: {fileID: 3504045816061041965}
+  - component: {fileID: 2375397327634877226}
   m_Layer: 0
   m_Name: TestSlime
   m_TagString: Mob
@@ -171,7 +171,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3504045816061041965
+--- !u!114 &2375397327634877226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1828922195368599024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f625e59f7b4844bba8e5e7dba038a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0af02fd404aff2c4e9a9e0020d754ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
@@ -199,5 +199,6 @@ MonoBehaviour:
   attackPrefab: []
   isHitbox: 
   data: {fileID: 11400000, guid: b829dd545330c8d4e88eb7bfb4a41e91, type: 2}
-  lastAttackT: 0
+  lastAttackT: []
+  AtkObj: {fileID: 0}
   sawDirect: {x: 0, y: 0}

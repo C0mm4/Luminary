@@ -20,11 +20,11 @@ public class MobData : ScriptableObject
 
     public float detectDistance; // Mob AI Detect Player Distance
 
-    public float attackRange; // Player in attack Range, then casting attack
+    public List<float> attackRange = new List<float>(); // Player in attack Range, then casting attack
 
-    public float castSpeed; // Casting Speed
+    public List<float> castSpeed = new List<float>(); // Casting Speed
 
-    public float castCool; // Casting Cooltime (Attack end to next Attack Cast Start Time)
+    public List<float> castCool = new List<float>(); // Casting Cooltime (Attack end to next Attack Cast Start Time)
 
     public List<Item> items; // For Boss Mob, Drop Item Generate
 

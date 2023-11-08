@@ -9,10 +9,15 @@ public class Boss : Mob
     {
         base.Awake();
         isboss = true;
+        UIGen();
     }
-    // Update is called once per frame
-    void Update()
+
+    public void UIGen()
     {
-        
+        GameObject go = GameManager.Resource.Instantiate("UI/BossUI/BossUI");
+        Func.SetRectTransform(go);
+        BossUI ui = go.GetComponent<BossUI>();
+        ui.boss = this;
+        ui.SetData();
     }
 }

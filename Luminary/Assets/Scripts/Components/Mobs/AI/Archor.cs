@@ -8,6 +8,7 @@ public class Archor : AIModel
     public override void Update()
     {
         // player exists
+        Debug.Log(target.data.castCool.Count);
         if(GameManager.player != null)
         {
             string state = target.getState().GetType().Name;
@@ -36,13 +37,13 @@ public class Archor : AIModel
                         else
                         {
                             // if player in attack range, and view direction is current, Attacked player
-                            if(target.playerDistance().magnitude <= target.data.attackRange)
+                            if(target.playerDistance().magnitude <= target.data.attackRange[0])
                             {
                                 if(Vector2.Dot(target.playerDir(), target.sawDir) > 0)
                                 {
-                                    if(Time.time - target.lastAttackT >= target.data.castCool)
+                                    if(Time.time - target.lastAttackT[0] >= target.data.castCool[0])
                                     {
-                                        target.changeState(new MobCastState(target.data.castSpeed, 0));
+                                        target.changeState(new MobCastState(target.data.castSpeed[0], 0));
                                     }
                                     else
                                     {

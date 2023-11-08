@@ -18,9 +18,13 @@ public class SpellObj : MonoBehaviour
 
     public int dmg;
 
+    public bool isGen = false;
+
     public virtual void Start()
     {
         player = GameManager.player;
+        Debug.Log("Gen");
+        isGen = true;
     }
     // Set spell objects datas
     public void setData(SpellData dts, Vector3 mos)
@@ -30,6 +34,7 @@ public class SpellObj : MonoBehaviour
         spawnTime = Time.time;
         currentTime = spawnTime;
         spawnPos = player.transform.position;
+        transform.position = spawnPos;
         // if Spells field tyles set position eliipse inside
         if(data.type == 2)
         {
@@ -37,7 +42,6 @@ public class SpellObj : MonoBehaviour
             transform.position = pos;
         }
         this.mos = mos;
-
     }
 
     // damage set
@@ -48,17 +52,25 @@ public class SpellObj : MonoBehaviour
     // trigger with mob, wall
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Mob")
+        if (isGen)
         {
-            setDMG();
-            other.GetComponent<Mob>().HPDecrease(dmg);
-            OnDestroy();
-        }
-        else if (other.tag == "Wall")
-        {
-            OnDestroy();
+            if (other.tag == "Mob")
+            {
+                setDMG();
+                other.GetComponent<Mob>().HPDecrease(dmg);
+                GameManager.Resource.Destroy(this.gameObject);
+            }
+            if (other.CompareTag("Wall"))
+            {
+                Debug.Log(other.name);
+                Debug.Log(other.transform.parent.transform.parent.name);
+                Debug.Log(other.transform.parent.transform.parent.transform.parent.transform.parent);
+                GameManager.Resource.Destroy(this.gameObject);
+
+            }
         }
     }
+
     // calculate Time
     public virtual void Update()
     {
@@ -68,7 +80,7 @@ public class SpellObj : MonoBehaviour
 
     public virtual void OnDestroy()
     {
-        GameManager.Resource.Destroy(this.gameObject);
+        Debug.Log("Destory");
     }
 
     public Vector3 GetEllipseIntersectionPoint(Vector3 point)

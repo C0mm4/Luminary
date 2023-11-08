@@ -10,9 +10,9 @@ public class DunRoom : MonoBehaviour
     public GameObject Tiles;
     public List<Tile> tiles = new List<Tile>();
 
-    public List<GameObject> doorTiles = new List<GameObject>();
-    public List<GameObject> Doors = new List<GameObject>();
-    public List<GameObject> DoorObjs = new List<GameObject>();
+    public List<GameObject> doorTiles;
+    public List<GameObject> Doors;
+    public List<GameObject> DoorObjs;
 
     public int sizeX, sizeY;
 

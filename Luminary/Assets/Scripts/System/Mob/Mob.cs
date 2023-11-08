@@ -13,7 +13,7 @@ public class Mob : Charactor
     public bool[] isHitbox;
     public MobData data;
     AIModel model;
-    public float lastAttackT;
+    public List<float> lastAttackT = new List<float>();
 
     public GameObject AtkObj;
 
@@ -54,7 +54,10 @@ public class Mob : Charactor
         status.baseHP = data.baseHP;
         status.baseDMG = data.baseDMG;
         status.basespeed = data.basespeed;
-
+        for(int i = 0; i < data.castSpeed.Count; i++)
+        {
+            lastAttackT.Add(0f);
+        }
         base.statusInit();
     }
 
@@ -176,9 +179,9 @@ public class Mob : Charactor
     }
 
     // Attack State End handler Control in Animation Event
-    public void attakEnd()
+    public void attakEnd(int n)
     {
-        lastAttackT = Time.time;
+        lastAttackT[n] = Time.time;
         if(getState().GetType().Name == "MobATKState")
         {
             GameManager.Resource.Destroy(AtkObj);

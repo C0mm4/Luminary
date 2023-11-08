@@ -35,10 +35,9 @@ public class SkillSlot
 
         if (GameManager.player.GetComponent<Player>().status.currentMana >= skillCommand.data.circle)
         {
-            GameManager.player.GetComponent<Player>().status.currentMana -= skillCommand.data.circle;
 
-                    Vector3 pos = GameManager.inputManager.mouseWorldPos;
-                    GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), GameManager.inputManager.mouseWorldPos));
+            Vector3 pos = GameManager.inputManager.mouseWorldPos;
+            GameManager.player.GetComponent<Charactor>().changeState(new PlayerCastingState(getSpell(), GameManager.inputManager.mouseWorldPos));
 
         }
         else

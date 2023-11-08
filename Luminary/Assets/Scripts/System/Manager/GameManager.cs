@@ -261,6 +261,10 @@ public class GameManager : MonoBehaviour
         playerGen();
         uiManager.ChangeState(UIState.Lobby);
         gameState = GameState.InPlay;
+
+        Resource.Instantiate("Mobs/TestSlime");
+        Item item = itemDataManager.ItemGen(10003001);
+        player.GetComponent<Player>().Equip(0, item);
     }
 
     // Stage Scene Initialize

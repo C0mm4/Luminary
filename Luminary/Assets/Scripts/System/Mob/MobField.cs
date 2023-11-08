@@ -41,7 +41,7 @@ public class MobField : MonoBehaviour
         }
         else
         {
-            transform.position = player.transform.position;
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 1);
         }
     }
 

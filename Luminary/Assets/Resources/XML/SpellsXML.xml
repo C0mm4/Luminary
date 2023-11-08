@@ -13,7 +13,7 @@
 		<castTime>0.5</castTime>
 		<spd>7</spd>
                 <elements>1</elements>
-                <path>Spell/TestSpell</path>
+                <path>Spell/Fire/SpellFire</path>
 		<spr>Spells/Icon/TestSpell</spr>
                 <type>projectile</type>
 	</spell>
