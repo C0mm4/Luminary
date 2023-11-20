@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Archor : AIModel
 {
-    public override void Update()
+    public override void FixedUpdate()
     {
         // player exists
         Debug.Log(target.data.castCool.Count);

@@ -148,45 +148,53 @@ public class Player : Charactor
 
     public void spellKey()
     {
-        // Mouse left click casting spells
-        if (Input.GetMouseButtonDown(0))
+        if(GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
-            if (currentSpell.isSet())
+            // Mouse left click casting spells
+            if (Input.GetMouseButtonDown(0))
             {
-                currentSpell.useSkill();
+                if (currentSpell.isSet())
+                {
+                    currentSpell.useSkill();
+                }
+            }
+            // Q button is Weapon Slot Change
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (currentSpell == skillslots[1])
+                {
+                    Debug.Log("SpellSlot Change 2");
+                    currentSpell = skillslots[2];
+                    GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(1);
+                }
+                else
+                {
+                    Debug.Log("SpellSlot Change 1");
+                    currentSpell = skillslots[1];
+                    GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(0);
+                }
             }
         }
-        // Q button is Weapon Slot Change
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (currentSpell == skillslots[1])
-            {
-                Debug.Log("SpellSlot Change 2");
-                currentSpell = skillslots[2];
-                GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(1);
-            }
-            else
-            {
-                Debug.Log("SpellSlot Change 1");
-                currentSpell = skillslots[1];
-                GameManager.Instance.uiManager.stableUI.GetComponent<StableUI>().WeaponSlotChange(0);
-            }
-        }
+
     }
 
 
     public IEnumerator roll()
     {
-        if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
+        if(GameManager.uiState == UIState.InPlay || GameManager.uiState == UIState.Lobby)
         {
-            if (skillslots[0].isSet())
+            if (GameManager.FSM.getList(sMachine.getStateStr()).Contains("PlayerCastingState"))
             {
-                Debug.Log(charactorSpeed);
-                changeState(new PlayerCastingState(skillslots[0].getSpell(), charactorSpeed));
-                skillslots[0].useSkill();
+                if (skillslots[0].isSet())
+                {
+                    Debug.Log(charactorSpeed);
+                    changeState(new PlayerCastingState(skillslots[0].getSpell(), charactorSpeed));
+                    skillslots[0].useSkill();
+                }
+
+                yield return new WaitForSeconds(0);
             }
 
-            yield return new WaitForSeconds(0);
         }
 
     }

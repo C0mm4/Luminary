@@ -509,7 +509,6 @@ MonoBehaviour:
   canvas: {fileID: 1863452475}
   camera: {fileID: 0}
   invUI: {fileID: 0}
-  skillSlotUI: {fileID: 0}
   stableUI: {fileID: 0}
   menuUI: {fileID: 0}
   pauseUI: {fileID: 0}

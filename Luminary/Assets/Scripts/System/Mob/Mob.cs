@@ -12,7 +12,7 @@ public class Mob : Charactor
     public GameObject[] attackPrefab;
     public bool[] isHitbox;
     public MobData data;
-    AIModel model;
+    public AIModel model;
     public List<float> lastAttackT = new List<float>();
 
     public GameObject AtkObj;
@@ -83,7 +83,7 @@ public class Mob : Charactor
         }
 
         // AI model update
-        model.Update();
+        model.FixedUpdate();
 
 
     }
@@ -101,14 +101,13 @@ public class Mob : Charactor
         base.DieObject();
     }
 
-    // on collide player, damaged player
-    public void OnTriggerEnter2D(Collider2D other)
+
+    public void OnCollisionEnter2D(Collision2D other)
     {
-        
-        if(other.tag == "Player")
+        if(other.transform.tag == "Player")
         {
-            Debug.Log("Player Collision");
-            other.GetComponent<Charactor>().HPDecrease(1);
+
+            other.gameObject.GetComponent<Charactor>().HPDecrease(1);
         }
     }
 
@@ -188,5 +187,34 @@ public class Mob : Charactor
             endCurrentState();
 
         }
+    }
+
+    public float HPPercent()
+    {
+        return (float)((float)status.currentHP / (float)status.maxHP);
+    }
+
+    public void MoveSetPosition(float x, float y)
+    {
+        Vector3 Roompos = GameManager.StageC.rooms[GameManager.StageC.currentRoom].transform.position;
+        Vector3 pos = new Vector3(Roompos.x + x, Roompos.y + y);
+        transform.position = pos;
+    }
+
+    public void MovePosition(float x, float y)
+    {
+        transform.position += new Vector3(x, y);
+    }
+
+    public void SetHitBox()
+    {
+        GetComponent<Rigidbody2D>().simulated = true;
+        GetComponent<CircleCollider2D>().isTrigger = false;
+    }
+
+    public void DeSetHitBox()
+    {
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<CircleCollider2D>().isTrigger = true;
     }
 }

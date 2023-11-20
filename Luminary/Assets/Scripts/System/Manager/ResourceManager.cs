@@ -4,6 +4,7 @@ using System.IO;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.PlayerLoop;
 
 
 // 리소스의 Load, Instantiate, Destroy 를 관리하는 리소스 매니저. 
@@ -20,10 +21,10 @@ public class ResourceManager
 
 
     // Game Object Loading with prefab paths
-    public GameObject Instantiate(string path, Transform parent = null)
+    public GameObject Instantiate(string path, Vector3 pos = default, Transform parent = null)
     {
         GameObject prefab = Load<GameObject>($"Prefabs/{path}");
-
+        prefab.transform.position = pos;
         if (prefab == null)
         {
             Debug.Log($"Failed to load prefab : {path}");
@@ -33,14 +34,68 @@ public class ResourceManager
         return Object.Instantiate(prefab, parent);
     }
 
+    public GameObject Instantiate(string path, Transform parent = null)
+    {
+        GameObject prefab = Load<GameObject>($"Prefabs/{path}");
+        if (prefab == null)
+        {
+            Debug.Log($"Failed to load prefab : {path}");
+            return null;
+        }
+
+        return Object.Instantiate(prefab, parent);
+    }
+
+    public GameObject Instantiate(string path)
+    {
+        GameObject prefab = Load<GameObject>($"Prefabs/{path}");
+        if (prefab == null)
+        {
+            Debug.Log($"Failed to load prefab : {path}");
+            return null;
+        }
+
+        return Object.Instantiate(prefab);
+    }
+
     // Game Object Loading with GameObject Prefabs
-    public GameObject Instantiate(GameObject obj, Transform parent = null)
+    public GameObject Instantiate(GameObject obj, Vector3 pos = default, Transform parent = null)
     {
         if(obj == null)
         {
             return null;
         }
         GameObject prefab = Object.Instantiate(obj, parent);
+        if (prefab == null)
+        {
+            Debug.Log($"Failed to laod prefab : {obj.name}");
+            return null;
+        }
+        prefab.transform.position = pos;
+        return prefab;
+    }
+
+    public GameObject Instantiate(GameObject obj, Transform parent = null)
+    {
+        if (obj == null)
+        {
+            return null;
+        }
+        GameObject prefab = Object.Instantiate(obj, parent);
+        if (prefab == null)
+        {
+            Debug.Log($"Failed to laod prefab : {obj.name}");
+            return null;
+        }
+        return prefab;
+    }
+    public GameObject Instantiate(GameObject obj)
+    {
+        if (obj == null)
+        {
+            return null;
+        }
+        GameObject prefab = Object.Instantiate(obj);
         if (prefab == null)
         {
             Debug.Log($"Failed to laod prefab : {obj.name}");

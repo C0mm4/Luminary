@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Warrior : AIModel
 {
-    public override void Update()
+    public override void FixedUpdate()
     {
         if(GameManager.player != null)
         {

@@ -165,7 +165,7 @@ MonoBehaviour:
   - {fileID: 1465138621670016082, guid: 2d33b8cc174cc164897a123f61b9e2c7, type: 3}
   isHitbox: 01
   data: {fileID: 11400000, guid: d08e1298584b2ee439a48e45ce97018e, type: 2}
-  lastAttackT: 0
+  lastAttackT: []
   AtkObj: {fileID: 0}
   sawDirect: {x: 0, y: 0}
 --- !u!70 &7299276300589977055
@@ -197,7 +197,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

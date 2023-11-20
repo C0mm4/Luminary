@@ -551,4 +551,9 @@ public class Charactor : MonoBehaviour
             animator.Play(clip);
         }
     }
+
+    public void EffectGen(string effectPath)
+    {
+        GameManager.Resource.Instantiate(effectPath, transform);
+    }
 }

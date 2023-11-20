@@ -8,6 +8,6 @@ public abstract class AIModel
     public Mob target;
 
     
-    public abstract void Update();
+    public abstract void FixedUpdate();
 
 }

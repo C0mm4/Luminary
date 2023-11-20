@@ -22,5 +22,5 @@ MonoBehaviour:
   attackRange: []
   castSpeed: []
   castCool: []
-  AI: Slime
+  AI: SlimeBoss
   dropGold: 0
