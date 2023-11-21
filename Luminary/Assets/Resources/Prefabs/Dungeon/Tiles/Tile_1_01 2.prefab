@@ -259,6 +259,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (27)
@@ -440,6 +444,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -623,6 +631,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (25)
@@ -804,6 +816,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -987,6 +1003,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (7)
@@ -1168,6 +1188,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -1351,6 +1375,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (18)
@@ -1532,6 +1560,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -1715,6 +1747,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (21)
@@ -1896,6 +1932,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -2079,6 +2119,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (36)
@@ -2260,6 +2304,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -2443,6 +2491,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (13)
@@ -2624,6 +2676,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -2807,6 +2863,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (2)
@@ -2988,6 +3048,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -3171,6 +3235,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (16)
@@ -3352,6 +3420,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -3535,6 +3607,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (28)
@@ -3716,6 +3792,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -3899,6 +3979,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (10)
@@ -4080,6 +4164,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -4263,6 +4351,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (23)
@@ -4444,6 +4536,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -4627,6 +4723,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (14)
@@ -4808,6 +4908,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -4991,6 +5095,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (24)
@@ -5172,6 +5280,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -5355,6 +5467,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (19)
@@ -5536,6 +5652,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -5719,6 +5839,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (31)
@@ -5900,6 +6024,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -6083,6 +6211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (22)
@@ -6264,6 +6396,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
@@ -6447,6 +6583,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
       value: Wall (26)
@@ -6628,6 +6768,10 @@ PrefabInstance:
     - target: {fileID: 1489978214774535704, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452430162865407105, guid: 87644e97c294a154b8331e2569281083, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235215978542927748, guid: 87644e97c294a154b8331e2569281083, type: 3}
       propertyPath: m_Name
