@@ -18,9 +18,9 @@ public class GoblinArrow : MobProjectile
             transform.position += new Vector3(0.1f, 0, 0);
         }
     }
-    public override void Throw()
+    public override void Activate()
     {
-        base.Throw();
+        base.Activate();
         dir = new Vector3(player.transform.position.x - shooter.transform.position.x, 4, 0);
     }
 }

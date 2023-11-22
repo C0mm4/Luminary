@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
+using static UnityEditor.PlayerSettings;
 
-public class MobField : MonoBehaviour
+public class MobField : MobAttack
 {
-    public Mob shooter;
     public Charactor player;
     public bool isActive = false;
     public GameObject ActiveObj = null;
     public GameObject Prefab;
+
+    public bool isRandom;
+
+    public float ActivateT;
 
     // Start is called before the first frame update
     void Start()
@@ -25,28 +30,44 @@ public class MobField : MonoBehaviour
             if(ActiveObj == null)
             {
                 ActiveObj = GameManager.Resource.Instantiate(Prefab, gameObject.transform);
-                ActiveObj.transform.position = transform.position;
+                ActiveObj.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z -1);
+                ActivateT = Time.time;
+            }
+            else
+            {
+                if(Time.time - ActivateT >= 1f) 
+                {
+                    Destroy();
+                }
             }
         }
     }
 
-    public virtual void setData(Mob mob, Vector3 pos = default(Vector3))
+    public override void setData(Mob mob, Vector3 pos)
     {
         // Set target, attackers and transform
-        shooter = mob;
+        base.setData(mob, pos);
         player = shooter.player;
-        if(pos != default(Vector3))
-        {
-            transform.position = pos;
-        }
-        else
-        {
-            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 1);
-        }
+        transform.position = pos;
+        Debug.Log("Field Set");
+    }
+
+    public override void setData(Mob mob)
+    {
+        base.setData(mob); 
+        player = shooter.player;
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0);
+        Debug.Log("Field Set");
     }
 
     public virtual void setActive()
     {
+        isActive = true;
+    }
+
+    public override void Activate()
+    {
+        base.Activate();
         isActive = true;
     }
 }

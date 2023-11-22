@@ -26,7 +26,8 @@ public class SlimeBoss : AIModel
             {
                 if(target.HPPercent() <= 0.5 && !patturns[0])
                 {
-
+                    patturns[0] = true;
+                    target.changeState(new MobCastState(2f, 0));
                 }
 
                 else if(Time.time - moveTime >= 1.3f)

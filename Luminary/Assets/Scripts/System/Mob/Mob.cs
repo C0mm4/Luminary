@@ -15,7 +15,8 @@ public class Mob : Charactor
     public AIModel model;
     public List<float> lastAttackT = new List<float>();
 
-    public GameObject AtkObj;
+    public List<MobAttack> AtkObj;
+    public MobAttack ActiveAtk;
 
     public Vector2 sawDirect;
 
@@ -25,7 +26,7 @@ public class Mob : Charactor
         base.Awake();
         // Set Idle State
         sMachine.changeState(new MobIdleState());
-
+        AtkObj = new List<MobAttack>();
         // Find Player
         try
         {
@@ -96,7 +97,17 @@ public class Mob : Charactor
         {
             GameManager.StageC.ClearRoom();
         }
-        GameManager.Resource.Destroy(AtkObj);
+        List<GameObject> atks = new List<GameObject>();
+        foreach(MobAttack atk in AtkObj)
+        {
+            atks.Add(atk.gameObject);
+        }
+        foreach(GameObject atk in atks)
+        {
+            GameManager.Resource.Destroy(atk);
+        }
+        atks.Clear();
+        AtkObj.Clear();
         GameManager.player.GetComponent<Player>().status.gold += data.dropGold;
         base.DieObject();
     }
@@ -125,55 +136,54 @@ public class Mob : Charactor
         Vector2 ret = new Vector2((player.transform.position.x - transform.position.x), (player.transform.position.y - transform.position.y));
         return ret;
     }
-    // Projectile attack object generate
-    public void ProjectileGen(int index)
-    {
-        AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
-        AtkObj.GetComponent<MobProjectile>().setData(this);
-    }
-    // field type attack object generate
-    public void FieldGen(int index)
-    {
-        AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
-        AtkObj.GetComponent<MobField>().setData(this);
-    }
-
-    // Generate Attack HitBox Prefab
-    public void Attack(int index)
+    
+    // Attack Object Generate
+    public void AttackObjGen(int index)
     {
         if (isHitbox[index])
         {
-            AtkObj = GameManager.Resource.Instantiate(attackPrefab[index], transform);
+            GameObject go = GameManager.Resource.Instantiate(attackPrefab[index], transform);
+            ActiveAtk = go.GetComponent<MobAttack>();
+            ActiveAtk.setData(this);
         }
         else
         {
-            if(AtkObj == null)
-            {
-                AtkObj = GameManager.Resource.Instantiate(attackPrefab[index]);
-            }
-        }
-    }
-    // activate projectile and field type attack object
-    public void FieldProjectileActive()
-    {
-        try
-        {
-            // if obj is projectile Throw projectile object
-            AtkObj.GetComponent<MobProjectile>().Throw();
-        }
-        catch
-        {
+            GameObject go = GameManager.Resource.Instantiate(attackPrefab[index]);
+            ActiveAtk = go.GetComponent<MobAttack>();
             try
             {
-                // if obj is Fild, Activate Field attack
-                AtkObj.GetComponent<MobField>().setActive();
+                ActiveAtk.GetComponent<MobProjectile>().setData(this);
             }
             catch
             {
-                // hitbox is destroy
-                GameManager.Resource.Destroy(AtkObj);
-
+                bool isrnd = ActiveAtk.GetComponent<MobField>().isRandom;
+                if (isrnd)
+                {
+                    Vector3 pos = new Vector3();
+                    ActiveAtk.GetComponent<MobField>().setData(this, pos);
+                }
+                else
+                {
+                    ActiveAtk.GetComponent<MobField>().setData(this);
+                }
             }
+        }
+        Debug.Log(AtkObj);
+        AtkObj.Add(ActiveAtk);
+    }
+
+    public void AttackActivates()
+    {
+
+        Debug.Log(AtkObj);
+        try
+        {
+            ActiveAtk.Activate();
+            ActiveAtk = null;
+        }
+        catch
+        {
+
         }
     }
 
@@ -183,10 +193,15 @@ public class Mob : Charactor
         lastAttackT[n] = Time.time;
         if(getState().GetType().Name == "MobATKState")
         {
-            GameManager.Resource.Destroy(AtkObj);
+            if (isHitbox[n])
+            {
+                GameManager.Resource.Destroy(ActiveAtk.gameObject);
+            }
             endCurrentState();
 
         }
+
+        Debug.Log(AtkObj);
     }
 
     public float HPPercent()

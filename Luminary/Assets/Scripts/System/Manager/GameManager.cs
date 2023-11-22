@@ -262,7 +262,7 @@ public class GameManager : MonoBehaviour
         uiManager.ChangeState(UIState.Lobby);
         gameState = GameState.InPlay;
 
-        Resource.Instantiate("Mobs/TestSlime", new Vector3(7f,7f,0f));
+        Resource.Instantiate("Mobs/Goblin/Magition/Goblin_Magition", new Vector3(7f,7f,0f));
         Item item = itemDataManager.ItemGen(10003001);
         player.GetComponent<Player>().Equip(0, item);
     }

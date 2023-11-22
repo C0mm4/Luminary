@@ -7,7 +7,6 @@ public class MobProjectile : MobAttack
     public Vector3 dir;
     public bool isGravity;
     public bool isThrow;
-    public Mob shooter;
     public Charactor player;
 
     // Start is called before the first frame update
@@ -31,18 +30,17 @@ public class MobProjectile : MobAttack
         }
     }
 
-    public virtual void setData(Mob mob)
+    public override void setData(Mob mob)
     {
         // Set Target, attackers, transforms
-        shooter = mob;
+        base.setData(mob);
         player = shooter.player;
         transform.position = shooter.transform.position;
-        
+        Debug.Log("Projectile Set");
     }
 
-    public virtual void Throw()
+    public override void Activate()
     {
         isThrow = true;
-        shooter.AtkObj = null;
     }
 }

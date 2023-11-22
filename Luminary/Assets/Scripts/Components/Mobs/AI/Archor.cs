@@ -8,7 +8,6 @@ public class Archor : AIModel
     public override void FixedUpdate()
     {
         // player exists
-        Debug.Log(target.data.castCool.Count);
         if(GameManager.player != null)
         {
             string state = target.getState().GetType().Name;
